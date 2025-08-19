@@ -1,0 +1,230 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0010 - Data Pejabat Eksekutif Berhenti</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0010Modal">Tambah</button><br><br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0010Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0010ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0010ModalLabel">Form Data Pejabat Eksekutif Berhenti</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                                <div class="row g-3">
+                                    <!-- Bagian nama dan nik (2 kolom) -->
+                                    <div class="col-md-6">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama">
+                                    </div>
+                                    <div class="col-md-6">
+                                    <label for="nik" class="form-label">NIK</label>
+                                    <input type="text" class="form-control" id="nik" name="nik">
+                                    </div>
+
+                                    <!-- Field lainnya (4 kolom per baris) -->
+                                    <div class="col-md-3">
+                                    <label for="sts_kepatuhan" class="form-label">Kepatuhan</label>
+                                    <input type="text" class="form-control" id="sts_kepatuhan" name="sts_kepatuhan">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="sts_manajemen_resiko" class="form-label">Manajemen Resiko</label>
+                                    <input type="text" class="form-control" id="sts_manajemen_resiko" name="sts_manajemen_resiko">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="sts_audit_in" class="form-label">Audit Intern</label>
+                                    <input type="text" class="form-control" id="sts_audit_in" name="sts_audit_in">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="sts_apuppt" class="form-label">APU PPT</label>
+                                    <input type="text" class="form-control" id="sts_apuppt" name="sts_apuppt">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                    <label for="sts_lainnya" class="form-label">Lainnya</label>
+                                    <input type="text" class="form-control" id="sts_lainnya" name="sts_lainnya">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="tgl_mulai" class="form-label">Tgl Mulai</label>
+                                    <input type="date" class="form-control" id="tgl_mulai" name="tgl_mulai">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="no_pengangkatan" class="form-label">No Pengangkatan</label>
+                                    <input type="text" class="form-control" id="no_pengangkatan" name="no_pengangkatan">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="tgl_pengangkatan" class="form-label">Tgl Pengangkatan</label>
+                                    <input type="date" class="form-control" id="tgl_pengangkatan" name="tgl_pengangkatan">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                    <label for="komite_audit" class="form-label">Kom. Audit</label>
+                                    <input type="text" class="form-control" id="komite_audit" name="komite_audit">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="komite_pemantauan_resiko" class="form-label">Kom. Pemantauan Resiko</label>
+                                    <input type="text" class="form-control" id="komite_pemantauan_resiko" name="komite_pemantauan_resiko">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="komite_remunerasi" class="form-label">Kom. Remunerasi</label>
+                                    <input type="text" class="form-control" id="komite_remunerasi" name="komite_remunerasi">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="komite_manrisk" class="form-label">Kom. Manrisk</label>
+                                    <input type="text" class="form-control" id="komite_manrisk" name="komite_manrisk">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                    <label for="sebab_berhenti" class="form-label">Sebab Berhenti</label>
+                                    <input type="text" class="form-control" id="sebab_berhenti" name="sebab_berhenti">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="alasan_berhenti" class="form-label">Alasan Berhenti</label>
+                                    <input type="text" class="form-control" id="alasan_berhenti" name="alasan_berhenti">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="no_pemberhentian" class="form-label">No Pemberhentian</label>
+                                    <input type="text" class="form-control" id="no_pemberhentian" name="no_pemberhentian">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <label for="tgl_pemberhentian" class="form-label">Tgl Pemberhentian</label>
+                                    <input type="date" class="form-control" id="tgl_pemberhentian" name="tgl_pemberhentian">
+                                    </div>
+                                </div>
+                            </form>
+                                <!-- End Input Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>NIK</th>
+                        <th>Sts Kepatuhan</th>
+                        <th>Sts Manajemen Resiko</th>
+                        <th>Sts Audit In</th>
+                        <th>Sts APU PPT</th>
+                        <th>Sts Lainnya</th>
+                        <th>Tgl Mulai</th>
+                        <th>No Pengangkatan</th>
+                        <th>Tgl Pengangkatan</th>
+                        <th>Komite Audit</th>
+                        <th>Komite Pemantauan Resiko</th>
+                        <th>Komite Remunerasi</th>
+                        <th>Komite Manrisk</th>
+                        <th>Sebab Berhenti</th>
+                        <th>Alasan Berhenti</th>
+                        <th>No Pemberhentian</th>
+                        <th>Tgl Pemberhentian</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                    <tr>
+                        <td>John Doe</td>
+                        <td>1234567890</td>
+                        <td>Y</td>
+                        <td>T</td>
+                        <td>Y</td>
+                        <td>T</td>
+                        <td>-</td>
+                        <td>2025-01-01</td>
+                        <td>SK-2025-01</td>
+                        <td>2025-01-15</td>
+                        <td>Y</td>
+                        <td>N</td>
+                        <td>Y</td>
+                        <td>Y</td>
+                        <td>1</td>
+                        <td>Pensiun</td>
+                        <td>SP-001</td>
+                        <td>2025-07-01</td>
+                        <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0010Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Tambahkan baris lainnya di sini -->
+                    </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0010Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById("nama").value = cells[0].textContent;
+        document.getElementById("nik").value = cells[1].textContent;
+        document.getElementById("sts_kepatuhan").value = cells[2].textContent;
+        document.getElementById("sts_manajemen_resiko").value = cells[3].textContent;
+        document.getElementById("sts_audit_in").value = cells[4].textContent;
+        document.getElementById("sts_apuppt").value = cells[5].textContent;
+        document.getElementById("sts_lainnya").value = cells[6].textContent;
+        document.getElementById("tgl_mulai").value = cells[7].textContent;
+        document.getElementById("no_pengangkatan").value = cells[8].textContent;
+        document.getElementById("tgl_pengangkatan").value = cells[9].textContent;
+        document.getElementById("komite_audit").value = cells[10].textContent;
+        document.getElementById("komite_pemantauan_resiko").value = cells[11].textContent;
+        document.getElementById("komite_remunerasi").value = cells[12].textContent;
+        document.getElementById("komite_manrisk").value = cells[13].textContent;
+        document.getElementById("sebab_berhenti").value = cells[14].textContent;
+        document.getElementById("alasan_berhenti").value = cells[15].textContent;
+        document.getElementById("no_pemberhentian").value = cells[16].textContent;
+        document.getElementById("tgl_pemberhentian").value = cells[17].textContent;
+
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

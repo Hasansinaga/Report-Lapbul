@@ -1,0 +1,156 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0012 - Data Penutupan Kantor</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0012Modal">Tambah</button><br><br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0012Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0012ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0012ModalLabel">Form Data Penutupan Kantor</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="jenis" class="form-label">Jenis</label>
+                                        <input type="text" class="form-control" id="jenis" name="jenis" maxlength="2">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kode_kantor" class="form-label">Kode Kantor</label>
+                                        <input type="text" class="form-control" id="kode_kantor" name="kode_kantor" maxlength="3">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="sandi_kantor_induk" class="form-label">Sandi Kantor Induk</label>
+                                        <input type="text" class="form-control" id="sandi_kantor_induk" name="sandi_kantor_induk" maxlength="3">
+                                    </div>
+                                    
+                                    <div class="col-md-4 mb-3">
+                                        <label for="nama_kantor" class="form-label">Nama Kantor</label>
+                                        <input type="text" class="form-control" id="nama_kantor" name="nama_kantor" maxlength="50">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="koordinat" class="form-label">Koordinat</label>
+                                        <input type="text" class="form-control" id="koordinat" name="koordinat" maxlength="50">
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <label for="alamat" class="form-label">Alamat</label>
+                                        <input type="text" class="form-control" id="alamat" name="alamat" maxlength="100">
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tgl_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
+                                        <input type="text" class="form-control" id="tgl_pelaksanaan" name="tgl_pelaksanaan" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="dati" class="form-label">DATI</label>
+                                        <input type="text" class="form-control" id="dati" name="dati" maxlength="4">
+                                    </div>
+                                </div>
+                            </form>
+                                <!-- End Input Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kode Kantor</th>
+                        <th>Sandi Induk</th>
+                        <th>Nama Kantor</th>
+                        <th>Koordinat</th>
+                        <th>Alamat</th>
+                        <th>Tgl Pelaksanaan</th>
+                        <th>DATI</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                    <tr>
+                        <td>A1</td>
+                        <td>001</td>
+                        <td>100</td>
+                        <td>Kantor Pusat</td>
+                        <td>-6.200,106.816</td>
+                        <td>Jl. Merdeka No. 1</td>
+                        <td>20250817</td>
+                        <td>DKI1</td>
+                        <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0012Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Tambahkan baris lainnya di sini -->
+                    </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0012Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById("jenis").value = cells[0].textContent;
+        document.getElementById("kode_kantor").value = cells[1].textContent;
+        document.getElementById("sandi_kantor_induk").value = cells[2].textContent;
+        document.getElementById("nama_kantor").value = cells[3].textContent;
+        document.getElementById("koordinat").value = cells[4].textContent;
+        document.getElementById("alamat").value = cells[5].textContent;
+        document.getElementById("tgl_pelaksanaan").value = cells[6].textContent;
+        document.getElementById("dati").value = cells[7].textContent;
+
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

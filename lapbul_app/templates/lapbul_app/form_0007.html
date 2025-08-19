@@ -1,0 +1,217 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0007 - Daftar Pinjaman yang Diterima</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0007Modal">Tambah</button>--><br><br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0007Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0007ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0007ModalLabel">Form Daftar Pinjaman yang Diterima</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="cif" class="form-label">CIF</label>
+                                        <input type="text" class="form-control" id="cif" maxlength="20">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodegolkreditur" class="form-label">Kode Gol Kreditur</label>
+                                        <input type="text" class="form-control" id="kodegolkreditur" maxlength="3">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="sandibank" class="form-label">Sandi Bank</label>
+                                        <input type="text" class="form-control" id="sandibank" maxlength="6">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodedati2" class="form-label">Kode Dati2</label>
+                                        <input type="text" class="form-control" id="kodedati2" maxlength="4">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodejenispyd" class="form-label">Kode Jenis PyD</label>
+                                        <input type="text" class="form-control" id="kodejenispyd" maxlength="2">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="sandihubbank" class="form-label">Sandi Hub Bank</label>
+                                        <input type="text" class="form-control" id="sandihubbank" maxlength="2">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="jwmulai" class="form-label">JW Mulai</label>
+                                        <input type="text" class="form-control" id="jwmulai" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="jwtempo" class="form-label">JW Tempo</label>
+                                        <input type="text" class="form-control" id="jwtempo" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="sukubunga" class="form-label">Suku Bunga (%)</label>
+                                        <input type="number" step="0.01" class="form-control" id="sukubunga">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="carahitbunga" class="form-label">Cara Hitung Bunga</label>
+                                        <input type="text" class="form-control" id="carahitbunga" maxlength="2">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="plafon" class="form-label">Plafon</label>
+                                        <input type="number" class="form-control" id="plafon">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodejnsagunan" class="form-label">Kode Jenis Agunan</label>
+                                        <input type="text" class="form-control" id="kodejnsagunan" maxlength="3">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="nominalagunan" class="form-label">Nominal Agunan</label>
+                                        <input type="number" class="form-control" id="nominalagunan">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="bakidebet" class="form-label">Baki Debet</label>
+                                        <input type="number" class="form-control" id="bakidebet">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="bytranbelumamor" class="form-label">Biaya Transaksi</label>
+                                        <input type="number" class="form-control" id="bytranbelumamor">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="diskontobelumamor" class="form-label">Diskonto</label>
+                                        <input type="number" class="form-control" id="diskontobelumamor">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="bakidebetneto" class="form-label">Baki Debet Neto</label>
+                                        <input type="number" class="form-control" id="bakidebetneto">
+                                    </div>
+                                    </div>
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                    <th>CIF</th>
+                    <th>Kode Gol Kreditur</th>
+                    <th>Sandi Bank</th>
+                    <th>Kode Dati2</th>
+                    <th>Kode Jenis PyD</th>
+                    <th>Sandi Hub Bank</th>
+                    <th>JW Mulai</th>
+                    <th>JW Tempo</th>
+                    <th>Suku Bunga</th>
+                    <th>Cara Hitung Bunga</th>
+                    <th>Plafon</th>
+                    <th>Kode Jenis Agunan</th>
+                    <th>Nominal Agunan</th>
+                    <th>Baki Debet</th>
+                    <th>Byr Tran Belum Amor</th>
+                    <th>Diskonto Belum Amor</th>
+                    <th>Baki Debet Neto</th>
+                    <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Row -->
+                    <tr>
+                    <td>1234567890</td>
+                    <td>K01</td>
+                    <td>123456</td>
+                    <td>D001</td>
+                    <td>01</td>
+                    <td>01</td>
+                    <td>20250101</td>
+                    <td>20260101</td>
+                    <td>5.25</td>
+                    <td>01</td>
+                    <td>100000000</td>
+                    <td>AG1</td>
+                    <td>80000000</td>
+                    <td>75000000</td>
+                    <td>5000000</td>
+                    <td>3000000</td>
+                    <td>67000000</td>
+                    <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
+                        <!-- <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a> -->
+                    </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0007Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById('cif').value = cells[0].textContent;
+        document.getElementById('kodegolkreditur').value = cells[1].textContent;
+        document.getElementById('sandibank').value = cells[2].textContent;
+        document.getElementById('kodedati2').value = cells[3].textContent;
+        document.getElementById('kodejenispyd').value = cells[4].textContent;
+        document.getElementById('sandihubbank').value = cells[5].textContent;
+        document.getElementById('jwmulai').value = cells[6].textContent;
+        document.getElementById('jwtempo').value = cells[7].textContent;
+        document.getElementById('sukubunga').value = cells[8].textContent;
+        document.getElementById('carahitbunga').value = cells[9].textContent;
+        document.getElementById('plafon').value = cells[10].textContent;
+        document.getElementById('kodejnsagunan').value = cells[11].textContent;
+        document.getElementById('nominalagunan').value = cells[12].textContent;
+        document.getElementById('bakidebet').value = cells[13].textContent;
+        document.getElementById('bytranbelumamor').value = cells[14].textContent;
+        document.getElementById('diskontobelumamor').value = cells[15].textContent;
+        document.getElementById('bakidebetneto').value = cells[16].textContent;
+
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

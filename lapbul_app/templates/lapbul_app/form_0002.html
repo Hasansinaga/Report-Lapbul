@@ -1,0 +1,370 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0002 - Data Anggota Direksi dan Dewan Komisaris</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0002Modal">Tambah</button><br><br>
+            
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0002Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0002ModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0002ModalLabel">Form Data Anggota Direksi dan Dewan Komisaris</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                    <td><label for="nama" class="form-label">Nama</label></td>
+                                    <td><input type="text" class="form-control" id="nama" name="nama"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="alamat" class="form-label">Alamat</label></td>
+                                    <td><input type="text" class="form-control" id="alamat" name="alamat"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="noidentitas" class="form-label">No Identitas</label></td>
+                                    <td><input type="text" class="form-control" id="noidentitas" name="noidentitas"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kodejabpengurus" class="form-label">Kode Jabatan Pengurus</label></td>
+                                    <td><input type="text" class="form-control" id="kodejabpengurus" name="kodejabpengurus"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="tglmulai" class="form-label">Tanggal Mulai</label></td>
+                                    <td><input type="text" class="form-control" id="tglmulai" name="tglmulai"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="tglselesai" class="form-label">Tanggal Selesai</label></td>
+                                    <td><input type="text" class="form-control" id="tglselesai" name="tglselesai"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="nomorskojk" class="form-label">Nomor SK OJK</label></td>
+                                    <td><input type="text" class="form-control" id="nomorskojk" name="nomorskojk"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="tglskojk" class="form-label">Tanggal SK OJK</label></td>
+                                    <td><input type="text" class="form-control" id="tglskojk" name="tglskojk"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="stscertif" class="form-label">Status Sertifikasi</label></td>
+                                    <td><input type="text" class="form-control" id="stscertif" name="stscertif"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="tglcertif" class="form-label">Tanggal Sertifikasi</label></td>
+                                    <td><input type="text" class="form-control" id="tglcertif" name="tglcertif"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kodedidikf" class="form-label">Kode Pendidikan Formal</label></td>
+                                    <td><input type="text" class="form-control" id="kodedidikf" name="kodedidikf"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="tgldidikf" class="form-label">Tanggal Pendidikan Formal</label></td>
+                                    <td><input type="text" class="form-control" id="tgldidikf" name="tgldidikf"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="lembagaf" class="form-label">Lembaga Formal</label></td>
+                                    <td><input type="text" class="form-control" id="lembagaf" name="lembagaf"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="jenisdidiknon" class="form-label">Jenis Pendidikan Non Formal</label></td>
+                                    <td><input type="text" class="form-control" id="jenisdidiknon" name="jenisdidiknon"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="tgldidiknon" class="form-label">Tanggal Pendidikan Non Formal</label></td>
+                                    <td><input type="text" class="form-control" id="tgldidiknon" name="tgldidiknon"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="lembaganon" class="form-label">Lembaga Non Formal</label></td>
+                                    <td><input type="text" class="form-control" id="lembaganon" name="lembaganon"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kodekomite1" class="form-label">Kode Komite 1</label></td>
+                                    <td><input type="text" class="form-control" id="kodekomite1" name="kodekomite1"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kodekomite2" class="form-label">Kode Komite 2</label></td>
+                                    <td><input type="text" class="form-control" id="kodekomite2" name="kodekomite2"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kodekomite3" class="form-label">Kode Komite 3</label></td>
+                                    <td><input type="text" class="form-control" id="kodekomite3" name="kodekomite3"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kodekomite4" class="form-label">Kode Komite 4</label></td>
+                                    <td><input type="text" class="form-control" id="kodekomite4" name="kodekomite4"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="stskepatuhan" class="form-label">Status Kepatuhan</label></td>
+                                    <td><input type="text" class="form-control" id="stskepatuhan" name="stskepatuhan"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="komindependen" class="form-label">Komite Independen</label></td>
+                                    <td><input type="text" class="form-control" id="komindependen" name="komindependen"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="kt_terkait_pengurus" class="form-label">Keterkaitan Pengurus</label></td>
+                                    <td><input type="text" class="form-control" id="kt_terkait_pengurus" name="kt_terkait_pengurus"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="alasan_perubahan" class="form-label">Alasan Perubahan</label></td>
+                                    <td><input type="text" class="form-control" id="alasan_perubahan" name="alasan_perubahan"></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label for="keterangan_jabatan" class="form-label">Keterangan Jabatan</label></td>
+                                    <td><input type="text" class="form-control" id="keterangan_jabatan" name="keterangan_jabatan"></td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table id="datatables" class="table table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>No Identitas</th>
+                        <th>Kode Jab Pengurus</th>
+                        <th>Tgl Mulai</th>
+                        <th>Tgl Selesai</th>
+                        <th>Nomor SK OJK</th>
+                        <th>Tgl SK OJK</th>
+                        <th>Status Sertif</th>
+                        <th>Tgl Sertif</th>
+                        <th>Kode Didik F</th>
+                        <th>Tgl Didik F</th>
+                        <th>Lembaga F</th>
+                        <th>Jenis Didik Non</th>
+                        <th>Tgl Didik Non</th>
+                        <th>Lembaga Non</th>
+                        <th>Komite Audit</th>
+                        <th>Kode Pemantau Risiko</th>
+                        <th>Kode Remunerasi dan Nominasi</th>
+                        <th>Kode Manajemen R</th>
+                        <th>Sts Kepatuhan</th>
+                        <th>Kom Independen</th>
+                        <th>KT Terkait Pengurus</th>
+                        <th>Alasan Perubahan</th>
+                        <th>Keterangan Jabatan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MONANG SAGALA</td>
+                        <td>JL. KEMBANG V NO. 47 RT 003/002 KEL. KWITANG, KEC. SENEN - JAKARTA PUSAT</td>
+                        <td>3171041405730003</td>
+                        <td>210</td>
+                        <td>2024-11-12</td>
+                        <td>2029-11-12</td>
+                        <td>KEP-176/KO.11/2024</td>
+                        <td>2024-10-31</td>
+                        <td>1</td>
+                        <td>2024-06-21</td>
+                        <td>03</td>
+                        <td>2009-06-16</td>
+                        <td>Institut Bisnis & Informatika Jakarta</td>
+                        <td>Sertifikasi Profesi Komisaris</td>
+                        <td>2024-06-21</td>
+                        <td>BNSP</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0002Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SUBARTINAH</td>
+                        <td>JL. GEMPOL RT.012/002 KEL.BAMBU APUS KEC.CIPAYUNG - JAKARTA TIMUR</td>
+                        <td>3175104606760003</td>
+                        <td>120</td>
+                        <td>2025-01-08</td>
+                        <td>2030-01-08</td>
+                        <td>KEP-214/KO.11/2024</td>
+                        <td>2024-12-13</td>
+                        <td>1</td>
+                        <td>2021-12-07</td>
+                        <td>03</td>
+                        <td>1998-08-03</td>
+                        <td>Muhammadiyah Jakarta</td>
+                        <td>Sertifikasi Profesi Direksi</td>
+                        <td>2021-07-12</td>
+                        <td>BNSP</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td></td>
+                        <td>Direktur</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0002Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FRANSISKA SRI BUDHIARTI, SE</td>
+                        <td>JL. taman Cendana I Blok P.2/24 RT. 008/014 Jaka Setia, Bekasi Selatan-Bekasi</td>
+                        <td>3275045504600011</td>
+                        <td>110</td>
+                        <td>2021-12-16</td>
+                        <td>2026-12-16</td>
+                        <td>KEP-184/KR.02/2021</td>
+                        <td>2021-11-30</td>
+                        <td>1</td>
+                        <td>2023-01-26</td>
+                        <td>03</td>
+                        <td>2012-02-22</td>
+                        <td>STIE PELITA BANGSA</td>
+                        <td>Pelatihan Penentuan Tingkat Kesehatan BPR</td>
+                        <td>2018-01-26</td>
+                        <td>Perbarindo DKI Jakarta</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td></td>
+                        <td>Direktur Utama</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0002Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DIDI HENDRIYANSYAH</td>
+                        <td>PERUM WISMAMAS BLOK C1/37 RT 003/010 KEL.CINANGKA KEC.SAWANGAN</td>
+                        <td>3276030912710002</td>
+                        <td>220</td>
+                        <td>2024-01-30</td>
+                        <td>2029-01-30</td>
+                        <td>KEP-38/KO.12/2023</td>
+                        <td>2023-12-19</td>
+                        <td>1</td>
+                        <td>2021-12-20</td>
+                        <td>02</td>
+                        <td>1999-06-01</td>
+                        <td>OKLAHMA CITY UNIVERSITY</td>
+                        <td>Sertifikasi Profesi Komisaris</td>
+                        <td>2021-12-20</td>
+                        <td>BNSP</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0002Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+
+    document.addEventListener('click', function(e) {
+
+        if (e.target.closest('.tambah')) {
+            // Handle tambah button click
+            e.preventDefault();
+
+            const form = document.querySelector('#form0002Modal form');
+            
+            form.reset();
+        }
+
+        if (e.target.closest('.edit')) {
+            // Handle edit button click
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            // Isi form dengan data yang dipilih
+            document.getElementById('nama').value = cells[0].textContent;
+            document.getElementById('alamat').value = cells[1].textContent;
+            document.getElementById('noidentitas').value = cells[2].textContent;
+            document.getElementById('kodejabpengurus').value = cells[3].textContent;
+            document.getElementById('tglmulai').value = cells[4].textContent;
+            document.getElementById('tglselesai').value = cells[5].textContent;
+            document.getElementById('nomorskojk').value = cells[6].textContent;
+            document.getElementById('tglskojk').value = cells[7].textContent;
+            document.getElementById('stscertif').value = cells[8].textContent;
+            document.getElementById('tglcertif').value = cells[9].textContent;
+            document.getElementById('kodedidikf').value = cells[10].textContent;
+            document.getElementById('tgldidikf').value = cells[11].textContent;
+            document.getElementById('lembagaf').value = cells[12].textContent;
+            document.getElementById('jenisdidiknon').value = cells[13].textContent;
+            document.getElementById('tgldidiknon').value = cells[14].textContent;
+            document.getElementById('lembaganon').value = cells[15].textContent;
+            document.getElementById('kodekomite1').value = cells[16].textContent;
+            document.getElementById('kodekomite2').value = cells[17].textContent;
+            document.getElementById('kodekomite3').value = cells[18].textContent;
+            document.getElementById('kodekomite4').value = cells[19].textContent;
+            document.getElementById('stskepatuhan').value = cells[20].textContent;
+            document.getElementById('komindependen').value = cells[21].textContent;
+            document.getElementById('kt_terkait_pengurus').value = cells[22].textContent;
+            document.getElementById('alasan_perubahan').value = cells[23].textContent;
+            document.getElementById('keterangan_jabatan').value = cells[24].textContent;
+        }
+        
+        if (e.target.closest('.delete')) {
+            // Handle delete button click
+            e.preventDefault();
+
+            const row = e.target.closest('tr');
+        
+            // Tampilkan dialog konfirmasi
+            const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+            
+            if (confirmDelete) {
+                row.remove();
+            }
+        }
+    });
+
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

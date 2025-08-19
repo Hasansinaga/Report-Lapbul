@@ -1,0 +1,153 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0005 - Data Pihak Terkait Lainnya</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0005Modal">Tambah</button> --><br><br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0005Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0005ModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0005ModalLabel">Form Data Pihak Terkait Lainnya</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                                <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama" maxlength="50" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="noidentitas" class="form-label">No Identitas</label>
+                                    <input type="text" class="form-control" id="noidentitas" name="noidentitas" maxlength="25" required>
+                                </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="alamat" class="form-label">Alamat</label>
+                                    <textarea class="form-control" id="alamat" name="alamat" rows="3" maxlength="150" required></textarea>
+                                </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="sanditerkait" class="form-label">Sandi Terkait</label>
+                                    <input type="text" class="form-control" id="sanditerkait" name="sanditerkait" maxlength="2" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="sandihubterkait" class="form-label">Sandi Hub Terkait</label>
+                                    <input type="text" class="form-control" id="sandihubterkait" name="sandihubterkait" maxlength="2" required>
+                                </div>
+                                </div>
+                            </form>
+                                <!-- End Input Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>No Identitas</th>
+                        <th>Alamat</th>
+                        <th>Sandi Terkait</th>
+                        <th>Sandi Hub Terkait</th>
+                        <!-- <th>Aksi</th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>123456789</td>
+                        <td>Jl. Merdeka No.10</td>
+                        <td>A1</td>
+                        <td>B2</td>
+                        <!--
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0005Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                        -->
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>987654321</td>
+                        <td>Jl. Sudirman No.25</td>
+                        <td>C3</td>
+                        <td>D4</td>
+                        <!--
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0005Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                        -->
+                    </tr>
+                    <!-- Add more rows as needed -->
+                    </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        //scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0005Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById('nama').value = cells[0].textContent;
+        document.getElementById('noidentitas').value = cells[1].textContent;
+        document.getElementById('alamat').value = cells[2].textContent;
+        document.getElementById('sanditerkait').value = cells[3].textContent;
+        document.getElementById('sandihubterkait').value = cells[4].textContent;
+
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

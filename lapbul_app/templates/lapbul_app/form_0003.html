@@ -1,0 +1,247 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0003 - Data Pejabat Eksekutif BPR</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0003Modal">Tambah</button><br><br>
+
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0003Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0003ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0003ModalLabel">Form Data Pejabat Eksekutif BPR</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="nama" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" id="nama" placeholder="Masukkan nama">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="noidentitas" class="form-label">No Identitas</label>
+                                        <input type="text" class="form-control" id="noidentitas" placeholder="Masukkan No KTP">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="alamat" class="form-label">Alamat</label>
+                                    <textarea class="form-control" id="alamat" rows="2" placeholder="Masukkan alamat lengkap"></textarea>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="kodejabkepatuhan" class="form-label">Kode Jab Kepatuhan</label>
+                                        <input type="text" class="form-control" id="kodejabkepatuhan">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="kodejabmr" class="form-label">Kode Jab MR</label>
+                                        <input type="text" class="form-control" id="kodejabmr">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="kodejabaudit" class="form-label">Kode Jab Audit</label>
+                                        <input type="text" class="form-control" id="kodejabaudit">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="kodejabapuppt" class="form-label">Kode Jab APU/PPT</label>
+                                        <input type="text" class="form-control" id="kodejabapuppt">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="kodejablainnya" class="form-label">Kode Jab Lainnya</label>
+                                        <input type="text" class="form-control" id="kodejablainnya">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="ktorgan" class="form-label">KT Organ Pelaksana</label>
+                                        <input type="text" class="form-control" id="ktorgan">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="tglmulai" class="form-label">Tanggal Mulai</label>
+                                        <input type="text" class="form-control" id="tglmulai">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="nomorsk" class="form-label">Nomor SK</label>
+                                        <input type="text" class="form-control" id="nomorsk">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="tglsk" class="form-label">Tanggal SK</label>
+                                        <input type="text" class="form-control" id="tglsk">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label for="kodekomite1" class="form-label">Kode Komite 1</label>
+                                        <input type="text" class="form-control" id="kodekomite1">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodekomite2" class="form-label">Kode Komite 2</label>
+                                        <input type="text" class="form-control" id="kodekomite2">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodekomite3" class="form-label">Kode Komite 3</label>
+                                        <input type="text" class="form-control" id="kodekomite3">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="kodekomite4" class="form-label">Kode Komite 4</label>
+                                        <input type="text" class="form-control" id="kodekomite4">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table id="datatables" class="table table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>No Identitas</th>
+                    <th>Kode Jab Kepatuhan</th>
+                    <th>Kode Jab MR</th>
+                    <th>Kode Jab Audit</th>
+                    <th>Kode Jab APU/PPT</th>
+                    <th>Kode Jab Lainnya</th>
+                    <th>Tgl Mulai</th>
+                    <th>Nomor SK</th>
+                    <th>Tgl SK</th>
+                    <th>Kode Komite 1</th>
+                    <th>Kode Komite 2</th>
+                    <th>Kode Komite 3</th>
+                    <th>Kode Komite 4</th>
+                    <th>KT Organ Pelaksana</th>
+                    <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>SRI YUDDIATI</td>
+                    <td>DSN MORANGAN RT/RW 10/04 DS BOLOREJO KEC KAUMAN KAB TULUNGAGUNG</td>
+                    <td>3504054605690002</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>02</td>
+                    <td>2024-01-08</td>
+                    <td>800/05/418.96/2025</td>
+                    <td>2025-01-22</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>3</td>
+                    <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0003Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>ARIEF WICAKSONO</td>
+                    <td>JL RAJAWALI LK V RT/RW 70/19 KELURAHAN PARE KEC PARE KABUPATEN KEDIRI</td>
+                    <td>3505140505910001</td>
+                    <td>JAB KEP</td>
+                    <td>JAB MR</td>
+                    <td>JAB AU</td>
+                    <td>JAB APU</td>
+                    <td>JAB LAIN</td>
+                    <td>2024-01-08</td>
+                    <td>800/9/418.96/2024</td>
+                    <td>2024-01-08</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>00</td>
+                    <td>1</td>
+                    <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0003Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+
+    document.addEventListener('click', function(e) {
+
+        if (e.target.closest('.tambah')) {
+            // Handle tambah button click
+            e.preventDefault();
+
+            const form = document.querySelector('#form0003Modal form');
+            
+            form.reset();
+        }
+
+        if (e.target.closest('.edit')) {
+            // Handle edit button click
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            // Isi form dengan data yang dipilih
+            document.getElementById('nama').value = cells[0].textContent;
+            document.getElementById('alamat').value = cells[1].textContent;
+            document.getElementById('noidentitas').value = cells[2].textContent;
+            document.getElementById('kodejabkepatuhan').value = cells[3].textContent;
+            document.getElementById('kodejabmr').value = cells[4].textContent;
+            document.getElementById('kodejabaudit').value = cells[5].textContent;
+            document.getElementById('kodejabapuppt').value = cells[6].textContent;
+            document.getElementById('kodejablainnya').value = cells[7].textContent;
+            document.getElementById('tglmulai').value = cells[8].textContent;
+            document.getElementById('nomorsk').value = cells[9].textContent;
+            document.getElementById('tglsk').value = cells[10].textContent;
+            document.getElementById('kodekomite1').value = cells[11].textContent;
+            document.getElementById('kodekomite2').value = cells[12].textContent;
+            document.getElementById('kodekomite3').value = cells[13].textContent;
+            document.getElementById('kodekomite4').value = cells[14].textContent;
+            document.getElementById('ktorgan').value = cells[15].textContent;
+        }
+        
+        if (e.target.closest('.delete')) {
+            // Handle delete button click
+            e.preventDefault();
+
+            const row = e.target.closest('tr');
+        
+            // Tampilkan dialog konfirmasi
+            const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+            
+            if (confirmDelete) {
+                row.remove();
+            }
+        }
+    });
+
+});
+</script>
+{% include 'lapbul_app/footer.html' %}
