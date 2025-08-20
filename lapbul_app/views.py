@@ -46,9 +46,6 @@ def form_0011(request):
 def form_0012(request):
     return render(request, 'lapbul_app/form_0012.html', {'title': 'Lapbul Ojk'})
 
-<<<<<<< Updated upstream
-# Start of Changes made by William 
-
 def form_0013(request):
     return render(request, 'lapbul_app/form_0013.html', {'title': 'Lapbul Ojk'})
 
@@ -59,7 +56,7 @@ def form_0016(request):
     return render(request, 'lapbul_app/form_0016.html', {'title': 'Lapbul Ojk'})
 
 def form_0017(request):
-    return render(request, 'lapbul_app/form_0017.html', {'title': 'Lapbul Ojk'})    
+    return render(request, 'lapbul_app/form_0017.html', {'title': 'Lapbul Ojk'})
 
 def form_0018(request):
     return render(request, 'lapbul_app/form_0018.html', {'title': 'Lapbul Ojk'})
@@ -88,8 +85,6 @@ def form_0300(request):
 def form_0400(request):
     return render(request, 'lapbul_app/form_0400.html', {'title': 'Lapbul Ojk'})
 
-# End of changes made by William
-=======
 def form_0500(request):
     return render(request, 'lapbul_app/form_0500.html', {'title': 'Lapbul Ojk'})
 
@@ -116,4 +111,33 @@ def form_0901(request):
 
 def form_1000(request):
     return render(request, 'lapbul_app/form_1000.html', {'title': 'Lapbul Ojk'})
->>>>>>> Stashed changes
+
+def form_1100(request):
+    return render(request, 'lapbul_app/form_1100.html', {'title': 'Lapbul Ojk'})
+
+def form_1200(request):
+    return render(request, 'lapbul_app/form_1200.html', {'title': 'Lapbul Ojk'})
+
+def form_1300(request):
+    return render(request, 'lapbul_app/form_1300.html', {'title': 'Lapbul Ojk'})
+
+def form_1400(request):
+    return render(request, 'lapbul_app/form_1400.html', {'title': 'Lapbul Ojk'})
+
+def form_1401(request):
+    return render(request, 'lapbul_app/form_1401.html', {'title': 'Lapbul Ojk'})
+
+def form_1500(request):
+    return render(request, 'lapbul_app/form_1500.html', {'title': 'Lapbul Ojk'})
+
+def form_1600(request):
+    return render(request, 'lapbul_app/form_1600.html', {'title': 'Lapbul Ojk'})
+
+def form_1700(request):
+    return render(request, 'lapbul_app/form_1700.html', {'title': 'Lapbul Ojk'})
+
+def form_1800(request):
+    return render(request, 'lapbul_app/form_1800.html', {'title': 'Lapbul Ojk'})
+
+def form_1900(request):
+    return render(request, 'lapbul_app/form_1900.html', {'title': 'Lapbul Ojk'})

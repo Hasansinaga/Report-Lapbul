@@ -19,10 +19,6 @@ urlpatterns = [
     path('lapbul/form_0010/', views.form_0010, name='form_0010'),
     path('lapbul/form_0011/', views.form_0011, name='form_0011'),
     path('lapbul/form_0012/', views.form_0012, name='form_0012'),
-<<<<<<< Updated upstream
-
-    # Start of Changes made by William 
-
     path('lapbul/form_0013/', views.form_0013, name='form_0013'),
     path('lapbul/form_0015/', views.form_0015, name='form_0015'),
     path('lapbul/form_0016/', views.form_0016, name='form_0016'),
@@ -36,9 +32,6 @@ urlpatterns = [
     path('lapbul/form_0200/', views.form_0200, name='form_0200'),
     path('lapbul/form_0300/', views.form_0300, name='form_0300'),
     path('lapbul/form_0400/', views.form_0400, name='form_0400'),
-
-    # End of changes made by William
-=======
     path('lapbul/form_0500/', views.form_0500, name='form_0500'),
     path('lapbul/form_0600/', views.form_0600, name='form_0600'),
     path('lapbul/form_0601/', views.form_0601, name='form_0601'),
@@ -48,5 +41,14 @@ urlpatterns = [
     path('lapbul/form_0900/', views.form_0900, name='form_0900'),
     path('lapbul/form_0901/', views.form_0901, name='form_0901'),
     path('lapbul/form_1000/', views.form_1000, name='form_1000'),
->>>>>>> Stashed changes
+    path('lapbul/form_1100/', views.form_1100, name='form_1100'),
+    path('lapbul/form_1200/', views.form_1200, name='form_1200'),
+    path('lapbul/form_1300/', views.form_1300, name='form_1300'),
+    path('lapbul/form_1400/', views.form_1400, name='form_1400'),
+    path('lapbul/form_1401/', views.form_1401, name='form_1401'),
+    path('lapbul/form_1500/', views.form_1500, name='form_1500'),
+    path('lapbul/form_1600/', views.form_1600, name='form_1600'),
+    path('lapbul/form_1700/', views.form_1700, name='form_1700'),
+    path('lapbul/form_1800/', views.form_1800, name='form_1800'),
+    path('lapbul/form_1900/', views.form_1900, name='form_1900'),
 ]

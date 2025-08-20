@@ -149,39 +149,39 @@
     </main>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#datatables').DataTable({
-            scrollX: true,           // Enable horizontal scrolling
-            responsive: true,         // Make table responsive
-            paging: false,
-            info:false
-        });
+  $(document).ready(function () {
+    $("#datatables").DataTable({
+      scrollX: true, // Enable horizontal scrolling
+      responsive: true, // Make table responsive
+      paging: false,
+      info: false,
     });
+  });
 
-    // Set bulan dan tahun ke bulan dan tahun sekarang
-    document.addEventListener('DOMContentLoaded', function() {
-        var bulanSelect = document.getElementById('bulan');
-        var tahunInput = document.getElementById('tahun');
-        var tipePelaporan = document.getElementById('tipe_pelaporan');
-        var nomorSurat = document.getElementById('nomor_surat');
-        var bulanSekarang = new Date().getMonth(); // 0-11
-        var tahunSekarang = new Date().getFullYear();
-        if (bulanSelect) {
-            bulanSelect.selectedIndex = bulanSekarang;
+  // Set bulan dan tahun ke bulan dan tahun sekarang
+  document.addEventListener("DOMContentLoaded", function () {
+    var bulanSelect = document.getElementById("bulan");
+    var tahunInput = document.getElementById("tahun");
+    var tipePelaporan = document.getElementById("tipe_pelaporan");
+    var nomorSurat = document.getElementById("nomor_surat");
+    var bulanSekarang = new Date().getMonth(); // 0-11
+    var tahunSekarang = new Date().getFullYear();
+    if (bulanSelect) {
+      bulanSelect.selectedIndex = bulanSekarang;
+    }
+    if (tahunInput) {
+      tahunInput.value = tahunSekarang;
+    }
+    if (tipePelaporan && nomorSurat) {
+      tipePelaporan.addEventListener("change", function () {
+        if (tipePelaporan.value === "Koreksi atas Permintaan Pengawas OJK") {
+          nomorSurat.disabled = false;
+        } else {
+          nomorSurat.disabled = true;
+          nomorSurat.value = "";
         }
-        if (tahunInput) {
-            tahunInput.value = tahunSekarang;
-        }
-        if (tipePelaporan && nomorSurat) {
-            tipePelaporan.addEventListener('change', function() {
-                if (tipePelaporan.value === 'Koreksi atas Permintaan Pengawas OJK') {
-                    nomorSurat.disabled = false;
-                } else {
-                    nomorSurat.disabled = true;
-                    nomorSurat.value = '';
-                }
-            });
-        }
-    });
+      });
+    }
+  });
 </script>
 {% include 'lapbul_app/footer.html' %}
