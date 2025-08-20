@@ -1,0 +1,152 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0018 - Laporan Arus Kas</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0018Modal">Tambah</button><br><br>
+            
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0018Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0018ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0018ModalLabel">Form Input Arus Kas</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form -->
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="pos" class="form-label">Pos</label>
+                                        <input type="text" class="form-control" id="pos" name="pos" maxlength="200">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="sandi_pos" class="form-label">Sandi Pos</label>
+                                        <input type="text" class="form-control" id="sandi_pos" name="sandi_pos" maxlength="10">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="tahun_t" class="form-label">31 Des Tahun T</label>
+                                        <input type="number" class="form-control" id="tahun_t" name="tahun_t">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="tahun_t_min_1" class="form-label">31 Des Tahun T-1</label>
+                                        <input type="number" class="form-control" id="tahun_t_min_1" name="tahun_t_min_1">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Sandi Pos</th>
+                        <th>31 Des Tahun T</th>
+                        <th>31 Des Tahun T-1</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows -->
+                    <tr>
+                        <td>Penerimaan pendapatan bunga</td>
+                        <td>14010000</td>
+                        <td>2000</td>
+                        <td>2000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0018Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>Penerimaan pendapatan provinsi dan jasa transaksi</td>
+                        <td>14020000</td>
+                        <td>2000</td>
+                        <td>2000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0018Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>Penerimaan beban klaim asuransi</td>
+                        <td>14030000</td>
+                        <td>2000</td>
+                        <td>2000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0018Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>Penerimaan atas aset keuangan yang telah</td>
+                        <td>14040000</td>
+                        <td>2000</td>
+                        <td>2000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0018Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+        const form = document.querySelector('#form0018Modal form');
+        form.reset();
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Fill form fields with row data
+        document.getElementById("pos").value = cells[0].textContent.trim();
+        document.getElementById("sandi_pos").value = cells[1].textContent.trim();
+        document.getElementById("tahun_t").value = cells[2].textContent.trim();
+        document.getElementById("tahun_t_min_1").value = cells[3].textContent.trim();
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

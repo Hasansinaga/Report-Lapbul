@@ -1,0 +1,68 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0013 - Unggah File</h5>
+            <hr>
+            <!-- Back button -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <br><br>
+            
+            <!-- Upload Section - Centered -->
+            <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
+                <div class="text-center">
+                    <h6 class="mb-4">Upload PDF File</h6>
+                    <button type="button" class="btn btn-danger btn-lg" id="uploadButton">
+                        <i class="fas fa-upload me-2"></i>Choose PDF File
+                    </button>
+                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                    <div id="uploadStatus" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadButton = document.getElementById('uploadButton');
+    const fileInput = document.getElementById('fileInput');
+    const uploadStatus = document.getElementById('uploadStatus');
+
+    uploadButton.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        
+        if (file) {
+            // Validate file type
+            if (file.type !== 'application/pdf') {
+                uploadStatus.innerHTML = '<div style="color:red"> Upload Failed: Only PDF files are allowed!</div>';
+                fileInput.value = '';
+                return;
+            }
+            
+            // Simulate upload process
+            uploadStatus.innerHTML = '<div >Uploading...</div>';
+            
+            setTimeout(() => {
+                // Random success/failure for demonstration
+                const isSuccess = Math.random() > 0.3; // 70% success rate
+                
+                if (isSuccess) {
+                    uploadStatus.innerHTML = '<div style="color:green" >Upload Successful: ' + file.name + '</div>';
+                } else {
+                    uploadStatus.innerHTML = '<div style="color:red" >Upload Failed: Server error occurred</div>';
+                }
+                
+                // Clear file input
+                fileInput.value = '';
+            }, 1500);
+        }
+    });
+});
+</script>
+
+{% include 'lapbul_app/footer.html' %}

@@ -1,0 +1,291 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0400 - Daftar Surat Berharga</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0400Modal">Tambah</button><br><br>
+            
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0400Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0400ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0400ModalLabel">Form Input Surat Berharga</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form -->
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <label for="flag_detail" class="form-label">Flag Detail</label>
+                                        <input type="text" class="form-control" id="flag_detail" name="flag_detail" maxlength="1">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="10">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="klasifikasi" class="form-label">Klasifikasi</label>
+                                        <input type="text" class="form-control" id="klasifikasi" name="klasifikasi" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="suku_bunga" class="form-label">Suku Bunga</label>
+                                        <input type="number" class="form-control" id="suku_bunga" name="suku_bunga" step="0.01">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                                        <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tanggal_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
+                                        <input type="date" class="form-control" id="tanggal_jatuh_tempo" name="tanggal_jatuh_tempo">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kategori_debitor" class="form-label">Kategori Debitor</label>
+                                        <input type="text" class="form-control" id="kategori_debitor" name="kategori_debitor" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="jenis_penggunaan" class="form-label">Jenis Penggunaan</label>
+                                        <input type="text" class="form-control" id="jenis_penggunaan" name="jenis_penggunaan" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="orientasi_penggunaan" class="form-label">Orientasi Penggunaan</label>
+                                        <input type="text" class="form-control" id="orientasi_penggunaan" name="orientasi_penggunaan" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="sektor_ekonomi" class="form-label">Sektor Ekonomi</label>
+                                        <input type="text" class="form-control" id="sektor_ekonomi" name="sektor_ekonomi" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kode_lokasi" class="form-label">Kode Lokasi</label>
+                                        <input type="text" class="form-control" id="kode_lokasi" name="kode_lokasi" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kode_valuta" class="form-label">Kode Valuta</label>
+                                        <input type="text" class="form-control" id="kode_valuta" name="kode_valuta" maxlength="3">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="sandi_kolektibilitas" class="form-label">Sandi Kolektibilitas</label>
+                                        <input type="text" class="form-control" id="sandi_kolektibilitas" name="sandi_kolektibilitas" maxlength="1">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kode_sebab_macet" class="form-label">Kode Sebab Macet</label>
+                                        <input type="text" class="form-control" id="kode_sebab_macet" name="kode_sebab_macet" maxlength="2">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tunggakan_pokok" class="form-label">Tunggakan Pokok</label>
+                                        <input type="number" class="form-control" id="tunggakan_pokok" name="tunggakan_pokok">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tunggakan_bunga" class="form-label">Tunggakan Bunga</label>
+                                        <input type="number" class="form-control" id="tunggakan_bunga" name="tunggakan_bunga">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="baki_debet" class="form-label">Baki Debet</label>
+                                        <input type="number" class="form-control" id="baki_debet" name="baki_debet">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="nilai_agunan" class="form-label">Nilai Agunan</label>
+                                        <input type="number" class="form-control" id="nilai_agunan" name="nilai_agunan">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kode_kondisi" class="form-label">Kode Kondisi</label>
+                                        <input type="text" class="form-control" id="kode_kondisi" name="kode_kondisi" maxlength="1">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tanggal_kondisi" class="form-label">Tanggal Kondisi</label>
+                                        <input type="date" class="form-control" id="tanggal_kondisi" name="tanggal_kondisi">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="keterangan" class="form-label">Keterangan</label>
+                                        <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="100">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="kode_kantor_asal" class="form-label">Kode Kantor Asal</label>
+                                        <input type="text" class="form-control" id="kode_kantor_asal" name="kode_kantor_asal" maxlength="10">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="operasi_data" class="form-label">Operasi Data</label>
+                                        <input type="text" class="form-control" id="operasi_data" name="operasi_data" maxlength="1">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="open_date" class="form-label">Open Date</label>
+                                        <input type="date" class="form-control" id="open_date" name="open_date">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Flag Detail</th>
+                        <th>Sandi Kantor</th>
+                        <th>Klasifikasi</th>
+                        <th>Suku Bunga</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Jatuh Tempo</th>
+                        <th>Kategori Debitor</th>
+                        <th>Jenis Penggunaan</th>
+                        <th>Orientasi Penggunaan</th>
+                        <th>Sektor Ekonomi</th>
+                        <th>Kode Lokasi</th>
+                        <th>Kode Valuta</th>
+                        <th>Sandi Kolektibilitas</th>
+                        <th>Kode Sebab Macet</th>
+                        <th>Tunggakan Pokok</th>
+                        <th>Tunggakan Bunga</th>
+                        <th>Baki Debet</th>
+                        <th>Nilai Agunan</th>
+                        <th>Kode Kondisi</th>
+                        <th>Tanggal Kondisi</th>
+                        <th>Keterangan</th>
+                        <th>Kode Kantor Asal</th>
+                        <th>Operasi Data</th>
+                        <th>Open Date</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Y</td>
+                        <td>001</td>
+                        <td>1000</td>
+                        <td>12.5</td>
+                        <td>2024-01-01</td>
+                        <td>2025-01-01</td>
+                        <td>1</td>
+                        <td>1001</td>
+                        <td>1</td>
+                        <td>15110</td>
+                        <td>1100</td>
+                        <td>IDR</td>
+                        <td>1</td>
+                        <td>00</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>100000000</td>
+                        <td>150000000</td>
+                        <td>N</td>
+                        <td>2024-01-01</td>
+                        <td>Kredit Modal Kerja</td>
+                        <td>001</td>
+                        <td>C</td>
+                        <td>2024-01-01</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Y</td>
+                        <td>001</td>
+                        <td>2000</td>
+                        <td>15.0</td>
+                        <td>2024-02-01</td>
+                        <td>2026-02-01</td>
+                        <td>2</td>
+                        <td>2001</td>
+                        <td>2</td>
+                        <td>15120</td>
+                        <td>1100</td>
+                        <td>IDR</td>
+                        <td>1</td>
+                        <td>00</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>200000000</td>
+                        <td>250000000</td>
+                        <td>N</td>
+                        <td>2024-02-01</td>
+                        <td>Kredit Investasi</td>
+                        <td>001</td>
+                        <td>C</td>
+                        <td>2024-02-01</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+        const form = document.querySelector('#form0400Modal form');
+        form.reset();
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Fill form fields with row data
+        document.getElementById("flag_detail").value = cells[0].textContent.trim();
+        document.getElementById("sandi_kantor").value = cells[1].textContent.trim();
+        document.getElementById("klasifikasi").value = cells[2].textContent.trim();
+        document.getElementById("suku_bunga").value = cells[3].textContent.trim();
+        document.getElementById("tanggal_mulai").value = cells[4].textContent.trim();
+        document.getElementById("tanggal_jatuh_tempo").value = cells[5].textContent.trim();
+        document.getElementById("kategori_debitor").value = cells[6].textContent.trim();
+        document.getElementById("jenis_penggunaan").value = cells[7].textContent.trim();
+        document.getElementById("orientasi_penggunaan").value = cells[8].textContent.trim();
+        document.getElementById("sektor_ekonomi").value = cells[9].textContent.trim();
+        document.getElementById("kode_lokasi").value = cells[10].textContent.trim();
+        document.getElementById("kode_valuta").value = cells[11].textContent.trim();
+        document.getElementById("sandi_kolektibilitas").value = cells[12].textContent.trim();
+        document.getElementById("kode_sebab_macet").value = cells[13].textContent.trim();
+        document.getElementById("tunggakan_pokok").value = cells[14].textContent.trim();
+        document.getElementById("tunggakan_bunga").value = cells[15].textContent.trim();
+        document.getElementById("baki_debet").value = cells[16].textContent.trim();
+        document.getElementById("nilai_agunan").value = cells[17].textContent.trim();
+        document.getElementById("kode_kondisi").value = cells[18].textContent.trim();
+        document.getElementById("tanggal_kondisi").value = cells[19].textContent.trim();
+        document.getElementById("keterangan").value = cells[20].textContent.trim();
+        document.getElementById("kode_kantor_asal").value = cells[21].textContent.trim();
+        document.getElementById("operasi_data").value = cells[22].textContent.trim();
+        document.getElementById("open_date").value = cells[23].textContent.trim();
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

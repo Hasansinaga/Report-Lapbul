@@ -1,0 +1,150 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0300 - Daftar Kas Valuta Asing</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0300Modal">Tambah</button><br><br>
+            
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0300Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0300ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0300ModalLabel">Form Input Kas Valuta Asing</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form -->
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="flag_detail" class="form-label">Flag Detail</label>
+                                        <input type="text" class="form-control" id="flag_detail" name="flag_detail" maxlength="1">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="10">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nominal" class="form-label">Nominal</label>
+                                        <input type="number" class="form-control" id="nominal" name="nominal">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="kurs_tengah" class="form-label">Kurs Tengah</label>
+                                        <input type="number" class="form-control" id="kurs_tengah" name="kurs_tengah" step="0.01">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nilai_rupiah" class="form-label">Nilai Rupiah</label>
+                                        <input type="number" class="form-control" id="nilai_rupiah" name="nilai_rupiah">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Flag Detail</th>
+                        <th>Sandi Kantor</th>
+                        <th>Nominal</th>
+                        <th>Kurs Tengah</th>
+                        <th>Nilai Rupiah</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Y</td>
+                        <td>001</td>
+                        <td>100000000</td>
+                        <td>15500.00</td>
+                        <td>1550000000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0300Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Y</td>
+                        <td>001</td>
+                        <td>50000000</td>
+                        <td>17000.00</td>
+                        <td>850000000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0300Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Y</td>
+                        <td>001</td>
+                        <td>25000000</td>
+                        <td>16200.00</td>
+                        <td>405000000</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0300Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+        const form = document.querySelector('#form0300Modal form');
+        form.reset();
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Fill form fields with row data
+        document.getElementById("flag_detail").value = cells[0].textContent.trim();
+        document.getElementById("sandi_kantor").value = cells[1].textContent.trim();
+        document.getElementById("nominal").value = cells[2].textContent.trim();
+        document.getElementById("kurs_tengah").value = cells[3].textContent.trim();
+        document.getElementById("nilai_rupiah").value = cells[4].textContent.trim();
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}
