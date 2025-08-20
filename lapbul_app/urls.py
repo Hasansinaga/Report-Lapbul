@@ -19,4 +19,9 @@ urlpatterns = [
     path('lapbul/form_0010/', views.form_0010, name='form_0010'),
     path('lapbul/form_0011/', views.form_0011, name='form_0011'),
     path('lapbul/form_0012/', views.form_0012, name='form_0012'),
+    path('lapbul/form_1100/', views.form_1100, name='form_1100'),
+    path('lapbul/form_1200/', views.form_1200, name='form_1200'),
+    path('lapbul/form_1300/', views.form_1300, name='form_1300'),
+    path('lapbul/form_1400/', views.form_1400, name='form_1400'),
+    path('lapbul/form_1401/', views.form_1401, name='form_1401'),
 ]

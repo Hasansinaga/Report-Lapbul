@@ -1,0 +1,298 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 1200 - Daftar Deposito</h5>
+            <hr>
+            <!-- Tombol kembali & tambah -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1200Modal">Tambah</button> -->
+            <br><br>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="form1200Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form1200ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form1200ModalLabel">Form Data Deposito</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Flag Detail</label>
+                                        <input type="text" class="form-control" id="flag_detail" maxlength="3">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Sandi Kantor</label>
+                                        <input type="text" class="form-control" id="sandi_kantor" maxlength="3">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">ID Pihak Lawan</label>
+                                        <input type="text" class="form-control" id="id_pihak_lawan">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Nomor Rekening</label>
+                                        <input type="text" class="form-control" id="no_rekening">
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Hubungan dengan Bank</label>
+                                        <input type="text" class="form-control" id="hub_bank">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Golongan Nasabah</label>
+                                        <input type="text" class="form-control" id="golongan">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Lokasi Nasabah</label>
+                                        <input type="text" class="form-control" id="lokasi">
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Tanggal Mulai</label>
+                                        <input type="text" class="form-control" id="tgl_mulai" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Tanggal Jatuh Tempo</label>
+                                        <input type="text" class="form-control" id="tgl_jatuh" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Suku Bunga</label>
+                                        <input type="text" class="form-control" id="suku_bunga">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Nominal</label>
+                                        <input type="text" class="form-control" id="nominal">
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Nominal Diblokir/Dijaminkan</label>
+                                        <input type="text" class="form-control" id="nominal_blokir">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Alasan Diblokir</label>
+                                        <input type="text" class="form-control" id="alasan_blokir">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Biaya Transaksi Belum Diamortisasi</label>
+                                        <input type="text" class="form-control" id="biaya_transaksi">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Jumlah</label>
+                                        <input type="text" class="form-control" id="jumlah">
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Nomor Identitas</label>
+                                        <input type="text" class="form-control" id="no_identitas">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Jenis PEP</label>
+                                        <input type="text" class="form-control" id="jenis_pep">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Risiko Nasabah</label>
+                                        <input type="text" class="form-control" id="risiko">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">Status Data</label>
+                                        <input type="text" class="form-control" id="status_data">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Flag Detail</th>
+                        <th>Sandi Kantor</th>
+                        <th>ID Pihak Lawan</th>
+                        <th>Nomor Rekening</th>
+                        <th>Hubungan Bank</th>
+                        <th>Golongan</th>
+                        <th>Lokasi</th>
+                        <th>Tgl Mulai</th>
+                        <th>Tgl Jatuh Tempo</th>
+                        <th>Suku Bunga</th>
+                        <th>Nominal</th>
+                        <th>Nominal Blokir</th>
+                        <th>Alasan Blokir</th>
+                        <th>Biaya Transaksi</th>
+                        <th>Jumlah</th>
+                        <th>No Identitas</th>
+                        <th>Jenis PEP</th>
+                        <th>Risiko</th>
+                        <th>Status Data</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>D01</td>
+                        <td>001</td>
+                        <td>Lawan</td>
+                        <td>NoRekening1</td>
+                        <td>02 (Perusahaan bukan bank)</td>
+                        <td>860 (Perusahaan)</td>
+                        <td>0191 (Kota Bandung)</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>0.00</td>
+                        <td>2000000</td>
+                        <td>1000</td>
+                        <td>01 (Escrow Account)</td>
+                        <td>1000</td>
+                        <td>1999000</td>
+                        <td>KTP1</td>
+                        <td>1 (PEP)</td>
+                        <td>1 (Rendah)</td>
+                        <td>1 (Terdapat pengkinian)</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D01</td>
+                        <td>001</td>
+                        <td>Lawan</td>
+                        <td>NoRekening2</td>
+                        <td>02 (Perusahaan bukan bank)</td>
+                        <td>835 (Lainnya)</td>
+                        <td>0191 (Kota Bandung)</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>5.51</td>
+                        <td>2000000</td>
+                        <td>1000</td>
+                        <td>02 (Cash Collateral)</td>
+                        <td>1000</td>
+                        <td>1999000</td>
+                        <td>KTP2</td>
+                        <td>1 (PEP)</td>
+                        <td>2 (Sedang)</td>
+                        <td>2 (Tidak terdapat pengkinian di bulan berjalan)</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                      <tr>
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>Lawan</td>
+                        <td>NoRekening3</td>
+                        <td>01 (Hubungan Keluarga dengan Anggota Direksi)</td>
+                        <td>835 (Lainnya)</td>
+                        <td>0191 (Kota Bandung)</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>0.00</td>
+                        <td>2000000</td>
+                        <td>1000</td>
+                        <td>01 (Escrow Account)</td>
+                        <td>1000</td>
+                        <td>1999000</td>
+                        <td>KTP3</td>
+                        <td>1 (PEP)</td>
+                        <td>3 (Tinggi)</td>
+                        <td>1 (Terdapat pengkinian di bulan berjalan)</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                      <tr>
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>Lawan</td>
+                        <td>NoRekening4</td>
+                        <td>03 (BPR lain yang dimiliki oleh Anggota Direksi)</td>
+                        <td>835 (Lainnya)</td>
+                        <td>0191 (Kota Bandung)</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>5.52</td>
+                        <td>2000000</td>
+                        <td>1000</td>
+                        <td>99 (Alasan Diblokir Lainnya)</td>
+                        <td>1000</td>
+                        <td>1999000</td>
+                        <td>KTP4</td>
+                        <td>1 (PEP)</td>
+                        <td>1 (Rendah)</td>
+                        <td>2 (Tidak terdapat pengkinian di bulan berjalan)</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,
+        responsive: true
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+        const form = document.querySelector('#form1200Modal form');
+        form.reset();
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+        
+        document.getElementById("flag_detail").value = cells[0].textContent;
+        document.getElementById("sandi_kantor").value = cells[1].textContent;
+        document.getElementById("id_pihak_lawan").value = cells[2].textContent;
+        document.getElementById("no_rekening").value = cells[3].textContent;
+        document.getElementById("hub_bank").value = cells[4].textContent;
+        document.getElementById("golongan").value = cells[5].textContent;
+        document.getElementById("lokasi").value = cells[6].textContent;
+        document.getElementById("tgl_mulai").value = cells[7].textContent;
+        document.getElementById("tgl_jatuh").value = cells[8].textContent;
+        document.getElementById("suku_bunga").value = cells[9].textContent;
+        document.getElementById("nominal").value = cells[10].textContent;
+        document.getElementById("nominal_blokir").value = cells[11].textContent;
+        document.getElementById("alasan_blokir").value = cells[12].textContent;
+        document.getElementById("biaya_transaksi").value = cells[13].textContent;
+        document.getElementById("jumlah").value = cells[14].textContent;
+        document.getElementById("no_identitas").value = cells[15].textContent;
+        document.getElementById("jenis_pep").value = cells[16].textContent;
+        document.getElementById("risiko").value = cells[17].textContent;
+        document.getElementById("status_data").value = cells[18].textContent;
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

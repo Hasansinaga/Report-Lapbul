@@ -45,3 +45,18 @@ def form_0011(request):
 
 def form_0012(request):
     return render(request, 'lapbul_app/form_0012.html', {'title': 'Lapbul Ojk'})
+
+def form_1100(request):
+    return render(request, 'lapbul_app/form_1100.html', {'title': 'Lapbul Ojk'})
+
+def form_1200(request):
+    return render(request, 'lapbul_app/form_1200.html', {'title': 'Lapbul Ojk'})
+
+def form_1300(request):
+    return render(request, 'lapbul_app/form_1300.html', {'title': 'Lapbul Ojk'})
+
+def form_1400(request):
+    return render(request, 'lapbul_app/form_1400.html', {'title': 'Lapbul Ojk'})
+
+def form_1401(request):
+    return render(request, 'lapbul_app/form_1401.html', {'title': 'Lapbul Ojk'})
