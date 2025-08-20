@@ -1,0 +1,109 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">Form 1700 - Daftar Penyertaan Modal Lainnya</h5>
+      <hr />
+      <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary"
+        >Kembali</a
+      >
+      <button
+        type="button"
+        class="btn btn-secondary tambah"
+        data-bs-toggle="modal"
+        data-bs-target="#form1700Modal"
+      >
+        Tambah
+      </button>
+      <br /><br />
+
+      <!-- Table -->
+      <table
+        id="datatables1700"
+        class="table table-bordered table-striped nowrap w-100"
+      >
+        <thead>
+          <tr class="text-center align-middle">
+            <th>Sandi Kantor</th>
+            <th>No Register</th>
+            <th>ID Pihak Lawan</th>
+            <th>Jenis Penyertaan</th>
+            <th>Kualitas</th>
+            <th>Tujuan Penyertaan</th>
+            <th>Tanggal Mulai</th>
+            <th>Persentase Penyertaan</th>
+            <th>Nominal</th>
+            <th>Jumlah Bulan Laporan</th>
+            <th>Cadangan Kerugian Penurunan Nilai</th>
+            <th>Cadangan Kerugian Penurunan Nilai Aset Baik</th>
+            <th>Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</th>
+            <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
+            <th>Jenis CKPN</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- kolom identitas (tidak bisa diedit) -->
+            <td>001</td>
+            <td>1</td>
+            <td>99</td>
+            <td>2 (Penyertaan Saham)</td>
+            <td>1 (Lancar)</td>
+            <td>2 (Investasi Jangka Panjang)</td>
+            <td>20240505</td>
+
+            <!-- kolom nominal (bisa diedit) -->
+            <td contenteditable="true">60.00</td>
+            <td contenteditable="true">5000</td>
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">800</td>
+            <td contenteditable="true">900</td>
+            <td contenteditable="true">1000</td>
+            <td contenteditable="true">1100</td>
+
+            <!-- kolom identitas (tidak bisa diedit) -->
+            <td>1 (Lancar)</td>
+
+            <!-- aksi -->
+            <td class="text-center">
+              <a href="#" class="text-danger delete">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <script>
+        $(document).ready(function () {
+          $("#datatables1700").DataTable({
+            scrollX: true,
+            responsive: true,
+            searching: true,
+            paging: true,
+            info: true,
+            lengthMenu: [5, 10, 25, 50, 100],
+          });
+
+          // Event untuk deteksi perubahan nilai nominal
+          $("#datatables1700 tbody").on(
+            "blur",
+            "td[contenteditable=true]",
+            function () {
+              let newValue = $(this).text();
+              let column = $("#datatables1700 thead th")
+                .eq($(this).index())
+                .text();
+              console.log("Kolom:", column, "-> Nilai baru:", newValue);
+
+              // TODO: AJAX update ke server kalau perlu simpan otomatis
+            }
+          );
+        });
+      </script>
+
+      {% include 'lapbul_app/footer.html' %}
+    </div>
+  </main>
+</div>

@@ -1,154 +1,652 @@
 {% include 'lapbul_app/header.html' %}
 <div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h5 class="mt-4 text-decoration-underline">Buat Laporan</h5>
-            <form method="post" action="">
-                <table class="table table-borderless" style="max-width:500px;">
-                    <tr>
-                        <td class="align-middle"><label for="bulan" class="form-label">Periode</label></td>
-                        <td>
-                            <div class="d-flex">
-                                <select class="form-select me-2" id="bulan" name="bulan" required style="max-width: auto;">
-                                    <option value="">Pilih Bulan</option>
-                                    <option value="Januari">Januari</option>
-                                    <option value="Februari">Februari</option>
-                                    <option value="Maret">Maret</option>
-                                    <option value="April">April</option>
-                                    <option value="Mei">Mei</option>
-                                    <option value="Juni">Juni</option>
-                                    <option value="Juli">Juli</option>
-                                    <option value="Agustus">Agustus</option>
-                                    <option value="September">September</option>
-                                    <option value="Oktober">Oktober</option>
-                                    <option value="November">November</option>
-                                    <option value="Desember">Desember</option>
-                                </select>
-                                <input type="number" class="form-control" id="tahun" name="tahun" min="2000" max="2100" required placeholder="Tahun" style="max-width: 140px;">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle"><label for="tipe_pelaporan" class="form-label">Tipe Pelaporan</label></td>
-                        <td>
-                            <select class="form-select" id="tipe_pelaporan" name="tipe_pelaporan" required>
-                                <option value="">Pilih Tipe</option>
-                                <option value="Pelaporan Rutin" selected>Pelaporan Rutin</option>
-                                <option value="Koreksi atas inisiatif BPR">Koreksi atas inisiatif BPR</option>
-                                <option value="Koreksi atas Permintaan Pengawas OJK">Koreksi atas Permintaan Pengawas OJK</option>
-                                <option value="Koreksi atas Permintaan KAP">Koreksi atas Permintaan KAP</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle"><label for="nomor_surat" class="form-label">Nomor Surat</label></td>
-                        <td>
-                            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" required disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button type="submit" class="btn btn-secondary">Buat Laporan</button>
-                            <button type="submit" class="btn btn-secondary">Download File Kirim</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <hr>
-            <!-- DataTable Section -->
-            <div class="mt-4 mb-4">
-                <h5 class="text-decoration-underline">Daftar Form Lapbul</h5>
-                <table id="datatables" class="table table-striped table-bordered" width="100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama Form</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>0000</td><td>Informasi Pokok BPR</td><td><a href="{% url 'lapbul_app:form_0000' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0001</td><td>Data Kepemilikan BPR</td><td><a href="{% url 'lapbul_app:form_0001' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0002</td><td>Data Anggota Direksi dan Dewan Komisaris</td><td><a href="{% url 'lapbul_app:form_0002' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0003</td><td>Data Pejabat Eksekutif BPR</td><td><a href="{% url 'lapbul_app:form_0003' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0004</td><td>Data Kantor BPR</td><td><a href="{% url 'lapbul_app:form_0004' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0005</td><td>Data Pihak Terkait Lainnya</td><td><a href="{% url 'lapbul_app:form_0005' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0006</td><td>Data Modal Disetor</td><td><a href="{% url 'lapbul_app:form_0006' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0007</td><td>Daftar Pinjaman yang Diterima</td><td><a href="{% url 'lapbul_app:form_0007' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0008</td><td>Rasio Keuangan Triwulanan</td><td><a href="{% url 'lapbul_app:form_0008' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0009</td><td>Data Direksi/Komisaris Berhenti</td><td><a href="{% url 'lapbul_app:form_0009' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0010</td><td>Data Pejabat Eksekutif Berhenti</td><td><a href="{% url 'lapbul_app:form_0010' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0011</td><td>Data Kantor Selain Pusat</td><td><a href="{% url 'lapbul_app:form_0011' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0012</td><td>Data Penutupan Kantor</td><td><a href="{% url 'lapbul_app:form_0012' %}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0015</td><td>Rincian Transaksi TPPU</td><td><a href="/edit/0015" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0016</td><td>Data Pihak Lawan</td><td><a href="/edit/0016" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0017</td><td>Laporan Perubahan Ekuitas</td><td><a href="/edit/0017" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0018</td><td>Laporan Arus Kas</td><td><a href="/edit/0018" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0100</td><td>Laporan Posisi Keuangan</td><td><a href="/edit/0100" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0101</td><td>Rekening Administratif</td><td><a href="/edit/0101" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0200</td><td>Laporan Laba Rugi</td><td><a href="/edit/0200" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0300</td><td>Daftar Kas Valuta Asing</td><td><a href="/edit/0300" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0400</td><td>Daftar Surat Berharga</td><td><a href="/edit/0400" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0500</td><td>Daftar Penempatan Bank Lain</td><td><a href="/edit/0500" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0600</td><td>Daftar Kredit yang Diberikan</td><td><a href="/edit/0600" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0601</td><td>Daftar Agunan</td><td><a href="/edit/0601" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0602</td><td>Daftar Kredit Sindikasi</td><td><a href="/edit/0602" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0700</td><td>Daftar Agunan Diambil Alih</td><td><a href="/edit/0700" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0800</td><td>Daftar Aset Tetap</td><td><a href="/edit/0800" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0900</td><td>Rincian Aset Lainnya</td><td><a href="/edit/0900" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>0901</td><td>Rincian Aset Lainnya Lain-lain</td><td><a href="/edit/0901" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1000</td><td>Rincian Liabilitas Segera</td><td><a href="/edit/1000" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1100</td><td>Daftar Tabungan</td><td><a href="/edit/1100" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1200</td><td>Daftar Deposito</td><td><a href="/edit/1200" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1300</td><td>Daftar Simpanan Bank Lain</td><td><a href="/edit/1300" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1400</td><td>Rincian Liabilitas Lainnya</td><td><a href="/edit/1400" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1401</td><td>Rincian Liabilitas Lain-lain</td><td><a href="/edit/1401" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1500</td><td>Daftar Aset Produktif Hapus Buku</td><td><a href="/edit/1500" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1600</td><td>Daftar Penyertaan Modal</td><td><a href="/edit/1600" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1700</td><td>Daftar Properti Terbengkalai</td><td><a href="/edit/1700" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1800</td><td>Daftar Aset Keuangan Lainnya</td><td><a href="/edit/1800" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                        <tr><td>1900</td><td>Daftar Perbedaan Kualitas Aset</td><td><a href="/edit/1900" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>&nbsp;<a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-file-export"></i></a></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4 text-decoration-underline">Buat Laporan</h5>
+      <form method="post" action="">
+        <table class="table table-borderless" style="max-width: 500px">
+          <tr>
+            <td class="align-middle">
+              <label for="bulan" class="form-label">Periode</label>
+            </td>
+            <td>
+              <div class="d-flex">
+                <select
+                  class="form-select me-2"
+                  id="bulan"
+                  name="bulan"
+                  required
+                  style="max-width: auto"
+                >
+                  <option value="">Pilih Bulan</option>
+                  <option value="Januari">Januari</option>
+                  <option value="Februari">Februari</option>
+                  <option value="Maret">Maret</option>
+                  <option value="April">April</option>
+                  <option value="Mei">Mei</option>
+                  <option value="Juni">Juni</option>
+                  <option value="Juli">Juli</option>
+                  <option value="Agustus">Agustus</option>
+                  <option value="September">September</option>
+                  <option value="Oktober">Oktober</option>
+                  <option value="November">November</option>
+                  <option value="Desember">Desember</option>
+                </select>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="tahun"
+                  name="tahun"
+                  min="2000"
+                  max="2100"
+                  required
+                  placeholder="Tahun"
+                  style="max-width: 140px"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle">
+              <label for="tipe_pelaporan" class="form-label"
+                >Tipe Pelaporan</label
+              >
+            </td>
+            <td>
+              <select
+                class="form-select"
+                id="tipe_pelaporan"
+                name="tipe_pelaporan"
+                required
+              >
+                <option value="">Pilih Tipe</option>
+                <option value="Pelaporan Rutin" selected>
+                  Pelaporan Rutin
+                </option>
+                <option value="Koreksi atas inisiatif BPR">
+                  Koreksi atas inisiatif BPR
+                </option>
+                <option value="Koreksi atas Permintaan Pengawas OJK">
+                  Koreksi atas Permintaan Pengawas OJK
+                </option>
+                <option value="Koreksi atas Permintaan KAP">
+                  Koreksi atas Permintaan KAP
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle">
+              <label for="nomor_surat" class="form-label">Nomor Surat</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                class="form-control"
+                id="nomor_surat"
+                name="nomor_surat"
+                required
+                disabled
+              />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <button type="submit" class="btn btn-secondary">
+                Buat Laporan
+              </button>
+              <button type="submit" class="btn btn-secondary">
+                Download File Kirim
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <hr />
+      <!-- DataTable Section -->
+      <div class="mt-4 mb-4">
+        <h5 class="text-decoration-underline">Daftar Form Lapbul</h5>
+        <table
+          id="datatables"
+          class="table table-striped table-bordered"
+          width="100%"
+        >
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama Form</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0000</td>
+              <td>Informasi Pokok BPR</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0000' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0001</td>
+              <td>Data Kepemilikan BPR</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0001' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0002</td>
+              <td>Data Anggota Direksi dan Dewan Komisaris</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0002' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0003</td>
+              <td>Data Pejabat Eksekutif BPR</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0003' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0004</td>
+              <td>Data Kantor BPR</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0004' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0005</td>
+              <td>Data Pihak Terkait Lainnya</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0005' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0006</td>
+              <td>Data Modal Disetor</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0006' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0007</td>
+              <td>Daftar Pinjaman yang Diterima</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0007' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0008</td>
+              <td>Rasio Keuangan Triwulanan</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0008' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0009</td>
+              <td>Data Direksi/Komisaris Berhenti</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0009' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0010</td>
+              <td>Data Pejabat Eksekutif Berhenti</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0010' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0011</td>
+              <td>Data Kantor Selain Pusat</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0011' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0012</td>
+              <td>Data Penutupan Kantor</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_0012' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0015</td>
+              <td>Rincian Transaksi TPPU</td>
+              <td>
+                <a href="/edit/0015" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0016</td>
+              <td>Data Pihak Lawan</td>
+              <td>
+                <a href="/edit/0016" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0017</td>
+              <td>Laporan Perubahan Ekuitas</td>
+              <td>
+                <a href="/edit/0017" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0018</td>
+              <td>Laporan Arus Kas</td>
+              <td>
+                <a href="/edit/0018" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0100</td>
+              <td>Laporan Posisi Keuangan</td>
+              <td>
+                <a href="/edit/0100" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0101</td>
+              <td>Rekening Administratif</td>
+              <td>
+                <a href="/edit/0101" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0200</td>
+              <td>Laporan Laba Rugi</td>
+              <td>
+                <a href="/edit/0200" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0300</td>
+              <td>Daftar Kas Valuta Asing</td>
+              <td>
+                <a href="/edit/0300" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0400</td>
+              <td>Daftar Surat Berharga</td>
+              <td>
+                <a href="/edit/0400" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0500</td>
+              <td>Daftar Penempatan Bank Lain</td>
+              <td>
+                <a href="/edit/0500" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0600</td>
+              <td>Daftar Kredit yang Diberikan</td>
+              <td>
+                <a href="/edit/0600" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0601</td>
+              <td>Daftar Agunan</td>
+              <td>
+                <a href="/edit/0601" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0602</td>
+              <td>Daftar Kredit Sindikasi</td>
+              <td>
+                <a href="/edit/0602" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0700</td>
+              <td>Daftar Agunan Diambil Alih</td>
+              <td>
+                <a href="/edit/0700" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0800</td>
+              <td>Daftar Aset Tetap</td>
+              <td>
+                <a href="/edit/0800" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0900</td>
+              <td>Rincian Aset Lainnya</td>
+              <td>
+                <a href="/edit/0900" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>0901</td>
+              <td>Rincian Aset Lainnya Lain-lain</td>
+              <td>
+                <a href="/edit/0901" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1000</td>
+              <td>Rincian Liabilitas Segera</td>
+              <td>
+                <a href="/edit/1000" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1100</td>
+              <td>Daftar Tabungan</td>
+              <td>
+                <a href="/edit/1100" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1200</td>
+              <td>Daftar Deposito</td>
+              <td>
+                <a href="/edit/1200" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1300</td>
+              <td>Daftar Simpanan Bank Lain</td>
+              <td>
+                <a href="/edit/1300" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1400</td>
+              <td>Rincian Liabilitas Lainnya</td>
+              <td>
+                <a href="/edit/1400" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1401</td>
+              <td>Rincian Liabilitas Lain-lain</td>
+              <td>
+                <a href="/edit/1401" class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1500</td>
+              <td>Daftar Aset Produktif Hapus Buku</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_1500' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1600</td>
+              <td>Daftar Penyertaan Modal</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_1600' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1700</td>
+              <td>Daftar Properti Terbengkalai</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_1700' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1800</td>
+              <td>Daftar Aset Keuangan Lainnya</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_1800' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1900</td>
+              <td>Daftar Perbedaan Kualitas Aset</td>
+              <td>
+                <a
+                  href="{% url 'lapbul_app:form_1900' %}"
+                  class="btn btn-sm btn-secondary"
+                  ><i class="fa fa-eye"></i></a
+                >&nbsp;<a href="#" class="btn btn-sm btn-secondary"
+                  ><i class="fa-solid fa-file-export"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#datatables').DataTable({
-            scrollX: true,           // Enable horizontal scrolling
-            responsive: true,         // Make table responsive
-            paging: false,
-            info:false
-        });
+  $(document).ready(function () {
+    $("#datatables").DataTable({
+      scrollX: true, // Enable horizontal scrolling
+      responsive: true, // Make table responsive
+      paging: false,
+      info: false,
     });
+  });
 
-    // Set bulan dan tahun ke bulan dan tahun sekarang
-    document.addEventListener('DOMContentLoaded', function() {
-        var bulanSelect = document.getElementById('bulan');
-        var tahunInput = document.getElementById('tahun');
-        var tipePelaporan = document.getElementById('tipe_pelaporan');
-        var nomorSurat = document.getElementById('nomor_surat');
-        var bulanSekarang = new Date().getMonth(); // 0-11
-        var tahunSekarang = new Date().getFullYear();
-        if (bulanSelect) {
-            bulanSelect.selectedIndex = bulanSekarang;
+  // Set bulan dan tahun ke bulan dan tahun sekarang
+  document.addEventListener("DOMContentLoaded", function () {
+    var bulanSelect = document.getElementById("bulan");
+    var tahunInput = document.getElementById("tahun");
+    var tipePelaporan = document.getElementById("tipe_pelaporan");
+    var nomorSurat = document.getElementById("nomor_surat");
+    var bulanSekarang = new Date().getMonth(); // 0-11
+    var tahunSekarang = new Date().getFullYear();
+    if (bulanSelect) {
+      bulanSelect.selectedIndex = bulanSekarang;
+    }
+    if (tahunInput) {
+      tahunInput.value = tahunSekarang;
+    }
+    if (tipePelaporan && nomorSurat) {
+      tipePelaporan.addEventListener("change", function () {
+        if (tipePelaporan.value === "Koreksi atas Permintaan Pengawas OJK") {
+          nomorSurat.disabled = false;
+        } else {
+          nomorSurat.disabled = true;
+          nomorSurat.value = "";
         }
-        if (tahunInput) {
-            tahunInput.value = tahunSekarang;
-        }
-        if (tipePelaporan && nomorSurat) {
-            tipePelaporan.addEventListener('change', function() {
-                if (tipePelaporan.value === 'Koreksi atas Permintaan Pengawas OJK') {
-                    nomorSurat.disabled = false;
-                } else {
-                    nomorSurat.disabled = true;
-                    nomorSurat.value = '';
-                }
-            });
-        }
-    });
+      });
+    }
+  });
 </script>
 {% include 'lapbul_app/footer.html' %}
