@@ -1,0 +1,241 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0602 - Daftar Kredit Sindikasi</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0500Modal">Tambah</button><br><br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0500Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0500ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0500ModalLabel">Daftar Kredit Sindikasi</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                            <!-- Nav Tabs -->
+                            <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
+                                        type="button" role="tab" aria-controls="tab1" aria-selected="true">
+                                        Data Utama
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
+                                        type="button" role="tab" aria-controls="tab2" aria-selected="false">
+                                        Data Tambahan
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <!-- Tab Content -->
+                            <div class="tab-content mt-3" id="formTabContent">
+                                <!-- Tab 1 -->
+                                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                    <div class="mb-3">
+                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
+                                        <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="no_identitas" class="form-label">No. Identitas</label>
+                                        <input type="text" class="form-control" id="no_identitas" name="no_identitas" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="no_rekening" class="form-label">No. Rekening</label>
+                                        <input type="text" class="form-control" id="no_rekening" name="no_rekening" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="jumlah_pendanaan_plafon" class="form-label">Jumlah Pendanaan Sindikasi - Plafon</label>
+                                        <input type="text" class="form-control" id="jumlah_pendanaan_plafon" name="jumlah_pendanaan_plafon" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="jumlah_pendanaan_baki_debet" class="form-label">Jumlah Pendanaan Sindikasi - Baki Debet</label>
+                                        <input type="text" class="form-control" id="jumlah_pendanaan_baki_debet" name="jumlah_pendanaan_baki_debet" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bagian_pendanaan_plafon" class="form-label">Bagian Pendanaan - Plafon</label>
+                                        <input type="text" class="form-control" id="bagian_pendanaan_plafon" name="bagian_pendanaan_plafon" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bagian_pendanaan_baki_debet" class="form-label">Bagian Pendanaan - Baki Debet</label>
+                                        <input type="text" class="form-control" id="bagian_pendanaan_baki_debet" name="bagian_pendanaan_baki_debet" maxlength="20">
+                                    </div>
+                                </div>
+
+                                <!-- Tab 2 -->
+                                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                                    <div class="mb-3">
+                                        <label for="sandi_bank_peserta" class="form-label">Sandi Bank Peserta Sindikasi</label>
+                                        <input type="text" class="form-control" id="sandi_bank_peserta" name="sandi_bank_peserta" maxlength="10">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="status_kepersertaan" class="form-label">Status Kepersertaan</label>
+                                        <input type="text" class="form-control" id="status_kepersertaan" name="status_kepersertaan" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="no_perjanjian_kredit" class="form-label">Nomor Perjanjian Kredit Sindikasi</label>
+                                        <input type="text" class="form-control" id="no_perjanjian_kredit" name="no_perjanjian_kredit" maxlength="50">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pendanaan_bank_pelapor" class="form-label">Pendanaan di Bank Pelapor</label>
+                                        <input type="text" class="form-control" id="pendanaan_bank_pelapor" name="pendanaan_bank_pelapor" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="kualitas" class="form-label">Kualitas</label>
+                                        <input type="text" class="form-control" id="kualitas" name="kualitas" maxlength="5">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nominal_tunggakan_pokok" class="form-label">Nominal Tunggakan - Pokok</label>
+                                        <input type="text" class="form-control" id="nominal_tunggakan_pokok" name="nominal_tunggakan_pokok" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nominal_tunggakan_bunga" class="form-label">Nominal Tunggakan - Bunga</label>
+                                        <input type="text" class="form-control" id="nominal_tunggakan_bunga" name="nominal_tunggakan_bunga" maxlength="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="hari_tunggakan_pokok" class="form-label">Hari Tunggakan - Pokok</label>
+                                        <input type="text" class="form-control" id="hari_tunggakan_pokok" name="hari_tunggakan_pokok" maxlength="5">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="hari_tunggakan_bunga" class="form-label">Hari Tunggakan - Bunga</label>
+                                        <input type="text" class="form-control" id="hari_tunggakan_bunga" name="hari_tunggakan_bunga" maxlength="5">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                            <!-- End Input Form -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                    <th>Sandi Kantor</th>
+                    <th>ID Pihak Lawan</th>
+                    <th>No. Identitas</th>
+                    <th>No. Rekening</th>
+                    <th>Jumlah Pendanaan Sindikasi - Plafon</th>
+                    <th>Jumlah Pendanaan Sindikasi - Baki Debet</th>
+                    <th>Bagian Pendanaan - Plafon</th>
+                    <th>Bagian Pendanaan - Baki Debet</th>
+                    <th>Sandi Bank Peserta Sindikasi</th>
+                    <th>Status Kepesertaan</th>
+                    <th>Nomor Perjanjian Kredit Sindikasi</th>
+                    <th>Pendanaan di Bank Pelapor</th>
+                    <th>Kualitas</th>
+                    <th>Nominal Tunggakan - Pokok</th>
+                    <th>Nominal Tunggakan - Bunga</th>
+                    <th>Hari Tunggakan - Pokok</th>
+                    <th>Hari Tunggakan - Bunga</th>
+                    <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                    <tr>
+                         <td>001</td>
+                        <td>0002862</td>
+                        <td>3273262503670003</td>
+                        <td>00104073101459</td>
+                        <td>1000000000</td>
+                        <td>1000000000</td>
+                        <td>100000000</td>
+                        <td>100000000</td>
+                        <td>601233</td>
+                        <td>1 (Arranger)</td>
+                        <td>03 TANGGAL 04 NOVEMBER 2024</td>
+                        <td>1 (Ya)</td>
+                        <td>1 (Lancar)</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Tambahkan baris lainnya di sini -->
+                    </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0500Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById("sandi_kantor").value = cells[0].textContent;
+        document.getElementById("id_pihak_lawan").value = cells[1].textContent;
+        document.getElementById("no_identitas").value = cells[2].textContent;
+        document.getElementById("no_rekening").value = cells[3].textContent;
+        document.getElementById("jumlah_pendanaan_sindikasi_plafon").value = cells[4].textContent;
+        document.getElementById("jumlah_pendanaan_sindikasi_baki_debet").value = cells[5].textContent;
+        document.getElementById("bagian_pendanaan_plafon").value = cells[6].textContent;
+        document.getElementById("bagian_pendanaan_baki_debet").value = cells[7].textContent;
+        document.getElementById("sandi_bank_peserta").value = cells[8].textContent;
+        document.getElementById("status_kepersertaan").value = cells[9].textContent;
+        document.getElementById("nomor_perjanjian_kredit").value = cells[10].textContent;
+        document.getElementById("pendanaan_di_bank_pelapor").value = cells[11].textContent;
+        document.getElementById("kualitas").value = cells[12].textContent;
+        document.getElementById("nominal_tunggakan_pokok").value = cells[13].textContent;
+        document.getElementById("nominal_tunggakan_bunga").value = cells[14].textContent;
+        document.getElementById("hari_tunggakan_pokok").value = cells[15].textContent;
+        document.getElementById("hari_tunggakan_bunga").value = cells[16].textContent;
+
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

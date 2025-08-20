@@ -1,0 +1,279 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0500 - Daftar Penempatan Bank Lain</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <br>
+            <br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0500Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0500ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0500ModalLabel">Daftar Penempatan Bank Lain</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                            <!-- Nav Tabs -->
+                            <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
+                                        type="button" role="tab" aria-controls="tab1" aria-selected="true">
+                                        Tab 1
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
+                                        type="button" role="tab" aria-controls="tab2" aria-selected="false">
+                                        Tab 2
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <!-- Tab Content -->
+                            <div class="tab-content mt-3" id="formTabContent">
+                                <!-- Tab 1 -->
+                                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                    <div class="mb-3">
+                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sandi_bank" class="form-label">Sandi Bank</label>
+                                        <input type="text" class="form-control" id="sandi_bank" name="sandi_bank" maxlength="3">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lokasi_bank" class="form-label">Lokasi Bank</label>
+                                        <input type="text" class="form-control" id="lokasi_bank" name="lokasi_bank" maxlength="3">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="jenis" class="form-label">Jenis</label>
+                                        <input type="text" class="form-control" id="jenis" name="jenis" maxlength="50">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="hubungan_bank" class="form-label">Hubungan dengan Bank</label>
+                                        <input type="text" class="form-control" id="hubungan_bank" name="hubungan_bank" maxlength="50">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
+                                        <input type="text" class="form-control" id="tgl_mulai" name="tgl_mulai" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tgl_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
+                                        <input type="text" class="form-control" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo" maxlength="8" placeholder="YYYYMMDD">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="kualitas" class="form-label">Kualitas</label>
+                                        <input type="text" class="form-control" id="kualitas" name="kualitas" maxlength="4">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="suku_bunga" class="form-label">Suku Bunga</label>
+                                        <input type="text" class="form-control" id="suku_bunga" name="suku_bunga" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="jumlah" class="form-label">Jumlah</label>
+                                        <input type="text" class="form-control" id="jumlah" name="jumlah" maxlength="8">
+                                    </div>
+                                </div>
+
+                                <!-- Tab 2 -->
+                                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                                    <div class="mb-3">
+                                        <label for="nominal_diblokir" class="form-label">Nominal Diblokir/Dijaminkan</label>
+                                        <input type="text" class="form-control" id="nominal_diblokir" name="nominal_diblokir" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="alasan_diblokir" class="form-label">Alasan Diblokir</label>
+                                        <input type="text" class="form-control" id="alasan_diblokir" name="alasan_diblokir" maxlength="100">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadangan_kerugian_penurunan_nilai" class="form-label">Cadangan Kerugian Penurunan Nilai</label>
+                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai" name="cadangan_kerugian_penurunan_nilai" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pendapatan_bunga_diterima" class="form-label">Pendapatan Bunga yang Akan Diterima</label>
+                                        <input type="text" class="form-control" id="pendapatan_bunga_diterima" name="pendapatan_bunga_diterima" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pendapatan_bunga_penyelesaian" class="form-label">Pendapatan Bunga dalam Penyelesaian</label>
+                                        <input type="text" class="form-control" id="pendapatan_bunga_penyelesaian" name="pendapatan_bunga_penyelesaian" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="status_bmpk_individu" class="form-label">Status BMPK Individu</label>
+                                        <input type="text" class="form-control" id="status_bmpk_individu" name="status_bmpk_individu" maxlength="4">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
+                                        <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadangan_kerugian_penurunan_nilai_aset_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Baik</label>
+                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_baik" name="cadangan_kerugian_penurunan_nilai_aset_baik" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadangan_kerugian_penurunan_nilai_aset_kurang_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</label>
+                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_kurang_baik" name="cadangan_kerugian_penurunan_nilai_aset_kurang_baik" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</label>
+                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" name="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="klasifikasi_aset_keuangan" class="form-label">Klasifikasi Aset Keuangan</label>
+                                        <input type="text" class="form-control" id="klasifikasi_aset_keuangan" name="klasifikasi_aset_keuangan" maxlength="8">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="jenis_ckpn" class="form-label">Jenis CKPN</label>
+                                        <input type="text" class="form-control" id="jenis_ckpn" name="jenis_ckpn" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                            <!-- End Input Form -->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Sandi Kantor</th>
+                        <th>Sandi Bank</th>
+                        <th>Lokasi Bank</th>
+                        <th>Jenis</th>
+                        <th>Hubungan dengan Bank</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Jatuh Tempo</th>
+                        <th>Kualitas</th>
+                        <th>Suku Bunga</th>
+                        <th>Jumlah</th>
+                        <th>Nominal Diblokir/Dijaminkan</th>
+                        <th>Alasan Diblokir</th>
+                        <th>Cadangan Kerugian Penurunan Nilai</th>
+                        <th>Pendapatan Bunga yang Akan Diterima</th>
+                        <th>Pendapatan Bunga dalam Penyelesaian</th>
+                        <th>Status BMPK Individu</th>
+                        <th>ID Pihak Lawan</th>
+                        <th>Cadangan Kerugian Penurunan Nilai Aset Baik</th>
+                        <th>Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</th>
+                        <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
+                        <th>Klasifikasi Aset Keuangan</th>
+                        <th>Jenis CKPN</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                    <tr>
+                        <td>001</td>
+                        <td>600001 (PT. BPR Jawa Timur)</td>
+                        <td>1201 (Kab. Gresik)</td>
+                        <td>30 (Deposito Umum)</td>
+                        <td>01 (Hubungan Keluarga dengan Anggota Direksi, Anggota Dewan Komisaris dan Pemegang saham)</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>1 (Lancar)</td>
+                        <td>5.5</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>01 (Escrow Account)</td>
+                        <td>100000</td>
+                        <td>5000</td>
+                        <td>-</td>
+                        <td>00 (Tidak Melanggar dan Tidak Melampaui)</td>
+                        <td>LAWAN</td>
+                        <td>500000</td>
+                        <td>600000</td>
+                        <td>700000</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>1 (Individual)</td>
+                        <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Tambahkan baris lainnya di sini -->
+                    </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0500Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById("sandi_kantor").value = cells[0].textContent;
+        document.getElementById("sandi_bank").value = cells[1].textContent;
+        document.getElementById("lokasi_bank").value = cells[2].textContent;
+        document.getElementById("jenis").value = cells[3].textContent;
+        document.getElementById("hubungan_bank").value = cells[4].textContent;
+        document.getElementById("tgl_mulai").value = cells[5].textContent;
+        document.getElementById("tgl_jatuh_tempo").value = cells[6].textContent;
+        document.getElementById("kualitas").value = cells[7].textContent;
+        document.getElementById("suku_bunga").value = cells[8].textContent;
+        document.getElementById("jumlah").value = cells[9].textContent;
+        document.getElementById("nominal_diblokir").value = cells[10].textContent;
+        document.getElementById("alasan_diblokir").value = cells[11].textContent;
+        document.getElementById("cadangan_kerugian_penurunan_nilai").value = cells[12].textContent;
+        document.getElementById("pendapatan_bunga_diterima").value = cells[13].textContent;
+        document.getElementById("pendapatan_bunga_penyelesaian").value = cells[14].textContent;
+        document.getElementById("status_bmpk_individu").value = cells[15].textContent;
+        document.getElementById("id_pihak_lawan").value = cells[16].textContent;
+        document.getElementById("cadangan_kerugian_penurunan_nilai_aset_baik").value = cells[17].textContent;
+        document.getElementById("cadangan_kerugian_penurunan_nilai_aset_kurang_baik").value = cells[18].textContent;
+        document.getElementById("cadangan_kerugian_penurunan_nilai_aset_tidak_baik").value = cells[19].textContent;
+        document.getElementById("klasifikasi_aset_keuangan").value = cells[20].textContent;
+        document.getElementById("jenis_ckpn").value = cells[21].textContent;
+
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

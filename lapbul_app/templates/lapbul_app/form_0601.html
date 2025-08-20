@@ -1,0 +1,205 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 0601 - Daftar Agunan</h5>
+            <hr>
+            <!-- Button to trigger modal -->
+            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <br><br>
+            <!-- Modal structure -->
+            <div class="modal fade" id="form0500Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0500ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form0500ModalLabel">Daftar Agunan</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Input Form using <table> with Bootstrap -->
+                            <form>
+                                <!-- Nav Tabs -->
+                            <ul class="nav nav-tabs" id="agunanTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab">
+                                Tab 1
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab">
+                                Tab 2
+                                </button>
+                            </li>
+                            </ul>
+
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="agunanTabContent">
+
+                            <!-- Tab 1 -->
+                            <div class="tab-pane fade show active p-3" id="tab1" role="tabpanel">
+                                <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                    <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="kode_register" class="form-label">Kode Register/Nomor Agunan</label>
+                                    <input type="text" class="form-control" id="kode_register" name="kode_register" maxlength="20">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="no_rekening" class="form-label">No. Rekening</label>
+                                    <input type="text" class="form-control" id="no_rekening" name="no_rekening" maxlength="20">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="jenis_agunan" class="form-label">Jenis Agunan</label>
+                                    <input type="text" class="form-control" id="jenis_agunan" name="jenis_agunan" maxlength="50">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="alamat_agunan" class="form-label">Alamat Agunan</label>
+                                    <input type="text" class="form-control" id="alamat_agunan" name="alamat_agunan" maxlength="200">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="nilai_diagunkan" class="form-label">Nilai yang Diagunkan</label>
+                                    <input type="text" class="form-control" id="nilai_diagunkan" name="nilai_diagunkan" maxlength="20">
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 2 -->
+                            <div class="tab-pane fade p-3" id="tab2" role="tabpanel">
+                                <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="nominal_nilai_agunan" class="form-label">Nominal Nilai Agunan</label>
+                                    <input type="text" class="form-control" id="nominal_nilai_agunan" name="nominal_nilai_agunan" maxlength="20">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="penilai_nilai_agunan" class="form-label">Penilai Nilai Agunan</label>
+                                    <input type="text" class="form-control" id="penilai_nilai_agunan" name="penilai_nilai_agunan" maxlength="100">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="tgl_penilaian_terakhir" class="form-label">Tanggal Penilaian Terakhir Nilai Agunan</label>
+                                    <input type="text" class="form-control" id="tgl_penilaian_terakhir" name="tgl_penilaian_terakhir" maxlength="8" placeholder="YYYYMMDD">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="nilai_likuid" class="form-label">Nilai yang Diperhitungkan untuk PPKA - Likuid</label>
+                                    <input type="text" class="form-control" id="nilai_likuid" name="nilai_likuid" maxlength="20">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="nilai_non_likuid" class="form-label">Nilai yang Diperhitungkan untuk PPKA - Non Likuid</label>
+                                    <input type="text" class="form-control" id="nilai_non_likuid" name="nilai_non_likuid" maxlength="20">
+                                </div>
+                                </div>
+                            </div>
+
+                            </div>
+
+                            </form>
+                            <!-- End Input Form -->
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                    <th>Sandi Kantor</th>
+                    <th>Kode Register/Nomor Agunan</th>
+                    <th>No. Rekening</th>
+                    <th>Jenis Agunan</th>
+                    <th>Alamat Agunan</th>
+                    <th>Nilai yang Diagunkan</th>
+                    <th>Nominal Nilai Agunan</th>
+                    <th>Penilai Nilai Agunan</th>
+                    <th>Tanggal Penilaian Terakhir Nilai Agunan</th>
+                    <th>Nilai yang Diperhitungkan untuk PPKA - Likuid</th>
+                    <th>Nilai yang Diperhitungkan untuk PPKA - Non Likuid</th>
+                    <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                    <tr>
+                        <td>001</td>
+                        <td>NoAgunan1</td>
+                        <td>NoRekening1</td>
+                        <td>101 (Likuid : SBI/Surat Utang Pemerintah)</td>
+                        <td>demak</td>
+                        <td>100000</td>
+                        <td>500000</td>
+                        <td>1 (Penilai Independen)</td>
+                        <td>20240502</td>
+                        <td>2000</td>
+                        <td>-</td>
+                        <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Tambahkan baris lainnya di sini -->
+                    </tbody>
+            </table>
+            <!-- Table -->
+        </div>
+    </main>
+</div>
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,           // Enable horizontal scrolling
+        responsive: true         // Make table responsive
+    });
+});
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+
+        // Isi form dengan data yang dipilih
+        const form = document.querySelector('#form0500Modal form');
+            
+        form.reset();
+
+    }
+
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Isi form dengan data yang dipilih
+        document.getElementById("sandi_kantor").value = cells[0].textContent;
+        document.getElementById("kode_register").value = cells[1].textContent;
+        document.getElementById("no_rekening").value = cells[2].textContent;
+        document.getElementById("jenis_agunan").value = cells[3].textContent;
+        document.getElementById("alamat_agunan").value = cells[4].textContent;
+        document.getElementById("nilai_diagunkan").value = cells[5].textContent;
+        document.getElementById("nominal_nilai_agunan").value = cells[6].textContent;
+        document.getElementById("penilai_nilai_agunan").value = cells[7].textContent;
+        document.getElementById("tgl_penilaian_terakhir").value = cells[8].textContent;
+        document.getElementById("nilai_likuid").value = cells[9].textContent;
+        document.getElementById("nilai_non_likuid").value = cells[10].textContent;
+    }
+
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        
+        // Tampilkan dialog konfirmasi
+        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+        
+        if (confirmDelete) {
+            row.remove();
+        }
+    }
+});
+</script>
+{% include 'lapbul_app/footer.html' %}
