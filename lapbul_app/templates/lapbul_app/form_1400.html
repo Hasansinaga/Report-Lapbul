@@ -5,25 +5,27 @@
             <h5 class="mt-4">Form 1400 - Rincian Liabilitas Lainnya</h5>
             <hr>
     
-             <!-- Tombol kembali & tambah -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Simpan</button><br><br>
-            
-            <!-- Filter Kantor -->
-            <div class="mb-3">
-                <label for="kantorFilter" class="form-label">Pilih Sandi Kantor:</label>
-                <select id="kantorFilter" class="form-select" onchange="filterKantor()">
-                    <option value="all">semua</option>
-                    <option value="001">001</option>
-                    <option value="002">002</option>
-                </select>
-            </div>
+                <div class="d-flex justify-content-between">
+        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+        <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Simpan</button>
+    </div>
+   
+
+        <!-- Filter Kantor -->
+    <div class="mb-3 d-flex align-items-center gap-2">
+        <label for="kantorFilter" class="form-label mb-0">Pilih Sandi Kantor:</label>
+        <select id="kantorFilter" class="form-select form-select-sm w-auto" onchange="filterKantor()">
+            <option value="all">semua</option>
+            <option value="001">001</option>
+            <option value="002">002</option>
+        </select>
+    </div>
+
 
             <form>
                 <table class="table table-bordered table-sm">
                     <thead class="table-light">
                         <tr>
-                            <th>Flag Detail</th>
                             <th>Sandi Kantor</th>
                             <th>Nama Rekening</th>
                             <th>Sandi Pos</th>
@@ -32,52 +34,52 @@
                     </thead>
                     <tbody>
                         <!-- ================= KANTOR 001 ================= -->
-                        <tr data-kantor="001"><td>T</td><td>001</td><td>Utang Bunga</td><td></td><td><input type="text" class="form-control text-end" value=""></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Tabungan Berjangka</td><td>2299010100</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
-                        <tr data-kantor="001"><td>T</td><td>001</td><td>Deposito</td><td></td><td></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010201</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010202</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
-                        <tr data-kantor="001"><td>T</td><td>001</td><td>Simpanan dari bank lain</td><td></td><td></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010301</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010302</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>T</td><td>001</td><td>Pinjaman yang diterima dari Bank</td><td></td><td></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010401</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010402</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>T</td><td>001</td><td>Pinjaman dari Pihak Ketiga Bukan Bank</td><td></td><td></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010501</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010502</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Utang Bunga Lainnya</td><td>2299019900</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Utang Pajak</td><td>2299020000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Liabilitas Imbalan Kerja</td><td>2299030000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Liabilitas Sewa Pembiayaan</td><td>2299040000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Taksiran Pajak Penghasilan</td><td>2299050000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Pendapatan yang Ditangguhkan</td><td>2299060000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Liabilitas Pajak Tangguhan</td><td>2299070000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="001"><td>Y</td><td>001</td><td>Lainnya</td><td>2299990000</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Utang Bunga</td><td></td><td><input type="text" class="form-control text-end" value=""></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Tabungan Berjangka</td><td>2299010100</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Deposito</td><td></td><td></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010201</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010202</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Simpanan dari bank lain</td><td></td><td></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010301</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010302</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Pinjaman yang diterima dari Bank</td><td></td><td></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010401</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010402</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Pinjaman dari Pihak Ketiga Bukan Bank</td><td></td><td></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>a. Sudah Jatuh Tempo</td><td>2299010501</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>b. Belum Jatuh Tempo</td><td>2299010502</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Utang Bunga Lainnya</td><td>2299019900</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Utang Pajak</td><td>2299020000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Liabilitas Imbalan Kerja</td><td>2299030000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Liabilitas Sewa Pembiayaan</td><td>2299040000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Taksiran Pajak Penghasilan</td><td>2299050000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Pendapatan yang Ditangguhkan</td><td>2299060000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Liabilitas Pajak Tangguhan</td><td>2299070000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="001"><td>001</td><td>Lainnya</td><td>2299990000</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
 
                         <!-- ================= KANTOR 002 ================= -->
-                        <tr data-kantor="002"><td>T</td><td>002</td><td>Utang Bunga</td><td></td><td></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Tabungan Berjangka</td><td>2299010100</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
-                        <tr data-kantor="002"><td>T</td><td>002</td><td>Deposito</td><td></td><td></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010201</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010202</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
-                        <tr data-kantor="002"><td>T</td><td>002</td><td>Simpanan dari bank lain</td><td></td><td></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010301</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010302</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>T</td><td>002</td><td>Pinjaman yang diterima dari Bank</td><td></td><td></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010401</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010402</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>T</td><td>002</td><td>Pinjaman dari Pihak Ketiga Bukan Bank</td><td></td><td></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010501</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010502</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Utang Bunga Lainnya</td><td>2299019900</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Utang Pajak</td><td>2299020000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Liabilitas Imbalan Kerja</td><td>2299030000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Liabilitas Sewa Pembiayaan</td><td>2299040000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Taksiran Pajak Penghasilan</td><td>2299050000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Pendapatan yang Ditangguhkan</td><td>2299060000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Liabilitas Pajak Tangguhan</td><td>2299070000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
-                        <tr data-kantor="002"><td>Y</td><td>002</td><td>Lainnya</td><td>2299990000</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Utang Bunga</td><td></td><td></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Tabungan Berjangka</td><td>2299010100</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Deposito</td><td></td><td></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010201</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010202</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Simpanan dari bank lain</td><td></td><td></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010301</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010302</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Pinjaman yang diterima dari Bank</td><td></td><td></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010401</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010402</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Pinjaman dari Pihak Ketiga Bukan Bank</td><td></td><td></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>a. Sudah Jatuh Tempo</td><td>2299010501</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>b. Belum Jatuh Tempo</td><td>2299010502</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Utang Bunga Lainnya</td><td>2299019900</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Utang Pajak</td><td>2299020000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Liabilitas Imbalan Kerja</td><td>2299030000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Liabilitas Sewa Pembiayaan</td><td>2299040000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Taksiran Pajak Penghasilan</td><td>2299050000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Pendapatan yang Ditangguhkan</td><td>2299060000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Liabilitas Pajak Tangguhan</td><td>2299070000</td><td><input type="text" class="form-control text-end" value="50000"></td></tr>
+                        <tr data-kantor="002"><td>002</td><td>Lainnya</td><td>2299990000</td><td><input type="text" class="form-control text-end" value="100000"></td></tr>
                     </tbody>
                 </table>
                
