@@ -46,18 +46,6 @@
               <form>
                 <div class="row">
                   <div class="col-md-3 mb-3">
-                    <label for="flag_detail" class="form-label"
-                      >Flag Detail</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="flag_detail"
-                      name="flag_detail"
-                      maxlength="1"
-                    />
-                  </div>
-                  <div class="col-md-3 mb-3">
                     <label for="sandi_kantor" class="form-label"
                       >Sandi Kantor</label
                     >
@@ -170,7 +158,6 @@
       >
         <thead>
           <tr class="text-center align-middle">
-            <th rowspan="2" class="align-middle">Flag Detail</th>
             <th rowspan="2" class="align-middle">Sandi Kantor</th>
             <th rowspan="2" class="align-middle">ID Pihak Lawan</th>
             <th rowspan="2" class="align-middle">No. Rekening</th>
@@ -203,7 +190,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>D01</td>
             <td>001</td>
             <td>CIF1</td>
             <td>Rekening1</td>
@@ -234,7 +220,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>001</td>
             <td>CIF2</td>
             <td>Rekening2</td>
@@ -265,7 +250,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>001</td>
             <td>CIF3</td>
             <td>Rekening3</td>
@@ -296,7 +280,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>001</td>
             <td>CIF4</td>
             <td>Rekening4</td>
@@ -327,7 +310,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>001</td>
             <td>CIF5</td>
             <td>Rekening5</td>
@@ -358,7 +340,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>002</td>
             <td>CIF6</td>
             <td>Rekening6</td>
@@ -389,7 +370,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>002</td>
             <td>CIF7</td>
             <td>Rekening7</td>
@@ -420,7 +400,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>002</td>
             <td>CIF8</td>
             <td>Rekening8</td>
@@ -451,7 +430,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>002</td>
             <td>CIF9</td>
             <td>Rekening9</td>
@@ -482,7 +460,6 @@
             </td>
           </tr>
           <tr>
-            <td>D01</td>
             <td>002</td>
             <td>CIF10</td>
             <td>Rekening10</td>
@@ -515,6 +492,23 @@
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="9" style="text-align: right">Total:</th>
+            <th></th>
+            <!-- Per Posisi Laporan - Saldo Pokok -->
+            <th></th>
+            <!-- Kolom kosong -->
+            <th></th>
+            <!-- Kolom kosong -->
+            <th></th>
+            <!-- Kolom kosong -->
+            <th></th>
+            <!-- Per Posisi Laporan - Tunggakan Bunga -->
+            <th colspan="4"></th>
+            <!-- Kolom agunan dan aksi -->
+          </tr>
+        </tfoot>
       </table>
       <!-- Table -->
 
@@ -523,7 +517,93 @@
           $("#datatables").DataTable({
             scrollX: true,
             responsive: true,
+            pageLength: 15,
+            lengthChange: false,
+            language: {
+              zeroRecords: "Tidak ada data yang ditemukan",
+              info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+              infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+              infoFiltered: "(difilter dari total _MAX_ entri)",
+              search: "Cari:",
+              paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+              },
+            },
+            footerCallback: function (row, data, start, end, display) {
+              var api = this.api();
+
+              // Fungsi parsing angka (hilangkan koma/karakter non-angka)
+              var intVal = function (i) {
+                return typeof i === "string"
+                  ? i.replace(/[^0-9.-]/g, "") * 1
+                  : typeof i === "number"
+                  ? i
+                  : 0;
+              };
+
+              // Kolom yang akan dijumlahkan:
+              // Indeks 9: Per Posisi Laporan - Saldo Pokok
+              // Indeks 13: Per Posisi Laporan - Tunggakan Bunga
+              var colsToSum = [9, 13];
+
+              colsToSum.forEach(function (colIdx) {
+                var total = api
+                  .column(colIdx, { search: "applied" })
+                  .data()
+                  .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                  }, 0);
+
+                // Update footer dengan format angka yang sesuai
+                $(api.column(colIdx).footer()).html(total.toLocaleString());
+              });
+            },
           });
+        });
+
+        document.addEventListener("click", function (e) {
+          if (e.target.closest(".tambah")) {
+            e.preventDefault();
+            const form = document.querySelector("#form1500Modal form");
+            form.reset();
+          }
+
+          if (e.target.closest(".edit")) {
+            e.preventDefault();
+            const row = e.target.closest("tr");
+            const cells = row.querySelectorAll("td");
+
+            document.getElementById("sandi_kantor").value =
+              cells[0].textContent.trim();
+            document.getElementById("id_pihak_lawan").value =
+              cells[1].textContent.trim();
+            document.getElementById("no_rekening").value =
+              cells[2].textContent.trim();
+            document.getElementById("jenis").value =
+              cells[3].textContent.trim();
+            document.getElementById("gol_debitur").value =
+              cells[4].textContent.trim();
+            document.getElementById("hubungan_bank").value =
+              cells[5].textContent.trim();
+            document.getElementById("tgl_hapus_buku").value =
+              cells[6].textContent.trim();
+          }
+
+          if (e.target.closest(".delete")) {
+            e.preventDefault();
+            const row = e.target.closest("tr");
+            const confirmDelete = confirm(
+              "Apakah Anda yakin ingin menghapus data ini?"
+            );
+            if (confirmDelete) {
+              row.remove();
+              // Refresh DataTable untuk update total
+              $("#datatables").DataTable().draw();
+            }
+          }
         });
       </script>
       {% include 'lapbul_app/footer.html' %}
