@@ -82,7 +82,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="status_kepersertaan" class="form-label">Status Kepersertaan</label>
-                                        <input type="text" class="form-control" id="status_kepersertaan" name="status_kepersertaan" maxlength="20">
+                                        <select class="form-select" id="status_kepersertaan" name="status_kepersertaan">
+                                        <option value="">-- Pilih Jenis Penilai --</option>
+                                        <option value="1">1 (Arranger)</option>
+                                        <option value="2">2 (Anggota Sindikasi)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="no_perjanjian_kredit" class="form-label">Nomor Perjanjian Kredit Sindikasi</label>
@@ -90,11 +94,22 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="pendanaan_bank_pelapor" class="form-label">Pendanaan di Bank Pelapor</label>
-                                        <input type="text" class="form-control" id="pendanaan_bank_pelapor" name="pendanaan_bank_pelapor" maxlength="20">
+                                        <select class="form-select" id="pendanaan_bank_pelapor" name="pendanaan_bank_pelapor">
+                                        <option value="">-- Pilih Jenis Penilai --</option>
+                                        <option value="1">1 (Ya)</option>
+                                        <option value="2">2 (Tidak)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="kualitas" class="form-label">Kualitas</label>
-                                        <input type="text" class="form-control" id="kualitas" name="kualitas" maxlength="5">
+                                        <select class="form-select" id="kualitas" name="kualitas">
+                                        <option value="">-- Pilih Jenis Penilai --</option>
+                                        <option value="1">1 (Lancar)</option>
+                                        <option value="2">2 (Dalam Perhatian Khusus)</option>
+                                        <option value="3">1 (Kurang Lancar)</option>
+                                        <option value="4">2 (Diragukan)</option>
+                                        <option value="5">1 (Macet)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nominal_tunggakan_pokok" class="form-label">Nominal Tunggakan - Pokok</label>
@@ -183,11 +198,26 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+    $("#datatables").DataTable({
+      scrollX: true,
+      responsive: true,
+      language: {
+        lengthMenu: "Tampilkan _MENU_ entri",
+        zeroRecords: "Tidak ada data yang ditemukan",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+        infoFiltered: "(difilter dari total MAX entri)",
+        search: "Cari:",
+        paginate: {
+          first: "Pertama",
+          last: "Terakhir",
+          next: "Berikutnya",
+          previous: "Sebelumnya",
+        },
+      },
+      
+    });
+  });
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();

@@ -4,81 +4,123 @@
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0900 - Rincian Aset Lainnya</h5>
             <hr>
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a><br><br>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-secondary">Simpan</button>
+            </div><br>
+
+            <!-- Filter Kantor -->
+    <div class="mb-3 d-flex align-items-center gap-2">
+        <label for="kantorFilter" class="form-label mb-0">Pilih Sandi Kantor:</label>
+        <select id="kantorFilter" class="form-select form-select-sm w-auto" onchange="filterKantor()">
+            <option value="all">semua</option>
+            <option value="001">001</option>
+            <option value="002">002</option>
+        </select>
+    </div>
             
             <form>
                 <table class="table table-bordered" style="max-width:800px;">
                     <thead>
-                        <tr><td>Nama Rekening</td><td>Sandi Pos</td><td>Jumlah</td></tr>
+                        <tr><td>Sandi Kantor</td><td>Nama Rekening</td><td>Sandi Pos</td><td>Jumlah</td></tr>
                     </thead>
                     <tbody>
                         <tr>
+                        <td></td>
                         <td class="align-middle"><label class="form-label" for="kpmm">Pendapatan Bunga yang Akan Diterima</label></td>
                         <td class="align-middle"><label class="form-label" for="kpmm"></label></td>
                         <td></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle" ><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="kpmm">a. Penempatan pada Bank Lain</label></td>
                         <td class="align-middle"><label class="form-label" for="kpmm">1299010100</label></td>
                         <td><input type="text" class="form-control text-end" id="kpmm" name="kpmm" value="10000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="ckpn">b. Kredit yang Diberikan</label></td>
                         <td class="align-middle"><label class="form-label" for="ckpn">1299010200</label></td>
                         <td><input class="form-control text-end" id="ckpn" name="ckpn" rows="2" value="200000"></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_net">c. Surat Berharga</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_net">1299010300</label></td>
                         <td><input type="text" class="form-control text-end" id="npl_net" name="npl_net" value="200000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_gross">d. Lainnya</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_gross">1299010900</label></td>
                         <td><input type="text" class="form-control text-end" id="npl_gross" name="npl_gross" value="200000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="roa">Premi penjaminan LPS dibayar dimuka</label></td>
                         <td class="align-middle"><label class="form-label" for="roa">1299020000</label></td>
                         <td><input type="text" class="form-control text-end" id="roa" name="roa" value="100000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="bopo">Uang Muka Pajak</label></td>
                         <td class="align-middle"><label class="form-label" for="bopo">1299030000</label></td>
                         <td><input type="text" class="form-control text-end" id="bopo" name="bopo" value="100000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="nim">Aset Pajak Tangguhan</label></td>
                         <td class="align-middle"><label class="form-label" for="nim">1299040000</label></td>
                         <td><input type="text" class="form-control text-end" id="nim" name="nim" value="100000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="ldr">Biaya dibayar dimuka</label></td>
                         <td class="align-middle"><label class="form-label" for="ldr">1299050000</label></td>
                         <td><input type="text" class="form-control text-end" id="ldr" name="ldr" value="100000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">Tagihan kepada perusahaan asuransi</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">1299060000</label></td>
                         <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="100000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">Uang Muka Untuk Kegiatan Operasional </label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">1299070000</label></td>
                         <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="400000" /></td>
                         </tr>
-                        <tr>
+                        <tr data-kantor="001">
+                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">Lainnya</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">1299990000</label></td>
                         <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="700000" /></td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-secondary">Simpan</button>
+                
                 </form>
                 <br>
     </main>
 </div>
+
+<script>function filterKantor() {
+    var selected = document.getElementById("kantorFilter").value;
+    var rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(function(row) {
+        if (selected === "all") {
+            row.style.display = "";
+        } else {
+            if (row.getAttribute("data-kantor") === selected) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    });
+}</script>
 {% include 'lapbul_app/footer.html' %}
 
 

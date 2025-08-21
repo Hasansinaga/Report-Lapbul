@@ -55,12 +55,28 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="jenis" class="form-label">Jenis</label>
-                                        <input type="text" class="form-control" id="jenis" name="jenis" maxlength="50">
-                                    </div>
+                                        <select class="form-select" id="jenis" name="jenis">
+                                            <option value="">-- Pilih Jenis --</option>
+                                            <option value="10">10 (Giro)</option>
+                                            <option value="20">20 (Tabungan Umum)</option>
+                                            <option value="25">25 (Tabungan Khusus)</option>
+                                            <option value="30">30 (Deposito Umum)</option>
+                                            <option value="35">35 (Deposito Khusus)</option>
+                                            <option value="40">40 (Sertifikat Deposito)</option>
+                                        </select>
+                                        </div>
                                     <div class="mb-3">
                                         <label for="hubungan_bank" class="form-label">Hubungan dengan Bank</label>
-                                        <input type="text" class="form-control" id="hubungan_bank" name="hubungan_bank" maxlength="50">
-                                    </div>
+                                        <select class="form-select" id="hubungan_bank" name="hubungan_bank">
+                                            <option value="">-- Pilih Hubungan --</option>
+                                            <option value="01">01 (Hubungan Keluarga dengan Anggota Direksi, Anggota Dewan Komisaris dan Pemegang Saham)</option>
+                                            <option value="02">02 (Perusahaan bukan bank yang dimiliki oleh Anggota Direksi, Anggota Dewan Komisaris dan Pemegang Saham)</option>
+                                            <option value="03">03 (BPR lain yang dimiliki oleh Anggota Direksi, Anggota Dewan Komisaris dan Pemegang Saham)</option>
+                                            <option value="04">04 (BPR lain yang anggota Dewan Komisarisnya merangkap jabatan di bank)</option>
+                                            <option value="05">05 (Perusahaan yang paling sedikit 50% (lima puluh persen) dimiliki oleh bank)</option>
+                                            <option value="06">06 (Peminjam yang diberikan jaminan oleh Anggota Direksi, Anggota Dewan Komisaris dan Pemegang Saham)</option>
+                                        </select>
+                                        </div>
                                     <div class="mb-3">
                                         <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
                                         <input type="text" class="form-control" id="tgl_mulai" name="tgl_mulai" maxlength="8" placeholder="YYYYMMDD">
@@ -70,8 +86,13 @@
                                         <input type="text" class="form-control" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo" maxlength="8" placeholder="YYYYMMDD">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="kualitas" class="form-label">Kualitas</label>
-                                        <input type="text" class="form-control" id="kualitas" name="kualitas" maxlength="4">
+                                    <label for="kualitas" class="form-label">Kualitas</label>
+                                    <select class="form-select" id="kualitas" name="kualitas">
+                                        <option value="">-- Pilih Kualitas --</option>
+                                        <option value="1">1 (Lancar)</option>
+                                        <option value="3">3 (Kurang Lancar)</option>
+                                        <option value="5">5 (Macet)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="suku_bunga" class="form-label">Suku Bunga</label>
@@ -90,8 +111,13 @@
                                         <input type="text" class="form-control" id="nominal_diblokir" name="nominal_diblokir" maxlength="8">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="alasan_diblokir" class="form-label">Alasan Diblokir</label>
-                                        <input type="text" class="form-control" id="alasan_diblokir" name="alasan_diblokir" maxlength="100">
+                                    <label for="alasan_diblokir" class="form-label">Alasan Diblokir</label>
+                                    <select class="form-select" id="alasan_diblokir" name="alasan_diblokir">
+                                        <option value="">-- Pilih Alasan --</option>
+                                        <option value="01">01 (Escrow Account)</option>
+                                        <option value="02">02 (Cash Collateral)</option>
+                                        <option value="99">99 (Alasan Diblokir Lainnya)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="cadangan_kerugian_penurunan_nilai" class="form-label">Cadangan Kerugian Penurunan Nilai</label>
@@ -106,8 +132,17 @@
                                         <input type="text" class="form-control" id="pendapatan_bunga_penyelesaian" name="pendapatan_bunga_penyelesaian" maxlength="8">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="status_bmpk_individu" class="form-label">Status BMPK Individu</label>
-                                        <input type="text" class="form-control" id="status_bmpk_individu" name="status_bmpk_individu" maxlength="4">
+                                    <label for="status_bmpk_individu" class="form-label">Status BMPK Individu</label>
+                                    <select class="form-select" id="status_bmpk_individu" name="status_bmpk_individu">
+                                        <option value="">-- Pilih Status --</option>
+                                        <option value="00">00 (Tidak Melanggar dan Tidak Melampaui)</option>
+                                        <option value="11">11 (Melanggar Individu)</option>
+                                        <option value="12">12 (Melanggar Kelompok)</option>
+                                        <option value="13">13 (Melanggar Individu dan Kelompok)</option>
+                                        <option value="21">21 (Melampaui Individu)</option>
+                                        <option value="22">22 (Melampaui Kelompok)</option>
+                                        <option value="23">23 (Melampaui Individu dan Kelompok)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
@@ -126,12 +161,21 @@
                                         <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" name="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" maxlength="8">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="klasifikasi_aset_keuangan" class="form-label">Klasifikasi Aset Keuangan</label>
-                                        <input type="text" class="form-control" id="klasifikasi_aset_keuangan" name="klasifikasi_aset_keuangan" maxlength="8">
+                                    <label for="klasifikasi_aset_keuangan" class="form-label">Klasifikasi Aset Keuangan</label>
+                                    <select class="form-select" id="klasifikasi_aset_keuangan" name="klasifikasi_aset_keuangan">
+                                        <option value="">-- Pilih Klasifikasi --</option>
+                                        <option value="1">1 (Diukur pada Nilai Wajar melalui Laba Rugi)</option>
+                                        <option value="2">2 (Diukur pada Nilai Wajar melalui Pendapatan Komprehensif Lain)</option>
+                                        <option value="3">3 (Diukur pada Biaya Perolehan Diamortisasi)</option>
+                                    </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="jenis_ckpn" class="form-label">Jenis CKPN</label>
-                                        <input type="text" class="form-control" id="jenis_ckpn" name="jenis_ckpn" maxlength="4">
+                                    <label for="jenis_ckpn" class="form-label">Jenis CKPN</label>
+                                    <select class="form-select" id="jenis_ckpn" name="jenis_ckpn">
+                                        <option value="">-- Pilih Jenis CKPN --</option>
+                                        <option value="1">1 (Individual)</option>
+                                        <option value="2">2 (Kolektif)</option>
+                                    </select>
                                     </div>
                                 </div>
                             </div>
@@ -212,6 +256,47 @@
                     <tfoot>
                     <tr>
                         <th colspan="9" style="text-align: right">Total:</th>
+                        <th></th>
+                        <!-- Jumlah -->
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                    <!--Jumlah dari cbs-->
+                    <tr>
+                        <th colspan="9" style="text-align: right">Total CBS:</th>
+                        <th></th>
+                        <!-- Jumlah -->
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+
+                    <!--Selisih Jumlah lapbul dengan CBS-->
+                     <tr>
+                        <th colspan="9" style="text-align: right">Selisih Jumlah lapbul dengan CBS:</th>
                         <th></th>
                         <!-- Jumlah -->
                         <th></th>

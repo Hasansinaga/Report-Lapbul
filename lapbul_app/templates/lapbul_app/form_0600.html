@@ -19,100 +19,115 @@
 
                         <div class="modal-body">
                             <!-- Input Form using <table> with Bootstrap -->
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
-                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="sandi_bank" class="form-label">Sandi Bank</label>
-                                        <input type="text" class="form-control" id="sandi_bank" name="sandi_bank" maxlength="3">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="lokasi_bank" class="form-label">Lokasi Bank</label>
-                                        <input type="text" class="form-control" id="lokasi_bank" name="lokasi_bank" maxlength="3">
-                                    </div>
-                                    
-                                    <div class="col-md-4 mb-3">
-                                        <label for="jenis" class="form-label">Jenis</label>
-                                        <input type="text" class="form-control" id="jenis" name="jenis" maxlength="50">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="hubungan_bank" class="form-label">Hubungan dengan Bank</label>
-                                        <input type="text" class="form-control" id="hubungan_bank" name="hubungan_bank" maxlength="50">
-                                    </div>
-                                    <div class="col-md-5 mb-3">
-                                        <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
-                                        <input type="text" class="form-control" id="tgl_mulai" name="tgl_mulai" maxlength="8" placeholder="YYYYMMDD">
-                                    </div>
+                            
+                        <!-- Nav Tabs -->
+                        <ul class="nav nav-tabs" id="formTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button">Tab 1</button></li>
+                        <li class="nav-item"><button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button">Tab 2</button></li>
+                        <li class="nav-item"><button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button">Tab 3</button></li>
+                        <li class="nav-item"><button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button">Tab 4</button></li>
+                        <li class="nav-item"><button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button">Tab 5</button></li>
+                        <li class="nav-item"><button class="nav-link" id="tab6-tab" data-bs-toggle="tab" data-bs-target="#tab6" type="button">Tab 6</button></li>
+                        </ul>
 
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tgl_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
-                                        <input type="text" class="form-control" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo" maxlength="8" placeholder="YYYYMMDD">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kualitas" class="form-label">Kualitas</label>
-                                        <input type="text" class="form-control" id="kualitas" name="kualitas" maxlength="4">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="suku_bunga" class="form-label">Suku Bunga</label>
-                                        <input type="text" class="form-control" id="suku_bunga" name="suku_bunga" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="jumlah" class="form-label">Jumlah</label>
-                                        <input type="text" class="form-control" id="jumlah" name="jumlah" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="nominal_diblokir" class="form-label">Nominal Diblokir/Dijaminkan</label>
-                                        <input type="text" class="form-control" id="nominal_diblokir" name="nominal_diblokir" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="alasan_diblokir" class="form-label">Alasan Diblokir</label>
-                                        <input type="text" class="form-control" id="alasan_diblokir" name="alasan_diblokir" maxlength="100">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="cadangan_kerugian_penurunan_nilai" class="form-label">Cadangan Kerugian Penurunan Nilai</label>
-                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai" name="cadangan_kerugian_penurunan_nilai" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="pendapatan_bunga_diterima" class="form-label">Pendapatan Bunga yang Akan Diterima</label>
-                                        <input type="text" class="form-control" id="pendapatan_bunga_diterima" name="pendapatan_bunga_diterima" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="pendapatan_bunga_penyelesaian" class="form-label">Pendapatan Bunga dalam Penyelesaian</label>
-                                        <input type="text" class="form-control" id="pendapatan_bunga_penyelesaian" name="pendapatan_bunga_penyelesaian" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="status_bmpk_individu" class="form-label">Status BMPK Individu</label>
-                                        <input type="text" class="form-control" id="status_bmpk_individu" name="status_bmpk_individu" maxlength="4">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
-                                        <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="cadangan_kerugian_penurunan_nilai_aset_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Baik</label>
-                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_baik" name="cadangan_kerugian_penurunan_nilai_aset_baik" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="cadangan_kerugian_penurunan_nilai_aset_kurang_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</label>
-                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_kurang_baik" name="cadangan_kerugian_penurunan_nilai_aset_kurang_baik" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</label>
-                                        <input type="text" class="form-control" id="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" name="cadangan_kerugian_penurunan_nilai_aset_tidak_baik" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="klasifikasi_aset_keuangan" class="form-label">Klasifikasi Aset Keuangan</label>
-                                        <input type="text" class="form-control" id="klasifikasi_aset_keuangan" name="klasifikasi_aset_keuangan" maxlength="8">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="jenis_ckpn" class="form-label">Jenis CKPN</label>
-                                        <input type="text" class="form-control" id="jenis_ckpn" name="jenis_ckpn" maxlength="4">
-                                    </div>
-                                </div>
-                            </form>
+                        <form>
+                        <div class="tab-content mt-3">
+
+                            <!-- TAB 1 -->
+                            <div class="tab-pane fade show active" id="tab1">
+                            <div class="row">
+                                <div class="col-12 mb-3"><label>Sandi Kantor</label><input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor"></div>
+                                <div class="col-12 mb-3"><label>ID Pihak Lawan</label><input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan"></div>
+                                <div class="col-12 mb-3"><label>No Identitas</label><input type="text" class="form-control" id="no_identitas" name="no_identitas"></div>
+                                <div class="col-12 mb-3"><label>Kode Kelompok Kredit</label><input type="text" class="form-control" id="kode_kelompok_kredit" name="kode_kelompok_kredit"></div>
+                                <div class="col-12 mb-3"><label>No Rekening</label><input type="text" class="form-control" id="no_rekening" name="no_rekening"></div>
+                                <div class="col-12 mb-3"><label>Jenis Kredit</label><input type="text" class="form-control" id="jenis" name="jenis"></div>
+                                <div class="col-12 mb-3"><label>Status Restrukturisasi</label><input type="text" class="form-control" id="status_restrukturisasi" name="status_restrukturisasi"></div>
+                                <div class="col-12 mb-3"><label>Jenis Penggunaan</label><input type="text" class="form-control" id="jenis_penggunaan" name="jenis_penggunaan"></div>
+                                <div class="col-12 mb-3"><label>Hubungan dgn Bank</label><input type="text" class="form-control" id="hubungan_bank" name="hubungan_bank"></div>
+                                <div class="col-12 mb-3"><label>Sumber Dana Pelunasan</label><input type="text" class="form-control" id="sumber_dana_pelunasan" name="sumber_dana_pelunasan"></div>
+                            </div>
+                            </div>
+
+                            <!-- TAB 2 -->
+                            <div class="tab-pane fade" id="tab2">
+                            <div class="row">
+                                <div class="col-12 mb-3"><label>Periode Pokok</label><input type="text" class="form-control" id="periode_pokok" name="periode_pokok"></div>
+                                <div class="col-12 mb-3"><label>Periode Bunga</label><input type="text" class="form-control" id="periode_bunga" name="periode_bunga"></div>
+                                <div class="col-12 mb-3"><label>Tanggal Mulai</label><input type="text" class="form-control" id="tgl_mulai" name="tgl_mulai"></div>
+                                <div class="col-12 mb-3"><label>Tanggal Jatuh Tempo</label><input type="text" class="form-control" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo"></div>
+                                <div class="col-12 mb-3"><label>Angsuran Pertama</label><input type="text" class="form-control" id="angsuran_pertama" name="angsuran_pertama"></div>
+                                <div class="col-12 mb-3"><label>Kualitas</label><input type="text" class="form-control" id="kualitas" name="kualitas"></div>
+                                <div class="col-12 mb-3"><label>Tanggal Macet</label><input type="text" class="form-control" id="tgl_macet" name="tgl_macet"></div>
+                                <div class="col-12 mb-3"><label>Hari Tunggakan Pokok</label><input type="text" class="form-control" id="tunggakan_pokok_hari" name="tunggakan_pokok_hari"></div>
+                                <div class="col-12 mb-3"><label>Hari Tunggakan Bunga</label><input type="text" class="form-control" id="tunggakan_bunga_hari" name="tunggakan_bunga_hari"></div>
+                                <div class="col-12 mb-3"><label>Nominal Tunggakan Pokok</label><input type="text" class="form-control" id="nominal_tunggakan_pokok" name="nominal_tunggakan_pokok"></div>
+                            </div>
+                            </div>
+
+                            <!-- TAB 3 -->
+                            <div class="tab-pane fade" id="tab3">
+                            <div class="row">
+                                <div class="col-12 mb-3"><label>Nominal Tunggakan Bunga</label><input type="text" class="form-control" id="nominal_tunggakan_bunga" name="nominal_tunggakan_bunga"></div>
+                                <div class="col-12 mb-3"><label>Jumlah Hari Tunggakan</label><input type="text" class="form-control" id="jml_hari_tunggakan" name="jml_hari_tunggakan"></div>
+                                <div class="col-12 mb-3"><label>Nominal Tunggakan</label><input type="text" class="form-control" id="nominal_tunggakan" name="nominal_tunggakan"></div>
+                                <div class="col-12 mb-3"><label>Tanggal Restrukturisasi</label><input type="text" class="form-control" id="tgl_restrukturisasi" name="tgl_restrukturisasi"></div>
+                                <div class="col-12 mb-3"><label>Jenis Agunan</label><input type="text" class="form-control" id="jenis_agunan" name="jenis_agunan"></div>
+                                <div class="col-12 mb-3"><label>Nilai Agunan</label><input type="text" class="form-control" id="nilai_agunan" name="nilai_agunan"></div>
+                                <div class="col-12 mb-3"><label>Tanggal Penilaian Agunan</label><input type="text" class="form-control" id="tgl_penilaian_agunan" name="tgl_penilaian_agunan"></div>
+                                <div class="col-12 mb-3"><label>Keterangan Agunan</label><input type="text" class="form-control" id="keterangan_agunan" name="keterangan_agunan"></div>
+                                <div class="col-12 mb-3"><label>Jenis Debitur</label><input type="text" class="form-control" id="jenis_debitur" name="jenis_debitur"></div>
+                                <div class="col-12 mb-3"><label>Golongan Debitur</label><input type="text" class="form-control" id="golongan_debitur" name="golongan_debitur"></div>
+                            </div>
+                            </div>
+
+                            <!-- TAB 4 -->
+                            <div class="tab-pane fade" id="tab4">
+                            <div class="row">
+                                <div class="col-12 mb-3"><label>Bidang Usaha</label><input type="text" class="form-control" id="bidang_usaha" name="bidang_usaha"></div>
+                                <div class="col-12 mb-3"><label>Jenis Penghasilan</label><input type="text" class="form-control" id="jenis_penghasilan" name="jenis_penghasilan"></div>
+                                <div class="col-12 mb-3"><label>Frekuensi Angsuran Pokok</label><input type="text" class="form-control" id="freq_angsuran_pokok" name="freq_angsuran_pokok"></div>
+                                <div class="col-12 mb-3"><label>Frekuensi Angsuran Bunga</label><input type="text" class="form-control" id="freq_angsuran_bunga" name="freq_angsuran_bunga"></div>
+                                <div class="col-12 mb-3"><label>Cara Pembayaran</label><input type="text" class="form-control" id="cara_pembayaran" name="cara_pembayaran"></div>
+                                <div class="col-12 mb-3"><label>Baki Debet Neto</label><input type="text" class="form-control" id="baki_debet_neto" name="baki_debet_neto"></div>
+                                <div class="col-12 mb-3"><label>Kode Program Kredit</label><input type="text" class="form-control" id="kode_program_kredit" name="kode_program_kredit"></div>
+                                <div class="col-12 mb-3"><label>Kode Sektor Ekonomi</label><input type="text" class="form-control" id="kode_sektor_ekonomi" name="kode_sektor_ekonomi"></div>
+                                <div class="col-12 mb-3"><label>Kode Lokasi</label><input type="text" class="form-control" id="kode_lokasi" name="kode_lokasi"></div>
+                                <div class="col-12 mb-3"><label>Kode Kolektibilitas</label><input type="text" class="form-control" id="kode_kolektibilitas" name="kode_kolektibilitas"></div>
+                                <div class="col-12 mb-3"><label>Plafond Kredit</label><input type="text" class="form-control" id="plafond_kredit" name="plafond_kredit"></div>
+                            </div>
+                            </div>
+
+                            <!-- TAB 5 -->
+                            <div class="tab-pane fade" id="tab5">
+                            <div class="row">
+                                <div class="col-12 mb-3"><label>Realisasi Kredit</label><input type="text" class="form-control" id="realisasi_kredit" name="realisasi_kredit"></div>
+                                <div class="col-12 mb-3"><label>Saldo Kredit</label><input type="text" class="form-control" id="saldo_kredit" name="saldo_kredit"></div>
+                                <div class="col-12 mb-3"><label>Bunga Kredit</label><input type="text" class="form-control" id="bunga_kredit" name="bunga_kredit"></div>
+                                <div class="col-12 mb-3"><label>Biaya Administrasi</label><input type="text" class="form-control" id="biaya_admin" name="biaya_admin"></div>
+                                <div class="col-12 mb-3"><label>Biaya Provisi</label><input type="text" class="form-control" id="biaya_provisi" name="biaya_provisi"></div>
+                                <div class="col-12 mb-3"><label>Denda</label><input type="text" class="form-control" id="denda" name="denda"></div>
+                                <div class="col-12 mb-3"><label>Jumlah Angsuran</label><input type="text" class="form-control" id="jml_angsuran" name="jml_angsuran"></div>
+                                <div class="col-12 mb-3"><label>Jumlah Bulan Kredit</label><input type="text" class="form-control" id="jml_bulan_kredit" name="jml_bulan_kredit"></div>
+                                <div class="col-12 mb-3"><label>Kode Kolektor</label><input type="text" class="form-control" id="kode_kolektor" name="kode_kolektor"></div>
+                                <div class="col-12 mb-3"><label>Nama Kolektor</label><input type="text" class="form-control" id="nama_kolektor" name="nama_kolektor"></div>
+                            </div>
+                            </div>
+
+                            <!-- TAB 6 -->
+                            <div class="tab-pane fade" id="tab6">
+                            <div class="row">
+                                <div class="col-12 mb-3"><label>Tanggal Pelaporan</label><input type="text" class="form-control" id="tgl_pelaporan" name="tgl_pelaporan"></div>
+                                <div class="col-12 mb-3"><label>Petugas Entry</label><input type="text" class="form-control" id="petugas_entry" name="petugas_entry"></div>
+                                <div class="col-12 mb-3"><label>Tanggal Entry</label><input type="text" class="form-control" id="tgl_entry" name="tgl_entry"></div>
+                                <div class="col-12 mb-3"><label>Status Validasi</label><input type="text" class="form-control" id="status_validasi" name="status_validasi"></div>
+                                <div class="col-12 mb-3"><label>Keterangan</label><input type="text" class="form-control" id="keterangan" name="keterangan"></div>
+                                <div class="col-12 mb-3"><label>Catatan Internal</label><input type="text" class="form-control" id="catatan_internal" name="catatan_internal"></div>
+                            </div>
+                            </div>
+
+                        </div>
+                        </form>
                             <!-- End Input Form -->
                         </div>
 
@@ -128,6 +143,7 @@
             <table id="datatables" class="table table-bordered table-striped nowrap w-100">
                 <thead>
                     <tr>
+                        <th>Aksi</th>
                         <th>Sandi Kantor</th>
                         <th>ID Pihak Lawan</th>
                         <th>No. Identitas</th>
@@ -185,12 +201,16 @@
                         <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
                         <th>Klasifikasi Aset Keuangan</th>
                         <th>Jenis CKPN</th>
-                        <th>Aksi</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
                     <!-- Contoh data (bisa diulang dengan loop dari backend) -->
                     <tr>
+                        <td>
+                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
                         <td>001</td>
                         <td>CIF1</td>
                         <td>1234567890</td>
@@ -248,13 +268,77 @@
                         <td>700000</td>
                         <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
                         <td>1 (Individual)</td>
-                        <td>
-                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        
                     </tr>
                     <!-- Tambahkan baris lainnya di sini -->
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="41" style="text-align: right">Total:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                    <!--Jumlah CBS-->
+                    <tr>
+                        <th colspan="41" style="text-align: right">Total CBS:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                    <!--Selisih Jumlah CBS dengan lapbbul-->
+                    <tr>
+                        <th colspan="41" style="text-align: right">Selisih Jumlah CBS dengan lapbbul:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                    </tfoot>
             </table>
             <!-- Table -->
         </div>
@@ -262,11 +346,46 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+    $("#datatables").DataTable({
+      scrollX: true,
+      responsive: true,
+      language: {
+        lengthMenu: "Tampilkan _MENU_ entri",
+        zeroRecords: "Tidak ada data yang ditemukan",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+        infoFiltered: "(difilter dari total MAX entri)",
+        search: "Cari:",
+        paginate: {
+          first: "Pertama",
+          last: "Terakhir",
+          next: "Berikutnya",
+          previous: "Sebelumnya",
+        },
+      },
+      footerCallback: function (row, data, start, end, display) {
+        var api = this.api();
+        var intVal = function (i) {
+          return typeof i === "string"
+            ? i.replace(/[^0-9.-]/g, "") * 1
+            : typeof i === "number"
+            ? i
+            : 0;
+        };
+        var colsToSum = [41, 42, 43, 44, 45];
+        colsToSum.forEach(function (colIdx) {
+          var total = api
+            .column(colIdx, { search: "applied" })
+            .data()
+            .reduce(function (a, b) {
+              return intVal(a) + intVal(b);
+            }, 0);
+          $(api.column(colIdx).footer()).html(total.toLocaleString());
+        });
+      },
+
+    });
+  });
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
@@ -283,29 +402,71 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-        // Isi form dengan data yang dipilih
-        document.getElementById("sandi_kantor").value = cells[0].textContent;
-        document.getElementById("sandi_bank").value = cells[1].textContent;
-        document.getElementById("lokasi_bank").value = cells[2].textContent;
-        document.getElementById("jenis").value = cells[3].textContent;
-        document.getElementById("hubungan_bank").value = cells[4].textContent;
-        document.getElementById("tgl_mulai").value = cells[5].textContent;
-        document.getElementById("tgl_jatuh_tempo").value = cells[6].textContent;
-        document.getElementById("kualitas").value = cells[7].textContent;
-        document.getElementById("suku_bunga").value = cells[8].textContent;
-        document.getElementById("jumlah").value = cells[9].textContent;
-        document.getElementById("nominal_diblokir").value = cells[10].textContent;
-        document.getElementById("alasan_diblokir").value = cells[11].textContent;
-        document.getElementById("cadangan_kerugian_penurunan_nilai").value = cells[12].textContent;
-        document.getElementById("pendapatan_bunga_diterima").value = cells[13].textContent;
-        document.getElementById("pendapatan_bunga_penyelesaian").value = cells[14].textContent;
-        document.getElementById("status_bmpk_individu").value = cells[15].textContent;
-        document.getElementById("id_pihak_lawan").value = cells[16].textContent;
-        document.getElementById("cadangan_kerugian_penurunan_nilai_aset_baik").value = cells[17].textContent;
-        document.getElementById("cadangan_kerugian_penurunan_nilai_aset_kurang_baik").value = cells[18].textContent;
-        document.getElementById("cadangan_kerugian_penurunan_nilai_aset_tidak_baik").value = cells[19].textContent;
-        document.getElementById("klasifikasi_aset_keuangan").value = cells[20].textContent;
-        document.getElementById("jenis_ckpn").value = cells[21].textContent;
+      // Isi form dengan data yang dipilih
+document.getElementById("sandi_kantor").value = cells[0].textContent;
+document.getElementById("id_pihak_lawan").value = cells[1].textContent;
+document.getElementById("no_identitas").value = cells[2].textContent;
+document.getElementById("kode_kelompok_kredit").value = cells[3].textContent;
+document.getElementById("no_rekening").value = cells[4].textContent;
+document.getElementById("jenis").value = cells[5].textContent;
+document.getElementById("status_restrukturisasi").value = cells[6].textContent;
+document.getElementById("jenis_penggunaan").value = cells[7].textContent;
+document.getElementById("hubungan_bank").value = cells[8].textContent;
+document.getElementById("sumber_dana_pelunasan").value = cells[9].textContent;
+
+document.getElementById("periode_pokok").value = cells[10].textContent;
+document.getElementById("periode_bunga").value = cells[11].textContent;
+document.getElementById("tgl_mulai").value = cells[12].textContent;
+document.getElementById("tgl_jatuh_tempo").value = cells[13].textContent;
+document.getElementById("angsuran_pertama").value = cells[14].textContent;
+document.getElementById("kualitas").value = cells[15].textContent;
+document.getElementById("tgl_macet").value = cells[16].textContent;
+document.getElementById("tunggakan_pokok_hari").value = cells[17].textContent;
+document.getElementById("tunggakan_bunga_hari").value = cells[18].textContent;
+document.getElementById("nominal_tunggakan_pokok").value = cells[19].textContent;
+
+document.getElementById("nominal_tunggakan_bunga").value = cells[20].textContent;
+document.getElementById("jml_hari_tunggakan").value = cells[21].textContent;
+document.getElementById("golongan_debitur").value = cells[22].textContent;
+document.getElementById("sandi_bank").value = cells[23].textContent;
+document.getElementById("sektor_ekonomi").value = cells[24].textContent;
+document.getElementById("kategori_usaha").value = cells[25].textContent;
+document.getElementById("lokasi_penggunaan").value = cells[26].textContent;
+document.getElementById("suku_bunga_persen").value = cells[27].textContent;
+document.getElementById("suku_bunga_cara").value = cells[28].textContent;
+document.getElementById("penjamin_golongan").value = cells[29].textContent;
+
+document.getElementById("penjamin_bagian").value = cells[30].textContent;
+document.getElementById("agunan_likuid").value = cells[31].textContent;
+document.getElementById("agunan_non_likuid").value = cells[32].textContent;
+document.getElementById("kelonggaran_tarik").value = cells[33].textContent;
+document.getElementById("plafon_awal").value = cells[34].textContent;
+document.getElementById("plafon_efektif").value = cells[35].textContent;
+document.getElementById("baki_debet").value = cells[36].textContent;
+document.getElementById("provisi_belum_amortisasi").value = cells[37].textContent;
+document.getElementById("biaya_transaksi_belum_amortisasi").value = cells[38].textContent;
+document.getElementById("pendapatan_bunga_tangguhan_restrukturisasi").value = cells[39].textContent;
+
+document.getElementById("cadangan_kerugian_restrukturisasi").value = cells[40].textContent;
+document.getElementById("baki_debet_neto").value = cells[41].textContent;
+document.getElementById("ckpn_dibentuk").value = cells[42].textContent;
+document.getElementById("ckpn_kelebihan_restrukturisasi").value = cells[43].textContent;
+document.getElementById("pendapatan_bunga_akan_diterima").value = cells[44].textContent;
+document.getElementById("pendapatan_bunga_dlm_penyelesaian").value = cells[45].textContent;
+document.getElementById("status_bmpk").value = cells[46].textContent;
+document.getElementById("sifat_kredit").value = cells[47].textContent;
+document.getElementById("kredit_program_pemerintah").value = cells[48].textContent;
+document.getElementById("sektor_kur").value = cells[49].textContent;
+
+document.getElementById("tgl_akad_awal").value = cells[50].textContent;
+document.getElementById("tgl_akad_akhir").value = cells[51].textContent;
+document.getElementById("sandi_fintech").value = cells[52].textContent;
+document.getElementById("ckpn_baik").value = cells[53].textContent;
+document.getElementById("ckpn_kurang_baik").value = cells[54].textContent;
+document.getElementById("ckpn_tidak_baik").value = cells[55].textContent;
+document.getElementById("klasifikasi_aset").value = cells[56].textContent;
+document.getElementById("jenis_ckpn").value = cells[57].textContent;
+
 
     }
 

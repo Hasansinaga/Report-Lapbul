@@ -99,6 +99,31 @@
                     </tr>
                     <!-- Tambahkan baris lainnya di sini -->
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="6" style="text-align: right">Total:</th>
+                        <th></th>
+                        <!-- Jumlah -->
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <!--Jumlah CBS-->
+                    <tr>
+                        <th colspan="6" style="text-align: right">Total CBS:</th>
+                        <th></th>
+                        <!-- Jumlah -->
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <!--Selisih Jumlah Lapbul dengan CBS-->
+                    <tr>
+                        <th colspan="6" style="text-align: right">Selisih Jumlah lapbul dengan CBS:</th>
+                        <th></th>
+                        <!-- Jumlah -->
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
             </table>
             <!-- Table -->
         </div>
@@ -106,11 +131,46 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+    $("#datatables").DataTable({
+      scrollX: true,
+      responsive: true,
+      language: {
+        lengthMenu: "Tampilkan _MENU_ entri",
+        zeroRecords: "Tidak ada data yang ditemukan",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+        infoFiltered: "(difilter dari total MAX entri)",
+        search: "Cari:",
+        paginate: {
+          first: "Pertama",
+          last: "Terakhir",
+          next: "Berikutnya",
+          previous: "Sebelumnya",
+        },
+      },
+      footerCallback: function (row, data, start, end, display) {
+        var api = this.api();
+        var intVal = function (i) {
+          return typeof i === "string"
+            ? i.replace(/[^0-9.-]/g, "") * 1
+            : typeof i === "number"
+            ? i
+            : 0;
+        };
+        var colsToSum = [6];
+        colsToSum.forEach(function (colIdx) {
+          var total = api
+            .column(colIdx, { search: "applied" })
+            .data()
+            .reduce(function (a, b) {
+              return intVal(a) + intVal(b);
+            }, 0);
+          $(api.column(colIdx).footer()).html(total.toLocaleString());
+        });
+      },
+
+    });
+  });
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
@@ -131,7 +191,7 @@ document.addEventListener('click', function(e) {
                     document.getElementById("sandi_kantor").value = cells[0].textContent;
                     document.getElementById("jenis_agunan").value = cells[1].textContent;
                     document.getElementById("alamat_agunan").value = cells[2].textContent;
-                    document.getElementById("atanggal_pengambilalihan").value = cells[3].textContent;
+                    document.getElementById("tanggal_pengambilalihan").value = cells[3].textContent;
                     document.getElementById("nilai_pengakuan_awal").value = cells[4].textContent;
                     document.getElementById("akumulasi_kerugian").value = cells[5].textContent;
                     document.getElementById("jumlah").value = cells[6].textContent;

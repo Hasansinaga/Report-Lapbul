@@ -76,7 +76,11 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="penilai_nilai_agunan" class="form-label">Penilai Nilai Agunan</label>
-                                    <input type="text" class="form-control" id="penilai_nilai_agunan" name="penilai_nilai_agunan" maxlength="100">
+                                    <select class="form-select" id="penilai_nilai_agunan" name="penilai_nilai_agunan">
+                                        <option value="">-- Pilih Jenis Penilai --</option>
+                                        <option value="1">1 (Penilai Independen)</option>
+                                        <option value="2">2 (Internal BPR)</option>
+                                    </select>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="tgl_penilaian_terakhir" class="form-label">Tanggal Penilaian Terakhir Nilai Agunan</label>
@@ -154,11 +158,26 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+    $("#datatables").DataTable({
+      scrollX: true,
+      responsive: true,
+      language: {
+        lengthMenu: "Tampilkan _MENU_ entri",
+        zeroRecords: "Tidak ada data yang ditemukan",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+        infoFiltered: "(difilter dari total MAX entri)",
+        search: "Cari:",
+        paginate: {
+          first: "Pertama",
+          last: "Terakhir",
+          next: "Berikutnya",
+          previous: "Sebelumnya",
+        },
+      },
+      
+    });
+  });
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();

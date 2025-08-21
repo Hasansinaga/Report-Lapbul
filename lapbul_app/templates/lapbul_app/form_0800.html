@@ -6,6 +6,7 @@
             <hr>
             <!-- Button to trigger modal -->
             <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0500Modal">Tambah</button>
             <br><br>
             <!-- Modal structure -->
             <div class="modal fade" id="form0500Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0500ModalLabel" aria-hidden="true">
@@ -82,7 +83,6 @@
             <!-- Table -->
             <table id="datatables" class="table table-bordered table-striped nowrap w-100">
                 <thead>
-                    <tr>
                     <tr>
                     <th>Sandi Kantor</th>
                     <th>Jenis Aset</th>
