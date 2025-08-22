@@ -1,4 +1,18 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+
+</style>
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -7,7 +21,7 @@
             <!-- Button to trigger modal -->
             <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
             <br>
-            <br>
+
             <!-- Modal structure -->
             <div class="modal fade" id="form0500Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0500ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -193,8 +207,10 @@
             </div>
             
             <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+             <div class="d-flex justify-content-center">
+             <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
                         <th>Sandi Kantor</th>
                         <th>Sandi Bank</th>
@@ -218,7 +234,7 @@
                         <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
                         <th>Klasifikasi Aset Keuangan</th>
                         <th>Jenis CKPN</th>
-                        <th>Aksi</th>
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -246,9 +262,9 @@
                         <td>700000</td>
                         <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
                         <td>1 (Individual)</td>
-                        <td>
-                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     <!-- Tambahkan baris lainnya di sini -->
@@ -316,6 +332,8 @@
                     </tr>
                     </tfoot>
             </table>
+            </div>
+            </div>
             <!-- Table -->
         </div>
     </main>
@@ -325,6 +343,14 @@ $(document).ready(function () {
     $("#datatables").DataTable({
       scrollX: true,
       responsive: true,
+      columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
       language: {
         lengthMenu: "Tampilkan _MENU_ entri",
         zeroRecords: "Tidak ada data yang ditemukan",
