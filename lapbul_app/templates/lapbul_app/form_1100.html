@@ -205,7 +205,7 @@ table th:nth-child(6) {
                         <td>01 (Hubungan Keluarga)</td>
                         <td>835 (Lainnya)</td>
                         <td>0191 (Kota Bandung)</td>
-                        <td>20180101</td>
+                        <td>2018-01-01</td>
                         <td></td>
                         <td>5,5</td>
                         <td>2000000</td>
@@ -230,8 +230,8 @@ table th:nth-child(6) {
                         <td>02 (Perusahaan bukan bank yang dimiliki oleh Anggota Direksi)</td>
                         <td>835 (Lainnya)</td>
                         <td>0191 (Kota Bandung)</td>
-                        <td>20180101</td>
-                        <td>20231231</td>
+                        <td>2018-01-01</td>
+                        <td>2023-12-31</td>
                         <td>5,51</td>
                         <td>2000000</td>
                         <td>20000</td>
@@ -255,7 +255,7 @@ table th:nth-child(6) {
                         <td>01 (Hubungan Keluarga dengan Anggota Direksi)</td>
                         <td>835 (Lainnya)</td>
                         <td>0191 (Kota Bandung)</td>
-                        <td>20180101</td>
+                        <td>2018-01-01</td>
                         <td></td>
                         <td>5,52</td>
                         <td>2000000</td>
@@ -280,8 +280,8 @@ table th:nth-child(6) {
                         <td>02 (Perusahaan bukan bank yang dimiliki oleh Anggota Direksi)</td>
                         <td>835 (Lainnya)</td>
                         <td>0191 (Kota Bandung)</td>
-                        <td>20180101</td>
-                        <td>20231231</td>
+                        <td>2018-01-01</td>
+                        <td>2023-12-31</td>
                         <td>5,53</td>
                         <td>2000000</td>
                         <td>20000</td>
@@ -352,6 +352,15 @@ $(document).ready(function () {
                 width: "120px",
                 orderable: false,
                 responsive: false
+            },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
             }
         ],
         language: {

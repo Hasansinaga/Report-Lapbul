@@ -236,8 +236,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>02 (Deposito)</td>
             <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.50</td>
             <td>200000</td>
             <td>10000</td>
@@ -266,8 +266,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>01 (Tabungan)</td>
             <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.56</td>
             <td>200000</td>
             <td>10000</td>
@@ -296,8 +296,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>02 (Deposito)</td>
             <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.57</td>
             <td>200000</td>
             <td>10000</td>
@@ -327,8 +327,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>01 (Tabungan)</td>
             <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.58</td>
             <td>200000</td>
             <td>10000</td>
@@ -357,8 +357,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>02 (Deposito)</td>
             <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.59</td>
             <td>200000</td>
             <td>10000</td>
@@ -387,8 +387,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>01 (Tabungan)</td>
             <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.60</td>
             <td>200000</td>
             <td>10000</td>
@@ -417,8 +417,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>02 (Deposito)</td>
             <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.61</td>
             <td>200000</td>
             <td>10000</td>
@@ -447,8 +447,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>01 (Tabungan)</td>
             <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.62</td>
             <td>200000</td>
             <td>10000</td>
@@ -477,8 +477,8 @@ table th:nth-child(1) {
             <td>0102 (Kab. Bekasi)</td>
             <td>02 (Deposito)</td>
             <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>20221231</td>
+            <td>2018-01-01</td>
+            <td>2022-12-31</td>
             <td>5.63</td>
             <td>200000</td>
             <td>10000</td>
@@ -548,7 +548,16 @@ table th:nth-child(1) {
           width: "120px",
           orderable: false,
           responsive: false
-        }
+        },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
+            }
       ],
       language: {
         zeroRecords: "Tidak ada data yang ditemukan",
