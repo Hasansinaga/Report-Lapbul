@@ -11,11 +11,25 @@
     min-width: 120px; 
 }
 
+/* CSS for form alignment and styling */
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+.table-responsive {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 /* CSS untuk center kolom tertentu */
 table td:nth-child(1),
 table th:nth-child(1) {
     text-align: center;
     vertical-align: middle;
+}
+
+.form-select.w-auto {
+    max-width: fit-content;
 }
 </style>
 
@@ -29,6 +43,15 @@ table th:nth-child(1) {
         <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1300Modal">Tambah</button> -->
       </div>
       <br />
+
+      <!-- <div class="mb-3 d-flex align-items-center gap-2">
+        <label for="sandiFilter" class="form-label mb-0">Filter Sandi Kantor:</label>
+        <select id="sandiFilter" class="form-select form-select-sm w-auto" onchange="filterSandiKantor()">
+          <option value="all">Semua</option>
+          <option value="001">001</option>
+          <option value="002">002</option>
+        </select>
+      </div> -->
 
       <!-- Modal -->
       <div
@@ -178,7 +201,7 @@ table th:nth-child(1) {
       </div>
 
       <!-- Table -->
-      <div class="d-flex justify-content-center">
+      <div class="form-container">
       <div class="table-responsive">
       <table id="datatables" class="table table-bordered table-sm nowrap w-100">
         <thead class="table-light text-center">

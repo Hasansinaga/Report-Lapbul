@@ -1,10 +1,19 @@
 {% include 'lapbul_app/header.html' %}
 <style>
+/* CSS for form alignment and styling */
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+.table-responsive {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 /* Define the sticky column styles */
 .sticky-action-col {
     position: sticky;
     right: 0;
-    /* Use rgba for a semi-transparent background to prevent text from overlapping */
     background-color: rgba(255, 255, 255, 0.95) !important;
     z-index: 5;
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
@@ -12,7 +21,7 @@
     min-width: 120px; 
 }
 
-/* CSS untuk center kolom tertentu seperti form_1400 */
+/* CSS untuk center kolom tertentu */
 table td:first-child,
 table th:first-child,
 table td:nth-child(2),
@@ -41,6 +50,10 @@ table th:nth-child(11) {
     text-align: center;
     vertical-align: middle;
 }
+
+.form-select.w-auto {
+    max-width: fit-content;
+}
 </style>
 
 <div id="layoutSidenav_content">
@@ -50,9 +63,18 @@ table th:nth-child(11) {
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0009Modal">Tambah</button>
+                <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0009Modal">Tambah</button> -->
             </div>
             <br>
+
+            <!-- <div class="mb-3 d-flex align-items-center gap-2">
+                <label for="sandiFilter" class="form-label mb-0">Filter berdasarkan Nama:</label>
+                <select id="sandiFilter" class="form-select form-select-sm w-auto" onchange="filterData()">
+                    <option value="all">Semua</option>
+                    <option value="John">John</option>
+                    <option value="Jane">Jane</option>
+                </select>
+            </div> -->
             <div class="modal fade" id="form0009Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0009ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -165,7 +187,9 @@ table th:nth-child(11) {
             </div>
             
             <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+            <div class="form-container">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                 <thead>
                     <tr>
                         <th>Nama</th>
@@ -181,12 +205,12 @@ table th:nth-child(11) {
                         <th>KT Berhenti</th>
                         <th>Tgl Berhenti</th>
                         <th>Alasan</th>
-                        <th>Aksi</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
                     <!-- Contoh data (bisa diulang dengan loop dari backend) -->
-                    <tr>
+                    <tr class="text-center">
                         <td>John Doe</td>
                         <td>1234567890</td>
                         <td>CEO</td>
@@ -208,6 +232,8 @@ table th:nth-child(11) {
                     <!-- Tambahkan baris lainnya di sini -->
                     </tbody>
             </table>
+            </div>
+            </div>
             <!-- Table -->
         </div>
     </main>

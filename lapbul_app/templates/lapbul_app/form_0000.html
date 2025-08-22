@@ -1,157 +1,200 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+    /* CSS for form alignment */
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0000 - Informasi Pokok BPR</h5>
             <hr>
             <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a><br><br>
-            
-            <form>
-                <table class="table table-bordered" style="max-width:700px;">
-                    <tbody>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="namabpr">Nama BPR</label></td>
-                        <td><input type="text" class="form-control" id="namabpr" name="namabpr" value="PT. BPR MITRA RUKUN MANDIRI - KPO" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="alamatbpr">Alamat BPR</label></td>
-                        <td><textarea class="form-control" id="alamatbpr" name="alamatbpr" rows="2">KOMPLEK RUKO SOREANG PERMAI BLOK A NO.3 SOREANG</textarea></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="kodedati2">Kode Dati2</label></td>
-                        <td><input type="text" class="form-control" id="kodedati2" name="kodedati2" value="0111" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="kode_ker2">Kode Ker2</label></td>
-                        <td><input type="text" class="form-control" id="kode_ker2" name="kode_ker2" value="021" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="telpbpr">Telp BPR</label></td>
-                        <td><input type="text" class="form-control" id="telpbpr" name="telpbpr" value="(022)5893470" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="email">Email</label></td>
-                        <td><input type="text" class="form-control" id="email" name="email" value="bprbali@yahoo.co.id" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="website">Website</label></td>
-                        <td><input type="text" class="form-control" id="website" name="website" value="https://mitrarukunmandiri.co.id/" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="npwpbpr">NPWP BPR</label></td>
-                        <td><input type="text" class="form-control" id="npwpbpr" name="npwpbpr" value="16714461445000" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="susunlbnama">Susun LB Nama</label></td>
-                        <td><input type="text" class="form-control" id="susunlbnama" name="susunlbnama" value="Heri Suranto" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="susunlbdivisi">Susun LB Divisi</label></td>
-                        <td><input type="text" class="form-control" id="susunlbdivisi" name="susunlbdivisi" value="Kabag.Operasional" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="susunlbnotelp">Susun LB No Telp</label></td>
-                        <td><input type="text" class="form-control" id="susunlbnotelp" name="susunlbnotelp" value="022-5893470" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="susunlbemail">Susun LB Email</label></td>
-                        <td><input type="text" class="form-control" id="susunlbemail" name="susunlbemail" value="bprbali@yahoo.co.id" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="dividennominal">Dividen Nominal</label></td>
-                        <td><input type="text" class="form-control" id="dividennominal" name="dividennominal" value="1600000000" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="dividentahun">Dividen Tahun</label></td>
-                        <td><input type="text" class="form-control" id="dividentahun" name="dividentahun" value="2024" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="bonustahunan">Bonus Tahunan</label></td>
-                        <td><input type="text" class="form-control" id="bonustahunan" name="bonustahunan" value="344670000" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="kapnama">Kap Nama</label></td>
-                        <td><input type="text" class="form-control" id="kapnama" name="kapnama" value="Kopkar Bank Yudha Bhakti" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="kappetugas">Kap Petugas</label></td>
-                        <td><input type="text" class="form-control" id="kappetugas" name="kappetugas" value="" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="kapperiksake">Kap Periksa Ke</label></td>
-                        <td><input type="text" class="form-control" id="kapperiksake" name="kapperiksake" value="2" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="lembarnilaisaham">Lembar Nilai Saham</label></td>
-                        <td><input type="text" class="form-control" id="lembarnilaisaham" name="lembarnilaisaham" value="2000000000" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="pvasts">PVA STS</label></td>
-                        <td><input type="text" class="form-control" id="pvasts" name="pvasts" value="" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="pvatglizin">PVA Tgl Izin</label></td>
-                        <td><input type="text" class="form-control" id="pvatglizin" name="pvatglizin" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="pvajumlah">PVA Jumlah</label></td>
-                        <td><input type="text" class="form-control" id="pvajumlah" name="pvajumlah" value="2000000000" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="e_banking">E-Banking</label></td>
-                        <td><input type="text" class="form-control" id="e_banking" name="e_banking" value="1" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="kapaudit">Kap Audit</label></td>
-                        <td><input type="text" class="form-control" id="kapaudit" name="kapaudit" value="2" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="nomorsttdap">Nomor STT DAP</label></td>
-                        <td><input type="text" class="form-control" id="nomorsttdap" name="nomorsttdap" value="" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="nomorsttdkap">Nomor STT DKAP</label></td>
-                        <td><input type="text" class="form-control" id="nomorsttdkap" name="nomorsttdkap" value="" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="statuspenawaranefek">Status Penawaran Efek</label></td>
-                        <td><input type="text" class="form-control" id="statuspenawaranefek" name="statuspenawaranefek" value="2" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="statuspjti">Status PJTI</label></td>
-                        <td><input type="text" class="form-control" id="statuspjti" name="statuspjti" value="2" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="npwppjti">NPWP PJTI</label></td>
-                        <td><input type="text" class="form-control" id="npwppjti" name="npwppjti" value="0" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="namapjti">Nama PJTI</label></td>
-                        <td><input type="text" class="form-control" id="namapjti" name="namapjti" value="0" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="lakupandai">Laku Pandai</label></td>
-                        <td><input type="text" class="form-control" id="lakupandai" name="lakupandai" value="2" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle"><label class="form-label" for="jumlahlakupandai">Jumlah Laku Pandai</label></td>
-                        <td><input type="text" class="form-control" id="jumlahlakupandai" name="jumlahlakupandai" value="" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle fw-normal"><label class="form-label" for="nomoraktaperubahan">Nomor Akta Perubahan</label></td>
-                        <td><input type="text" class="form-control" id="nomoraktaperubahan" name="nomoraktaperubahan" value="9" /></td>
-                        </tr>
-                        <tr>
-                        <td class="align-middle fw-normal"><label class="form-label" for="tanggalaktaperubahan">Tanggal Akta Perubahan</label></td>
-                        <td><input type="text" class="form-control" id="tanggalaktaperubahan" name="tanggalaktaperubahan" value="20221109" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="submit" class="btn btn-secondary">Simpan</button>
+
+            <div class="form-container">
+                <form>
+                    <table class="table table-bordered" style="max-width:700px;">
+                        <tbody>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="namabpr">Nama BPR</label></td>
+                                <td><input type="text" class="form-control" id="namabpr" name="namabpr" value="PT. BPR MITRA RUKUN MANDIRI - KPO" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="alamatbpr">Alamat BPR</label></td>
+                                <td><textarea class="form-control" id="alamatbpr" name="alamatbpr" rows="2">KOMPLEK RUKO SOREANG PERMAI BLOK A NO.3 SOREANG</textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="kodedati2">Kode Dati2</label></td>
+                                <td><input type="text" class="form-control" id="kodedati2" name="kodedati2" value="0111" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="kode_ker2">Kode Ker2</label></td>
+                                <td><input type="text" class="form-control" id="kode_ker2" name="kode_ker2" value="021" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="telpbpr">Telp BPR</label></td>
+                                <td><input type="text" class="form-control" id="telpbpr" name="telpbpr" value="(022)5893470" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="email">Email</label></td>
+                                <td><input type="text" class="form-control" id="email" name="email" value="bprbali@yahoo.co.id" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="website">Website</label></td>
+                                <td><input type="text" class="form-control" id="website" name="website" value="https://mitrarukunmandiri.co.id/" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="npwpbpr">NPWP BPR</label></td>
+                                <td><input type="text" class="form-control" id="npwpbpr" name="npwpbpr" value="16714461445000" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="susunlbnama">Susun LB Nama</label></td>
+                                <td><input type="text" class="form-control" id="susunlbnama" name="susunlbnama" value="Heri Suranto" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="susunlbdivisi">Susun LB Divisi</label></td>
+                                <td><input type="text" class="form-control" id="susunlbdivisi" name="susunlbdivisi" value="Kabag.Operasional" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="susunlbnotelp">Susun LB No Telp</label></td>
+                                <td><input type="text" class="form-control" id="susunlbnotelp" name="susunlbnotelp" value="022-5893470" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="susunlbemail">Susun LB Email</label></td>
+                                <td><input type="text" class="form-control" id="susunlbemail" name="susunlbemail" value="bprbali@yahoo.co.id" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="dividennominal">Dividen Nominal</label></td>
+                                <td><input type="text" class="form-control text-end" id="dividennominal" name="dividennominal" value="1600000000" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="dividentahun">Dividen Tahun</label></td>
+                                <td><input type="text" class="form-control" id="dividentahun" name="dividentahun" value="2024" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="bonustahunan">Bonus Tahunan</label></td>
+                                <td><input type="text" class="form-control text-end" id="bonustahunan" name="bonustahunan" value="344670000" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="kapnama">Kap Nama</label></td>
+                                <td><input type="text" class="form-control" id="kapnama" name="kapnama" value="Kopkar Bank Yudha Bhakti" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="kappetugas">Kap Petugas</label></td>
+                                <td><input type="text" class="form-control" id="kappetugas" name="kappetugas" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="kapperiksake">Kap Periksa Ke</label></td>
+                                <td><input type="text" class="form-control" id="kapperiksake" name="kapperiksake" value="2" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="lembarnilaisaham">Lembar Nilai Saham</label></td>
+                                <td><input type="text" class="form-control text-end" id="lembarnilaisaham" name="lembarnilaisaham" value="2000000000" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="pvasts">PVA STS</label></td>
+                                <td><input type="text" class="form-control" id="pvasts" name="pvasts" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="pvatglizin">PVA Tgl Izin</label></td>
+                                <td><input type="text" class="form-control" id="pvatglizin" name="pvatglizin" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="pvajumlah">PVA Jumlah</label></td>
+                                <td><input type="text" class="form-control text-end" id="pvajumlah" name="pvajumlah" value="2000000000" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="e_banking">E-Banking</label></td>
+                                <td><input type="text" class="form-control" id="e_banking" name="e_banking" value="1" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="kapaudit">Kap Audit</label></td>
+                                <td><input type="text" class="form-control" id="kapaudit" name="kapaudit" value="2" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="nomorsttdap">Nomor STT DAP</label></td>
+                                <td><input type="text" class="form-control" id="nomorsttdap" name="nomorsttdap" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="nomorsttdkap">Nomor STT DKAP</label></td>
+                                <td><input type="text" class="form-control" id="nomorsttdkap" name="nomorsttdkap" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="statuspenawaranefek">Status Penawaran Efek</label></td>
+                                <td><input type="text" class="form-control" id="statuspenawaranefek" name="statuspenawaranefek" value="2" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="statuspjti">Status PJTI</label></td>
+                                <td><input type="text" class="form-control" id="statuspjti" name="statuspjti" value="2" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="npwppjti">NPWP PJTI</label></td>
+                                <td><input type="text" class="form-control" id="npwppjti" name="npwppjti" value="0" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="namapjti">Nama PJTI</label></td>
+                                <td><input type="text" class="form-control" id="namapjti" name="namapjti" value="0" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="lakupandai">Laku Pandai</label></td>
+                                <td><input type="text" class="form-control" id="lakupandai" name="lakupandai" value="2" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="jumlahlakupandai">Jumlah Laku Pandai</label></td>
+                                <td><input type="text" class="form-control" id="jumlahlakupandai" name="jumlahlakupandai" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="nomoraktaperubahan">Nomor Akta Perubahan</label></td>
+                                <td><input type="text" class="form-control" id="nomoraktaperubahan" name="nomoraktaperubahan" value="9" /></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle"><label class="form-label" for="tanggalaktaperubahan">Tanggal Akta Perubahan</label></td>
+                                <td><input type="text" class="form-control" id="tanggalaktaperubahan" name="tanggalaktaperubahan" value="20221109" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-secondary">Simpan</button>
                 </form>
-                <br>
+            </div>
+        </div>
     </main>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to format numbers with thousand separators
+        function formatNumber(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+            if (value) {
+                // Use a library like accounting.js or a simple regex for formatting
+                // This simple version uses Intl.NumberFormat
+                input.value = new Intl.NumberFormat('id-ID').format(value);
+            }
+        }
+
+        // List of input fields to format
+        const numberFields = ['dividennominal', 'bonustahunan', 'lembarnilaisaham', 'pvajumlah'];
+
+        // Add event listeners to format on blur
+        numberFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                // Initial formatting on page load
+                formatNumber(field);
+
+                field.addEventListener('blur', function() {
+                    formatNumber(this);
+                });
+
+                // Remove formatting on focus to allow easier editing
+                field.addEventListener('focus', function() {
+                    this.value = this.value.replace(/\D/g, '');
+                });
+            }
+        });
+    });
+</script>
 {% include 'lapbul_app/footer.html' %}
-
-

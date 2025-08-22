@@ -11,7 +11,7 @@
     min-width: 120px; 
 }
 
-/* CSS untuk center kolom tertentu */
+/* CSS for right-aligning number columns and centering others */
 table td:nth-child(2),
 table th:nth-child(2),
 table td:nth-child(4),
@@ -45,6 +45,26 @@ table th:nth-child(17) {
     text-align: center;
     vertical-align: middle;
 }
+
+/* Specific styling for number-based columns */
+table td:nth-child(11),
+table th:nth-child(11),
+table td:nth-child(13),
+table th:nth-child(13),
+table td:nth-child(14),
+table th:nth-child(14),
+table td:nth-child(15),
+table th:nth-child(15),
+table td:nth-child(16),
+table th:nth-child(16),
+table td:nth-child(17),
+table th:nth-child(17),
+table td:nth-child(18),
+table th:nth-child(18),
+table td:nth-child(19),
+table th:nth-child(19) {
+    text-align: right;
+}
 </style>
 
 <div id="layoutSidenav_content">
@@ -54,103 +74,100 @@ table th:nth-child(17) {
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0007Modal">Tambah</button> -->
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0007Modal">Tambah</button>
             </div>
-            <!-- Modal structure -->
+            <br>
             <div class="modal fade" id="form0007Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0007ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                    
+
                         <div class="modal-header bg-secondary">
                             <h6 class="modal-title text-white" id="form0007ModalLabel">Form Daftar Pinjaman yang Diterima</h6>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form using <table> with Bootstrap -->
                             <form>
                                 <div class="row g-3">
                                     <div class="col-md-3">
                                         <label for="cif" class="form-label">CIF</label>
-                                        <input type="text" class="form-control" id="cif" maxlength="20">
+                                        <input type="text" class="form-control" id="cif" name="cif" maxlength="20">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="kodegolkreditur" class="form-label">Kode Gol Kreditur</label>
-                                        <input type="text" class="form-control" id="kodegolkreditur" maxlength="3">
+                                        <input type="text" class="form-control" id="kodegolkreditur" name="kodegolkreditur" maxlength="3">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="sandibank" class="form-label">Sandi Bank</label>
-                                        <input type="text" class="form-control" id="sandibank" maxlength="6">
+                                        <input type="text" class="form-control" id="sandibank" name="sandibank" maxlength="6">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="kodedati2" class="form-label">Kode Dati2</label>
-                                        <input type="text" class="form-control" id="kodedati2" maxlength="4">
+                                        <input type="text" class="form-control" id="kodedati2" name="kodedati2" maxlength="4">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="kodejenispyd" class="form-label">Kode Jenis PyD</label>
-                                        <input type="text" class="form-control" id="kodejenispyd" maxlength="2">
+                                        <input type="text" class="form-control" id="kodejenispyd" name="kodejenispyd" maxlength="2">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="sandihubbank" class="form-label">Sandi Hub Bank</label>
-                                        <input type="text" class="form-control" id="sandihubbank" maxlength="2">
+                                        <input type="text" class="form-control" id="sandihubbank" name="sandihubbank" maxlength="2">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="jwmulai" class="form-label">JW Mulai</label>
-                                        <input type="text" class="form-control" id="jwmulai" maxlength="8" placeholder="YYYYMMDD">
+                                        <input type="text" class="form-control" id="jwmulai" name="jwmulai" maxlength="8" placeholder="YYYYMMDD">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="jwtempo" class="form-label">JW Tempo</label>
-                                        <input type="text" class="form-control" id="jwtempo" maxlength="8" placeholder="YYYYMMDD">
+                                        <input type="text" class="form-control" id="jwtempo" name="jwtempo" maxlength="8" placeholder="YYYYMMDD">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="sukubunga" class="form-label">Suku Bunga (%)</label>
-                                        <input type="number" step="0.01" class="form-control" id="sukubunga">
+                                        <input type="number" step="0.01" class="form-control" id="sukubunga" name="sukubunga">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="carahitbunga" class="form-label">Cara Hitung Bunga</label>
-                                        <input type="text" class="form-control" id="carahitbunga" maxlength="2">
+                                        <input type="text" class="form-control" id="carahitbunga" name="carahitbunga" maxlength="2">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="plafon" class="form-label">Plafon</label>
-                                        <input type="number" class="form-control" id="plafon">
+                                        <input type="number" class="form-control" id="plafon" name="plafon">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="kodejnsagunan" class="form-label">Kode Jenis Agunan</label>
-                                        <input type="text" class="form-control" id="kodejnsagunan" maxlength="3">
+                                        <input type="text" class="form-control" id="kodejnsagunan" name="kodejnsagunan" maxlength="3">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="nominalagunan" class="form-label">Nominal Agunan</label>
-                                        <input type="number" class="form-control" id="nominalagunan">
+                                        <input type="number" class="form-control" id="nominalagunan" name="nominalagunan">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="bakidebet" class="form-label">Baki Debet</label>
-                                        <input type="number" class="form-control" id="bakidebet">
+                                        <input type="number" class="form-control" id="bakidebet" name="bakidebet">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="bytranbelumamor" class="form-label">Biaya Transaksi</label>
-                                        <input type="number" class="form-control" id="bytranbelumamor">
+                                        <input type="number" class="form-control" id="bytranbelumamor" name="bytranbelumamor">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="diskontobelumamor" class="form-label">Diskonto</label>
-                                        <input type="number" class="form-control" id="diskontobelumamor">
+                                        <input type="number" class="form-control" id="diskontobelumamor" name="diskontobelumamor">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="bakidebetneto" class="form-label">Baki Debet Neto</label>
-                                        <input type="number" class="form-control" id="bakidebetneto">
+                                        <input type="number" class="form-control" id="bakidebetneto" name="bakidebetneto">
                                     </div>
-                                    </div>
+                                </div>
                             </form>
-                            <!-- End Input Form -->
-                        </div>
+                            </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Table -->
+
             <div class="d-flex justify-content-center">
             <div class="table-responsive">
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
@@ -177,7 +194,6 @@ table th:nth-child(17) {
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example Row -->
                     <tr>
                     <td>1234567890</td>
                     <td>K01</td>
@@ -198,11 +214,68 @@ table th:nth-child(17) {
                     <td>67000000</td>
                     <td class="sticky-action-col">
                         <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
-                        <!-- <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a> -->
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
-                    <!-- Add more rows as needed -->
+                    <tr>
+                    <td>9876543210</td>
+                    <td>K02</td>
+                    <td>654321</td>
+                    <td>D002</td>
+                    <td>02</td>
+                    <td>02</td>
+                    <td>20240501</td>
+                    <td>20250501</td>
+                    <td>6.00</td>
+                    <td>02</td>
+                    <td>250000000</td>
+                    <td>AG2</td>
+                    <td>200000000</td>
+                    <td>180000000</td>
+                    <td>15000000</td>
+                    <td>10000000</td>
+                    <td>155000000</td>
+                    <td class="sticky-action-col">
+                        <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10" style="text-align:right">Total:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th colspan="10" style="text-align:right">Total CBS:</th>
+                        <th>0</th>
+                        <th></th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th colspan="10" style="text-align:right">Selisih Jumlah lapbul dengan CBS:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
             </table>
             </div>
             </div>
@@ -210,82 +283,126 @@ table th:nth-child(17) {
     </main>
 </div>
 <script>
-$(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,
-        responsive: true,
-        columnDefs: [
-            {
-                targets: -1, // Last column (Aksi)
-                width: "120px",
-                orderable: false,
-                responsive: false
-            }
-        ],
-        language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
-            zeroRecords: "Tidak ada data yang ditemukan",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-            infoFiltered: "(difilter dari total _MAX_ entri)",
-            search: "Cari:",
-            paginate: {
-                first: "Pertama",
-                last: "Terakhir",
-                next: "Berikutnya",
-                previous: "Sebelumnya",
+    $(document).ready(function () {
+        $('#datatables').DataTable({
+            scrollX: true,
+            responsive: true,
+            columnDefs: [
+                {
+                    targets: -1, // Last column (Aksi)
+                    width: "120px",
+                    orderable: false,
+                    responsive: false
+                }
+            ],
+            language: {
+                lengthMenu: "Tampilkan _MENU_ entri",
+                zeroRecords: "Tidak ada data yang ditemukan",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+                infoFiltered: "(difilter dari total _MAX_ entri)",
+                search: "Cari:",
+                paginate: {
+                    first: "Pertama",
+                    last: "Terakhir",
+                    next: "Berikutnya",
+                    previous: "Sebelumnya",
+                },
             },
-        },
+            footerCallback: function (row, data, start, end, display) {
+                var api = this.api();
+                var intVal = function (i) {
+                    return typeof i === "string"
+                        ? i.replace(/[^0-9.-]/g, "") * 1
+                        : typeof i === "number"
+                        ? i
+                        : 0;
+                };
+
+                var colsToSum = [10, 12, 13, 14, 15, 16];
+                
+                colsToSum.forEach(function (colIdx) {
+                    var total = api
+                        .column(colIdx, { search: "applied" })
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    $(api.column(colIdx).footer()).html(total.toLocaleString('id-ID'));
+                });
+
+                // Manually set Total CBS values for demonstration
+                var totalCBS_plafon = 300000000;
+                var totalCBS_nominalAgunan = 250000000;
+                var totalCBS_bakidebet = 220000000;
+                var totalCBS_byrTran = 20000000;
+                var totalCBS_diskonto = 13000000;
+                var totalCBS_bakidebetneto = 222000000;
+
+                $(api.column(10).footer()).text(totalCBS_plafon.toLocaleString('id-ID'));
+                $(api.column(12).footer()).text(totalCBS_nominalAgunan.toLocaleString('id-ID'));
+                $(api.column(13).footer()).text(totalCBS_bakidebet.toLocaleString('id-ID'));
+                $(api.column(14).footer()).text(totalCBS_byrTran.toLocaleString('id-ID'));
+                $(api.column(15).footer()).text(totalCBS_diskonto.toLocaleString('id-ID'));
+                $(api.column(16).footer()).text(totalCBS_bakidebetneto.toLocaleString('id-ID'));
+
+                // Calculate and display "Selisih"
+                var totalPlafon = intVal(api.column(10, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalNominalAgunan = intVal(api.column(12, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalBakidebet = intVal(api.column(13, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalByrTran = intVal(api.column(14, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalDiskonto = intVal(api.column(15, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalBakidebetNeto = intVal(api.column(16, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+
+                $(api.column(10).footer()).text((totalPlafon - totalCBS_plafon).toLocaleString('id-ID'));
+                $(api.column(12).footer()).text((totalNominalAgunan - totalCBS_nominalAgunan).toLocaleString('id-ID'));
+                $(api.column(13).footer()).text((totalBakidebet - totalCBS_bakidebet).toLocaleString('id-ID'));
+                $(api.column(14).footer()).text((totalByrTran - totalCBS_byrTran).toLocaleString('id-ID'));
+                $(api.column(15).footer()).text((totalDiskonto - totalCBS_diskonto).toLocaleString('id-ID'));
+                $(api.column(16).footer()).text((totalBakidebetNeto - totalCBS_bakidebetneto).toLocaleString('id-ID'));
+
+            },
+        });
     });
-});
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.tambah')) {
-        e.preventDefault();
 
-        // Isi form dengan data yang dipilih
-        const form = document.querySelector('#form0007Modal form');
-            
-        form.reset();
-
-    }
-
-    if (e.target.closest('.edit')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        const cells = row.querySelectorAll('td');
-
-        // Isi form dengan data yang dipilih
-        document.getElementById('cif').value = cells[0].textContent;
-        document.getElementById('kodegolkreditur').value = cells[1].textContent;
-        document.getElementById('sandibank').value = cells[2].textContent;
-        document.getElementById('kodedati2').value = cells[3].textContent;
-        document.getElementById('kodejenispyd').value = cells[4].textContent;
-        document.getElementById('sandihubbank').value = cells[5].textContent;
-        document.getElementById('jwmulai').value = cells[6].textContent;
-        document.getElementById('jwtempo').value = cells[7].textContent;
-        document.getElementById('sukubunga').value = cells[8].textContent;
-        document.getElementById('carahitbunga').value = cells[9].textContent;
-        document.getElementById('plafon').value = cells[10].textContent;
-        document.getElementById('kodejnsagunan').value = cells[11].textContent;
-        document.getElementById('nominalagunan').value = cells[12].textContent;
-        document.getElementById('bakidebet').value = cells[13].textContent;
-        document.getElementById('bytranbelumamor').value = cells[14].textContent;
-        document.getElementById('diskontobelumamor').value = cells[15].textContent;
-        document.getElementById('bakidebetneto').value = cells[16].textContent;
-
-    }
-
-    if (e.target.closest('.delete')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        
-        // Tampilkan dialog konfirmasi
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        
-        if (confirmDelete) {
-            row.remove();
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.tambah')) {
+            e.preventDefault();
+            const form = document.querySelector('#form0007Modal form');
+            if (form) form.reset();
         }
-    }
-});
+
+        if (e.target.closest('.edit')) {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            document.getElementById('cif').value = cells[0].textContent.trim();
+            document.getElementById('kodegolkreditur').value = cells[1].textContent.trim();
+            document.getElementById('sandibank').value = cells[2].textContent.trim();
+            document.getElementById('kodedati2').value = cells[3].textContent.trim();
+            document.getElementById('kodejenispyd').value = cells[4].textContent.trim();
+            document.getElementById('sandihubbank').value = cells[5].textContent.trim();
+            document.getElementById('jwmulai').value = cells[6].textContent.trim();
+            document.getElementById('jwtempo').value = cells[7].textContent.trim();
+            document.getElementById('sukubunga').value = cells[8].textContent.trim();
+            document.getElementById('carahitbunga').value = cells[9].textContent.trim();
+            document.getElementById('plafon').value = cells[10].textContent.trim();
+            document.getElementById('kodejnsagunan').value = cells[11].textContent.trim();
+            document.getElementById('nominalagunan').value = cells[12].textContent.trim();
+            document.getElementById('bakidebet').value = cells[13].textContent.trim();
+            document.getElementById('bytranbelumamor').value = cells[14].textContent.trim();
+            document.getElementById('diskontobelumamor').value = cells[15].textContent.trim();
+            document.getElementById('bakidebetneto').value = cells[16].textContent.trim();
+        }
+
+        if (e.target.closest('.delete')) {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                row.remove();
+            }
+        }
+    });
 </script>
 {% include 'lapbul_app/footer.html' %}

@@ -1,247 +1,185 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+    /* Define the sticky column styles */
+    .sticky-action-col {
+        position: sticky;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        z-index: 5;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        text-align: center;
+        min-width: 120px; 
+    }
+</style>
+
 <div id="layoutSidenav_content">
-  <main>
-    <div class="container-fluid px-4">
-      <h5 class="mt-4">Form 1900 - Daftar Perbedaan Kualitas Produktif</h5>
-      <hr />
-      <!-- Button to trigger modal -->
-      <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary"
-        >Kembali</a
-      >
-      <button
-        type="button"
-        class="btn btn-secondary tambah"
-        data-bs-toggle="modal"
-        data-bs-target="#form1500Modal"
-      >
-        Tambah</button
-      ><br /><br />
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 1900 - Daftar Perbedaan Kualitas Produktif</h5>
+            <hr />
+            
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1900Modal">Tambah</button>
+            </div>
+            <br /><br />
 
-      <!-- Modal structure -->
-      <div
-        class="modal fade"
-        id="form1900Modal"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="form1900ModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header bg-secondary">
-              <h6 class="modal-title text-white" id="form1900ModalLabel">
-                Form Input Daftar Aset Produktif yang Dihapus Buku
-              </h6>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+            <div class="table-responsive">
+                <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                    <thead>
+                        <tr class="text-center align-middle">
+                            <th rowspan="2" class="align-middle">Sandi Kantor</th>
+                            <th rowspan="2" class="align-middle">ID Pihak Lawan</th>
+                            <th colspan="8" class="text-center align-middle">
+                                Pada BPR Bersangkutan
+                            </th>
+                            <th colspan="8" class="text-center align-middle">Pada BPR Lain</th>
+                            <th rowspan="2" class="align-middle">Keterangan</th>
+                            <th rowspan="2" class="align-middle sticky-action-col">Aksi</th>
+                        </tr>
+                        <tr class="text-center align-middle">
+                            <th>Jenis Aset Produktif</th>
+                            <th>Nomor Rekening</th>
+                            <th>Jenis Penggunaan</th>
+                            <th>Plafon/Nominal</th>
+                            <th>Baki Debet</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Jatuh Tempo</th>
+                            <th>Kualitas</th>
+                            <th>Jenis Aset Produktif</th>
+                            <th>Sandi BPR Lain</th>
+                            <th>Jenis Penggunaan</th>
+                            <th>Plafon/Nominal</th>
+                            <th>Baki Debet</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Jatuh Tempo</th>
+                            <th>Kualitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Lawan</td>
+                            <td>1 (Surat Berharga)</td>
+                            <td>NoRek1</td>
+                            <td>10 (Modal kerja)</td>
+                            <td>1000</td>
+                            <td>1000</td>
+                            <td>20240101</td>
+                            <td>20240505</td>
+                            <td>1 (Lancar)</td>
+                            <td>1 (Kredit)</td>
+                            <td>213</td>
+                            <td>10 (Modal kerja)</td>
+                            <td>100000</td>
+                            <td>100000</td>
+                            <td>20240101</td>
+                            <td>20240101</td>
+                            <td>1 (Lancar)</td>
+                            <td>Keterangan</td>
+                            <td class="sticky-action-col">
+                                <a href="#" class="text-danger delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal fade" id="form1900Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form1900ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form1900ModalLabel">
+                                Form Input Daftar Aset Produktif yang Dihapus Buku
+                            </h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="3" />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
+                                        <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan" maxlength="20" />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="no_rekening" class="form-label">No. Rekening</label>
+                                        <input type="text" class="form-control" id="no_rekening" name="no_rekening" maxlength="20" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="jenis" class="form-label">Jenis</label>
+                                        <input type="text" class="form-control" id="jenis" name="jenis" maxlength="2" />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="gol_debitur" class="form-label">Gol. Debitur</label>
+                                        <input type="text" class="form-control" id="gol_debitur" name="gol_debitur" maxlength="3" />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="hubungan_bank" class="form-label">Hubungan dengan Bank</label>
+                                        <input type="text" class="form-control" id="hubungan_bank" name="hubungan_bank" maxlength="1" />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="tgl_hapus_buku" class="form-label">Tanggal Hapus Buku</label>
+                                        <input type="text" class="form-control" id="tgl_hapus_buku" name="tgl_hapus_buku" maxlength="8" placeholder="YYYYMMDD" />
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="modal-body">
-              <!-- Input Form -->
-              <form>
-                <div class="row">
-                  <!-- <div class="col-md-3 mb-3">
-                    <label for="flag_detail" class="form-label"
-                      >Flag Detail</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="flag_detail"
-                      name="flag_detail"
-                      maxlength="1"
-                    />
-                  </div> -->
-                  <div class="col-md-3 mb-3">
-                    <label for="sandi_kantor" class="form-label"
-                      >Sandi Kantor</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="sandi_kantor"
-                      name="sandi_kantor"
-                      maxlength="3"
-                    />
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="id_pihak_lawan" class="form-label"
-                      >ID Pihak Lawan</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="id_pihak_lawan"
-                      name="id_pihak_lawan"
-                      maxlength="20"
-                    />
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="no_rekening" class="form-label"
-                      >No. Rekening</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="no_rekening"
-                      name="no_rekening"
-                      maxlength="20"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3 mb-3">
-                    <label for="jenis" class="form-label">Jenis</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="jenis"
-                      name="jenis"
-                      maxlength="2"
-                    />
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="gol_debitur" class="form-label"
-                      >Gol. Debitur</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="gol_debitur"
-                      name="gol_debitur"
-                      maxlength="3"
-                    />
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="hubungan_bank" class="form-label"
-                      >Hubungan dengan Bank</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="hubungan_bank"
-                      name="hubungan_bank"
-                      maxlength="1"
-                    />
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="tgl_hapus_buku" class="form-label"
-                      >Tanggal Hapus Buku</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="tgl_hapus_buku"
-                      name="tgl_hapus_buku"
-                      maxlength="8"
-                      placeholder="YYYYMMDD"
-                    />
-                  </div>
-                </div>
-                <!-- Tambahkan input lainnya sesuai kolom tabel -->
-              </form>
-              <!-- End Input Form -->
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-secondary">
-                Save changes
-              </button>
-            </div>
-          </div>
+            <script>
+                $(document).ready(function () {
+                    $("#datatables").DataTable({
+                        scrollX: true,
+                        responsive: true,
+                        columnDefs: [
+                            {
+                                targets: -1, // Last column (Aksi)
+                                width: "120px",
+                                orderable: false,
+                                responsive: false
+                            }
+                        ],
+                        language: {
+                            lengthMenu: "Tampilkan _MENU_ entri",
+                            zeroRecords: "Tidak ada data yang ditemukan",
+                            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+                            infoFiltered: "(difilter dari total _MAX_ entri)",
+                            search: "Cari:",
+                            paginate: {
+                                first: "Pertama",
+                                last: "Terakhir",
+                                next: "Berikutnya",
+                                previous: "Sebelumnya",
+                            },
+                        },
+                    });
+
+                    document.addEventListener('click', function(e) {
+                        if (e.target.closest('.delete')) {
+                            e.preventDefault();
+                            const row = e.target.closest('tr');
+                            if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                                row.remove();
+                            }
+                        }
+                    });
+                });
+            </script>
+            {% include 'lapbul_app/footer.html' %}
         </div>
-      </div>
-
-      <!-- Table -->
-      <table
-        id="datatables"
-        class="table table-bordered table-striped nowrap w-100"
-      >
-        <thead>
-          <tr class="text-center align-middle">
-            <th rowspan="2" class="align-middle">Aksi</th>
-            <th rowspan="2" class="align-middle">Sandi Kantor</th>
-            <th rowspan="2" class="align-middle">ID Pihak Lawan</th>
-            <th colspan="8" class="text-center align-middle">
-              Pada BPR Bersangkutan
-            </th>
-            <th colspan="8" class="text-center align-middle">Pada BPR Lain</th>
-            <th rowspan="2" class="align-middle">Keterangan</th>
-          </tr>
-          <tr class="text-center align-middle">
-            <!-- Subkolom Pada BPR Bersangkutan -->
-            <th>Jenis Aset Produktif</th>
-            <th>Nomor Rekening</th>
-            <th>Jenis Penggunaan</th>
-            <th>Plafon/Nominal</th>
-            <th>Baki Debet</th>
-            <th>Tanggal Mulai</th>
-            <th>Tanggal Jatuh Tempo</th>
-            <th>Kualitas</th>
-            <!-- Subkolom Pada BPR Lain -->
-            <th>Jenis Aset Produktif</th>
-            <th>Sandi BPR Lain</th>
-            <th>Jenis Penggunaan</th>
-            <th>Plafon/Nominal</th>
-            <th>Baki Debet</th>
-            <th>Tanggal Mulai</th>
-            <th>Tanggal Jatuh Tempo</th>
-            <th>Kualitas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-center">
-              <a href="#" class="text-danger delete">
-                <i class="fas fa-trash-alt"></i>
-              </a>
-            </td>
-            <td>001</td>
-            <td>Lawan</td>
-            <!-- Pada BPR Bersangkutan -->
-            <td>1 (Surat Berharga)</td>
-            <td>NoRek1</td>
-            <td>10 (Modal kerja)</td>
-            <td>1000</td>
-            <td>1000</td>
-            <td>20240101</td>
-            <td>20240505</td>
-            <td>1 (Lancar)</td>
-            <!-- Pada BPR Lain -->
-            <td>1 (Kredit)</td>
-            <td>213</td>
-            <td>10 (Modal kerja)</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>20240101</td>
-            <td>20240101</td>
-            <td>1 (Lancar)</td>
-            <td>Keterangan</td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- Table -->
-
-      <script>
-        $(document).ready(function () {
-          $("#datatables").DataTable({
-            scrollX: true,
-            responsive: true,
-          });
-        });
-      </script>
-      {% include 'lapbul_app/footer.html' %}
-    </div>
-  </main>
+    </main>
 </div>

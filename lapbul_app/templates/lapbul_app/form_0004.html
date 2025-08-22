@@ -1,100 +1,27 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
-.sticky-action-col {
-    position: sticky;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    min-width: 120px; 
-}
+    /* Define the sticky column styles */
+    .sticky-action-col {
+        position: sticky;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        z-index: 5;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        text-align: center;
+        min-width: 120px;
+    }
 
-/* CSS untuk center kolom tertentu */
-table td:nth-child(5),
-table th:nth-child(5),
-table td:nth-child(6),
-table th:nth-child(6),
-table td:nth-child(9),
-table th:nth-child(9),
-table td:nth-child(10),
-table th:nth-child(10),
-table td:nth-child(11),
-table th:nth-child(11),
-table td:nth-child(12),
-table th:nth-child(12),
-table td:nth-child(13),
-table th:nth-child(13),
-table td:nth-child(14),
-table th:nth-child(14),
-table td:nth-child(15),
-table th:nth-child(15),
-table td:nth-child(16),
-table th:nth-child(16),
-table td:nth-child(17),
-table th:nth-child(17),
-table td:nth-child(18),
-table th:nth-child(18),
-table td:nth-child(19),
-table th:nth-child(19),
-table td:nth-child(20),
-table th:nth-child(20),
-table td:nth-child(21),
-table th:nth-child(21),
-table td:nth-child(22),
-table th:nth-child(22),
-table td:nth-child(23),
-table th:nth-child(23),
-table td:nth-child(24),
-table th:nth-child(24),
-table td:nth-child(25),
-table th:nth-child(25),
-table td:nth-child(26),
-table th:nth-child(26),
-table td:nth-child(27),
-table th:nth-child(27),
-table td:nth-child(28),
-table th:nth-child(28),
-table td:nth-child(29),
-table th:nth-child(29),
-table td:nth-child(30),
-table th:nth-child(30),
-table td:nth-child(31),
-table th:nth-child(31),
-table td:nth-child(35),
-table th:nth-child(35),
-table td:nth-child(36),
-table th:nth-child(36),
-table td:nth-child(37),
-table th:nth-child(37),
-table td:nth-child(38),
-table th:nth-child(38),
-table td:nth-child(39),
-table th:nth-child(39),
-table td:nth-child(40),
-table th:nth-child(40),
-table td:nth-child(41),
-table th:nth-child(41),
-table td:nth-child(42),
-table th:nth-child(42),
-table td:nth-child(43),
-table th:nth-child(43),
-table td:nth-child(44),
-table th:nth-child(44),
-table td:nth-child(45),
-table th:nth-child(45),
-table td:nth-child(46),
-table th:nth-child(46),
-table td:nth-child(47),
-table th:nth-child(47),
-table td:nth-child(48),
-table th:nth-child(48),
-table td:nth-child(49),
-table th:nth-child(49) {
-    text-align: center;
-    vertical-align: middle;
-}
+    /* CSS for right-aligning number columns and centering others */
+    table td:nth-child(n+9):not(.sticky-action-col),
+    table th:nth-child(n+9):not(.sticky-action-col) {
+        text-align: right;
+    }
+    table td:nth-child(5),
+    table th:nth-child(5),
+    table td:nth-child(6),
+    table th:nth-child(6) {
+        text-align: center;
+    }
 </style>
 
 <div id="layoutSidenav_content">
@@ -104,267 +31,238 @@ table th:nth-child(49) {
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0004Modal">Tambah</button> -->
             </div>
             <br>
-            <!-- Modal structure -->
             <div class="modal fade" id="form0004Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0004ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                    
+
                         <div class="modal-header bg-secondary">
                             <h6 class="modal-title text-white" id="form0004ModalLabel">Form Data Kantor BPR</h6>
                             <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form using <table> with Bootstrap -->
                             <form>
-                                <!-- Row 1 -->
                                 <div class="row mb-3">
                                     <div class="col-md-8">
-                                    <label for="nama_bank" class="form-label">Nama Bank</label>
-                                    <input type="text" class="form-control" id="nama_bank" maxlength="50" />
+                                        <label for="nama_bank" class="form-label">Nama Bank</label>
+                                        <input type="text" class="form-control" id="nama_bank" name="nama_bank" maxlength="50" />
                                     </div>
                                     <div class="col-md-4">
-                                    <label for="koordinat" class="form-label">Koordinat</label>
-                                    <input type="text" class="form-control" id="koordinat" maxlength="50" />
+                                        <label for="koordinat" class="form-label">Koordinat</label>
+                                        <input type="text" class="form-control" id="koordinat" name="koordinat" maxlength="50" />
                                     </div>
                                 </div>
-
-                                <!-- Row 2 -->
                                 <div class="row mb-3">
                                     <div class="col-md-8">
-                                    <label for="alamat" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="alamat" maxlength="150" />
+                                        <label for="alamat" class="form-label">Alamat</label>
+                                        <input type="text" class="form-control" id="alamat" name="alamat" maxlength="150" />
                                     </div>
                                     <div class="col-md-4">
-                                    <label for="desakecamatan" class="form-label">Desa/Kecamatan</label>
-                                    <input type="text" class="form-control" id="desakecamatan" maxlength="50" />
+                                        <label for="desakecamatan" class="form-label">Desa/Kecamatan</label>
+                                        <input type="text" class="form-control" id="desakecamatan" name="desakecamatan" maxlength="50" />
                                     </div>
                                 </div>
-
-                                <!-- Row 3 -->
                                 <div class="row mb-3">
                                     <div class="col-md-3">
-                                    <label for="kodedati2" class="form-label">Kode Dati2</label>
-                                    <input type="text" class="form-control" id="kodedati2" maxlength="4" />
+                                        <label for="kodedati2" class="form-label">Kode Dati2</label>
+                                        <input type="text" class="form-control" id="kodedati2" name="kodedati2" maxlength="4" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="kodepos" class="form-label">Kode Pos</label>
-                                    <input type="text" class="form-control" id="kodepos" maxlength="5" />
+                                        <label for="kodepos" class="form-label">Kode Pos</label>
+                                        <input type="text" class="form-control" id="kodepos" name="kodepos" maxlength="5" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="namapim" class="form-label">Nama Pimpinan</label>
-                                    <input type="text" class="form-control" id="namapim" maxlength="50" />
+                                        <label for="namapim" class="form-label">Nama Pimpinan</label>
+                                        <input type="text" class="form-control" id="namapim" name="namapim" maxlength="50" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="notelp" class="form-label">No. Telepon</label>
-                                    <input type="text" class="form-control" id="notelp" maxlength="15" />
+                                        <label for="notelp" class="form-label">No. Telepon</label>
+                                        <input type="text" class="form-control" id="notelp" name="notelp" maxlength="15" />
                                     </div>
                                 </div>
-
-                                <!-- Row 4: Integer fields (pegtetap...) -->
                                 <div class="row mb-3">
                                     <div class="col-md-2">
-                                    <label for="pegtetaps3" class="form-label">Tetap S3</label>
-                                    <input type="number" class="form-control" id="pegtetaps3" />
+                                        <label for="pegtetaps3" class="form-label">Tetap S3</label>
+                                        <input type="number" class="form-control" id="pegtetaps3" name="pegtetaps3" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegtetaps2" class="form-label">Tetap S2</label>
-                                    <input type="number" class="form-control" id="pegtetaps2" />
+                                        <label for="pegtetaps2" class="form-label">Tetap S2</label>
+                                        <input type="number" class="form-control" id="pegtetaps2" name="pegtetaps2" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegtetaps1" class="form-label">Tetap S1</label>
-                                    <input type="number" class="form-control" id="pegtetaps1" />
+                                        <label for="pegtetaps1" class="form-label">Tetap S1</label>
+                                        <input type="number" class="form-control" id="pegtetaps1" name="pegtetaps1" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegtetapd3" class="form-label">Tetap D3</label>
-                                    <input type="number" class="form-control" id="pegtetapd3" />
+                                        <label for="pegtetapd3" class="form-label">Tetap D3</label>
+                                        <input type="number" class="form-control" id="pegtetapd3" name="pegtetapd3" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegtetapslta" class="form-label">Tetap SLTA</label>
-                                    <input type="number" class="form-control" id="pegtetapslta" />
+                                        <label for="pegtetapslta" class="form-label">Tetap SLTA</label>
+                                        <input type="number" class="form-control" id="pegtetapslta" name="pegtetapslta" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegtetaplain" class="form-label">Tetap Lain</label>
-                                    <input type="number" class="form-control" id="pegtetaplain" />
+                                        <label for="pegtetaplain" class="form-label">Tetap Lain</label>
+                                        <input type="number" class="form-control" id="pegtetaplain" name="pegtetaplain" />
                                     </div>
                                 </div>
-
-                                <!-- Row 6: Peg kontrak -->
                                 <div class="row mb-3">
                                     <div class="col-md-2">
-                                    <label for="pegkontraks3" class="form-label">Kontrak S3</label>
-                                    <input type="number" class="form-control" id="pegkontraks3" />
+                                        <label for="pegkontraks3" class="form-label">Kontrak S3</label>
+                                        <input type="number" class="form-control" id="pegkontraks3" name="pegkontraks3" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegkontraks2" class="form-label">Kontrak S2</label>
-                                    <input type="number" class="form-control" id="pegkontraks2" />
+                                        <label for="pegkontraks2" class="form-label">Kontrak S2</label>
+                                        <input type="number" class="form-control" id="pegkontraks2" name="pegkontraks2" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegkontraks1" class="form-label">Kontrak S1</label>
-                                    <input type="number" class="form-control" id="pegkontraks1" />
+                                        <label for="pegkontraks1" class="form-label">Kontrak S1</label>
+                                        <input type="number" class="form-control" id="pegkontraks1" name="pegkontraks1" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegkontrakd3" class="form-label">Kontrak D3</label>
-                                    <input type="number" class="form-control" id="pegkontrakd3" />
+                                        <label for="pegkontrakd3" class="form-label">Kontrak D3</label>
+                                        <input type="number" class="form-control" id="pegkontrakd3" name="pegkontrakd3" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegkontrakslta" class="form-label">Kontrak SLTA</label>
-                                    <input type="number" class="form-control" id="pegkontrakslta" />
+                                        <label for="pegkontrakslta" class="form-label">Kontrak SLTA</label>
+                                        <input type="number" class="form-control" id="pegkontrakslta" name="pegkontrakslta" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="pegkontraklain" class="form-label">Kontrak Lain</label>
-                                    <input type="number" class="form-control" id="pegkontraklain" />
+                                        <label for="pegkontraklain" class="form-label">Kontrak Lain</label>
+                                        <input type="number" class="form-control" id="pegkontraklain" name="pegkontraklain" />
                                     </div>
                                 </div>
-
-                                <!-- Row 7: Jumlah kantor kas, kode gedung, jumlah mobil kas -->
                                 <div class="row mb-3">
                                     <div class="col-md-3">
-                                    <label for="jumlahkantorkas" class="form-label">Jumlah Kantor Kas</label>
-                                    <input type="number" class="form-control" id="jumlahkantorkas" />
+                                        <label for="jumlahkantorkas" class="form-label">Jumlah Kantor Kas</label>
+                                        <input type="number" class="form-control" id="jumlahkantorkas" name="jumlahkantorkas" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="kodestsgedung" class="form-label">Kode Status Gedung</label>
-                                    <input type="text" class="form-control" id="kodestsgedung" maxlength="2" />
+                                        <label for="kodestsgedung" class="form-label">Kode Status Gedung</label>
+                                        <input type="text" class="form-control" id="kodestsgedung" name="kodestsgedung" maxlength="2" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="jumlahmobilkas" class="form-label">Jumlah Mobil Kas</label>
-                                    <input type="number" class="form-control" id="jumlahmobilkas" />
+                                        <label for="jumlahmobilkas" class="form-label">Jumlah Mobil Kas</label>
+                                        <input type="number" class="form-control" id="jumlahmobilkas" name="jumlahmobilkas" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="ppsendiri" class="form-label">PP Sendiri</label>
-                                    <input type="number" class="form-control" id="ppsendiri" />
+                                        <label for="ppsendiri" class="form-label">PP Sendiri</label>
+                                        <input type="number" class="form-control" id="ppsendiri" name="ppsendiri" />
                                     </div>
                                 </div>
-
-                                <!-- Row 8: Pp sendiri, ppbu, ppbpr lain, atm sendiri -->
                                 <div class="row mb-3">
                                     <div class="col-md-3">
-                                    <label for="ppbu" class="form-label">PP BU</label>
-                                    <input type="number" class="form-control" id="ppbu" />
+                                        <label for="ppbu" class="form-label">PP BU</label>
+                                        <input type="number" class="form-control" id="ppbu" name="ppbu" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="ppbprlain" class="form-label">PP BPR Lain</label>
-                                    <input type="number" class="form-control" id="ppbprlain" />
+                                        <label for="ppbprlain" class="form-label">PP BPR Lain</label>
+                                        <input type="number" class="form-control" id="ppbprlain" name="ppbprlain" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="atmsendiri" class="form-label">ATM Sendiri</label>
-                                    <input type="number" class="form-control" id="atmsendiri" />
+                                        <label for="atmsendiri" class="form-label">ATM Sendiri</label>
+                                        <input type="number" class="form-control" id="atmsendiri" name="atmsendiri" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="jml_join_bpr" class="form-label">Jumlah Join BPR</label>
-                                    <input type="number" class="form-control" id="jml_join_bpr" />
+                                        <label for="jml_join_bpr" class="form-label">Jumlah Join BPR</label>
+                                        <input type="number" class="form-control" id="jml_join_bpr" name="jml_join_bpr" />
                                     </div>
                                 </div>
-
-                                <!-- Row 9: Join BPR -->
                                 <div class="row mb-3">
                                     <div class="col-md-3">
-                                    <label for="nama_join_bpr" class="form-label">Nama Join BPR</label>
-                                    <input type="text" class="form-control" id="nama_join_bpr" maxlength="30" />
+                                        <label for="nama_join_bpr" class="form-label">Nama Join BPR</label>
+                                        <input type="text" class="form-control" id="nama_join_bpr" name="nama_join_bpr" maxlength="30" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="kt_datakantor" class="form-label">KT Data Kantor</label>
-                                    <input type="text" class="form-control" id="kt_datakantor" maxlength="1" />
+                                        <label for="kt_datakantor" class="form-label">KT Data Kantor</label>
+                                        <input type="text" class="form-control" id="kt_datakantor" name="kt_datakantor" maxlength="1" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="oto_ojk_no" class="form-label">Oto OJK No</label>
-                                    <input type="text" class="form-control" id="oto_ojk_no" maxlength="30" />
+                                        <label for="oto_ojk_no" class="form-label">Oto OJK No</label>
+                                        <input type="text" class="form-control" id="oto_ojk_no" name="oto_ojk_no" maxlength="30" />
                                     </div>
                                     <div class="col-md-3">
-                                    <label for="oto_ojk_tgl" class="form-label">Oto OJK Tanggal</label>
-                                    <input type="date" class="form-control" id="oto_ojk_tgl" />
+                                        <label for="oto_ojk_tgl" class="form-label">Oto OJK Tanggal</label>
+                                        <input type="date" class="form-control" id="oto_ojk_tgl" name="oto_ojk_tgl" />
                                     </div>
                                 </div>
-
-                                <!-- Row 10: Alamat Sebelumnya, Tgl Pelaksanaan -->
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                    <label for="alamat_sebelumnya" class="form-label">Alamat Sebelumnya</label>
-                                    <input type="text" class="form-control" id="alamat_sebelumnya" maxlength="50" />
+                                        <label for="alamat_sebelumnya" class="form-label">Alamat Sebelumnya</label>
+                                        <input type="text" class="form-control" id="alamat_sebelumnya" name="alamat_sebelumnya" maxlength="50" />
                                     </div>
                                     <div class="col-md-6">
-                                    <label for="tgl_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
-                                    <input type="date" class="form-control" id="tgl_pelaksanaan" />
+                                        <label for="tgl_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
+                                        <input type="date" class="form-control" id="tgl_pelaksanaan" name="tgl_pelaksanaan" />
                                     </div>
                                 </div>
-
-                                <!-- Row 11: Jumlah karyawan tugas pemasaran, pelayanan, lain -->
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                    <label for="jml_kry_tgs_pemasaran" class="form-label">Kar. Tetap Pemasaran</label>
-                                    <input type="number" class="form-control" id="jml_kry_tgs_pemasaran" />
+                                        <label for="jml_kry_tgs_pemasaran" class="form-label">Kar. Tetap Pemasaran</label>
+                                        <input type="number" class="form-control" id="jml_kry_tgs_pemasaran" name="jml_kry_tgs_pemasaran" />
                                     </div>
                                     <div class="col-md-4">
-                                    <label for="jml_kry_tgs_pelayanan" class="form-label">Kar. Tetap Pelayanan</label>
-                                    <input type="number" class="form-control" id="jml_kry_tgs_pelayanan" />
+                                        <label for="jml_kry_tgs_pelayanan" class="form-label">Kar. Tetap Pelayanan</label>
+                                        <input type="number" class="form-control" id="jml_kry_tgs_pelayanan" name="jml_kry_tgs_pelayanan" />
                                     </div>
                                     <div class="col-md-4">
-                                    <label for="jml_kry_tgs_lain" class="form-label">Kar. Tetap Lain</label>
-                                    <input type="number" class="form-control" id="jml_kry_tgs_lain" />
+                                        <label for="jml_kry_tgs_lain" class="form-label">Kar. Tetap Lain</label>
+                                        <input type="number" class="form-control" id="jml_kry_tgs_lain" name="jml_kry_tgs_lain" />
                                     </div>
                                 </div>
-
-                                <!-- Row 12: Jumlah karyawan PK pemasaran, pelayanan, lain -->
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                    <label for="jml_kry_pk_pemasaran" class="form-label">Kar. Kontrak Pemasaran</label>
-                                    <input type="number" class="form-control" id="jml_kry_pk_pemasaran" />
+                                        <label for="jml_kry_pk_pemasaran" class="form-label">Kar. Kontrak Pemasaran</label>
+                                        <input type="number" class="form-control" id="jml_kry_pk_pemasaran" name="jml_kry_pk_pemasaran" />
                                     </div>
                                     <div class="col-md-4">
-                                    <label for="jml_kry_pk_pelayanan" class="form-label">Kar. Kontrak Pelayanan</label>
-                                    <input type="number" class="form-control" id="jml_kry_pk_pelayanan" />
+                                        <label for="jml_kry_pk_pelayanan" class="form-label">Kar. Kontrak Pelayanan</label>
+                                        <input type="number" class="form-control" id="jml_kry_pk_pelayanan" name="jml_kry_pk_pelayanan" />
                                     </div>
                                     <div class="col-md-4">
-                                    <label for="jml_kry_pk_lain2" class="form-label">Kar. Kontrak Lain</label>
-                                    <input type="number" class="form-control" id="jml_kry_pk_lain2" />
+                                        <label for="jml_kry_pk_lain2" class="form-label">Kar. Kontrak Lain</label>
+                                        <input type="number" class="form-control" id="jml_kry_pk_lain2" name="jml_kry_pk_lain2" />
                                     </div>
                                 </div>
-
-                                <!-- Row 13: Jumlah karyawan laki, perempuan -->
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                    <label for="jml_kry_laki" class="form-label">Kar. Laki-Laki</label>
-                                    <input type="number" class="form-control" id="jml_kry_laki" />
+                                        <label for="jml_kry_laki" class="form-label">Kar. Laki-Laki</label>
+                                        <input type="number" class="form-control" id="jml_kry_laki" name="jml_kry_laki" />
                                     </div>
                                     <div class="col-md-6">
-                                    <label for="jml_kry_perempuan" class="form-label">Kar. Perempuan</label>
-                                    <input type="number" class="form-control" id="jml_kry_perempuan" />
+                                        <label for="jml_kry_perempuan" class="form-label">Kar. Perempuan</label>
+                                        <input type="number" class="form-control" id="jml_kry_perempuan" name="jml_kry_perempuan" />
                                     </div>
                                 </div>
-
-                                <!-- Row 15: Usia karyawan -->
                                 <div class="row mb-3">
                                     <div class="col-md-2">
-                                    <label for="jml_kry_usia_25" class="form-label">Usia <= 25</label>
-                                    <input type="number" class="form-control" id="jml_kry_usia_25" />
+                                        <label for="jml_kry_usia_25" class="form-label">Usia ≤ 25</label>
+                                        <input type="number" class="form-control" id="jml_kry_usia_25" name="jml_kry_usia_25" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="jml_kry_usia_35" class="form-label">Usia <= 35</label>
-                                    <input type="number" class="form-control" id="jml_kry_usia_35" />
+                                        <label for="jml_kry_usia_35" class="form-label">Usia ≤ 35</label>
+                                        <input type="number" class="form-control" id="jml_kry_usia_35" name="jml_kry_usia_35" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="jml_kry_usia_45" class="form-label">Usia <= 45</label>
-                                    <input type="number" class="form-control" id="jml_kry_usia_45" />
+                                        <label for="jml_kry_usia_45" class="form-label">Usia ≤ 45</label>
+                                        <input type="number" class="form-control" id="jml_kry_usia_45" name="jml_kry_usia_45" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="jml_kry_usia_55" class="form-label">Usia <= 55</label>
-                                    <input type="number" class="form-control" id="jml_kry_usia_55" />
+                                        <label for="jml_kry_usia_55" class="form-label">Usia ≤ 55</label>
+                                        <input type="number" class="form-control" id="jml_kry_usia_55" name="jml_kry_usia_55" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="jml_kry_usia_lbh_55" class="form-label">Usia > 55</label>
-                                    <input type="number" class="form-control" id="jml_kry_usia_lbh_55" />
+                                        <label for="jml_kry_usia_lbh_55" class="form-label">Usia > 55</label>
+                                        <input type="number" class="form-control" id="jml_kry_usia_lbh_55" name="jml_kry_usia_lbh_55" />
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="jumlah_skk" class="form-label">Jumlah SKK</label>
-                                    <input type="number" class="form-control" id="jumlah_skk" />
+                                        <label for="jumlah_skk" class="form-label">Jumlah SKK</label>
+                                        <input type="number" class="form-control" id="jumlah_skk" name="jumlah_skk" />
                                     </div>
                                 </div>
                             </form>
-                            <!-- End Input Form -->
                         </div>
 
                         <div class="modal-footer">
@@ -374,226 +272,161 @@ table th:nth-child(49) {
                     </div>
                 </div>
             </div>
-
-            <!-- Table -->
             <div class="d-flex justify-content-center">
-            <div class="table-responsive">
-            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
-                <thead class="table-light text-center">
-                    <tr>
-                    <th>Nama Bank</th>
-                    <th>Koordinat</th>
-                    <th>Alamat</th>
-                    <th>Kecamatan</th>
-                    <th>Dati2</th>
-                    <th>Kode Pos</th>
-                    <th>Nama Pimpinan</th>
-                    <th>No. Telepon</th>
-
-                    <!-- Pegawai Tetap -->
-                    <th>Tetap S3</th>
-                    <th>Tetap S2</th>
-                    <th>Tetap S1</th>
-                    <th>Tetap D3</th>
-                    <th>Tetap SLTA</th>
-                    <th>Tetap Lain</th>
-
-                    <!-- Pegawai Kontrak -->
-                    <th>Kontrak S3</th>
-                    <th>Kontrak S2</th>
-                    <th>Kontrak S1</th>
-                    <th>Kontrak D3</th>
-                    <th>Kontrak SLTA</th>
-                    <th>Kontrak Lain</th>
-
-                    <!-- Gedung & Mobil -->
-                    <th>Jumlah Kantor Kas</th>
-                    <th>Status Gedung</th>
-                    <th>Jumlah Mobil Kas</th>
-
-                    <!-- PP -->
-                    <th>PP Sendiri</th>
-                    <th>PP BU</th>
-                    <th>PP BPR Lain</th>
-                    <th>ATM Sendiri</th>
-
-                    <!-- Join BPR -->
-                    <th>Jumlah Join BPR</th>
-                    <th>Nama Join BPR</th>
-
-                    <!-- OJK -->
-                    <th>KT Data Kantor</th>
-                    <th>Oto OJK No</th>
-                    <th>Oto OJK Tanggal</th>
-
-                    <!-- Alamat Sebelumnya -->
-                    <th>Alamat Sebelumnya</th>
-                    <th>Tanggal Pelaksanaan</th>
-
-                    <!-- Karyawan Tugas -->
-                    <th>Tetap Pemasaran</th>
-                    <th>Tetap Pelayanan</th>
-                    <th>Tetap Lain</th>
-
-                    <!-- Karyawan PK -->
-                    <th>Kontrak Pemasaran</th>
-                    <th>Kontrak Pelayanan</th>
-                    <th>Kontrak Lain</th>
-
-                    <!-- Gender -->
-                    <th>Laki-Laki</th>
-                    <th>Perempuan</th>
-
-                    <!-- Usia -->
-                    <th>Usia ≤ 25</th>
-                    <th>Usia ≤ 35</th>
-                    <th>Usia ≤ 45</th>
-                    <th>Usia ≤ 55</th>
-                    <th>Usia > 55</th>
-
-                    <!-- SKK -->
-                    <th>Jumlah SKK</th>
-
-                    <!-- Aksi -->
-                    <th class="sticky-action-col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>Bank ABC</td>
-                    <td>-6.21, 106.85</td>
-                    <td>Jl. Sudirman No.1</td>
-                    <td>Kecamatan Contoh</td>
-                    <td>1234</td>
-                    <td>54321</td>
-                    <td>Jane Doe</td>
-                    <td>08123456789</td>
-
-                    <!-- Tetap -->
-                    <td>1</td>
-                    <td>2</td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>1</td>
-
-                    <!-- Kontrak -->
-                    <td>0</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>3</td>
-                    <td>1</td>
-
-                    <!-- Gedung -->
-                    <td>2</td>
-                    <td>A1</td>
-                    <td>1</td>
-
-                    <!-- PP -->
-                    <td>2</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>1</td>
-
-                    <!-- Join BPR -->
-                    <td>1</td>
-                    <td>BPR XYZ</td>
-
-                    <!-- OJK -->
-                    <td>Y</td>
-                    <td>123/OJK.05/2024</td>
-                    <td>2024-10-01</td>
-
-                    <!-- Alamat sebelumnya -->
-                    <td>Jl. Lama No. 9</td>
-                    <td>2024-09-01</td>
-
-                    <!-- Tugas -->
-                    <td>4</td>
-                    <td>5</td>
-                    <td>3</td>
-
-                    <!-- PK -->
-                    <td>2</td>
-                    <td>3</td>
-                    <td>1</td>
-
-                    <!-- Gender -->
-                    <td>9</td>
-                    <td>8</td>
-
-                    <!-- Usia -->
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>2</td>
-
-                    <!-- SKK -->
-                    <td>2</td>
-
-                    <!-- Aksi -->
-                    <td class="sticky-action-col">
-                        <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0004Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
+                <div class="table-responsive">
+                    <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th>Nama Bank</th>
+                                <th>Koordinat</th>
+                                <th>Alamat</th>
+                                <th>Kecamatan</th>
+                                <th>Kode Dati2</th>
+                                <th>Kode Pos</th>
+                                <th>Nama Pimpinan</th>
+                                <th>No. Telepon</th>
+                                <th>Tetap S3</th>
+                                <th>Tetap S2</th>
+                                <th>Tetap S1</th>
+                                <th>Tetap D3</th>
+                                <th>Tetap SLTA</th>
+                                <th>Tetap Lain</th>
+                                <th>Kontrak S3</th>
+                                <th>Kontrak S2</th>
+                                <th>Kontrak S1</th>
+                                <th>Kontrak D3</th>
+                                <th>Kontrak SLTA</th>
+                                <th>Kontrak Lain</th>
+                                <th>Jumlah Kantor Kas</th>
+                                <th>Status Gedung</th>
+                                <th>Jumlah Mobil Kas</th>
+                                <th>PP Sendiri</th>
+                                <th>PP BU</th>
+                                <th>PP BPR Lain</th>
+                                <th>ATM Sendiri</th>
+                                <th>Jumlah Join BPR</th>
+                                <th>Nama Join BPR</th>
+                                <th>KT Data Kantor</th>
+                                <th>Oto OJK No</th>
+                                <th>Oto OJK Tanggal</th>
+                                <th>Alamat Sebelumnya</th>
+                                <th>Tanggal Pelaksanaan</th>
+                                <th>Kar. Tetap Pemasaran</th>
+                                <th>Kar. Tetap Pelayanan</th>
+                                <th>Kar. Tetap Lain</th>
+                                <th>Kar. Kontrak Pemasaran</th>
+                                <th>Kar. Kontrak Pelayanan</th>
+                                <th>Kar. Kontrak Lain</th>
+                                <th>Kar. Laki-Laki</th>
+                                <th>Kar. Perempuan</th>
+                                <th>Usia ≤ 25</th>
+                                <th>Usia ≤ 35</th>
+                                <th>Usia ≤ 45</th>
+                                <th>Usia ≤ 55</th>
+                                <th>Usia > 55</th>
+                                <th>Jumlah SKK</th>
+                                <th class="sticky-action-col text-center">Aksi</th>                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bank ABC</td>
+                                <td>-6.21, 106.85</td>
+                                <td>Jl. Sudirman No.1</td>
+                                <td>Kecamatan Contoh</td>
+                                <td>1234</td>
+                                <td>54321</td>
+                                <td>Jane Doe</td>
+                                <td>08123456789</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>A1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>BPR XYZ</td>
+                                <td>Y</td>
+                                <td>123/OJK.05/2024</td>
+                                <td>2024-10-01</td>
+                                <td>Jl. Lama No. 9</td>
+                                <td>2024-09-01</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>9</td>
+                                <td>8</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td class="sticky-action-col">
+                                    <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0004Modal"><i class="fas fa-edit"></i></a>
+                                    <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 </div>
-<script>
-$(document).ready(function () {
 
-    $('#datatables').DataTable({
-        scrollX: true,
-        responsive: true,
-        columnDefs: [
-            {
-                targets: -1, // Last column (Aksi)
-                width: "120px",
-                orderable: false,
-                responsive: false
-            }
-        ],
-        language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
-            zeroRecords: "Tidak ada data yang ditemukan",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-            infoFiltered: "(difilter dari total _MAX_ entri)",
-            search: "Cari:",
-            paginate: {
-                first: "Pertama",
-                last: "Terakhir",
-                next: "Berikutnya",
-                previous: "Sebelumnya",
+<script>
+    $(document).ready(function () {
+        $('#datatables').DataTable({
+            scrollX: true,
+            responsive: true,
+            columnDefs: [
+                {
+                    targets: -1, // Last column (Aksi)
+                    width: "120px",
+                    orderable: false,
+                    responsive: false
+                }
+            ],
+            language: {
+                lengthMenu: "Tampilkan _MENU_ entri",
+                zeroRecords: "Tidak ada data yang ditemukan",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+                infoFiltered: "(difilter dari total _MAX_ entri)",
+                search: "Cari:",
+                paginate: {
+                    first: "Pertama",
+                    last: "Terakhir",
+                    next: "Berikutnya",
+                    previous: "Sebelumnya",
+                },
             },
-        },
+        });
     });
 
     document.addEventListener('click', function(e) {
-
-        if (e.target.closest('.tambah')) {
-            // Handle tambah button click
-            e.preventDefault();
-            const form = document.querySelector('#form0004Modal form');
-            
-            form.reset();
-        }
-
         if (e.target.closest('.edit')) {
-            // Handle edit button click
             e.preventDefault();
             const row = e.target.closest('tr');
             const cells = row.querySelectorAll('td');
 
-            // Isi form dengan data yang dipilih
-            // Mapping data dari <td> ke input form modal berdasarkan urutan kolom
+            // Fill modal form with selected data
             document.getElementById('nama_bank').value = cells[0].textContent.trim();
             document.getElementById('koordinat').value = cells[1].textContent.trim();
             document.getElementById('alamat').value = cells[2].textContent.trim();
@@ -602,87 +435,55 @@ $(document).ready(function () {
             document.getElementById('kodepos').value = cells[5].textContent.trim();
             document.getElementById('namapim').value = cells[6].textContent.trim();
             document.getElementById('notelp').value = cells[7].textContent.trim();
-
-            // Pegawai Tetap
             document.getElementById('pegtetaps3').value = cells[8].textContent.trim();
             document.getElementById('pegtetaps2').value = cells[9].textContent.trim();
             document.getElementById('pegtetaps1').value = cells[10].textContent.trim();
             document.getElementById('pegtetapd3').value = cells[11].textContent.trim();
             document.getElementById('pegtetapslta').value = cells[12].textContent.trim();
             document.getElementById('pegtetaplain').value = cells[13].textContent.trim();
-
-            // Pegawai Kontrak
             document.getElementById('pegkontraks3').value = cells[14].textContent.trim();
             document.getElementById('pegkontraks2').value = cells[15].textContent.trim();
             document.getElementById('pegkontraks1').value = cells[16].textContent.trim();
             document.getElementById('pegkontrakd3').value = cells[17].textContent.trim();
             document.getElementById('pegkontrakslta').value = cells[18].textContent.trim();
             document.getElementById('pegkontraklain').value = cells[19].textContent.trim();
-
-            // Gedung, Mobil Kas
             document.getElementById('jumlahkantorkas').value = cells[20].textContent.trim();
             document.getElementById('kodestsgedung').value = cells[21].textContent.trim();
             document.getElementById('jumlahmobilkas').value = cells[22].textContent.trim();
-
-            // PP
             document.getElementById('ppsendiri').value = cells[23].textContent.trim();
             document.getElementById('ppbu').value = cells[24].textContent.trim();
             document.getElementById('ppbprlain').value = cells[25].textContent.trim();
             document.getElementById('atmsendiri').value = cells[26].textContent.trim();
-
-            // Join BPR
             document.getElementById('jml_join_bpr').value = cells[27].textContent.trim();
             document.getElementById('nama_join_bpr').value = cells[28].textContent.trim();
-
-            // OJK
             document.getElementById('kt_datakantor').value = cells[29].textContent.trim();
             document.getElementById('oto_ojk_no').value = cells[30].textContent.trim();
             document.getElementById('oto_ojk_tgl').value = cells[31].textContent.trim();
-
-            // Alamat sebelumnya dan tanggal pelaksanaan
             document.getElementById('alamat_sebelumnya').value = cells[32].textContent.trim();
             document.getElementById('tgl_pelaksanaan').value = cells[33].textContent.trim();
-
-            // Karyawan tugas tetap
             document.getElementById('jml_kry_tgs_pemasaran').value = cells[34].textContent.trim();
             document.getElementById('jml_kry_tgs_pelayanan').value = cells[35].textContent.trim();
             document.getElementById('jml_kry_tgs_lain').value = cells[36].textContent.trim();
-
-            // Karyawan kontrak
             document.getElementById('jml_kry_pk_pemasaran').value = cells[37].textContent.trim();
             document.getElementById('jml_kry_pk_pelayanan').value = cells[38].textContent.trim();
             document.getElementById('jml_kry_pk_lain2').value = cells[39].textContent.trim();
-
-            // Gender
             document.getElementById('jml_kry_laki').value = cells[40].textContent.trim();
             document.getElementById('jml_kry_perempuan').value = cells[41].textContent.trim();
-
-            // Usia
             document.getElementById('jml_kry_usia_25').value = cells[42].textContent.trim();
             document.getElementById('jml_kry_usia_35').value = cells[43].textContent.trim();
             document.getElementById('jml_kry_usia_45').value = cells[44].textContent.trim();
             document.getElementById('jml_kry_usia_55').value = cells[45].textContent.trim();
             document.getElementById('jml_kry_usia_lbh_55').value = cells[46].textContent.trim();
-
-            // SKK
             document.getElementById('jumlah_skk').value = cells[47].textContent.trim();
         }
-        
-        if (e.target.closest('.delete')) {
-            // Handle delete button click
-            e.preventDefault();
 
+        if (e.target.closest('.delete')) {
+            e.preventDefault();
             const row = e.target.closest('tr');
-        
-            // Tampilkan dialog konfirmasi
-            const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-            
-            if (confirmDelete) {
+            if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
                 row.remove();
             }
         }
     });
-
-});
 </script>
 {% include 'lapbul_app/footer.html' %}

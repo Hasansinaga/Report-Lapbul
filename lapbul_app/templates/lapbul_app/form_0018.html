@@ -1,4 +1,22 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+    /* CSS for form alignment and styling */
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+    .table-responsive {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    table td input.form-control {
+        text-align: right;
+    }
+    .form-select.w-auto {
+        max-width: fit-content;
+    }
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -6,11 +24,10 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Simpan</button>
+                <button type="submit" form="mainForm" class="btn btn-secondary">Simpan</button>
             </div>
 
-            <!-- Filter Sandi -->
-            <div class="mb-3 d-flex align-items-center gap-2">
+            <!-- <div class="mb-3 d-flex align-items-center gap-2">
                 <label for="sandiFilter" class="form-label mb-0">Pilih Sandi:</label>
                 <select id="sandiFilter" class="form-select form-select-sm w-auto" onchange="filterSandi()">
                     <option value="all">semua</option>
@@ -24,7 +41,7 @@
                     <option value="14080000">14080000</option>
                     <option value="14990000">14990000</option>
                 </select>
-            </div>
+            </div> -->
             
             <!-- Modal structure -->
             <div class="modal fade" id="form0018Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0018ModalLabel" aria-hidden="true">
@@ -69,8 +86,9 @@
                 </div>
             </div>
             
-            <form>
-                <table class="table table-bordered table-sm">
+            <div class="form-container">
+                <form id="mainForm">
+                    <table class="table table-bordered table-sm">
                 <thead class="table-light">
                     <tr>
                         <th>Pos</th>
@@ -135,15 +153,16 @@
                         <td><input type="text" class="form-control form-control-sm" name="tahun_t_min_1_14990000" value="3200"></td>
                     </tr>
                 </tbody>
-            </table>
-            </form>
+                    </table>
+                </form>
+            </div>
             <br>
         </div>
     </main>
 </div>
 
 <script>
-function filterSandi() {
+    // Function to format numbers with thousand separators\n    function formatNumber(input) {\n        let value = input.value.replace(/\\D/g, '');\n        if (value) {\n            input.value = new Intl.NumberFormat('id-ID').format(value);\n        }\n    }\n\n    document.addEventListener('DOMContentLoaded', function() {\n        // Apply initial formatting to all number-input fields\n        document.querySelectorAll('.form-control').forEach(input => {\n            if (input.type === 'text' && input.name && (input.name.includes('tahun_') || input.name.includes('_14'))) {\n                input.classList.add('number-input');\n                formatNumber(input);\n                \n                input.addEventListener('blur', function() {\n                    formatNumber(this);\n                });\n                input.addEventListener('focus', function() {\n                    this.value = this.value.replace(/\\D/g, '');\n                });\n            }\n        });\n    });\n\n// Function to filter table rows based on selected \"Sandi\" (commented out)\n// function filterSandi() {
     var selected = document.getElementById("sandiFilter").value;
     var rows = document.querySelectorAll("tbody tr");
 

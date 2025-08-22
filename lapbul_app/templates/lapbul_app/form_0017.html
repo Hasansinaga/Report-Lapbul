@@ -1,4 +1,30 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+    /* CSS for form alignment and styling */
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+    .table-responsive {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    table td input.form-control {
+        text-align: right;
+    }
+    .form-select.w-auto {
+        max-width: fit-content;
+    }
+    table th, table td {
+        white-space: nowrap;
+        text-align: center;
+    }
+    table td:first-child,
+    table td:nth-child(2) {
+        text-align: left;
+    }
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -6,46 +32,27 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Simpan</button>
+                <button type="submit" form="mainForm" class="btn btn-secondary">Simpan</button>
             </div>
+            <br>
 
-            <!-- Filter Sandi -->
-            <div class="mb-3 d-flex align-items-center gap-2">
+            <!-- <div class="mb-3 d-flex align-items-center gap-2">
                 <label for="sandiFilter" class="form-label mb-0">Pilih Sandi:</label>
                 <select id="sandiFilter" class="form-select form-select-sm w-auto" onchange="filterSandi()">
                     <option value="all">semua</option>
-                    <option value="10000000">10000000</option>
-                    <option value="10100000">10100000</option>
-                    <option value="10200000">10200000</option>
-                    <option value="10300000">10300000</option>
-                    <option value="10400000">10400000</option>
-                    <option value="10500000">10500000</option>
-                    <option value="10600000">10600000</option>
-                    <option value="19900000">19900000</option>
-                    <option value="20000000">20000000</option>
-                    <option value="20100000">20100000</option>
-                    <option value="20200000">20200000</option>
-                    <option value="20300000">20300000</option>
-                    <option value="20400000">20400000</option>
-                    <option value="20500000">20500000</option>
-                    <option value="20600000">20600000</option>
-                    <option value="29900000">29900000</option>
-                    <option value="30000000">30000000</option>
+                    <option value="3000">3000</option>
+                    <option value="3100">3100</option>
                 </select>
-            </div>
-            
-            <!-- Modal structure -->
+            </div> -->
             <div class="modal fade" id="form0017Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0017ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                    
                         <div class="modal-header bg-secondary">
                             <h6 class="modal-title text-white" id="form0017ModalLabel">Form Input Laporan Perubahan Ekuitas</h6>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form -->
                             <form>
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
@@ -93,303 +100,327 @@
                                         <input type="number" class="form-control" id="saldo_laba" name="saldo_laba">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="jumlah" class="form-label">Jumlah</label>
+                                        <label for="jumlah" class="form-label" style="min-width: 120px; display: inline-block;">Jumlah</label>
                                         <input type="number" class="form-control" id="jumlah" name="jumlah">
                                     </div>
                                 </div>
                             </form>
-                            <!-- End Input Form -->
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <form>
-                <table class="table table-bordered table-sm">
-                <thead class="table-light">
-                    <tr>
-                        <th>Pos</th>
-                        <th>Sandi Pos</th>
-                        <th>Modal Disetor</th>
-                        <th>Tambahan Modal</th>
-                        <th>Modal Sumbangan</th>
-                        <th>DSM Ekuitas</th>
-                        <th>Laba/Rugi Belum Direalisasi</th>
-                        <th>Surplus Revaluasi Aset Tetap</th>
-                        <th>Cadangan Tujuan</th>
-                        <th>Cadangan Umum</th>
-                        <th>Saldo Laba Belum Ditentukan</th>
-                        <th>Jumlah</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-sandi="10000000">
-                        <td>Saldo per 31 Des Tahun T-2</td>
-                        <td>10000000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10000000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10000000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="10100000">
-                        <td>Dividen</td>
-                        <td>10100000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10100000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="10200000">
-                        <td>Pembentukan Cadangan</td>
-                        <td>10200000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10200000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="10300000">
-                        <td>DSM Ekuitas</td>
-                        <td>10300000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10300000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="10400000">
-                        <td>Laba/Rugi yang Belum Direalisasi</td>
-                        <td>10400000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10400000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="10500000">
-                        <td>Revaluasi Aset Tetap</td>
-                        <td>10500000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10500000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="10600000">
-                        <td>Laba/Rugi Periode Berjalan</td>
-                        <td>10600000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_10600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_10600000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="19900000">
-                        <td>Pos Penambah/Pengurang Lainnya</td>
-                        <td>19900000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_19900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_19900000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="20000000">
-                        <td>Saldo per 31 Des Tahun T-1</td>
-                        <td>20000000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20000000" value="16000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20000000" value="144000"></td>
-                    </tr>
-                    <tr data-sandi="20100000">
-                        <td>Dividen</td>
-                        <td>20100000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20100000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20100000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="20200000">
-                        <td>Pembentukan Cadangan</td>
-                        <td>20200000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20200000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20200000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="20300000">
-                        <td>DSM Ekuitas</td>
-                        <td>20300000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20300000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20300000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="20400000">
-                        <td>Laba/Rugi yang Belum Direalisasi</td>
-                        <td>20400000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20400000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20400000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="20500000">
-                        <td>Revaluasi Aset Tetap</td>
-                        <td>20500000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20500000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20500000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="20600000">
-                        <td>Laba/Rugi Periode Berjalan</td>
-                        <td>20600000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_20600000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_20600000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="29900000">
-                        <td>Pos Penambah/Pengurang Lainnya</td>
-                        <td>29900000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_29900000" value="2000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_29900000" value="18000"></td>
-                    </tr>
-                    <tr data-sandi="30000000">
-                        <td>Saldo per 31 Des Tahun T</td>
-                        <td>30000000</td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_disetor_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="tambahan_modal_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="modal_sumbangan_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="dsm_ekuitas_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="laba_rugi_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="surplus_revaluasi_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_tujuan_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="cadangan_umum_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="saldo_laba_30000000" value="30000"></td>
-                        <td><input type="text" class="form-control form-control-sm" name="jumlah_30000000" value="270000"></td>
-                    </tr>
-                </tbody>
-            </table>
-            </form>
+            <div class="form-container">
+                <div class="table-responsive">
+                <form id="mainForm">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th>Pos</th>
+                                <th>Sandi Pos</th>
+                                <th>Modal Disetor</th>
+                                <th>Tambahan Modal</th>
+                                <th>Modal Sumbangan</th>
+                                <th>DSM Ekuitas</th>
+                                <th>Laba/Rugi Belum Direalisasi</th>
+                                <th>Surplus Revaluasi Aset Tetap</th>
+                                <th>Cadangan Tujuan</th>
+                                <th>Cadangan Umum</th>
+                                <th>Saldo Laba Belum Ditentukan</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-sandi="10000000">
+                                <td>Saldo per 31 Des Tahun T-2</td>
+                                <td>10000000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10000000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10000000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="10100000">
+                                <td>Dividen</td>
+                                <td>10100000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10100000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="10200000">
+                                <td>Pembentukan Cadangan</td>
+                                <td>10200000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10200000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="10300000">
+                                <td>DSM Ekuitas</td>
+                                <td>10300000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10300000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="10400000">
+                                <td>Laba/Rugi yang Belum Direalisasi</td>
+                                <td>10400000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10400000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="10500000">
+                                <td>Revaluasi Aset Tetap</td>
+                                <td>10500000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10500000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="10600000">
+                                <td>Laba/Rugi Periode Berjalan</td>
+                                <td>10600000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_10600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_10600000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="19900000">
+                                <td>Pos Penambah/Pengurang Lainnya</td>
+                                <td>19900000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_19900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_19900000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="20000000">
+                                <td>Saldo per 31 Des Tahun T-1</td>
+                                <td>20000000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20000000" value="16000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20000000" value="144000"></td>
+                            </tr>
+                            <tr data-sandi="20100000">
+                                <td>Dividen</td>
+                                <td>20100000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20100000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20100000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="20200000">
+                                <td>Pembentukan Cadangan</td>
+                                <td>20200000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20200000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20200000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="20300000">
+                                <td>DSM Ekuitas</td>
+                                <td>20300000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20300000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20300000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="20400000">
+                                <td>Laba/Rugi yang Belum Direalisasi</td>
+                                <td>20400000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20400000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20400000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="20500000">
+                                <td>Revaluasi Aset Tetap</td>
+                                <td>20500000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20500000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20500000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="20600000">
+                                <td>Laba/Rugi Periode Berjalan</td>
+                                <td>20600000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_20600000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_20600000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="29900000">
+                                <td>Pos Penambah/Pengurang Lainnya</td>
+                                <td>29900000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_29900000" value="2000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_29900000" value="18000"></td>
+                            </tr>
+                            <tr data-sandi="30000000">
+                                <td>Saldo per 31 Des Tahun T</td>
+                                <td>30000000</td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_disetor_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="tambahan_modal_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="modal_sumbangan_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="dsm_ekuitas_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="laba_rugi_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="surplus_revaluasi_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_tujuan_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="cadangan_umum_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="saldo_laba_30000000" value="30000"></td>
+                                <td><input type="text" class="form-control form-control-sm number-input" name="jumlah_30000000" value="270000"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
             <br>
         </div>
     </main>
 </div>
 
 <script>
-function filterSandi() {
-    var selected = document.getElementById("sandiFilter").value;
-    var rows = document.querySelectorAll("tbody tr");
+    function formatNumber(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value) {
+            input.value = new Intl.NumberFormat('id-ID').format(value);
+        }
+    }
 
-    rows.forEach(function(row) {
-        if (selected === "all") {
-            row.style.display = "";
-        } else {
-            if (row.getAttribute("data-sandi") === selected) {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.number-input').forEach(input => {
+            formatNumber(input);
+
+            input.addEventListener('blur', function() {
+                formatNumber(this);
+            });
+            input.addEventListener('focus', function() {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        });
+    });
+
+    // The filterSandi function has been commented out as per your request
+    /*
+    function filterSandi() {
+        var selected = document.getElementById("sandiFilter").value;
+        var rows = document.querySelectorAll("tbody tr");
+        rows.forEach(function(row) {
+            if (selected === "all") {
                 row.style.display = "";
             } else {
-                row.style.display = "none";
+                if (row.getAttribute("data-sandi") === selected) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
             }
-        }
-    });
-}
+        });
+    }
+    */
 </script>
 {% include 'lapbul_app/footer.html' %}
