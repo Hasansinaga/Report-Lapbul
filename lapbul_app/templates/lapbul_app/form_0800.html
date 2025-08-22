@@ -215,6 +215,8 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        pageLength: 15,
+        lengthChange: false,
         columnDefs: [
             {
                 targets: -1, // Last column (Aksi)
@@ -224,7 +226,6 @@ $(document).ready(function () {
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
