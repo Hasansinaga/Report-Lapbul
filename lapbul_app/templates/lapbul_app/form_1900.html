@@ -1,398 +1,544 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-    /* Define the sticky column styles */
-    .sticky-action-col {
-        position: sticky;
-        right: 0;
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        z-index: 5;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-        text-align: center;
-        min-width: 80px; 
-    }
-    
-    /* Small form controls in modal */
-    .modal-body .form-control-sm {
-        font-size: 0.875rem;
-        padding: 0.25rem 0.5rem;
-    }
-    
-    .modal-body .form-label {
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
-    }
+  /* Define the sticky column styles */
+  .sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 80px;
+  }
+
+  /* Small form controls in modal */
+  .modal-body .form-control-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .modal-body .form-label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  th[colspan] {
+    text-align: center !important;
+    vertical-align: middle !important;
+  }
 </style>
 
 <div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h5 class="mt-4">Form 1900 - Daftar Perbedaan Kualitas Produktif</h5>
-            <hr />
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">Form 1900 - Daftar Perbedaan Kualitas Produktif</h5>
+      <hr />
 
-            <!-- Tombol -->
-            <div class="d-flex justify-content-between mb-3">
-                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#form1900Modal">
-                    Tambah
-                </button>
+      <!-- Tombol -->
+      <div class="d-flex justify-content-between mb-3">
+        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary"
+          >Kembali</a
+        >
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-toggle="modal"
+          data-bs-target="#form1900Modal"
+        >
+          Tambah
+        </button>
+      </div>
+
+      <!-- Modal Input -->
+      <div
+        class="modal fade"
+        id="form1900Modal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white">
+                Form Input Daftar Perbedaan Kualitas Produktif
+              </h6>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+              ></button>
             </div>
 
-            <!-- Modal Input -->
-            <div class="modal fade" id="form1900Modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white">
-                                Form Input Daftar Perbedaan Kualitas Produktif
-                            </h6>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <div class="modal-body">
-                            <form id="form1900Form">
-                                {% csrf_token %}
-                                <div class="container-fluid">
-                                    <!-- Identitas -->
-                                    <h6 class="border-bottom pb-2">Identitas</h6>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Sandi Kantor</label>
-                                            <input type="text" name="sandi_kantor" class="form-control form-control-sm" maxlength="3" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">ID Pihak Lawan</label>
-                                            <input type="text" name="id_pihak_lawan" class="form-control form-control-sm" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Nomor Rekening</label>
-                                            <input type="text" name="no_rekening_bpr" class="form-control form-control-sm" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Jenis</label>
-                                            <select name="jenis" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Kredit</option>
-                                                <option value="2">2 - Surat Berharga</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Golongan Debitur</label>
-                                            <select name="gol_debitur" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Usaha Mikro</option>
-                                                <option value="2">2 - Usaha Kecil</option>
-                                                <option value="3">3 - Usaha Menengah</option>
-                                                <option value="4">4 - Usaha Besar</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Hubungan dengan Bank</label>
-                                            <select name="hubungan_bank" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Terkait</option>
-                                                <option value="2">2 - Tidak Terkait</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tanggal Hapus Buku</label>
-                                            <input type="date" name="tgl_hapus_buku" class="form-control form-control-sm" />
-                                        </div>
-                                    </div>
-
-                                    <!-- Pada BPR Bersangkutan -->
-                                    <h6 class="mt-4 border-bottom pb-2">Pada BPR Bersangkutan</h6>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Jenis Aset</label>
-                                            <select name="jenis_aset_bpr" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Surat Berharga</option>
-                                                <option value="2">2 - Kredit</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Jenis Penggunaan</label>
-                                            <select name="jenis_penggunaan_bpr" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="10">10 - Modal Kerja</option>
-                                                <option value="20">20 - Investasi</option>
-                                                <option value="30">30 - Konsumsi</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Plafon/Nominal</label>
-                                            <input type="number" name="plafon_bpr" class="form-control form-control-sm" min="0" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Baki Debet</label>
-                                            <input type="number" name="baki_debet_bpr" class="form-control form-control-sm" min="0" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tanggal Mulai</label>
-                                            <input type="date" name="tgl_mulai_bpr" class="form-control form-control-sm" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tanggal Jatuh Tempo</label>
-                                            <input type="date" name="tgl_jatuh_tempo_bpr" class="form-control form-control-sm" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Kualitas</label>
-                                            <select name="kualitas_bpr" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Lancar</option>
-                                                <option value="2">2 - Dalam Perhatian Khusus</option>
-                                                <option value="3">3 - Kurang Lancar</option>
-                                                <option value="4">4 - Diragukan</option>
-                                                <option value="5">5 - Macet</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pada BPR Lain -->
-                                    <h6 class="mt-4 border-bottom pb-2">Pada BPR Lain</h6>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Jenis Aset</label>
-                                            <select name="jenis_aset_lain" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Kredit</option>
-                                                <option value="2">2 - Surat Berharga</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Sandi BPR Lain</label>
-                                            <input type="text" name="sandi_bpr_lain" class="form-control form-control-sm" maxlength="3" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Jenis Penggunaan</label>
-                                            <select name="jenis_penggunaan_lain" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="10">10 - Modal Kerja</option>
-                                                <option value="20">20 - Investasi</option>
-                                                <option value="30">30 - Konsumsi</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Plafon/Nominal</label>
-                                            <input type="number" name="plafon_lain" class="form-control form-control-sm" min="0" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Baki Debet</label>
-                                            <input type="number" name="baki_debet_lain" class="form-control form-control-sm" min="0" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tanggal Mulai</label>
-                                            <input type="date" name="tgl_mulai_lain" class="form-control form-control-sm" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tanggal Jatuh Tempo</label>
-                                            <input type="date" name="tgl_jatuh_tempo_lain" class="form-control form-control-sm" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Kualitas</label>
-                                            <select name="kualitas_lain" class="form-control form-control-sm" required>
-                                                <option value="">-- Pilih --</option>
-                                                <option value="1">1 - Lancar</option>
-                                                <option value="2">2 - Dalam Perhatian Khusus</option>
-                                                <option value="3">3 - Kurang Lancar</option>
-                                                <option value="4">4 - Diragukan</option>
-                                                <option value="5">5 - Macet</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Keterangan -->
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <label class="form-label">Keterangan</label>
-                                            <textarea name="keterangan" class="form-control form-control-sm" rows="2"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="button" class="btn btn-primary" id="simpan1900">Simpan</button>
-                        </div>
+            <div class="modal-body">
+              <form id="form1900Form">
+                {% csrf_token %}
+                <div class="container-fluid">
+                  <!-- Identitas -->
+                  <h6 class="border-bottom pb-2">Identitas</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Sandi Kantor</label>
+                      <input
+                        type="text"
+                        name="sandi_kantor"
+                        class="form-control form-control-sm"
+                        maxlength="3"
+                        required
+                      />
                     </div>
+                    <div class="col-md-4">
+                      <label class="form-label">ID Pihak Lawan</label>
+                      <input
+                        type="text"
+                        name="id_pihak_lawan"
+                        class="form-control form-control-sm"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Nomor Rekening</label>
+                      <input
+                        type="text"
+                        name="no_rekening_bpr"
+                        class="form-control form-control-sm"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Jenis</label>
+                      <select
+                        name="jenis"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Kredit</option>
+                        <option value="2">2 - Surat Berharga</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Golongan Debitur</label>
+                      <select
+                        name="gol_debitur"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Usaha Mikro</option>
+                        <option value="2">2 - Usaha Kecil</option>
+                        <option value="3">3 - Usaha Menengah</option>
+                        <option value="4">4 - Usaha Besar</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Hubungan dengan Bank</label>
+                      <select
+                        name="hubungan_bank"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Terkait</option>
+                        <option value="2">2 - Tidak Terkait</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Tanggal Hapus Buku</label>
+                      <input
+                        type="date"
+                        name="tgl_hapus_buku"
+                        class="form-control form-control-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Pada BPR Bersangkutan -->
+                  <h6 class="mt-4 border-bottom pb-2">Pada BPR Bersangkutan</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Jenis Aset</label>
+                      <select
+                        name="jenis_aset_bpr"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Surat Berharga</option>
+                        <option value="2">2 - Kredit</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Jenis Penggunaan</label>
+                      <select
+                        name="jenis_penggunaan_bpr"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="10">10 - Modal Kerja</option>
+                        <option value="20">20 - Investasi</option>
+                        <option value="30">30 - Konsumsi</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Plafon/Nominal</label>
+                      <input
+                        type="number"
+                        name="plafon_bpr"
+                        class="form-control form-control-sm"
+                        min="0"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Baki Debet</label>
+                      <input
+                        type="number"
+                        name="baki_debet_bpr"
+                        class="form-control form-control-sm"
+                        min="0"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Tanggal Mulai</label>
+                      <input
+                        type="date"
+                        name="tgl_mulai_bpr"
+                        class="form-control form-control-sm"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Tanggal Jatuh Tempo</label>
+                      <input
+                        type="date"
+                        name="tgl_jatuh_tempo_bpr"
+                        class="form-control form-control-sm"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Kualitas</label>
+                      <select
+                        name="kualitas_bpr"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Lancar</option>
+                        <option value="2">2 - Dalam Perhatian Khusus</option>
+                        <option value="3">3 - Kurang Lancar</option>
+                        <option value="4">4 - Diragukan</option>
+                        <option value="5">5 - Macet</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Pada BPR Lain -->
+                  <h6 class="mt-4 border-bottom pb-2">Pada BPR Lain</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Jenis Aset</label>
+                      <select
+                        name="jenis_aset_lain"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Kredit</option>
+                        <option value="2">2 - Surat Berharga</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Sandi BPR Lain</label>
+                      <input
+                        type="text"
+                        name="sandi_bpr_lain"
+                        class="form-control form-control-sm"
+                        maxlength="3"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Jenis Penggunaan</label>
+                      <select
+                        name="jenis_penggunaan_lain"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="10">10 - Modal Kerja</option>
+                        <option value="20">20 - Investasi</option>
+                        <option value="30">30 - Konsumsi</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Plafon/Nominal</label>
+                      <input
+                        type="number"
+                        name="plafon_lain"
+                        class="form-control form-control-sm"
+                        min="0"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Baki Debet</label>
+                      <input
+                        type="number"
+                        name="baki_debet_lain"
+                        class="form-control form-control-sm"
+                        min="0"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Tanggal Mulai</label>
+                      <input
+                        type="date"
+                        name="tgl_mulai_lain"
+                        class="form-control form-control-sm"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Tanggal Jatuh Tempo</label>
+                      <input
+                        type="date"
+                        name="tgl_jatuh_tempo_lain"
+                        class="form-control form-control-sm"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Kualitas</label>
+                      <select
+                        name="kualitas_lain"
+                        class="form-control form-control-sm"
+                        required
+                      >
+                        <option value="">-- Pilih --</option>
+                        <option value="1">1 - Lancar</option>
+                        <option value="2">2 - Dalam Perhatian Khusus</option>
+                        <option value="3">3 - Kurang Lancar</option>
+                        <option value="4">4 - Diragukan</option>
+                        <option value="5">5 - Macet</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Keterangan -->
+                  <div class="row mb-3">
+                    <div class="col-md-12">
+                      <label class="form-label">Keterangan</label>
+                      <textarea
+                        name="keterangan"
+                        class="form-control form-control-sm"
+                        rows="2"
+                      ></textarea>
+                    </div>
+                  </div>
                 </div>
+              </form>
             </div>
 
-            <!-- Table -->
-            <div class="table-responsive">
-                <table id="datatables1900" class="table table-bordered table-striped nowrap w-100">
-                    <thead>
-                        <tr class="text-center align-middle">
-                            <th rowspan="2">Sandi Kantor</th>
-                            <th rowspan="2">ID Pihak Lawan</th>
-                            <th colspan="8">Pada BPR Bersangkutan</th>
-                            <th colspan="8">Pada BPR Lain</th>
-                            <th rowspan="2">Keterangan</th>
-                            <th rowspan="2" class="sticky-action-col text-center">Aksi</th>
-                        </tr>
-                        <tr class="text-center align-middle">
-                            <!-- BPR Bersangkutan -->
-                            <th>Jenis Aset</th>
-                            <th>Nomor Rekening</th>
-                            <th>Jenis Penggunaan</th>
-                            <th>Plafon/Nominal</th>
-                            <th>Baki Debet</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Jatuh Tempo</th>
-                            <th>Kualitas</th>
-                            <!-- BPR Lain -->
-                            <th>Jenis Aset</th>
-                            <th>Sandi BPR Lain</th>
-                            <th>Jenis Penggunaan</th>
-                            <th>Plafon/Nominal</th>
-                            <th>Baki Debet</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Jatuh Tempo</th>
-                            <th>Kualitas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>Lawan</td>
-                            <!-- Pada BPR Bersangkutan -->
-                            <td>1 (Surat Berharga)</td>
-                            <td>NoRek1</td>
-                            <td>10 (Modal kerja)</td>
-                            <td>1.000</td>
-                            <td>1.000</td>
-                            <td>20240101</td>
-                            <td>20240505</td>
-                            <td>1 (Lancar)</td>
-                            <!-- Pada BPR Lain -->
-                            <td>1 (Kredit)</td>
-                            <td>213</td>
-                            <td>10 (Modal kerja)</td>
-                            <td>100.000</td>
-                            <td>100.000</td>
-                            <td>20240101</td>
-                            <td>20240101</td>
-                            <td>1 (Lancar)</td>
-                            <td>Keterangan</td>
-                            <td class="sticky-action-col text-center">
-                                <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Tutup
+              </button>
+              <button type="button" class="btn btn-primary" id="simpan1900">
+                Simpan
+              </button>
             </div>
+          </div>
         </div>
-    </main>
+      </div>
+
+      <!-- Table -->
+      <div class="table-responsive">
+        <table
+          id="datatables1900"
+          class="table table-bordered table-striped nowrap w-100"
+        >
+          <thead>
+            <tr class="text-center align-middle">
+              <th rowspan="2">Sandi Kantor</th>
+              <th rowspan="2">ID Pihak Lawan</th>
+              <th colspan="8">Pada BPR Bersangkutan</th>
+              <th colspan="8">Pada BPR Lain</th>
+              <th rowspan="2">Keterangan</th>
+              <th rowspan="2" class="sticky-action-col text-center">Aksi</th>
+            </tr>
+            <tr class="text-center align-middle">
+              <!-- BPR Bersangkutan -->
+              <th>Jenis Aset</th>
+              <th>Nomor Rekening</th>
+              <th>Jenis Penggunaan</th>
+              <th>Plafon/Nominal</th>
+              <th>Baki Debet</th>
+              <th>Tanggal Mulai</th>
+              <th>Tanggal Jatuh Tempo</th>
+              <th>Kualitas</th>
+              <!-- BPR Lain -->
+              <th>Jenis Aset</th>
+              <th>Sandi BPR Lain</th>
+              <th>Jenis Penggunaan</th>
+              <th>Plafon/Nominal</th>
+              <th>Baki Debet</th>
+              <th>Tanggal Mulai</th>
+              <th>Tanggal Jatuh Tempo</th>
+              <th>Kualitas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>Lawan</td>
+              <!-- Pada BPR Bersangkutan -->
+              <td>1 (Surat Berharga)</td>
+              <td>NoRek1</td>
+              <td>10 (Modal kerja)</td>
+              <td>1.000</td>
+              <td>1.000</td>
+              <td>20240101</td>
+              <td>20240505</td>
+              <td>1 (Lancar)</td>
+              <!-- Pada BPR Lain -->
+              <td>1 (Kredit)</td>
+              <td>213</td>
+              <td>10 (Modal kerja)</td>
+              <td>100.000</td>
+              <td>100.000</td>
+              <td>20240101</td>
+              <td>20240101</td>
+              <td>1 (Lancar)</td>
+              <td>Keterangan</td>
+              <td class="sticky-action-col text-center">
+                <a href="#" class="text-danger delete"
+                  ><i class="fas fa-trash-alt"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
 </div>
 
 <script>
-$(document).ready(function () {
+  $(document).ready(function () {
     let table = $("#datatables1900").DataTable({
-        scrollX: true,
-        responsive: false,
-        columnDefs: [
-            { 
-                targets: -1, 
-                orderable: false, 
-                width: "80px",
-                className: "sticky-action-col"
-            }
-        ],
-        language: {
-            emptyTable: "Tidak ada data tersedia",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-            infoFiltered: "(difilter dari total _MAX_ data)",
-            lengthMenu: "Tampilkan _MENU_ data",
-            loadingRecords: "Memuat...",
-            processing: "Memproses...",
-            search: "Cari:",
-            zeroRecords: "Tidak ditemukan data yang sesuai",
-            paginate: {
-                first: "Pertama",
-                last: "Terakhir",
-                next: "Berikutnya",
-                previous: "Sebelumnya"
-            }
-        }
+      scrollX: true,
+      responsive: false,
+      columnDefs: [
+        {
+          targets: -1,
+          orderable: false,
+          width: "80px",
+          className: "sticky-action-col",
+        },
+      ],
+      language: {
+        emptyTable: "Tidak ada data tersedia",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+        infoFiltered: "(difilter dari total _MAX_ data)",
+        lengthMenu: "Tampilkan _MENU_ data",
+        loadingRecords: "Memuat...",
+        processing: "Memproses...",
+        search: "Cari:",
+        zeroRecords: "Tidak ditemukan data yang sesuai",
+        paginate: {
+          first: "Pertama",
+          last: "Terakhir",
+          next: "Berikutnya",
+          previous: "Sebelumnya",
+        },
+      },
     });
 
     // Format tanggal ke YYYYMMDD
     function formatDate(dateString) {
-        if (!dateString) return '';
-        return dateString.replace(/-/g, '');
+      if (!dateString) return "";
+      return dateString.replace(/-/g, "");
     }
 
     // Format number dengan thousand separator
     function formatNumber(num) {
-        return new Intl.NumberFormat('id-ID').format(num);
+      return new Intl.NumberFormat("id-ID").format(num);
     }
 
     // Simpan data
     $("#simpan1900").on("click", function () {
-        if (!$("#form1900Form")[0].checkValidity()) {
-            $("#form1900Form")[0].reportValidity();
-            return;
-        }
+      if (!$("#form1900Form")[0].checkValidity()) {
+        $("#form1900Form")[0].reportValidity();
+        return;
+      }
 
-        const formData = new FormData($("#form1900Form")[0]);
-        
-        table.row.add([
-            formData.get('sandi_kantor'),
-            formData.get('id_pihak_lawan'),
-            // BPR Bersangkutan
-            formData.get('jenis_aset_bpr'),
-            formData.get('no_rekening_bpr'),
-            formData.get('jenis_penggunaan_bpr'),
-            formatNumber(formData.get('plafon_bpr')),
-            formatNumber(formData.get('baki_debet_bpr')),
-            formatDate(formData.get('tgl_mulai_bpr')),
-            formatDate(formData.get('tgl_jatuh_tempo_bpr')),
-            formData.get('kualitas_bpr'),
-            // BPR Lain
-            formData.get('jenis_aset_lain'),
-            formData.get('sandi_bpr_lain'),
-            formData.get('jenis_penggunaan_lain'),
-            formatNumber(formData.get('plafon_lain')),
-            formatNumber(formData.get('baki_debet_lain')),
-            formatDate(formData.get('tgl_mulai_lain')),
-            formatDate(formData.get('tgl_jatuh_tempo_lain')),
-            formData.get('kualitas_lain'),
-            formData.get('keterangan') || '-',
-            '<a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>'
-        ]).draw();
+      const formData = new FormData($("#form1900Form")[0]);
 
-        $("#form1900Form")[0].reset();
-        $("#form1900Modal").modal("hide");
+      table.row
+        .add([
+          formData.get("sandi_kantor"),
+          formData.get("id_pihak_lawan"),
+          // BPR Bersangkutan
+          formData.get("jenis_aset_bpr"),
+          formData.get("no_rekening_bpr"),
+          formData.get("jenis_penggunaan_bpr"),
+          formatNumber(formData.get("plafon_bpr")),
+          formatNumber(formData.get("baki_debet_bpr")),
+          formatDate(formData.get("tgl_mulai_bpr")),
+          formatDate(formData.get("tgl_jatuh_tempo_bpr")),
+          formData.get("kualitas_bpr"),
+          // BPR Lain
+          formData.get("jenis_aset_lain"),
+          formData.get("sandi_bpr_lain"),
+          formData.get("jenis_penggunaan_lain"),
+          formatNumber(formData.get("plafon_lain")),
+          formatNumber(formData.get("baki_debet_lain")),
+          formatDate(formData.get("tgl_mulai_lain")),
+          formatDate(formData.get("tgl_jatuh_tempo_lain")),
+          formData.get("kualitas_lain"),
+          formData.get("keterangan") || "-",
+          '<a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>',
+        ])
+        .draw();
+
+      $("#form1900Form")[0].reset();
+      $("#form1900Modal").modal("hide");
     });
 
     // Hapus data
     $("#datatables1900 tbody").on("click", ".delete", function (e) {
-        e.preventDefault();
-        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            table.row($(this).parents("tr")).remove().draw();
-        }
+      e.preventDefault();
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+        table.row($(this).parents("tr")).remove().draw();
+      }
     });
-});
+  });
 </script>
 {% include 'lapbul_app/footer.html' %}
