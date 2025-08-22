@@ -1,141 +1,250 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(1),
+table th:nth-child(1),
+table td:nth-child(4),
+table th:nth-child(4),
+table td:nth-child(5),
+table th:nth-child(5),
+table td:nth-child(6),
+table th:nth-child(6),
+table td:nth-child(7),
+table th:nth-child(7),
+table td:nth-child(8),
+table th:nth-child(8),
+table td:nth-child(9),
+table th:nth-child(9) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0800 - Daftar Aset Tetap</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0500Modal">Tambah</button>
-            <br><br>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0800Modal">Tambah</button>
+            </div>
+            
+            <br>
             <!-- Modal structure -->
-            <div class="modal fade" id="form0500Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0500ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+            <div class="modal fade" id="form0800Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0800ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     
                         <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0500ModalLabel">Daftar Aset Tetap</h6>
+                            <h6 class="modal-title text-white" id="form0800ModalLabel">Form Input Daftar Aset Tetap</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form using <table> with Bootstrap -->
+                            <!-- Input Form -->
                             <form>
-                                <div class="row">
-                                    <div class="col-12 mb-3">
-                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
-                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="jenis_aset" class="form-label">Jenis Aset</label>
-                                        <input type="text" class="form-control" id="jenis_aset" name="jenis_aset" maxlength="50">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="sumber_perolehan" class="form-label">Sumber Perolehan</label>
-                                        <input type="text" class="form-control" id="sumber_perolehan" name="sumber_perolehan" maxlength="50">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="status_aset" class="form-label">Status Aset</label>
-                                        <select class="form-control" id="status_aset" name="status_aset">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="aktif">Aktif</option>
-                                            <option value="tidak_aktif">Tidak Aktif</option>
-                                            <option value="dijual">Dijual</option>
-                                        </select>
+                                <!-- Nav Tabs -->
+                                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
+                                            type="button" role="tab" aria-controls="tab1" aria-selected="true">
+                                            Tab 1
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
+                                            type="button" role="tab" aria-controls="tab2" aria-selected="false">
+                                            Tab 2
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3"
+                                            type="button" role="tab" aria-controls="tab3" aria-selected="false">
+                                            Tab 3
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab Content -->
+                                <div class="tab-content mt-3" id="formTabContent">
+                                    <!-- Tab 1: Basic Info -->
+                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                                <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="jenis_aset" class="form-label">Jenis Aset</label>
+                                                <select class="form-select" id="jenis_aset" name="jenis_aset">
+                                                    <option value="">-- Pilih Jenis Aset --</option>
+                                                    <option value="101">101 (Aset Tetap dan Inventaris : Tanah)</option>
+                                                    <option value="102">102 (Aset Tetap dan Inventaris : Gedung)</option>
+                                                    <option value="103">103 (Aset Tetap dan Inventaris : Kendaraan)</option>
+                                                    <option value="104">104 (Aset Tetap dan Inventaris : Peralatan)</option>
+                                                    <option value="105">105 (Aset Tetap dan Inventaris : Lainnya)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sumber_perolehan" class="form-label">Sumber Perolehan</label>
+                                                <select class="form-select" id="sumber_perolehan" name="sumber_perolehan">
+                                                    <option value="">-- Pilih Sumber Perolehan --</option>
+                                                    <option value="01">01 (Sewa Pembiayaan)</option>
+                                                    <option value="02">02 (Pembelian)</option>
+                                                    <option value="03">03 (Hibah)</option>
+                                                    <option value="04">04 (Penyitaan)</option>
+                                                    <option value="05">05 (Lainnya)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="status_aset" class="form-label">Status Aset</label>
+                                                <select class="form-select" id="status_aset" name="status_aset">
+                                                    <option value="">-- Pilih Status --</option>
+                                                    <option value="1">1 (Dijaminkan)</option>
+                                                    <option value="2">2 (Tidak Dijaminkan)</option>
+                                                    <option value="3">3 (Rusak)</option>
+                                                    <option value="4">4 (Dijual)</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="col-12 mb-3">
-                                        <label for="biaya_perolehan" class="form-label">Biaya Perolehan</label>
-                                        <input type="number" class="form-control" id="biaya_perolehan" name="biaya_perolehan">
+                                    <!-- Tab 2: Financial Info -->
+                                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="biaya_perolehan" class="form-label">Biaya Perolehan</label>
+                                                <input type="number" class="form-control" id="biaya_perolehan" name="biaya_perolehan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="akumulasi_penyusutan" class="form-label">Akumulasi Penyusutan/Amortisasi</label>
+                                                <input type="number" class="form-control" id="akumulasi_penyusutan" name="akumulasi_penyusutan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="akumulasi_kerugian" class="form-label">Akumulasi Kerugian Penurunan Nilai</label>
+                                                <input type="number" class="form-control" id="akumulasi_kerugian" name="akumulasi_kerugian">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="nilai_tercatat" class="form-label">Nilai Tercatat</label>
+                                                <input type="number" class="form-control" id="nilai_tercatat" name="nilai_tercatat">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="akumulasi_penyusutan" class="form-label">Akumulasi Penyusutan/Amortisasi</label>
-                                        <input type="number" class="form-control" id="akumulasi_penyusutan" name="akumulasi_penyusutan">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="akumulasi_kerugian" class="form-label">Akumulasi Kerugian Penurunan Nilai</label>
-                                        <input type="number" class="form-control" id="akumulasi_kerugian" name="akumulasi_kerugian">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="nilai_tercatat" class="form-label">Nilai Tercatat</label>
-                                        <input type="number" class="form-control" id="nilai_tercatat" name="nilai_tercatat">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="metode_pengukuran" class="form-label">Metode Pengukuran</label>
-                                        <select class="form-control" id="metode_pengukuran" name="metode_pengukuran">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="biaya">Biaya</option>
-                                            <option value="nilai_wajar">Nilai Wajar</option>
-                                        </select>
+
+                                    <!-- Tab 3: Measurement -->
+                                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="metode_pengukuran" class="form-label">Metode Pengukuran</label>
+                                                <select class="form-select" id="metode_pengukuran" name="metode_pengukuran">
+                                                    <option value="">-- Pilih Metode --</option>
+                                                    <option value="1">1 (Individual)</option>
+                                                    <option value="2">2 (Kelompok)</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                             <!-- End Input Form -->
                         </div>
+                        
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
-                    <th>Sandi Kantor</th>
-                    <th>Jenis Aset</th>
-                    <th>Sumber Perolehan</th>
-                    <th>Status Aset</th>
-                    <th>Biaya Perolehan</th>
-                    <th>Akumulasi Penyusutan/Amortisasi</th>
-                    <th>Akumulasi Kerugian Penurunan Nilai</th>
-                    <th>Nilai Tercatat</th>
-                    <th>Metode Pengukuran</th>
-                    <th>Aksi</th>
+                        <th class="text-center">Sandi Kantor</th>
+                        <th>Jenis Aset</th>
+                        <th>Sumber Perolehan</th>
+                        <th class="text-center">Status Aset</th>
+                        <th class="text-center">Biaya Perolehan</th>
+                        <th class="text-center">Akumulasi Penyusutan/Amortisasi</th>
+                        <th class="text-center">Akumulasi Kerugian Penurunan Nilai</th>
+                        <th class="text-center">Nilai Tercatat</th>
+                        <th class="text-center">Metode Pengukuran</th>
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                </thead>
+                <tbody>
                     <tr>
                         <td>001</td>
                         <td>101 (Aset Tetap dan Inventaris : Tanah)</td>
                         <td>01 (Sewa Pembiayaan)</td>
-                        <td>1 (Dijaminkan)</td>
-                        <td>4,000,000</td>
-                        <td>200,000</td>
-                        <td>200,000</td>
-                        <td>3,600,000</td>
-                        <td>1 (Individual)</td>
-                        <td>
-                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        <td>1</td>
+                        <td>4000000</td>
+                        <td>200000</td>
+                        <td>200000</td>
+                        <td>3600000</td>
+                        <td>1</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0800Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
-                    <!-- Tambahkan baris lainnya di sini -->
-                    </tbody>
+                </tbody>
             </table>
-            <!-- Table -->
+            </div>
+            </div>
         </div>
     </main>
 </div>
 <script>
 $(document).ready(function () {
     $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
     });
 });
+
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
-
-        // Isi form dengan data yang dipilih
-        const form = document.querySelector('#form0500Modal form');
-            
-        form.reset();
-
+        const form = document.querySelector('#form0800Modal form');
+        if (form) form.reset();
     }
 
     if (e.target.closest('.edit')) {
@@ -143,26 +252,22 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-        // Isi form dengan data yang dipilih
-        document.getElementById("sandi_kantor").value = cells[0].textContent;
-        document.getElementById("jenis_aset").value = cells[1].textContent;
-        document.getElementById("sumber_perolehan").value = cells[2].textContent;
-        document.getElementById("status_aset").value = cells[3].textContent;
-        document.getElementById("biaya_perolehan").value = cells[4].textContent;
-        document.getElementById("akumulasi_penyusutan").value = cells[5].textContent;
-        document.getElementById("akumulasi_kerugian").value = cells[6].textContent;
-        document.getElementById("nilai_tercatat").value = cells[7].textContent;
-        document.getElementById("metode_pengukuran").value = cells[8].textContent;
-            }
+        // Fill modal form (excluding the last action column)
+        document.getElementById("sandi_kantor").value = cells[0].textContent.trim();
+        document.getElementById("jenis_aset").value = cells[1].textContent.trim();
+        document.getElementById("sumber_perolehan").value = cells[2].textContent.trim();
+        document.getElementById("status_aset").value = cells[3].textContent.trim();
+        document.getElementById("biaya_perolehan").value = cells[4].textContent.trim();
+        document.getElementById("akumulasi_penyusutan").value = cells[5].textContent.trim();
+        document.getElementById("akumulasi_kerugian").value = cells[6].textContent.trim();
+        document.getElementById("nilai_tercatat").value = cells[7].textContent.trim();
+        document.getElementById("metode_pengukuran").value = cells[8].textContent.trim();
+    }
 
     if (e.target.closest('.delete')) {
         e.preventDefault();
         const row = e.target.closest('tr');
-        
-        // Tampilkan dialog konfirmasi
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        
-        if (confirmDelete) {
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
             row.remove();
         }
     }

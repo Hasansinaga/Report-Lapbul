@@ -1,14 +1,50 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    /* Use rgba for a semi-transparent background to prevent text from overlapping */
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu seperti form_1400 */
+table td:first-child,
+table th:first-child,
+table td:nth-child(2),
+table th:nth-child(2),
+table td:nth-child(4),
+table th:nth-child(4) {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Center alignment untuk kolom ID dan kode */
+table td:nth-child(15),
+table th:nth-child(15),
+table td:nth-child(16),
+table th:nth-child(16),
+table td:nth-child(17),
+table th:nth-child(17) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0400 - Daftar Surat Berharga</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0400Modal">Tambah</button><br><br>
-            
-            <!-- Modal structure -->
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0400Modal">Tambah</button>
+            </div>
+            <br>
             <div class="modal fade" id="form0400Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0400ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -19,213 +55,520 @@
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form -->
                             <form>
-                                <div class="row">
-                                    <div class="col-md-2 mb-3">
-                                        <label for="flag_detail" class="form-label">Flag Detail</label>
-                                        <input type="text" class="form-control" id="flag_detail" name="flag_detail" maxlength="1">
+                                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
+                                            type="button" role="tab" aria-controls="basic" aria-selected="true">
+                                            Informasi Dasar
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="financial-tab" data-bs-toggle="tab" data-bs-target="#financial"
+                                            type="button" role="tab" aria-controls="financial" aria-selected="false">
+                                            Informasi Keuangan
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="rating-tab" data-bs-toggle="tab" data-bs-target="#rating"
+                                            type="button" role="tab" aria-controls="rating" aria-selected="false">
+                                            Pemeringkatan
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="classification-tab" data-bs-toggle="tab" data-bs-target="#classification"
+                                            type="button" role="tab" aria-controls="classification" aria-selected="false">
+                                            Klasifikasi & CKPN
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content mt-3" id="formTabContent">
+                                    <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="flag_detail" class="form-label">Flag Detail</label>
+                                                <input type="text" class="form-control" id="flag_detail" name="flag_detail">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                                <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="klasifikasi" class="form-label">Klasifikasi</label>
+                                                <select class="form-select" id="klasifikasi" name="klasifikasi">
+                                                    <option value="">Pilih Klasifikasi</option>
+                                                    <option value="1">1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</option>
+                                                    <option value="2">2 (Diukur pada Nilai Wajar Melalui Penghasilan Komprehensif Lain)</option>
+                                                    <option value="3">3 (Diukur pada Biaya Perolehan Diamortisasi)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="suku_bunga" class="form-label">Suku Bunga</label>
+                                                <input type="number" class="form-control" id="suku_bunga" name="suku_bunga" step="0.01">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                                                <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tanggal_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
+                                                <input type="date" class="form-control" id="tanggal_jatuh_tempo" name="tanggal_jatuh_tempo">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="nomor_surat_berharga" class="form-label">Nomor Surat Berharga</label>
+                                                <input type="text" class="form-control" id="nomor_surat_berharga" name="nomor_surat_berharga">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
+                                                <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="jenis" class="form-label">Jenis</label>
+                                                <select class="form-select" id="jenis" name="jenis">
+                                                    <option value="">Pilih Jenis</option>
+                                                    <option value="1">1 (Surat Berharga yang diterbitkan Bank Indonesia)</option>
+                                                    <option value="2">2 (Surat Berharga yang diterbitkan Pemerintah)</option>
+                                                    <option value="3">3 (Surat Berharga yang diterbitkan Pemerintah Daerah)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="kualitas" class="form-label">Kualitas</label>
+                                                <select class="form-select" id="kualitas" name="kualitas">
+                                                    <option value="">Pilih Kualitas</option>
+                                                    <option value="1">1 (Lancar)</option>
+                                                    <option value="3">3 (Kurang Lancar)</option>
+                                                    <option value="5">5 (Macet)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tanggal_penerbitan" class="form-label">Tanggal Penerbitan</label>
+                                                <input type="date" class="form-control" id="tanggal_penerbitan" name="tanggal_penerbitan">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-2 mb-3">
-                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
-                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="10">
+
+                                    <div class="tab-pane fade" id="financial" role="tabpanel" aria-labelledby="financial-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="nominal" class="form-label">Nominal</label>
+                                                <input type="number" class="form-control" id="nominal" name="nominal">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="nominal_dijaminkan" class="form-label">Nominal yang Dijaminkan</label>
+                                                <input type="number" class="form-control" id="nominal_dijaminkan" name="nominal_dijaminkan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="biaya_perolehan" class="form-label">Biaya Perolehan</label>
+                                                <input type="number" class="form-control" id="biaya_perolehan" name="biaya_perolehan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="premium_diskonto" class="form-label">Premium/Diskonto Belum Diamortisasi</label>
+                                                <input type="number" class="form-control" id="premium_diskonto" name="premium_diskonto">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="biaya_transaksi" class="form-label">Biaya Transaksi Belum Diamortisasi</label>
+                                                <input type="number" class="form-control" id="biaya_transaksi" name="biaya_transaksi">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="laba_rugi_belum_direalisasi" class="form-label">Laba/Rugi Belum Direalisasi</label>
+                                                <input type="number" class="form-control" id="laba_rugi_belum_direalisasi" name="laba_rugi_belum_direalisasi">
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="biaya_perolehan_diamortisasi" class="form-label">Biaya Perolehan Diamortisasi/Nilai Wajar</label>
+                                                <input type="number" class="form-control" id="biaya_perolehan_diamortisasi" name="biaya_perolehan_diamortisasi">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-2 mb-3">
-                                        <label for="klasifikasi" class="form-label">Klasifikasi</label>
-                                        <input type="text" class="form-control" id="klasifikasi" name="klasifikasi" maxlength="10">
+
+                                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cadangan_kerugian" class="form-label">Cadangan Kerugian Penurunan Nilai</label>
+                                                <input type="number" class="form-control" id="cadangan_kerugian" name="cadangan_kerugian">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="lembaga_pemeringkat" class="form-label">Lembaga Pemeringkat</label>
+                                                <select class="form-select" id="lembaga_pemeringkat" name="lembaga_pemeringkat">
+                                                    <option value="">Pilih Lembaga Pemeringkat</option>
+                                                    <option value="1">1 (Moody's Investor Service)</option>
+                                                    <option value="2">2 (Standard and Poor's)</option>
+                                                    <option value="3">3 (Fitch Rating Internasional)</option>
+                                                    <option value="4">4 (Pemeringkat Efek Indonesia (Pefindo))</option>
+                                                    <option value="5">5 (Fitch Rating Indonesia)</option>
+                                                    <option value="9">9 (Tidak memiliki peringkat atau memiliki peringkat yang diterbitkan oleh lembaga pemeringkat yang tidak diakui Otoritas Jasa Keuangan)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="peringkat_surat_berharga" class="form-label">Peringkat Surat Berharga</label>
+                                                <select class="form-select" id="peringkat_surat_berharga" name="peringkat_surat_berharga">
+                                                    <option value="">Pilih Peringkat</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <option value="04">04</option>
+                                                    <option value="05">05</option>
+                                                    <option value="06">06</option>
+                                                    <option value="07">07</option>
+                                                    <option value="08">08</option>
+                                                    <option value="09">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="61">61</option>
+                                                    <option value="62">62</option>
+                                                    <option value="63">63</option>
+                                                    <option value="64">64</option>
+                                                    <option value="65">65</option>
+                                                    <option value="66">66</option>
+                                                    <option value="67">67</option>
+                                                    <option value="68">68</option>
+                                                    <option value="69">69</option>
+                                                    <option value="70">70</option>
+                                                    <option value="71">71</option>
+                                                    <option value="72">72</option>
+                                                    <option value="73">73</option>
+                                                    <option value="74">74</option>
+                                                    <option value="75">75</option>
+                                                    <option value="76">76</option>
+                                                    <option value="77">77</option>
+                                                    <option value="78">78</option>
+                                                    <option value="79">79</option>
+                                                    <option value="80">80</option>
+                                                    <option value="81">81</option>
+                                                    <option value="82">82</option>
+                                                    <option value="83">83</option>
+                                                    <option value="84">84</option>
+                                                    <option value="85">85</option>
+                                                    <option value="86">86</option>
+                                                    <option value="87">87</option>
+                                                    <option value="88">88</option>
+                                                    <option value="89">89</option>
+                                                    <option value="90">90</option>
+                                                    <option value="91">91</option>
+                                                    <option value="92">92</option>
+                                                    <option value="93">93</option>
+                                                    <option value="94">94</option>
+                                                    <option value="95">95</option>
+                                                    <option value="96">96</option>
+                                                    <option value="97">97</option>
+                                                    <option value="98">98</option>
+                                                    <option value="99">99</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tanggal_pemeringkatan" class="form-label">Tanggal Pemeringkatan</label>
+                                                <input type="date" class="form-control" id="tanggal_pemeringkatan" name="tanggal_pemeringkatan">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="suku_bunga" class="form-label">Suku Bunga</label>
-                                        <input type="number" class="form-control" id="suku_bunga" name="suku_bunga" step="0.01">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
-                                        <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tanggal_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
-                                        <input type="date" class="form-control" id="tanggal_jatuh_tempo" name="tanggal_jatuh_tempo">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kategori_debitor" class="form-label">Kategori Debitor</label>
-                                        <input type="text" class="form-control" id="kategori_debitor" name="kategori_debitor" maxlength="10">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="jenis_penggunaan" class="form-label">Jenis Penggunaan</label>
-                                        <input type="text" class="form-control" id="jenis_penggunaan" name="jenis_penggunaan" maxlength="10">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="orientasi_penggunaan" class="form-label">Orientasi Penggunaan</label>
-                                        <input type="text" class="form-control" id="orientasi_penggunaan" name="orientasi_penggunaan" maxlength="10">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="sektor_ekonomi" class="form-label">Sektor Ekonomi</label>
-                                        <input type="text" class="form-control" id="sektor_ekonomi" name="sektor_ekonomi" maxlength="10">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kode_lokasi" class="form-label">Kode Lokasi</label>
-                                        <input type="text" class="form-control" id="kode_lokasi" name="kode_lokasi" maxlength="10">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kode_valuta" class="form-label">Kode Valuta</label>
-                                        <input type="text" class="form-control" id="kode_valuta" name="kode_valuta" maxlength="3">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="sandi_kolektibilitas" class="form-label">Sandi Kolektibilitas</label>
-                                        <input type="text" class="form-control" id="sandi_kolektibilitas" name="sandi_kolektibilitas" maxlength="1">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kode_sebab_macet" class="form-label">Kode Sebab Macet</label>
-                                        <input type="text" class="form-control" id="kode_sebab_macet" name="kode_sebab_macet" maxlength="2">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tunggakan_pokok" class="form-label">Tunggakan Pokok</label>
-                                        <input type="number" class="form-control" id="tunggakan_pokok" name="tunggakan_pokok">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tunggakan_bunga" class="form-label">Tunggakan Bunga</label>
-                                        <input type="number" class="form-control" id="tunggakan_bunga" name="tunggakan_bunga">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="baki_debet" class="form-label">Baki Debet</label>
-                                        <input type="number" class="form-control" id="baki_debet" name="baki_debet">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="nilai_agunan" class="form-label">Nilai Agunan</label>
-                                        <input type="number" class="form-control" id="nilai_agunan" name="nilai_agunan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kode_kondisi" class="form-label">Kode Kondisi</label>
-                                        <input type="text" class="form-control" id="kode_kondisi" name="kode_kondisi" maxlength="1">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tanggal_kondisi" class="form-label">Tanggal Kondisi</label>
-                                        <input type="date" class="form-control" id="tanggal_kondisi" name="tanggal_kondisi">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="keterangan" class="form-label">Keterangan</label>
-                                        <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="100">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kode_kantor_asal" class="form-label">Kode Kantor Asal</label>
-                                        <input type="text" class="form-control" id="kode_kantor_asal" name="kode_kantor_asal" maxlength="10">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="operasi_data" class="form-label">Operasi Data</label>
-                                        <input type="text" class="form-control" id="operasi_data" name="operasi_data" maxlength="1">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="open_date" class="form-label">Open Date</label>
-                                        <input type="date" class="form-control" id="open_date" name="open_date">
+
+                                    <div class="tab-pane fade" id="classification" role="tabpanel" aria-labelledby="classification-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cadangan_aset_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Baik</label>
+                                                <input type="number" class="form-control" id="cadangan_aset_baik" name="cadangan_aset_baik">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cadangan_aset_kurang_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</label>
+                                                <input type="number" class="form-control" id="cadangan_aset_kurang_baik" name="cadangan_aset_kurang_baik">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cadangan_aset_tidak_baik" class="form-label">Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</label>
+                                                <input type="number" class="form-control" id="cadangan_aset_tidak_baik" name="cadangan_aset_tidak_baik">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="klasifikasi_aset_keuangan" class="form-label">Klasifikasi Aset Keuangan</label>
+                                                <select class="form-select" id="klasifikasi_aset_keuangan" name="klasifikasi_aset_keuangan">
+                                                    <option value="">Pilih Klasifikasi</option>
+                                                    <option value="1">1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</option>
+                                                    <option value="2">2 (Diukur pada Nilai Wajar Melalui Penghasilan Komprehensif Lain)</option>
+                                                    <option value="3">3 (Diukur pada Biaya Perolehan Diamortisasi)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="jenis_ckpn" class="form-label">Jenis CKPN</label>
+                                                <select class="form-select" id="jenis_ckpn" name="jenis_ckpn">
+                                                    <option value="">Pilih Jenis CKPN</option>
+                                                    <option value="1">1 (Individual)</option>
+                                                    <option value="2">2 (Kolektif)</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
-                            <!-- End Input Form -->
-                        </div>
+                            </div>
                         
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
-                        <th>Flag Detail</th>
-                        <th>Sandi Kantor</th>
+                        <th class="text-center">Flag Detail</th>
+                        <th class="text-center">Sandi Kantor</th>
                         <th>Klasifikasi</th>
-                        <th>Suku Bunga</th>
+                        <th class="text-center">Suku Bunga</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Jatuh Tempo</th>
-                        <th>Kategori Debitor</th>
-                        <th>Jenis Penggunaan</th>
-                        <th>Orientasi Penggunaan</th>
-                        <th>Sektor Ekonomi</th>
-                        <th>Kode Lokasi</th>
-                        <th>Kode Valuta</th>
-                        <th>Sandi Kolektibilitas</th>
-                        <th>Kode Sebab Macet</th>
-                        <th>Tunggakan Pokok</th>
-                        <th>Tunggakan Bunga</th>
-                        <th>Baki Debet</th>
-                        <th>Nilai Agunan</th>
-                        <th>Kode Kondisi</th>
-                        <th>Tanggal Kondisi</th>
-                        <th>Keterangan</th>
-                        <th>Kode Kantor Asal</th>
-                        <th>Operasi Data</th>
-                        <th>Open Date</th>
-                        <th>Aksi</th>
+                        <th>Nominal</th>
+                        <th>Nominal yang Dijaminkan</th>
+                        <th>Biaya Perolehan</th>
+                        <th>Premium/Diskonto Belum Diamortisasi</th>
+                        <th>Biaya Transaksi Belum Diamortisasi</th>
+                        <th>Laba/Rugi Belum Direalisasi</th>
+                        <th>Biaya Perolehan Diamortisasi/Nilai Wajar</th>
+                        <th>Nomor Surat Berharga</th>
+                        <th class="text-center">ID Pihak Lawan</th>
+                        <th class="text-center">Jenis</th>
+                        <th class="text-center">Kualitas</th>
+                        <th>Cadangan Kerugian Penurunan Nilai</th>
+                        <th>Lembaga Pemeringkat</th>
+                        <th>Peringkat Surat Berharga</th>
+                        <th>Tanggal Pemeringkatan</th>
+                        <th>Tanggal Penerbitan</th>
+                        <th>Cadangan Kerugian Penurunan Nilai Aset Baik</th>
+                        <th>Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</th>
+                        <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
+                        <th>Klasifikasi Aset Keuangan</th>
+                        <th>Jenis CKPN</th>
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Y</td>
+                        <td>D01</td>
                         <td>001</td>
-                        <td>1000</td>
-                        <td>12.5</td>
-                        <td>2024-01-01</td>
-                        <td>2025-01-01</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>5.50</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>500000</td>
+                        <td>100000</td>
+                        <td>500000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>200000</td>
+                        <td>700000</td>
+                        <td>NOSURAT123</td>
                         <td>1</td>
-                        <td>1001</td>
-                        <td>1</td>
-                        <td>15110</td>
-                        <td>1100</td>
-                        <td>IDR</td>
-                        <td>1</td>
-                        <td>00</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>100000000</td>
-                        <td>150000000</td>
-                        <td>N</td>
-                        <td>2024-01-01</td>
-                        <td>Kredit Modal Kerja</td>
-                        <td>001</td>
-                        <td>C</td>
-                        <td>2024-01-01</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
+                        <td>1 (Surat Berharga yang diterbitkan Bank Indonesia)</td>
+                        <td>1 (Lancar)</td>
+                        <td>300</td>
+                        <td>9 (Tidak memiliki peringkat)</td>
+                        <td>99</td>
+                        <td>20180101</td>
+                        <td>20231231</td>
+                        <td>5000000</td>
+                        <td>600000</td>
+                        <td>700000</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>1 (Individual)</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Y</td>
+                        <td>D01</td>
                         <td>001</td>
-                        <td>2000</td>
-                        <td>15.0</td>
-                        <td>2024-02-01</td>
-                        <td>2026-02-01</td>
-                        <td>2</td>
-                        <td>2001</td>
-                        <td>2</td>
-                        <td>15120</td>
-                        <td>1100</td>
-                        <td>IDR</td>
+                        <td>2 (Diukur pada Nilai Wajar Melalui Penghasilan Komprehensif Lain)</td>
+                        <td>4.00</td>
+                        <td>20180102</td>
+                        <td>20231231</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>0</td>
+                        <td>300000</td>
+                        <td>NOSURAT124</td>
                         <td>1</td>
-                        <td>00</td>
+                        <td>1 (Surat Berharga yang diterbitkan Bank Indonesia)</td>
+                        <td>1 (Lancar)</td>
+                        <td>300</td>
+                        <td>2 (Standard and Poor's)</td>
+                        <td>01</td>
+                        <td></td>
+                        <td>20231231</td>
+                        <td>5000000</td>
+                        <td>600000</td>
+                        <td>700000</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>1 (Individual)</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>5.57</td>
+                        <td>20180103</td>
+                        <td>20231231</td>
+                        <td>700000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>800000</td>
+                        <td>900000</td>
+                        <td>NOSURAT125</td>
+                        <td>1</td>
+                        <td>2 (Surat Berharga yang diterbitkan Bank Indonesia)</td>
+                        <td>1 (Lancar)</td>
+                        <td>300</td>
+                        <td>2 (Standard and Poor's)</td>
+                        <td>01</td>
+                        <td></td>
+                        <td>20231231</td>
+                        <td>5000000</td>
+                        <td>600000</td>
+                        <td>700000</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>1 (Individual)</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>2 (Diukur pada Nilai Wajar Melalui Penghasilan Komprehensif Lain)</td>
+                        <td>5.58</td>
+                        <td>20180104</td>
+                        <td>20231231</td>
+                        <td>100000</td>
+                        <td>100000</td>
+                        <td>500000</td>
+                        <td>100000</td>
+                        <td>100000</td>
                         <td>0</td>
-                        <td>0</td>
-                        <td>200000000</td>
-                        <td>250000000</td>
-                        <td>N</td>
-                        <td>2024-02-01</td>
-                        <td>Kredit Investasi</td>
-                        <td>001</td>
-                        <td>C</td>
-                        <td>2024-02-01</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
+                        <td>300000</td>
+                        <td>NOSURAT126</td>
+                        <td>1</td>
+                        <td>1 (Surat Berharga yang diterbitkan Bank Indonesia)</td>
+                        <td>1 (Lancar)</td>
+                        <td>300</td>
+                        <td>2 (Standard and Poor's)</td>
+                        <td>01</td>
+                        <td></td>
+                        <td>20231231</td>
+                        <td>5000000</td>
+                        <td>600000</td>
+                        <td>700000</td>
+                        <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
+                        <td>1 (Individual)</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0400Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6" style="text-align: right">Total:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <!-- Total CBS -->
+                    <tr>
+                        <th colspan="6" style="text-align: right">Total CBS:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <!-- Selisih Jumlah lapbul dengan CBS -->
+                    <tr>
+                        <th colspan="6" style="text-align: right">Selisih Jumlah lapbul dengan CBS:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
             </table>
-            <!-- Table -->
+            </div>
+            </div>
         </div>
     </main>
 </div>
@@ -233,8 +576,52 @@
 <script>
 $(document).ready(function () {
     $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+            var intVal = function (i) {
+                return typeof i === "string"
+                    ? i.replace(/[^0-9.-]/g, "") * 1
+                    : typeof i === "number"
+                    ? i
+                    : 0;
+            };
+            
+            var colsToSum = [6, 7, 8, 17, 22, 23, 24];
+            
+            colsToSum.forEach(function (colIdx) {
+                var total = api
+                    .column(colIdx, { search: "applied" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                $(api.column(colIdx).footer()).html(total.toLocaleString());
+            });
+        },
     });
 });
 
@@ -242,7 +629,7 @@ document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
         const form = document.querySelector('#form0400Modal form');
-        form.reset();
+        if (form) form.reset();
     }
 
     if (e.target.closest('.edit')) {
@@ -250,39 +637,40 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-        // Fill form fields with row data
+        // Fill modal form (excluding the last action column)
         document.getElementById("flag_detail").value = cells[0].textContent.trim();
         document.getElementById("sandi_kantor").value = cells[1].textContent.trim();
-        document.getElementById("klasifikasi").value = cells[2].textContent.trim();
+        document.getElementById("klasifikasi").value = cells[2].textContent.trim().charAt(0);
         document.getElementById("suku_bunga").value = cells[3].textContent.trim();
         document.getElementById("tanggal_mulai").value = cells[4].textContent.trim();
         document.getElementById("tanggal_jatuh_tempo").value = cells[5].textContent.trim();
-        document.getElementById("kategori_debitor").value = cells[6].textContent.trim();
-        document.getElementById("jenis_penggunaan").value = cells[7].textContent.trim();
-        document.getElementById("orientasi_penggunaan").value = cells[8].textContent.trim();
-        document.getElementById("sektor_ekonomi").value = cells[9].textContent.trim();
-        document.getElementById("kode_lokasi").value = cells[10].textContent.trim();
-        document.getElementById("kode_valuta").value = cells[11].textContent.trim();
-        document.getElementById("sandi_kolektibilitas").value = cells[12].textContent.trim();
-        document.getElementById("kode_sebab_macet").value = cells[13].textContent.trim();
-        document.getElementById("tunggakan_pokok").value = cells[14].textContent.trim();
-        document.getElementById("tunggakan_bunga").value = cells[15].textContent.trim();
-        document.getElementById("baki_debet").value = cells[16].textContent.trim();
-        document.getElementById("nilai_agunan").value = cells[17].textContent.trim();
-        document.getElementById("kode_kondisi").value = cells[18].textContent.trim();
-        document.getElementById("tanggal_kondisi").value = cells[19].textContent.trim();
-        document.getElementById("keterangan").value = cells[20].textContent.trim();
-        document.getElementById("kode_kantor_asal").value = cells[21].textContent.trim();
-        document.getElementById("operasi_data").value = cells[22].textContent.trim();
-        document.getElementById("open_date").value = cells[23].textContent.trim();
+        document.getElementById("nominal").value = cells[6].textContent.trim();
+        document.getElementById("nominal_dijaminkan").value = cells[7].textContent.trim();
+        document.getElementById("biaya_perolehan").value = cells[8].textContent.trim();
+        document.getElementById("premium_diskonto").value = cells[9].textContent.trim();
+        document.getElementById("biaya_transaksi").value = cells[10].textContent.trim();
+        document.getElementById("laba_rugi_belum_direalisasi").value = cells[11].textContent.trim();
+        document.getElementById("biaya_perolehan_diamortisasi").value = cells[12].textContent.trim();
+        document.getElementById("nomor_surat_berharga").value = cells[13].textContent.trim();
+        document.getElementById("id_pihak_lawan").value = cells[14].textContent.trim();
+        document.getElementById("jenis").value = cells[15].textContent.trim().charAt(0);
+        document.getElementById("kualitas").value = cells[16].textContent.trim().charAt(0);
+        document.getElementById("cadangan_kerugian").value = cells[17].textContent.trim();
+        document.getElementById("lembaga_pemeringkat").value = cells[18].textContent.trim().charAt(0);
+        document.getElementById("peringkat_surat_berharga").value = cells[19].textContent.trim();
+        document.getElementById("tanggal_pemeringkatan").value = cells[20].textContent.trim();
+        document.getElementById("tanggal_penerbitan").value = cells[21].textContent.trim();
+        document.getElementById("cadangan_aset_baik").value = cells[22].textContent.trim();
+        document.getElementById("cadangan_aset_kurang_baik").value = cells[23].textContent.trim();
+        document.getElementById("cadangan_aset_tidak_baik").value = cells[24].textContent.trim();
+        document.getElementById("klasifikasi_aset_keuangan").value = cells[25].textContent.trim().charAt(0);
+        document.getElementById("jenis_ckpn").value = cells[26].textContent.trim().charAt(0);
     }
 
     if (e.target.closest('.delete')) {
         e.preventDefault();
         const row = e.target.closest('tr');
-        
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        if (confirmDelete) {
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
             row.remove();
         }
     }

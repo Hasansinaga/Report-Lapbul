@@ -1,190 +1,288 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(3),
+table th:nth-child(3),
+table td:nth-child(4),
+table th:nth-child(4),
+table td:nth-child(5),
+table th:nth-child(5),
+table td:nth-child(6),
+table th:nth-child(6),
+table td:nth-child(7),
+table th:nth-child(7) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0010 - Data Pejabat Eksekutif Berhenti</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0010Modal">Tambah</button><br><br>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0010Modal">Tambah</button>
+            </div>
+            <br>
             <!-- Modal structure -->
             <div class="modal fade" id="form0010Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0010ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     
                         <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0010ModalLabel">Form Data Pejabat Eksekutif Berhenti</h6>
+                            <h6 class="modal-title text-white" id="form0010ModalLabel">Form Input Data Pejabat Eksekutif Berhenti</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form using <table> with Bootstrap -->
+                            <!-- Input Form -->
                             <form>
-                                <div class="row g-3">
-                                    <!-- Bagian nama dan nik (2 kolom) -->
-                                    <div class="col-md-6">
-                                    <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" name="nama">
-                                    </div>
-                                    <div class="col-md-6">
-                                    <label for="nik" class="form-label">NIK</label>
-                                    <input type="text" class="form-control" id="nik" name="nik">
+                                <!-- Nav Tabs -->
+                                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
+                                            type="button" role="tab" aria-controls="tab1" aria-selected="true">
+                                            Tab 1
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
+                                            type="button" role="tab" aria-controls="tab2" aria-selected="false">
+                                            Tab 2
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3"
+                                            type="button" role="tab" aria-controls="tab3" aria-selected="false">
+                                            Tab 3
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4"
+                                            type="button" role="tab" aria-controls="tab4" aria-selected="false">
+                                            Tab 4
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab Content -->
+                                <div class="tab-content mt-3" id="formTabContent">
+                                    <!-- Tab 1: Basic Info -->
+                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="nama" class="form-label">Nama</label>
+                                                <input type="text" class="form-control" id="nama" name="nama">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="nik" class="form-label">NIK</label>
+                                                <input type="text" class="form-control" id="nik" name="nik">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
+                                                <input type="date" class="form-control" id="tgl_mulai" name="tgl_mulai">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="no_pengangkatan" class="form-label">No Pengangkatan</label>
+                                                <input type="text" class="form-control" id="no_pengangkatan" name="no_pengangkatan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tgl_pengangkatan" class="form-label">Tanggal Pengangkatan</label>
+                                                <input type="date" class="form-control" id="tgl_pengangkatan" name="tgl_pengangkatan">
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <!-- Field lainnya (4 kolom per baris) -->
-                                    <div class="col-md-3">
-                                    <label for="sts_kepatuhan" class="form-label">Kepatuhan</label>
-                                    <input type="text" class="form-control" id="sts_kepatuhan" name="sts_kepatuhan">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="sts_manajemen_resiko" class="form-label">Manajemen Resiko</label>
-                                    <input type="text" class="form-control" id="sts_manajemen_resiko" name="sts_manajemen_resiko">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="sts_audit_in" class="form-label">Audit Intern</label>
-                                    <input type="text" class="form-control" id="sts_audit_in" name="sts_audit_in">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="sts_apuppt" class="form-label">APU PPT</label>
-                                    <input type="text" class="form-control" id="sts_apuppt" name="sts_apuppt">
-                                    </div>
-
-                                    <div class="col-md-3">
-                                    <label for="sts_lainnya" class="form-label">Lainnya</label>
-                                    <input type="text" class="form-control" id="sts_lainnya" name="sts_lainnya">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="tgl_mulai" class="form-label">Tgl Mulai</label>
-                                    <input type="date" class="form-control" id="tgl_mulai" name="tgl_mulai">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="no_pengangkatan" class="form-label">No Pengangkatan</label>
-                                    <input type="text" class="form-control" id="no_pengangkatan" name="no_pengangkatan">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="tgl_pengangkatan" class="form-label">Tgl Pengangkatan</label>
-                                    <input type="date" class="form-control" id="tgl_pengangkatan" name="tgl_pengangkatan">
+                                    <!-- Tab 2: Status -->
+                                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sts_kepatuhan" class="form-label">Status Kepatuhan</label>
+                                                <input type="text" class="form-control" id="sts_kepatuhan" name="sts_kepatuhan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sts_manajemen_resiko" class="form-label">Status Manajemen Resiko</label>
+                                                <input type="text" class="form-control" id="sts_manajemen_resiko" name="sts_manajemen_resiko">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sts_audit_in" class="form-label">Status Audit Internal</label>
+                                                <input type="text" class="form-control" id="sts_audit_in" name="sts_audit_in">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sts_apuppt" class="form-label">Status APU/PPT</label>
+                                                <input type="text" class="form-control" id="sts_apuppt" name="sts_apuppt">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sts_lainnya" class="form-label">Status Lainnya</label>
+                                                <input type="text" class="form-control" id="sts_lainnya" name="sts_lainnya">
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-3">
-                                    <label for="komite_audit" class="form-label">Kom. Audit</label>
-                                    <input type="text" class="form-control" id="komite_audit" name="komite_audit">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="komite_pemantauan_resiko" class="form-label">Kom. Pemantauan Resiko</label>
-                                    <input type="text" class="form-control" id="komite_pemantauan_resiko" name="komite_pemantauan_resiko">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="komite_remunerasi" class="form-label">Kom. Remunerasi</label>
-                                    <input type="text" class="form-control" id="komite_remunerasi" name="komite_remunerasi">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="komite_manrisk" class="form-label">Kom. Manrisk</label>
-                                    <input type="text" class="form-control" id="komite_manrisk" name="komite_manrisk">
+                                    <!-- Tab 3: Committee -->
+                                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="komite_audit" class="form-label">Komite Audit</label>
+                                                <input type="text" class="form-control" id="komite_audit" name="komite_audit">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="komite_pemantauan_resiko" class="form-label">Komite Pemantauan Resiko</label>
+                                                <input type="text" class="form-control" id="komite_pemantauan_resiko" name="komite_pemantauan_resiko">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="komite_remunerasi" class="form-label">Komite Remunerasi</label>
+                                                <input type="text" class="form-control" id="komite_remunerasi" name="komite_remunerasi">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="komite_manrisk" class="form-label">Komite Manajemen Risiko</label>
+                                                <input type="text" class="form-control" id="komite_manrisk" name="komite_manrisk">
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-3">
-                                    <label for="sebab_berhenti" class="form-label">Sebab Berhenti</label>
-                                    <input type="text" class="form-control" id="sebab_berhenti" name="sebab_berhenti">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="alasan_berhenti" class="form-label">Alasan Berhenti</label>
-                                    <input type="text" class="form-control" id="alasan_berhenti" name="alasan_berhenti">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="no_pemberhentian" class="form-label">No Pemberhentian</label>
-                                    <input type="text" class="form-control" id="no_pemberhentian" name="no_pemberhentian">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <label for="tgl_pemberhentian" class="form-label">Tgl Pemberhentian</label>
-                                    <input type="date" class="form-control" id="tgl_pemberhentian" name="tgl_pemberhentian">
+                                    <!-- Tab 4: Termination -->
+                                    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sebab_berhenti" class="form-label">Sebab Berhenti</label>
+                                                <input type="text" class="form-control" id="sebab_berhenti" name="sebab_berhenti">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="alasan_berhenti" class="form-label">Alasan Berhenti</label>
+                                                <input type="text" class="form-control" id="alasan_berhenti" name="alasan_berhenti">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="no_pemberhentian" class="form-label">No Pemberhentian</label>
+                                                <input type="text" class="form-control" id="no_pemberhentian" name="no_pemberhentian">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tgl_pemberhentian" class="form-label">Tanggal Pemberhentian</label>
+                                                <input type="date" class="form-control" id="tgl_pemberhentian" name="tgl_pemberhentian">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
-                                <!-- End Input Form -->
+                            <!-- End Input Form -->
                         </div>
+                        
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
                         <th>Nama</th>
                         <th>NIK</th>
-                        <th>Sts Kepatuhan</th>
-                        <th>Sts Manajemen Resiko</th>
-                        <th>Sts Audit In</th>
-                        <th>Sts APU PPT</th>
-                        <th>Sts Lainnya</th>
+                        <th class="text-center">Sts Kepatuhan</th>
+                        <th class="text-center">Sts Manajemen Resiko</th>
+                        <th class="text-center">Sts Audit Internal</th>
+                        <th class="text-center">Sts APU/PPT</th>
+                        <th class="text-center">Sts Lainnya</th>
                         <th>Tgl Mulai</th>
                         <th>No Pengangkatan</th>
                         <th>Tgl Pengangkatan</th>
                         <th>Komite Audit</th>
                         <th>Komite Pemantauan Resiko</th>
                         <th>Komite Remunerasi</th>
-                        <th>Komite Manrisk</th>
+                        <th>Komite Manajemen Risiko</th>
                         <th>Sebab Berhenti</th>
                         <th>Alasan Berhenti</th>
                         <th>No Pemberhentian</th>
                         <th>Tgl Pemberhentian</th>
-                        <th>Aksi</th>
+                        <th class="sticky-action-col">Aksi</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Contoh data (bisa diulang dengan loop dari backend) -->
+                </thead>
+                <tbody>
                     <tr>
-                        <td>John Doe</td>
-                        <td>1234567890</td>
-                        <td>Y</td>
-                        <td>T</td>
-                        <td>Y</td>
-                        <td>T</td>
-                        <td>-</td>
-                        <td>2025-01-01</td>
-                        <td>SK-2025-01</td>
-                        <td>2025-01-15</td>
-                        <td>Y</td>
-                        <td>N</td>
-                        <td>Y</td>
-                        <td>Y</td>
-                        <td>1</td>
-                        <td>Pensiun</td>
-                        <td>SP-001</td>
-                        <td>2025-07-01</td>
-                        <td>
-                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0010Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        <td>PUTRA NUGRAHA</td>
+                        <td>3276051506870005</td>
+                        <td>00</td>
+                        <td>MR</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>2024-01-08</td>
+                        <td>800/14/418.96/2024</td>
+                        <td>2024-01-08</td>
+                        <td>00</td>
+                        <td>02</td>
+                        <td>00</td>
+                        <td>00</td>
+                        <td>Mengundurkan diri</td>
+                        <td>Alasan pribadi</td>
+                        <td>800/15/418.96/2024</td>
+                        <td>2024-06-30</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0010Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
-                    <!-- Tambahkan baris lainnya di sini -->
-                    </tbody>
+                </tbody>
             </table>
-            <!-- Table -->
+            </div>
+            </div>
         </div>
     </main>
 </div>
+
 <script>
 $(document).ready(function () {
     $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
     });
 });
+
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
-
-        // Isi form dengan data yang dipilih
         const form = document.querySelector('#form0010Modal form');
-            
-        form.reset();
-
+        if (form) form.reset();
     }
 
     if (e.target.closest('.edit')) {
@@ -192,36 +290,31 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-        // Isi form dengan data yang dipilih
-        document.getElementById("nama").value = cells[0].textContent;
-        document.getElementById("nik").value = cells[1].textContent;
-        document.getElementById("sts_kepatuhan").value = cells[2].textContent;
-        document.getElementById("sts_manajemen_resiko").value = cells[3].textContent;
-        document.getElementById("sts_audit_in").value = cells[4].textContent;
-        document.getElementById("sts_apuppt").value = cells[5].textContent;
-        document.getElementById("sts_lainnya").value = cells[6].textContent;
-        document.getElementById("tgl_mulai").value = cells[7].textContent;
-        document.getElementById("no_pengangkatan").value = cells[8].textContent;
-        document.getElementById("tgl_pengangkatan").value = cells[9].textContent;
-        document.getElementById("komite_audit").value = cells[10].textContent;
-        document.getElementById("komite_pemantauan_resiko").value = cells[11].textContent;
-        document.getElementById("komite_remunerasi").value = cells[12].textContent;
-        document.getElementById("komite_manrisk").value = cells[13].textContent;
-        document.getElementById("sebab_berhenti").value = cells[14].textContent;
-        document.getElementById("alasan_berhenti").value = cells[15].textContent;
-        document.getElementById("no_pemberhentian").value = cells[16].textContent;
-        document.getElementById("tgl_pemberhentian").value = cells[17].textContent;
-
+        // Fill modal form (excluding the last action column)
+        document.getElementById("nama").value = cells[0].textContent.trim();
+        document.getElementById("nik").value = cells[1].textContent.trim();
+        document.getElementById("sts_kepatuhan").value = cells[2].textContent.trim();
+        document.getElementById("sts_manajemen_resiko").value = cells[3].textContent.trim();
+        document.getElementById("sts_audit_in").value = cells[4].textContent.trim();
+        document.getElementById("sts_apuppt").value = cells[5].textContent.trim();
+        document.getElementById("sts_lainnya").value = cells[6].textContent.trim();
+        document.getElementById("tgl_mulai").value = cells[7].textContent.trim();
+        document.getElementById("no_pengangkatan").value = cells[8].textContent.trim();
+        document.getElementById("tgl_pengangkatan").value = cells[9].textContent.trim();
+        document.getElementById("komite_audit").value = cells[10].textContent.trim();
+        document.getElementById("komite_pemantauan_resiko").value = cells[11].textContent.trim();
+        document.getElementById("komite_remunerasi").value = cells[12].textContent.trim();
+        document.getElementById("komite_manrisk").value = cells[13].textContent.trim();
+        document.getElementById("sebab_berhenti").value = cells[14].textContent.trim();
+        document.getElementById("alasan_berhenti").value = cells[15].textContent.trim();
+        document.getElementById("no_pemberhentian").value = cells[16].textContent.trim();
+        document.getElementById("tgl_pemberhentian").value = cells[17].textContent.trim();
     }
 
     if (e.target.closest('.delete')) {
         e.preventDefault();
         const row = e.target.closest('tr');
-        
-        // Tampilkan dialog konfirmasi
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        
-        if (confirmDelete) {
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
             row.remove();
         }
     }

@@ -4,9 +4,21 @@
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0100 - Laporan Posisi Keuangan</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0100Modal">Tambah</button><br><br>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Simpan</button>
+            </div>
+
+            <!-- Filter Kantor -->
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label for="kantorFilter" class="form-label mb-0">Pilih Sandi Kantor:</label>
+                <select id="kantorFilter" class="form-select form-select-sm w-auto" onchange="filterKantor()">
+                    <option value="all">semua</option>
+                    <option value="000">000</option>
+                    <option value="001">001</option>
+                    <option value="002">002</option>
+                </select>
+            </div>
             
             <!-- Modal structure -->
             <div class="modal fade" id="form0100Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0100ModalLabel" aria-hidden="true">
@@ -56,51 +68,260 @@
                 </div>
             </div>
             
-            <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <form>
+                <table class="table table-bordered table-sm">
+                <thead class="table-light">
                     <tr>
-                        <th>Include Text</th>
+                        <th>Sandi Kantor</th>
                         <th>Pos</th>
                         <th>Sandi Pos</th>
                         <th>Jumlah</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Y</td>
-                        <td>Kas</td>
-                        <td>30000000</td>
-                        <td>5000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0100Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                    <!-- KANTOR 000 -->
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Kas dalam Rupiah</td>
+                        <td>1101010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_1101010000" value="50200000"></td>
                     </tr>
-                    <tr>
-                        <td>Y</td>
-                        <td>Penempatan pada Bank Indonesia</td>
-                        <td>30100000</td>
-                        <td>15000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0100Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Kas dalam Valuta Asing</td>
+                        <td>1101020000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_1101020000" value="19250000"></td>
                     </tr>
-                    <tr>
-                        <td>Y</td>
-                        <td>Kredit yang Diberikan</td>
-                        <td>30200000</td>
-                        <td>150000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0100Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Surat Berharga</td>
+                        <td>1102000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_1102000000" value="2200000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Kredit yang Diberikan (Baki Debet)</td>
+                        <td>1104010100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_1104010100" value="2800000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Aset Tetap dan Inventaris</td>
+                        <td>1202010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_1202010000" value="8000000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>TOTAL ASET</td>
+                        <td>1000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_1000000000" value="89925801"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Liabilitas Segera</td>
+                        <td>2101000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_2101000000" value="21498801"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Tabungan</td>
+                        <td>2102010100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_2102010100" value="8000000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Deposito</td>
+                        <td>2102020100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_2102020100" value="8000000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>TOTAL LIABILITAS</td>
+                        <td>2000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_2000000000" value="42490801"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Modal Dasar</td>
+                        <td>3101010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3101010000" value="2000000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>Laba Tahun Berjalan</td>
+                        <td>3105020000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3105020000" value="32150000"></td>
+                    </tr>
+                    <tr data-kantor="000">
+                        <td>000</td>
+                        <td>TOTAL EKUITAS</td>
+                        <td>3000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3000000000" value="47435000"></td>
+                    </tr>
+
+                    <!-- KANTOR 001 -->
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Kas dalam Rupiah</td>
+                        <td>1101010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_1101010000" value="25100000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Kas dalam Valuta Asing</td>
+                        <td>1101020000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_1101020000" value="10000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Surat Berharga</td>
+                        <td>1102000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_1102000000" value="1000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Kredit yang Diberikan (Baki Debet)</td>
+                        <td>1104010100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_1104010100" value="1500000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Aset Tetap dan Inventaris</td>
+                        <td>1202010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_1202010000" value="4000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>TOTAL ASET</td>
+                        <td>1000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_1000000000" value="45784901"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Liabilitas Segera</td>
+                        <td>2101000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_2101000000" value="10898901"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Tabungan</td>
+                        <td>2102010100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_2102010100" value="4000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Deposito</td>
+                        <td>2102020100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_2102020100" value="4000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>TOTAL LIABILITAS</td>
+                        <td>2000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_2000000000" value="21394901"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Modal Dasar</td>
+                        <td>3101010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3101010000" value="1000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>Laba Tahun Berjalan</td>
+                        <td>3105020000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3105020000" value="16075000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>001</td>
+                        <td>TOTAL EKUITAS</td>
+                        <td>3000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3000000000" value="24390000"></td>
+                    </tr>
+
+                    <!-- KANTOR 002 -->
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Kas dalam Rupiah</td>
+                        <td>1101010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_1101010000" value="25100000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Kas dalam Valuta Asing</td>
+                        <td>1101020000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_1101020000" value="9250000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Surat Berharga</td>
+                        <td>1102000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_1102000000" value="1200000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Kredit yang Diberikan (Baki Debet)</td>
+                        <td>1104010100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_1104010100" value="1300000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Aset Tetap dan Inventaris</td>
+                        <td>1202010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_1202010000" value="4000000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>TOTAL ASET</td>
+                        <td>1000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_1000000000" value="44140900"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Liabilitas Segera</td>
+                        <td>2101000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_2101000000" value="10599900"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Tabungan</td>
+                        <td>2102010100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_2102010100" value="4000000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Deposito</td>
+                        <td>2102020100</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_2102020100" value="4000000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>TOTAL LIABILITAS</td>
+                        <td>2000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_2000000000" value="21095900"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Modal Disetor</td>
+                        <td>3101010000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3101010000" value="1000000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>Laba Tahun Berjalan</td>
+                        <td>3105020000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3105020000" value="16075000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>002</td>
+                        <td>TOTAL EKUITAS</td>
+                        <td>3000000000</td>
+                        <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3000000000" value="23045000"></td>
                     </tr>
                 </tbody>
             </table>
-            <!-- Table -->
+            </form>
+            <br>
 
 
         </div>
@@ -108,41 +329,21 @@
 </div>
 
 <script>
-$(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+function filterKantor() {
+    var selected = document.getElementById("kantorFilter").value;
+    var rows = document.querySelectorAll("tbody tr");
 
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.tambah')) {
-        e.preventDefault();
-        const form = document.querySelector('#form0100Modal form');
-        form.reset();
-    }
-
-    if (e.target.closest('.edit')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        const cells = row.querySelectorAll('td');
-
-        // Fill form fields with row data
-        document.getElementById("include_text").value = cells[0].textContent.trim();
-        document.getElementById("pos").value = cells[1].textContent.trim();
-        document.getElementById("sandi_pos").value = cells[2].textContent.trim();
-        document.getElementById("jumlah").value = cells[3].textContent.trim();
-    }
-
-    if (e.target.closest('.delete')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        if (confirmDelete) {
-            row.remove();
+    rows.forEach(function(row) {
+        if (selected === "all") {
+            row.style.display = "";
+        } else {
+            if (row.getAttribute("data-kantor") === selected) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
         }
-    }
-});
+    });
+}
 </script>
 {% include 'lapbul_app/footer.html' %}

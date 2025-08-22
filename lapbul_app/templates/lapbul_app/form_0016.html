@@ -4,9 +4,11 @@
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0016 - Data Pihak Lawan</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0016Modal">Tambah</button><br><br>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0016Modal">Tambah</button>
+            </div>
+            <br>
             
             <!-- Modal structure -->
             <div class="modal fade" id="form0016Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0016ModalLabel" aria-hidden="true">
@@ -21,110 +23,344 @@
                         <div class="modal-body">
                             <!-- Input Form -->
                             <form>
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
-                                        <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="jenis_identitas" class="form-label">Jenis Identitas</label>
-                                        <input type="text" class="form-control" id="jenis_identitas" name="jenis_identitas">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="nomor_identitas" class="form-label">Nomor Identitas</label>
-                                        <input type="text" class="form-control" id="nomor_identitas" name="nomor_identitas">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                        <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                <!-- Nav Tabs -->
+                                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
+                                            type="button" role="tab" aria-controls="basic" aria-selected="true">
+                                            Informasi Dasar
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal"
+                                            type="button" role="tab" aria-controls="personal" aria-selected="false">
+                                            Informasi Personal
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                                            type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                            Kontak & Banking
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="rating-tab" data-bs-toggle="tab" data-bs-target="#rating"
+                                            type="button" role="tab" aria-controls="rating" aria-selected="false">
+                                            Pemeringkatan
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab Content -->
+                                <div class="tab-content mt-3" id="formTabContent">
+                                    <!-- Basic Information Tab -->
+                                    <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                                        <div class="mb-3">
+                                            <label for="id_pihak_lawan" class="form-label">ID Pihak Lawan</label>
+                                            <input type="text" class="form-control" id="id_pihak_lawan" name="id_pihak_lawan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nama_lengkap" class="form-label">Nama Lengkap/Nama Badan Usaha</label>
+                                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="jenis_identitas" class="form-label">Jenis Identitas</label>
+                                            <select class="form-select" id="jenis_identitas" name="jenis_identitas">
+                                                <option value="">Pilih Jenis Identitas</option>
+                                                <option value="1">1 (Kartu Tanda Penduduk)</option>
+                                                <option value="2">2 (Paspor)</option>
+                                                <option value="3">3 (Kartu Izin Tinggal Terbatas/Kartu Izin Tinggal Tetap)</option>
+                                                <option value="4">4 (Kartu Keluarga)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nomor_identitas" class="form-label">Nomor Identitas</label>
+                                            <input type="text" class="form-control" id="nomor_identitas" name="nomor_identitas">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="npwp" class="form-label">NPWP</label>
+                                            <input type="text" class="form-control" id="npwp" name="npwp">
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-4 mb-3">
-                                        <label for="nama_lengkap" class="form-label">Nama Lengkap/Nama Badan Usaha</label>
-                                        <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="npwp" class="form-label">NPWP</label>
-                                        <input type="text" class="form-control" id="npwp" name="npwp">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="kewarganegaraan" class="form-label">Kewarganegaraan</label>
-                                        <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="negara" class="form-label">Negara</label>
-                                        <input type="text" class="form-control" id="negara" name="negara">
+                                    <!-- Personal Information Tab -->
+                                    <div class="tab-pane fade" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                                        <div class="mb-3">
+                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                            <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
+                                                <option value="">Pilih</option>
+                                                <option value="1">1 (Laki-Laki)</option>
+                                                <option value="2">2 (Perempuan)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="agama" class="form-label">Agama</label>
+                                            <input type="text" class="form-control" id="agama" name="agama">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kewarganegaraan" class="form-label">Kewarganegaraan</label>
+                                            <select class="form-select" id="kewarganegaraan" name="kewarganegaraan">
+                                                <option value="">Pilih Kewarganegaraan</option>
+                                                <option value="ID">ID Indonesia</option>
+                                                <option value="AS">AS Amerika Serikat</option>
+                                                <option value="AU">AU Australia</option>
+                                                <option value="BR">BR Brasil</option>
+                                                <option value="CN">CN China</option>
+                                                <option value="DE">DE Jerman</option>
+                                                <option value="FR">FR Prancis</option>
+                                                <option value="GB">GB Inggris</option>
+                                                <option value="IN">IN India</option>
+                                                <option value="JP">JP Jepang</option>
+                                                <option value="KR">KR Korea Selatan</option>
+                                                <option value="MY">MY Malaysia</option>
+                                                <option value="NL">NL Belanda</option>
+                                                <option value="PH">PH Filipina</option>
+                                                <option value="RU">RU Rusia</option>
+                                                <option value="SG">SG Singapura</option>
+                                                <option value="TH">TH Thailand</option>
+                                                <option value="VN">VN Vietnam</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="negara" class="form-label">Negara</label>
+                                            <select class="form-select" id="negara" name="negara">
+                                                <option value="">Pilih Negara</option>
+                                                <option value="ID">ID Indonesia</option>
+                                                <option value="AS">AS Amerika Serikat</option>
+                                                <option value="AU">AU Australia</option>
+                                                <option value="BR">BR Brasil</option>
+                                                <option value="CN">CN China</option>
+                                                <option value="DE">DE Jerman</option>
+                                                <option value="FR">FR Prancis</option>
+                                                <option value="GB">GB Inggris</option>
+                                                <option value="IN">IN India</option>
+                                                <option value="JP">JP Jepang</option>
+                                                <option value="KR">KR Korea Selatan</option>
+                                                <option value="MY">MY Malaysia</option>
+                                                <option value="NL">NL Belanda</option>
+                                                <option value="PH">PH Filipina</option>
+                                                <option value="RU">RU Rusia</option>
+                                                <option value="SG">SG Singapura</option>
+                                                <option value="TH">TH Thailand</option>
+                                                <option value="VN">VN Vietnam</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="lokasi" class="form-label">Lokasi</label>
+                                            <select class="form-select" id="lokasi" name="lokasi">
+                                                <option value="">Pilih Lokasi</option>
+                                                <!-- Jakarta -->
+                                                <option value="0101">0101 (Kab. Kepulauan Seribu)</option>
+                                                <option value="0171">0171 (Kota Jakarta Selatan)</option>
+                                                <option value="0172">0172 (Kota Jakarta Timur)</option>
+                                                <option value="0173">0173 (Kota Jakarta Pusat)</option>
+                                                <option value="0174">0174 (Kota Jakarta Barat)</option>
+                                                <option value="0175">0175 (Kota Jakarta Utara)</option>
+                                                <!-- Jawa Barat -->
+                                                <option value="0201">0201 (Kab. Bogor)</option>
+                                                <option value="0202">0202 (Kab. Sukabumi)</option>
+                                                <option value="0203">0203 (Kab. Cianjur)</option>
+                                                <option value="0204">0204 (Kab. Bandung)</option>
+                                                <option value="0205">0205 (Kab. Garut)</option>
+                                                <option value="0206">0206 (Kab. Tasikmalaya)</option>
+                                                <option value="0207">0207 (Kab. Ciamis)</option>
+                                                <option value="0208">0208 (Kab. Kuningan)</option>
+                                                <option value="0209">0209 (Kab. Cirebon)</option>
+                                                <option value="0210">0210 (Kab. Majalengka)</option>
+                                                <option value="0211">0211 (Kab. Sumedang)</option>
+                                                <option value="0212">0212 (Kab. Indramayu)</option>
+                                                <option value="0213">0213 (Kab. Subang)</option>
+                                                <option value="0214">0214 (Kab. Purwakarta)</option>
+                                                <option value="0215">0215 (Kab. Karawang)</option>
+                                                <option value="0216">0216 (Kab. Bekasi)</option>
+                                                <option value="0217">0217 (Kab. Bandung Barat)</option>
+                                                <option value="0218">0218 (Kab. Pangandaran)</option>
+                                                <option value="0271">0271 (Kota Bogor)</option>
+                                                <option value="0272">0272 (Kota Sukabumi)</option>
+                                                <option value="0273">0273 (Kota Bandung)</option>
+                                                <option value="0274">0274 (Kota Cirebon)</option>
+                                                <option value="0275">0275 (Kota Bekasi)</option>
+                                                <option value="0276">0276 (Kota Depok)</option>
+                                                <option value="0277">0277 (Kota Cimahi)</option>
+                                                <option value="0278">0278 (Kota Tasikmalaya)</option>
+                                                <option value="0279">0279 (Kota Banjar)</option>
+                                                <!-- Jawa Tengah -->
+                                                <option value="0301">0301 (Kab. Cilacap)</option>
+                                                <option value="0302">0302 (Kab. Banyumas)</option>
+                                                <option value="0303">0303 (Kab. Purbalingga)</option>
+                                                <option value="0304">0304 (Kab. Banjarnegara)</option>
+                                                <option value="0305">0305 (Kab. Kebumen)</option>
+                                                <option value="0306">0306 (Kab. Purworejo)</option>
+                                                <option value="0307">0307 (Kab. Wonosobo)</option>
+                                                <option value="0308">0308 (Kab. Magelang)</option>
+                                                <option value="0309">0309 (Kab. Boyolali)</option>
+                                                <option value="0310">0310 (Kab. Klaten)</option>
+                                                <option value="0311">0311 (Kab. Sukoharjo)</option>
+                                                <option value="0312">0312 (Kab. Wonogiri)</option>
+                                                <option value="0371">0371 (Kota Magelang)</option>
+                                                <option value="0372">0372 (Kota Surakarta)</option>
+                                                <option value="0373">0373 (Kota Salatiga)</option>
+                                                <option value="0374">0374 (Kota Semarang)</option>
+                                                <option value="0375">0375 (Kota Pekalongan)</option>
+                                                <option value="0376">0376 (Kota Tegal)</option>
+                                                <!-- Banten -->
+                                                <option value="3601">3601 (Kab. Pandeglang)</option>
+                                                <option value="3602">3602 (Kab. Lebak)</option>
+                                                <option value="3603">3603 (Kab. Tangerang)</option>
+                                                <option value="3604">3604 (Kab. Serang)</option>
+                                                <option value="3671">3671 (Kota Tangerang)</option>
+                                                <option value="3672">3672 (Kota Cilegon)</option>
+                                                <option value="3673">3673 (Kota Serang)</option>
+                                                <option value="3674">3674 (Kota Tangerang Selatan)</option>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-4 mb-3">
-                                        <label for="jenis_kegiatan_usaha" class="form-label">Jenis Kegiatan Usaha</label>
-                                        <input type="text" class="form-control" id="jenis_kegiatan_usaha" name="jenis_kegiatan_usaha">
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="hubungan_dengan_bank" class="form-label">Hubungan dengan Bank</label>
-                                        <input type="text" class="form-control" id="hubungan_dengan_bank" name="hubungan_dengan_bank">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="golongan_pihak_lawan" class="form-label">Golongan Pihak Lawan</label>
-                                        <input type="text" class="form-control" id="golongan_pihak_lawan" name="golongan_pihak_lawan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="lembaga_pemeringkat" class="form-label">Lembaga Pemeringkat</label>
-                                        <input type="text" class="form-control" id="lembaga_pemeringkat" name="lembaga_pemeringkat">
+                                    <!-- Contact & Banking Information Tab -->
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <div class="mb-3">
+                                            <label for="alamat" class="form-label">Alamat</label>
+                                            <textarea class="form-control" id="alamat" name="alamat" rows="2"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="no_telp" class="form-label">No. Telp/No. HP</label>
+                                            <input type="text" class="form-control" id="no_telp" name="no_telp">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="jenis_kegiatan_usaha" class="form-label">Jenis Kegiatan Usaha</label>
+                                            <select class="form-select" id="jenis_kegiatan_usaha" name="jenis_kegiatan_usaha">
+                                                <option value="">Pilih Jenis Kegiatan Usaha</option>
+                                                <option value="1">1 (Konvensional)</option>
+                                                <option value="2">2 (Syariah)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="hubungan_dengan_bank" class="form-label">Hubungan dengan Bank</label>
+                                            <select class="form-select" id="hubungan_dengan_bank" name="hubungan_dengan_bank">
+                                                <option value="">Pilih Hubungan dengan Bank</option>
+                                                <option value="12">12 (Terkait)</option>
+                                                <option value="20">20 (Tidak Terkait)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="golongan_pihak_lawan" class="form-label">Golongan Pihak Lawan</label>
+                                            <select class="form-select" id="golongan_pihak_lawan" name="golongan_pihak_lawan">
+                                                <option value="">Pilih Golongan Pihak Lawan</option>
+                                                <option value="001">001 (Bank Indonesia)</option>
+                                                <option value="600">600 (BPR Konvensional)</option>
+                                                <option value="601">601 (BPR Syariah)</option>
+                                                <option value="700">700 (Bank Umum Konvensional)</option>
+                                                <option value="701">701 (Bank Umum Syariah)</option>
+                                                <option value="901">901 (Unit Usaha Syariah (KC Syariah Bank Umum Konvensional))</option>
+                                                <option value="800">800 (Pemerintah Pusat)</option>
+                                                <option value="805">805 (Pemerintah Daerah)</option>
+                                                <option value="831">831 (BUMN yang melakukan usaha penjaminan kredit dan memenuhi persyaratan sebagaimana POJK KPMM)</option>
+                                                <option value="832">832 (BUMN Lainnya)</option>
+                                                <option value="833">833 (BUMD yang melakukan usaha penjaminan kredit dan memenuhi persyaratan sebagaimana POJK KPMM)</option>
+                                                <option value="834">834 (BUMD Lainnya)</option>
+                                                <option value="835">835 (Lainnya)</option>
+                                                <option value="840">840 (Sektor Pemerintah Campuran)</option>
+                                                <option value="860">860 (Perusahaan)</option>
+                                                <option value="870">870 (Koperasi)</option>
+                                                <option value="871">871 (Yayasan)</option>
+                                                <option value="872">872 (Kelompok)</option>
+                                                <option value="874">874 (Pegawai/Pensiunan (PNS, TNI/POLRI, Lembaga Negara dan BUMN/BUMD) yang kreditnya memenuhi persyaratan)</option>
+                                                <option value="875">875 (Lainnya)</option>
+                                                <option value="880">880 (Asuransi jiwa)</option>
+                                                <option value="890">890 (Asuransi kredit)</option>
+                                                <option value="891">891 (Pelaku Jasa Keuangan Lainnya)</option>
+                                                <option value="892">892 (Lembaga Internasional)</option>
+                                                <option value="893">893 (Perwakilan Negara Asing)</option>
+                                                <option value="894">894 (Cross Border Correspondent Banking)</option>
+                                                <option value="000">000 (Tanpa penjamin)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="id_grup" class="form-label">ID Grup</label>
+                                            <input type="text" class="form-control" id="id_grup" name="id_grup">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nama_grup" class="form-label">Nama Grup</label>
+                                            <input type="text" class="form-control" id="nama_grup" name="nama_grup">
+                                        </div>
                                     </div>
 
-                                    <!-- Newly added fields -->
-                                    <div class="col-md-3 mb-3">
-                                        <label for="peringkat_pihak_lawan" class="form-label">Peringkat Pihak Lawan</label>
-                                        <input type="text" class="form-control" id="peringkat_pihak_lawan" name="peringkat_pihak_lawan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tanggal_pemeringkatan" class="form-label">Tanggal Pemeringkatan</label>
-                                        <input type="date" class="form-control" id="tanggal_pemeringkatan" name="tanggal_pemeringkatan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="lokasi" class="form-label">Lokasi</label>
-                                        <input type="text" class="form-control" id="lokasi" name="lokasi">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="id_grup" class="form-label">ID Grup</label>
-                                        <input type="text" class="form-control" id="id_grup" name="id_grup">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="nama_grup" class="form-label">Nama Grup</label>
-                                        <input type="text" class="form-control" id="nama_grup" name="nama_grup">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="no_telp" class="form-label">No. Telp/No. HP</label>
-                                        <input type="text" class="form-control" id="no_telp" name="no_telp">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="alamat" class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" id="alamat" name="alamat">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="status" class="form-label">Status</label>
-                                        <input type="text" class="form-control" id="status" name="status">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="pekerjaan" class="form-label">Pekerjaan</label>
-                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="agama" class="form-label">Agama</label>
-                                        <input type="text" class="form-control" id="agama" name="agama">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="keterangan" class="form-label">Keterangan</label>
-                                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                                    <!-- Rating Information Tab -->
+                                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab">
+                                        <div class="mb-3">
+                                            <label for="lembaga_pemeringkat" class="form-label">Lembaga Pemeringkat</label>
+                                            <select class="form-select" id="lembaga_pemeringkat" name="lembaga_pemeringkat">
+                                                <option value="">Pilih Lembaga Pemeringkat</option>
+                                                <option value="1">1 (Moody's Investor Service)</option>
+                                                <option value="2">2 (Standard and Poor's)</option>
+                                                <option value="3">3 (Fitch Rating Internasional)</option>
+                                                <option value="4">4 (Pemeringkat Efek Indonesia (Pefindo))</option>
+                                                <option value="5">5 (Fitch Rating Indonesia)</option>
+                                                <option value="9">9 (Tidak memiliki peringkat atau memiliki peringkat yang diterbitkan oleh lembaga pemeringkat yang tidak diakui Otoritas Jasa Keuangan)</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="peringkat_pihak_lawan" class="form-label">Peringkat Pihak Lawan</label>
+                                            <select class="form-select" id="peringkat_pihak_lawan" name="peringkat_pihak_lawan">
+                                                <option value="">Pilih Peringkat</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="61">61</option>
+                                                <option value="62">62</option>
+                                                <option value="63">63</option>
+                                                <option value="64">64</option>
+                                                <option value="65">65</option>
+                                                <option value="66">66</option>
+                                                <option value="67">67</option>
+                                                <option value="68">68</option>
+                                                <option value="69">69</option>
+                                                <option value="99">99</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tanggal_pemeringkatan" class="form-label">Tanggal Pemeringkatan</label>
+                                            <input type="date" class="form-control" id="tanggal_pemeringkatan" name="tanggal_pemeringkatan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="status" class="form-label">Status</label>
+                                            <input type="text" class="form-control" id="status" name="status">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="keterangan" class="form-label">Keterangan</label>
+                                            <textarea class="form-control" id="keterangan" name="keterangan" rows="2"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -132,14 +368,15 @@
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Table -->
+            <div class="table-responsive">
             <table id="datatables" class="table table-bordered table-striped nowrap w-100">
                 <thead>
                     <tr>
@@ -163,8 +400,7 @@
                         <th>Nama Grup</th>
                         <th>No. Telp/No. HP</th>
                         <th>Alamat</th>
-
-                        <th>Aksi</th>
+                        <th class="sticky-action-col" style="position: sticky; right: 0; background-color: #fff !important; z-index: 5; box-shadow: -2px 0 5px rgba(0,0,0,0.1); width: 100px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -190,15 +426,14 @@
                         <td>GRUP Family</td>
                         <td>812312312</td>
                         <td>JL. KEBON JERUK</td>
-
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0016Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col" style="position: sticky; right: 0; background-color: #fff !important; z-index: 5; box-shadow: -2px 0 5px rgba(0,0,0,0.1); text-align: center; width: 80px;">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0016Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <!-- Table -->
+            </div>
         </div>
     </main>
 </div>
@@ -207,7 +442,21 @@
 $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
-        responsive: true
+        responsive: true,
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
     });
 });
 
@@ -215,7 +464,7 @@ document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
         const form = document.querySelector('#form0016Modal form');
-        form.reset();
+        if (form) form.reset();
     }
 
     if (e.target.closest('.edit')) {
@@ -223,7 +472,7 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-        // Fill modal form
+        // Fill modal form (excluding the last action column)
         document.getElementById("id_pihak_lawan").value = cells[0].textContent.trim();
         document.getElementById("jenis_identitas").value = cells[1].textContent.trim();
         document.getElementById("nomor_identitas").value = cells[2].textContent.trim();
@@ -244,11 +493,6 @@ document.addEventListener('click', function(e) {
         document.getElementById("nama_grup").value = cells[17].textContent.trim();
         document.getElementById("no_telp").value = cells[18].textContent.trim();
         document.getElementById("alamat").value = cells[19].textContent.trim();
-        document.getElementById("status").value = cells[20].textContent.trim();
-        document.getElementById("pekerjaan").value = cells[21].textContent.trim();
-        document.getElementById("email").value = cells[22].textContent.trim();
-        document.getElementById("agama").value = cells[23].textContent.trim();
-        document.getElementById("keterangan").value = cells[24].textContent.trim();
     }
 
     if (e.target.closest('.delete')) {

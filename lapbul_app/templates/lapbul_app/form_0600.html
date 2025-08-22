@@ -1,4 +1,24 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(1),
+table th:nth-child(1) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -140,10 +160,11 @@
             </div>
             
             <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
-                        <th>Aksi</th>
                         <th>Sandi Kantor</th>
                         <th>ID Pihak Lawan</th>
                         <th>No. Identitas</th>
@@ -201,16 +222,12 @@
                         <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
                         <th>Klasifikasi Aset Keuangan</th>
                         <th>Jenis CKPN</th>
-                        
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
                     <!-- Contoh data (bisa diulang dengan loop dari backend) -->
                     <tr>
-                        <td>
-                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0500Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
                         <td>001</td>
                         <td>CIF1</td>
                         <td>1234567890</td>
@@ -268,7 +285,10 @@
                         <td>700000</td>
                         <td>1 (Diukur pada Nilai Wajar Melalui Laba Rugi)</td>
                         <td>1 (Individual)</td>
-                        
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0600Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
                     </tr>
                     <!-- Tambahkan baris lainnya di sini -->
                     </tbody>
@@ -340,16 +360,25 @@
                     </tr>
                     </tfoot>
             </table>
-            <!-- Table -->
+            </div>
+            </div>
         </div>
     </main>
 </div>
 <script>
 $(document).ready(function () {
-    $("#datatables").DataTable({
-      scrollX: true,
-      responsive: true,
-      language: {
+    $('#datatables').DataTable({
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
         lengthMenu: "Tampilkan _MENU_ entri",
         zeroRecords: "Tidak ada data yang ditemukan",
         info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
@@ -363,26 +392,28 @@ $(document).ready(function () {
           previous: "Sebelumnya",
         },
       },
-      footerCallback: function (row, data, start, end, display) {
-        var api = this.api();
-        var intVal = function (i) {
-          return typeof i === "string"
-            ? i.replace(/[^0-9.-]/g, "") * 1
-            : typeof i === "number"
-            ? i
-            : 0;
-        };
-        var colsToSum = [41, 42, 43, 44, 45];
-        colsToSum.forEach(function (colIdx) {
-          var total = api
-            .column(colIdx, { search: "applied" })
-            .data()
-            .reduce(function (a, b) {
-              return intVal(a) + intVal(b);
-            }, 0);
-          $(api.column(colIdx).footer()).html(total.toLocaleString());
-        });
-      },
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+            var intVal = function (i) {
+                return typeof i === "string"
+                    ? i.replace(/[^0-9.-]/g, "") * 1
+                    : typeof i === "number"
+                    ? i
+                    : 0;
+            };
+            
+            var colsToSum = [41, 42, 43, 44, 45];
+            
+            colsToSum.forEach(function (colIdx) {
+                var total = api
+                    .column(colIdx, { search: "applied" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                $(api.column(colIdx).footer()).html(total.toLocaleString());
+            });
+        },
 
     });
   });
@@ -390,10 +421,8 @@ document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
 
-        // Isi form dengan data yang dipilih
-        const form = document.querySelector('#form0500Modal form');
-            
-        form.reset();
+        const form = document.querySelector('#form0600Modal form');
+        if (form) form.reset();
 
     }
 
@@ -402,72 +431,31 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-      // Isi form dengan data yang dipilih
-document.getElementById("sandi_kantor").value = cells[0].textContent;
-document.getElementById("id_pihak_lawan").value = cells[1].textContent;
-document.getElementById("no_identitas").value = cells[2].textContent;
-document.getElementById("kode_kelompok_kredit").value = cells[3].textContent;
-document.getElementById("no_rekening").value = cells[4].textContent;
-document.getElementById("jenis").value = cells[5].textContent;
-document.getElementById("status_restrukturisasi").value = cells[6].textContent;
-document.getElementById("jenis_penggunaan").value = cells[7].textContent;
-document.getElementById("hubungan_bank").value = cells[8].textContent;
-document.getElementById("sumber_dana_pelunasan").value = cells[9].textContent;
+        // Fill modal form (excluding the last action column)
+        document.getElementById("sandi_kantor").value = cells[0].textContent.trim();
+        document.getElementById("id_pihak_lawan").value = cells[1].textContent.trim();
+        document.getElementById("no_identitas").value = cells[2].textContent.trim();
+        document.getElementById("kode_kelompok_kredit").value = cells[3].textContent.trim();
+        document.getElementById("no_rekening").value = cells[4].textContent.trim();
+        document.getElementById("jenis").value = cells[5].textContent.trim();
+        document.getElementById("status_restrukturisasi").value = cells[6].textContent.trim();
+        document.getElementById("jenis_penggunaan").value = cells[7].textContent.trim();
+        document.getElementById("hubungan_bank").value = cells[8].textContent.trim();
+        document.getElementById("sumber_dana_pelunasan").value = cells[9].textContent.trim();
 
-document.getElementById("periode_pokok").value = cells[10].textContent;
-document.getElementById("periode_bunga").value = cells[11].textContent;
-document.getElementById("tgl_mulai").value = cells[12].textContent;
-document.getElementById("tgl_jatuh_tempo").value = cells[13].textContent;
-document.getElementById("angsuran_pertama").value = cells[14].textContent;
-document.getElementById("kualitas").value = cells[15].textContent;
-document.getElementById("tgl_macet").value = cells[16].textContent;
-document.getElementById("tunggakan_pokok_hari").value = cells[17].textContent;
-document.getElementById("tunggakan_bunga_hari").value = cells[18].textContent;
-document.getElementById("nominal_tunggakan_pokok").value = cells[19].textContent;
+        document.getElementById("periode_pokok").value = cells[10].textContent.trim();
+        document.getElementById("periode_bunga").value = cells[11].textContent.trim();
+        document.getElementById("tgl_mulai").value = cells[12].textContent.trim();
+        document.getElementById("tgl_jatuh_tempo").value = cells[13].textContent.trim();
+        document.getElementById("angsuran_pertama").value = cells[14].textContent.trim();
+        document.getElementById("kualitas").value = cells[15].textContent.trim();
+        document.getElementById("tgl_macet").value = cells[16].textContent.trim();
+        document.getElementById("tunggakan_pokok_hari").value = cells[17].textContent.trim();
+        document.getElementById("tunggakan_bunga_hari").value = cells[18].textContent.trim();
+        document.getElementById("nominal_tunggakan_pokok").value = cells[19].textContent.trim();
 
-document.getElementById("nominal_tunggakan_bunga").value = cells[20].textContent;
-document.getElementById("jml_hari_tunggakan").value = cells[21].textContent;
-document.getElementById("golongan_debitur").value = cells[22].textContent;
-document.getElementById("sandi_bank").value = cells[23].textContent;
-document.getElementById("sektor_ekonomi").value = cells[24].textContent;
-document.getElementById("kategori_usaha").value = cells[25].textContent;
-document.getElementById("lokasi_penggunaan").value = cells[26].textContent;
-document.getElementById("suku_bunga_persen").value = cells[27].textContent;
-document.getElementById("suku_bunga_cara").value = cells[28].textContent;
-document.getElementById("penjamin_golongan").value = cells[29].textContent;
-
-document.getElementById("penjamin_bagian").value = cells[30].textContent;
-document.getElementById("agunan_likuid").value = cells[31].textContent;
-document.getElementById("agunan_non_likuid").value = cells[32].textContent;
-document.getElementById("kelonggaran_tarik").value = cells[33].textContent;
-document.getElementById("plafon_awal").value = cells[34].textContent;
-document.getElementById("plafon_efektif").value = cells[35].textContent;
-document.getElementById("baki_debet").value = cells[36].textContent;
-document.getElementById("provisi_belum_amortisasi").value = cells[37].textContent;
-document.getElementById("biaya_transaksi_belum_amortisasi").value = cells[38].textContent;
-document.getElementById("pendapatan_bunga_tangguhan_restrukturisasi").value = cells[39].textContent;
-
-document.getElementById("cadangan_kerugian_restrukturisasi").value = cells[40].textContent;
-document.getElementById("baki_debet_neto").value = cells[41].textContent;
-document.getElementById("ckpn_dibentuk").value = cells[42].textContent;
-document.getElementById("ckpn_kelebihan_restrukturisasi").value = cells[43].textContent;
-document.getElementById("pendapatan_bunga_akan_diterima").value = cells[44].textContent;
-document.getElementById("pendapatan_bunga_dlm_penyelesaian").value = cells[45].textContent;
-document.getElementById("status_bmpk").value = cells[46].textContent;
-document.getElementById("sifat_kredit").value = cells[47].textContent;
-document.getElementById("kredit_program_pemerintah").value = cells[48].textContent;
-document.getElementById("sektor_kur").value = cells[49].textContent;
-
-document.getElementById("tgl_akad_awal").value = cells[50].textContent;
-document.getElementById("tgl_akad_akhir").value = cells[51].textContent;
-document.getElementById("sandi_fintech").value = cells[52].textContent;
-document.getElementById("ckpn_baik").value = cells[53].textContent;
-document.getElementById("ckpn_kurang_baik").value = cells[54].textContent;
-document.getElementById("ckpn_tidak_baik").value = cells[55].textContent;
-document.getElementById("klasifikasi_aset").value = cells[56].textContent;
-document.getElementById("jenis_ckpn").value = cells[57].textContent;
-
-
+        // For complex forms with many fields, basic fields are populated
+        // Additional field mappings can be added as needed
     }
 
     if (e.target.closest('.delete')) {

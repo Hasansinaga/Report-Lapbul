@@ -1,66 +1,105 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    /* Use rgba for a semi-transparent background to prevent text from overlapping */
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu seperti form_1400 */
+table td:first-child,
+table th:first-child,
+table td:nth-child(2),
+table th:nth-child(2),
+table td:nth-child(3),
+table th:nth-child(3),
+table td:nth-child(4),
+table th:nth-child(4) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0006 - Data Modal Disetor</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0006Modal">Tambah</button><br><br>
-            <!-- Modal structure -->
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0006Modal">Tambah</button>
+            </div>
+            <br>
             <div class="modal fade" id="form0006Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0006ModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     
                         <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0006ModalLabel">Form Data Modal Disetor</h6>
+                            <h6 class="modal-title text-white" id="form0006ModalLabel">Form Input Data Modal Disetor</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form using <table> with Bootstrap -->
                             <form>
-                                <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="jenis_setoran" class="form-label">Jenis Setoran</label>
-                                    <input type="text" class="form-control" id="jenis_setoran" name="jenis_setoran" maxlength="50" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="tanggal_persetujuan" class="form-label">Tanggal Persetujuan</label>
-                                    <input type="text" class="form-control" id="tanggal_persetujuan" name="tanggal_persetujuan" maxlength="25" required>
-                                </div>
-                                </div>
+                                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
+                                            type="button" role="tab" aria-controls="basic" aria-selected="true">
+                                            Informasi Modal
+                                        </button>
+                                    </li>
+                                </ul>
 
-                                <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="jenis_modal" class="form-label">Jenis Modal</label>
-                                    <input type="text" class="form-control" id="jenis_modal" name="jenis_modal" maxlength="2" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="jumlah" class="form-label">Jumlah</label>
-                                    <input type="text" class="form-control" id="jumlah" name="jumlah" maxlength="2" required>
-                                </div>
+                                <div class="tab-content mt-3" id="formTabContent">
+                                    <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="jenis_setoran" class="form-label">Jenis Setoran</label>
+                                                <input type="text" class="form-control" id="jenis_setoran" name="jenis_setoran">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="tanggal_persetujuan" class="form-label">Tanggal Persetujuan</label>
+                                                <input type="date" class="form-control" id="tanggal_persetujuan" name="tanggal_persetujuan">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="jenis_modal" class="form-label">Jenis Modal</label>
+                                                <input type="text" class="form-control" id="jenis_modal" name="jenis_modal">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="jumlah" class="form-label">Jumlah</label>
+                                                <input type="number" class="form-control" id="jumlah" name="jumlah">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
-                                <!-- End Input Form -->
-                        </div>
+                            </div>
+                        
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
-                        <th>Jenis Setoran</th>
-                        <th>Tanggal Persetujuan</th>
-                        <th>Jenis Modal</th>
-                        <th>Jumlah</th>
-                        <th>Aksi</th>
+                        <th class="text-center">Jenis Setoran</th>
+                        <th class="text-center">Tanggal Persetujuan</th>
+                        <th class="text-center">Jenis Modal</th>
+                        <th class="text-center">Jumlah</th>
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,8 +108,8 @@
                         <td>20250728</td>
                         <td>01</td>
                         <td>1000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -79,34 +118,95 @@
                         <td>20230612</td>
                         <td>03</td>
                         <td>2000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     <!-- Add more rows as needed -->
                     </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3" style="text-align: right">Total:</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <!-- Total CBS -->
+                    <tr>
+                        <th colspan="3" style="text-align: right">Total CBS:</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <!-- Selisih Jumlah lapbul dengan CBS -->
+                    <tr>
+                        <th colspan="3" style="text-align: right">Selisih Jumlah lapbul dengan CBS:</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
             </table>
-            <!-- Table -->
+            </div>
+            </div>
         </div>
     </main>
 </div>
 <script>
 $(document).ready(function () {
     $('#datatables').DataTable({
-        //scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+            var intVal = function (i) {
+                return typeof i === "string"
+                    ? i.replace(/[^0-9.-]/g, "") * 1
+                    : typeof i === "number"
+                    ? i
+                    : 0;
+            };
+            
+            var colsToSum = [3];
+            
+            colsToSum.forEach(function (colIdx) {
+                var total = api
+                    .column(colIdx, { search: "applied" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                $(api.column(colIdx).footer()).html(total.toLocaleString());
+            });
+        },
     });
 });
+
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();
-
-        // Isi form dengan data yang dipilih
         const form = document.querySelector('#form0006Modal form');
-            
-        form.reset();
-
+        if (form) form.reset();
     }
 
     if (e.target.closest('.edit')) {
@@ -114,22 +214,17 @@ document.addEventListener('click', function(e) {
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
 
-        // Isi form dengan data yang dipilih
-        document.getElementById('jenis_setoran').value = cells[0].textContent;
-        document.getElementById('tanggal_persetujuan').value = cells[1].textContent;
-        document.getElementById('jenis_modal').value = cells[2].textContent;
-        document.getElementById('jumlah').value = cells[3].textContent;
-
+        // Fill modal form (excluding the last action column)
+        document.getElementById("jenis_setoran").value = cells[0].textContent.trim();
+        document.getElementById("tanggal_persetujuan").value = cells[1].textContent.trim();
+        document.getElementById("jenis_modal").value = cells[2].textContent.trim();
+        document.getElementById("jumlah").value = cells[3].textContent.trim();
     }
 
     if (e.target.closest('.delete')) {
         e.preventDefault();
         const row = e.target.closest('tr');
-        
-        // Tampilkan dialog konfirmasi
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        
-        if (confirmDelete) {
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
             row.remove();
         }
     }

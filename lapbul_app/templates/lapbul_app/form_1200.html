@@ -1,4 +1,24 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(1),
+table th:nth-child(1) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -131,7 +151,7 @@
                         <th>Jenis PEP</th>
                         <th>Risiko</th>
                         <th>Status Data</th>
-                        <th>Aksi</th>
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -154,8 +174,8 @@
                         <td>1 (PEP)</td>
                         <td>1 (Rendah)</td>
                         <td>1 (Terdapat pengkinian)</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -178,8 +198,8 @@
                         <td>1 (PEP)</td>
                         <td>2 (Sedang)</td>
                         <td>2 (Tidak terdapat pengkinian di bulan berjalan)</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -202,8 +222,8 @@
                         <td>1 (PEP)</td>
                         <td>3 (Tinggi)</td>
                         <td>1 (Terdapat pengkinian di bulan berjalan)</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -226,8 +246,8 @@
                         <td>1 (PEP)</td>
                         <td>1 (Rendah)</td>
                         <td>2 (Tidak terdapat pengkinian di bulan berjalan)</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1200Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -255,6 +275,14 @@ $(document).ready(function () {
         responsive: true,
         pageLength: 15,
         lengthChange: false,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
         language: {
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",

@@ -4,67 +4,37 @@
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0015 - Rincian Transaksi Terkait Penilaian Risiko TPPU, TPPT, dan PPSPM</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-
-            <!--
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0015Modal">Tambah</button><br><br>
-             -->
-            <br>
-            <br>
-            
-            <!-- Modal structure -->
-            <div class="modal fade" id="form0015Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0015ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                    
-                        <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0015ModalLabel">Form Input Transaksi</h6>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-body">
-                            <!-- Input Form -->
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-2 mb-3">
-                                        <label for="include_text" class="form-label">Include Text</label>
-                                        <input type="text" class="form-control" id="include_text" name="include_text" maxlength="1">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="jenis_nasabah" class="form-label">Jenis Nasabah</label>
-                                        <input type="text" class="form-control" id="jenis_nasabah" name="jenis_nasabah" maxlength="100">
-                                    </div>
-                                    <div class="col-md-2 mb-3">
-                                        <label for="sandi" class="form-label">Sandi</label>
-                                        <input type="text" class="form-control" id="sandi" name="sandi" maxlength="5">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="nominal" class="form-label">Nominal</label>
-                                        <input type="number" class="form-control" id="nominal" name="nominal">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="jumlah_transaksi" class="form-label">Jumlah Transaksi</label>
-                                        <input type="number" class="form-control" id="jumlah_transaksi" name="jumlah_transaksi">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- End Input Form -->
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Simpan</button>
             </div>
+
+            <!-- Filter Sandi -->
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label for="sandiFilter" class="form-label mb-0">Pilih Sandi:</label>
+                <select id="sandiFilter" class="form-select form-select-sm w-auto" onchange="filterSandi()">
+                    <option value="all">semua</option>
+                    <option value="5100">5100</option>
+                    <option value="5110">5110</option>
+                    <option value="5111">5111</option>
+                    <option value="5112">5112</option>
+                    <option value="5120">5120</option>
+                    <option value="5200">5200</option>
+                    <option value="5210">5210</option>
+                    <option value="5211">5211</option>
+                    <option value="5212">5212</option>
+                    <option value="5220">5220</option>
+                    <option value="5000">5000</option>
+                </select>
+            </div>
+
             
-            <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <form>
+                
+                <table class="table table-bordered table-sm">
+                <thead class="table-light">
                     <tr>
-                        <th>Include Text</th>
+                        <!-- <th>Include Text</th> -->
                         <th>Jenis Nasabah</th>
                         <th>Sandi</th>
                         <th>Nominal</th>
@@ -74,88 +44,97 @@
                 </thead>
                 <tbody>
                     <!-- Example rows (replace with loop from backend later) -->
-                    <tr>
-                        <td>Y</td>
+                    <tr data-sandi="5100">
                         <td>1. Transaksi melalui Jaringan Distribusi Tatap Muka</td>
                         <td>5100</td>
-                        <td>6000</td>
-                        <td>6000</td>
-                        <!-- <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0015Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                         -->
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5100" value="6000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5100" value="6000"></td>
                     </tr>
-                    <tr>
-                        <td>Y</td>
+                    <tr data-sandi="5110">
                         <td>1.1 Melibatkan Perpindahan Dana</td>
                         <td>5110</td>
-                        <td>3000</td>
-                        <td>3000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0015Modal"><i class="fas fa-edit"></i></a>
-                            <!-- <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a> -->
-
-                        </td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5110" value="3000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5110" value="3000"></td>
                     </tr>
-
-                    <tr>
-                        <td>Y</td>
-                        <td>a. Dana Masuk</td>
+                    <tr data-sandi="5111">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;a. Dana Masuk</td>
                         <td>5111</td>
-                        <td>1000</td>
-                        <td>1000</td>
-                                <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0015Modal"><i class="fas fa-edit"></i></a>
-                            <!-- <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a> -->
-
-                        </td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5111" value="1000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5111" value="1000"></td>
+                    </tr>
+                    <tr data-sandi="5112">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;b. Dana Keluar</td>
+                        <td>5112</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5112" value="2000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5112" value="2000"></td>
+                    </tr>
+                    <tr data-sandi="5120">
+                        <td>1.2 Tidak melibatkan Perpindahan Dana</td>
+                        <td>5120</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5120" value="3000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5120" value="3000"></td>
+                    </tr>
+                    <tr data-sandi="5200">
+                        <td>2. Transaksi melalui Jaringan Distribusi Nontatap Muka</td>
+                        <td>5200</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5200" value="15000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5200" value="15000"></td>
+                    </tr>
+                    <tr data-sandi="5210">
+                        <td>2.1 Melibatkan Perpindahan Dana</td>
+                        <td>5210</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5210" value="9000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5210" value="9000"></td>
+                    </tr>
+                    <tr data-sandi="5211">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;a. Dana Masuk</td>
+                        <td>5211</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5211" value="4000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5211" value="4000"></td>
+                    </tr>
+                    <tr data-sandi="5212">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;b. Dana Keluar</td>
+                        <td>5212</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5212" value="5000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5212" value="5000"></td>
+                    </tr>
+                    <tr data-sandi="5220">
+                        <td>2.2 Tidak melibatkan Perpindahan Dana</td>
+                        <td>5220</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5220" value="6000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5220" value="6000"></td>
+                    </tr>
+                    <tr data-sandi="5000">
+                        <td>Total Transaksi</td>
+                        <td>5000</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_5000" value="21000"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="transaksi_5000" value="21000"></td>
                     </tr>
                     <!-- Tambahkan baris lainnya sesuai data dari backend -->
                 </tbody>
             </table>
-            <!-- Table -->
+            </form>
+            <!-- End Form -->
         </div>
     </main>
 </div>
 
 <script>
-$(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+function filterSandi() {
+    var selected = document.getElementById("sandiFilter").value;
+    var rows = document.querySelectorAll("tbody tr");
 
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.tambah')) {
-        e.preventDefault();
-        const form = document.querySelector('#form0015Modal form');
-        form.reset();
-    }
-
-    if (e.target.closest('.edit')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        const cells = row.querySelectorAll('td');
-
-        // Fill form fields with row data
-        document.getElementById("include_text").value = cells[0].textContent.trim();
-        document.getElementById("jenis_nasabah").value = cells[1].textContent.trim();
-        document.getElementById("sandi").value = cells[2].textContent.trim();
-        document.getElementById("nominal").value = cells[3].textContent.trim();
-        document.getElementById("jumlah_transaksi").value = cells[4].textContent.trim();
-    }
-
-    if (e.target.closest('.delete')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        if (confirmDelete) {
-            row.remove();
+    rows.forEach(function(row) {
+        if (selected === "all") {
+            row.style.display = "";
+        } else {
+            if (row.getAttribute("data-sandi") === selected) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
         }
-    }
-});
+    });
+}
 </script>
 {% include 'lapbul_app/footer.html' %}

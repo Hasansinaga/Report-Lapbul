@@ -1,13 +1,112 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(5),
+table th:nth-child(5),
+table td:nth-child(6),
+table th:nth-child(6),
+table td:nth-child(9),
+table th:nth-child(9),
+table td:nth-child(10),
+table th:nth-child(10),
+table td:nth-child(11),
+table th:nth-child(11),
+table td:nth-child(12),
+table th:nth-child(12),
+table td:nth-child(13),
+table th:nth-child(13),
+table td:nth-child(14),
+table th:nth-child(14),
+table td:nth-child(15),
+table th:nth-child(15),
+table td:nth-child(16),
+table th:nth-child(16),
+table td:nth-child(17),
+table th:nth-child(17),
+table td:nth-child(18),
+table th:nth-child(18),
+table td:nth-child(19),
+table th:nth-child(19),
+table td:nth-child(20),
+table th:nth-child(20),
+table td:nth-child(21),
+table th:nth-child(21),
+table td:nth-child(22),
+table th:nth-child(22),
+table td:nth-child(23),
+table th:nth-child(23),
+table td:nth-child(24),
+table th:nth-child(24),
+table td:nth-child(25),
+table th:nth-child(25),
+table td:nth-child(26),
+table th:nth-child(26),
+table td:nth-child(27),
+table th:nth-child(27),
+table td:nth-child(28),
+table th:nth-child(28),
+table td:nth-child(29),
+table th:nth-child(29),
+table td:nth-child(30),
+table th:nth-child(30),
+table td:nth-child(31),
+table th:nth-child(31),
+table td:nth-child(35),
+table th:nth-child(35),
+table td:nth-child(36),
+table th:nth-child(36),
+table td:nth-child(37),
+table th:nth-child(37),
+table td:nth-child(38),
+table th:nth-child(38),
+table td:nth-child(39),
+table th:nth-child(39),
+table td:nth-child(40),
+table th:nth-child(40),
+table td:nth-child(41),
+table th:nth-child(41),
+table td:nth-child(42),
+table th:nth-child(42),
+table td:nth-child(43),
+table th:nth-child(43),
+table td:nth-child(44),
+table th:nth-child(44),
+table td:nth-child(45),
+table th:nth-child(45),
+table td:nth-child(46),
+table th:nth-child(46),
+table td:nth-child(47),
+table th:nth-child(47),
+table td:nth-child(48),
+table th:nth-child(48),
+table td:nth-child(49),
+table th:nth-child(49) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0004 - Data Kantor BPR</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0004Modal">Tambah</button> --><br><br>
-
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0004Modal">Tambah</button> -->
+            </div>
+            <br>
             <!-- Modal structure -->
             <div class="modal fade" id="form0004Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0004ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -276,8 +375,11 @@
                 </div>
             </div>
 
-            <table id="datatables" class="table table table-bordered table-striped nowrap w-100">
-                <thead>
+            <!-- Table -->
+            <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
                     <th>Nama Bank</th>
                     <th>Koordinat</th>
@@ -353,7 +455,7 @@
                     <th>Jumlah SKK</th>
 
                     <!-- Aksi -->
-                    <th>Aksi</th>
+                    <th class="sticky-action-col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -432,13 +534,15 @@
                     <td>2</td>
 
                     <!-- Aksi -->
-                    <td>
-                        <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0004Modal"><i class="fas fa-edit"></i></a>
+                    <td class="sticky-action-col">
+                        <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0004Modal"><i class="fas fa-edit"></i></a>
                         <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 </tbody>
             </table>
+            </div>
+            </div>
         </div>
     </main>
 </div>
@@ -446,8 +550,30 @@
 $(document).ready(function () {
 
     $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
     });
 
     document.addEventListener('click', function(e) {

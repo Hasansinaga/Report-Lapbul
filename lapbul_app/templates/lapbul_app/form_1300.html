@@ -1,13 +1,34 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(1),
+table th:nth-child(1) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
   <main>
     <div class="container-fluid px-4">
       <h5 class="mt-4">Form 1300 - Daftar Simpanan dari Bank Lain</h5>
       <hr />
-      <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary"
-        >Kembali</a
-      >
-      <br /><br />
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+        <!-- <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1300Modal">Tambah</button> -->
+      </div>
+      <br />
 
       <!-- Modal -->
       <div
@@ -156,11 +177,11 @@
         </div>
       </div>
 
-      <table
-        id="datatables"
-        class="table table-bordered table-striped nowrap w-100"
-      >
-        <thead>
+      <!-- Table -->
+      <div class="d-flex justify-content-center">
+      <div class="table-responsive">
+      <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+        <thead class="table-light text-center">
           <tr>
             <th>Sandi Kantor</th>
             <th>ID Pihak Lawan</th>
@@ -178,7 +199,7 @@
             <th>Alasan Diblokir</th>
             <th>Transaksi Belum Diamortisasi</th>
             <th>Jumlah</th>
-            <th>Aksi</th>
+            <th class="sticky-action-col text-center">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -200,10 +221,10 @@
             <td>01 (Escrow Account)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -230,10 +251,10 @@
             <td>02 (Cash Collateral)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -260,10 +281,10 @@
             <td>99 (Alasan Diblokir Lainnya)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -291,10 +312,10 @@
             <td>01 (Escrow Account)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -321,10 +342,10 @@
             <td>02 (Cash Collateral)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -351,10 +372,10 @@
             <td>99 (Alasan Diblokir Lainnya)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -381,10 +402,10 @@
             <td>01 (Escrow Account)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -411,10 +432,10 @@
             <td>02 (Cash Collateral)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -441,10 +462,10 @@
             <td>99 (Alasan Diblokir Lainnya)</td>
             <td>100000</td>
             <td>100000</td>
-            <td>
+            <td class="sticky-action-col">
               <a
                 href="#"
-                class="text-secondary me-2 edit"
+                class="text-secondary me-1 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#form1300Modal"
                 ><i class="fas fa-edit"></i
@@ -473,6 +494,8 @@
           </tr>
         </tfoot>
       </table>
+      </div>
+      </div>
     </div>
   </main>
 </div>
@@ -484,6 +507,14 @@
       responsive: true,
       pageLength: 15,
       lengthChange: false,
+      columnDefs: [
+        {
+          targets: -1, // Last column (Aksi)
+          width: "120px",
+          orderable: false,
+          responsive: false
+        }
+      ],
       language: {
         zeroRecords: "Tidak ada data yang ditemukan",
         info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",

@@ -4,11 +4,21 @@
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0200 - Laporan Laba Rugi</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0200Modal">Tambah</button><br><br>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0200Modal">Simpan</button>
+            </div>
+
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label for="kantorFilter" class="form-label mb-0">Pilih Sandi Kantor:</label>
+                <select id="kantorFilter" class="form-select form-select-sm w-auto" onchange="filterKantor()">
+                    <option value="all">semua</option>
+                    <option value="000">000</option>
+                    <option value="001">001</option>
+                    <option value="002">002</option>
+                </select>
+            </div>
             
-            <!-- Modal structure -->
             <div class="modal fade" id="form0200Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0200ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -19,13 +29,8 @@
                         </div>
 
                         <div class="modal-body">
-                            <!-- Input Form -->
                             <form>
                                 <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="include_text" class="form-label">Include Text</label>
-                                        <input type="text" class="form-control" id="include_text" name="include_text" maxlength="1">
-                                    </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
                                         <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="10">
@@ -34,7 +39,7 @@
                                         <label for="nama_rekening" class="form-label">Nama Rekening</label>
                                         <input type="text" class="form-control" id="nama_rekening" name="nama_rekening" maxlength="200">
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <label for="sandi" class="form-label">Sandi</label>
                                         <input type="text" class="form-control" id="sandi" name="sandi" maxlength="10">
                                     </div>
@@ -44,8 +49,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <!-- End Input Form -->
-                        </div>
+                            </div>
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -55,96 +59,2952 @@
                 </div>
             </div>
             
-            <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
-                    <tr>
-                        <th>Include Text</th>
-                        <th>Sandi Kantor</th>
-                        <th>Nama Rekening</th>
-                        <th>Sandi</th>
-                        <th>Jumlah</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Y</td>
-                        <td>001</td>
-                        <td>Pendapatan Bunga</td>
-                        <td>50000000</td>
-                        <td>18000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0200Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Y</td>
-                        <td>001</td>
-                        <td>Beban Bunga</td>
-                        <td>50100000</td>
-                        <td>8000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0200Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Y</td>
-                        <td>001</td>
-                        <td>Pendapatan Operasional Lainnya</td>
-                        <td>50200000</td>
-                        <td>2000000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0200Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- Table -->
+            <form>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <th rowspan="2" style="vertical-align: middle;">Include</th>
+                                <th colspan="2" class="text-center">Sandi</th>
+                                <th rowspan="2" style="vertical-align: middle;">Nama Rekening</th>
+                                <th rowspan="2" style="vertical-align: middle;">Sandi</th>
+                                <th rowspan="2" style="vertical-align: middle;">Jumlah</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Teks</th>
+                                <th class="text-center">Kantor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td></td>
+                                <td>Pendapatan Operasional</td>
+                                <td>4100000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4100000000" value="76150000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Pendapatan Bunga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Bunga Kontraktual</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Surat Berharga</td>
+                                <td>4101010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">ii. Penempatan pada Bank Lain</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Giro</td>
+                                <td>4101010201</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010201" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Tabungan</td>
+                                <td>4101010202</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010202" value="20000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Deposito</td>
+                                <td>4101010203</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010203" value="20000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Sertifikat Deposito</td>
+                                <td>4101010204</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010204" value="20000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">iii. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Kepada Bank Lain</td>
+                                <td>4101010301</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010301" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Kepada Pihak Ketiga bukan Bank</td>
+                                <td>4101010302</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101010302" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td></td>
+                                <td></td>
+                                <td>b Provisi Kredit</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>4101020100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101020100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>4101020200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101020200" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td></td>
+                                <td></td>
+                                <td>c Biaya Transaksi -/-</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Surat Berharga</td>
+                                <td>4101030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101030100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">ii. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Kepada Bank Lain</td>
+                                <td>4101030201</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101030201" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">Kepada Pihak Ketiga bukan Bank</td>
+                                <td>4101030202</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101030202" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>d. Koreksi Atas Pendapatan Bunga -/-</td>
+                                <td>4101040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4101040000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Pendapatan Lainnya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a Pendapatan Jasa Transaksi</td>
+                                <td>4102010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b Keuntungan Penjualan Valuta Asing</td>
+                                <td>4102020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102020000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>c Keuntungan Penjualan Surat Berharga</td>
+                                <td>4102030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102030000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>d Penerimaan Kredit yang Dihapusbuku</td>
+                                <td>4102040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102040000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>e Pemulihan CKPN</td>
+                                <td>4102050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102050000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>f Dividen</td>
+                                <td>4102060000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102060000" value="10000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>g Keuntungan dari penyertaan dengan equity method</td>
+                                <td>4102070000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102070000" value="20000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>h Keuntungan penjualan AYDA</td>
+                                <td>4201020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4201020000" value="30000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>i Pendapatan Ganti Rugi Asuransi</td>
+                                <td>4203000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4203000000" value="40000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>j Pemulihan penurunan nilai AYDA</td>
+                                <td>4202020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4202020000" value="50000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>k Lainnya</td>
+                                <td>4102990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4102990000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td></td>
+                                <td>Beban Operasional</td>
+                                <td>5100000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5100000000" value="62000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Beban Bunga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Beban Bunga Kontraktual</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Tabungan</td>
+                                <td>5101010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">ii. Deposito</td>
+                                <td>5101010200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010200" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">iii. Simpanan dari Bank Lain</td>
+                                <td>5101010300</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010300" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">iv. Pinjaman yang diterima</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">1) Dari Bank Indonesia</td>
+                                <td>5101010401</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010401" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">2) Dari Bank Lain</td>
+                                <td>5101010402</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010402" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">3) Dari Pihak Ketiga Bukan Bank</td>
+                                <td>5101010403</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010403" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 40px;">4) Berupa Pinjaman Subordinasi</td>
+                                <td>5101010404</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101010404" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">v. Lainnya</td>
+                                <td>5101019900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101019900" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>b Biaya Transaksi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>5101020100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101020100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>5101020200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5101020200" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>2</td>
+                                <td>000</td>
+                                <td>Beban Kerugian Restrukturisasi Kredit</td>
+                                <td>5102000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5102000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>3</td>
+                                <td></td>
+                                <td>Beban Cadangan Kerugian Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a. Surat Berharga</td>
+                                <td>5103010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5103010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b. Penempatan pada Bank Lain</td>
+                                <td>5103020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5103020000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>c. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>5103030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5103030100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>5103030200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5103030200" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>d Penyertaan Modal</td>
+                                <td>5103040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5103040000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>e Aset Keuangan Lainnya</td>
+                                <td>5103050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5103050000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>000</td>
+                                <td>Beban Pemasaran</td>
+                                <td>5104000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5104000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>000</td>
+                                <td>Beban Penelitian dan Pengembangan</td>
+                                <td>5105000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5105000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>6</td>
+                                <td></td>
+                                <td>Beban Administrasi dan Umum</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Beban Tenaga Kerja</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Gaji dan Upah</td>
+                                <td>5106010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106010100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">ii. Honorarium</td>
+                                <td>5106010200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106010200" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">iii. Lainnya</td>
+                                <td>5106019900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106019900" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b Beban Pendidikan dan Pelatihan</td>
+                                <td>5106020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106020000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>c Beban Sewa</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">i. Gedung Kantor</td>
+                                <td>5106030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106030100" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">ii. Lainnya</td>
+                                <td>5106039900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106039900" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>d Beban Penyusutan/Penghapusan atas Aset Tetap dan Inventaris</td>
+                                <td>5106040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106040000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>e Beban Amortisasi Aset Tidak Berwujud</td>
+                                <td>5106050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106050000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>f Beban Premi Asuransi</td>
+                                <td>5106060000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106060000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>g Beban Pemeliharaan dan Perbaikan</td>
+                                <td>5106070000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106070000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>h Beban Barang dan Jasa</td>
+                                <td>5106080000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106080000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>i Beban Penyelenggaraan Teknologi Informasi</td>
+                                <td>5106100000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106100000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>j Kerugian terkait risiko operasional</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">a. Kecurangan internal</td>
+                                <td>5106110100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106110100" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td style="padding-left: 20px;">b. Kejahatan eksternal</td>
+                                <td>5106110200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106110200" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>k Pajak-pajak</td>
+                                <td>5106090000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5106090000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>7</td>
+                                <td></td>
+                                <td>Beban Lainnya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a Kerugian Penjualan Valuta Asing</td>
+                                <td>5199010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5199010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b Kerugian Penjualan Surat Berharga</td>
+                                <td>5199020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5199020000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>c Kerugian dari penyertaan dengan equity method</td>
+                                <td>5199030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5199030000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>d Kerugian penjualan AYDA</td>
+                                <td>5201020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5201020000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>e Kerugian penurunan nilai AYDA</td>
+                                <td>5202020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5202020000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>f Lainnya</td>
+                                <td>5199990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5199990000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Laba (Rugi) Operasional</td>
+                                <td>3104040100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3104040100" value="14150000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Pendapatan Non Operasional</td>
+                                <td>4200000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4200000000" value="30000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Keuntungan Penjualan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>4201010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4201010000" value="20000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Pemulihan Penurunan Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>4202010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4202010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b Lainnya</td>
+                                <td>4202030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4202030000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>3</td>
+                                <td>000</td>
+                                <td>Bunga Antar Kantor</td>
+                                <td>4204000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4204000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>000</td>
+                                <td>Selisih Kurs</td>
+                                <td>4205000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4205000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>000</td>
+                                <td>Lainnya</td>
+                                <td>4299000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4299000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Beban Non Operasional</td>
+                                <td>5200000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5200000000" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Kerugian Penjualan/Kehilangan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>5201010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5201010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Kerugian Penurunan Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>5202010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5202010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b Lainnya</td>
+                                <td>5202030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5202030000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>3</td>
+                                <td>000</td>
+                                <td>Bunga Antar Kantor</td>
+                                <td>5203000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5203000000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>000</td>
+                                <td>Selisih Kurs</td>
+                                <td>5204000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5204000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>000</td>
+                                <td>Lainnya</td>
+                                <td>5299000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5299000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Laba (Rugi) Non Operasional</td>
+                                <td>3104040200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3104040200" value="20000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Laba (Rugi) Tahun Berjalan Sebelum Pajak</td>
+                                <td>3104040300</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3104040300" value="34150000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Taksiran Pajak Penghasilan</td>
+                                <td>5300000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5300000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Pendapatan Pajak Tangguhan</td>
+                                <td>4400000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_4400000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Beban Pajak Tangguhan</td>
+                                <td>5400000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_5400000000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Jumlah Laba (Rugi) Tahun Berjalan</td>
+                                <td>3104040400</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3104040400" value="32150000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Penghasilan Komprehensif Lain</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Tidak Akan Direklasifikasi ke Laba Rugi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a. Keuntungan Revaluasi Aset Tetap</td>
+                                <td>7101010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_7101010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b. Lainnya</td>
+                                <td>7101990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_7101990000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>c. Pajak Penghasilan terkait</td>
+                                <td>7101980000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_7101980000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Akan Direklasifikasikan ke Laba Rugi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>a. Keuntungan (Kerugian) dan Perubahan Nilai Aset Keuangan Dalam Kelompok Tersedia untuk Dijual</td>
+                                <td>7102010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_7102010000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>b. Lainnya</td>
+                                <td>7102990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_7102990000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>c. Pajak Penghasilan terkait</td>
+                                <td>7102980000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_7102980000" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Penghasilan Komprehensif Lain Setelah Pajak</td>
+                                <td>3104040500</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3104040500" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="000">
+                                <td>Y</td>
+                                <td></td>
+                                <td>000</td>
+                                <td>Total Laba (Rugi) Komprehensif Tahun Berjalan</td>
+                                <td>3104040600</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_000_3104040600" value="2000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td></td>
+                                <td>Pendapatan Operasional</td>
+                                <td>4100000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4100000000" value="38075000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Pendapatan Bunga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Bunga Kontraktual</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Surat Berharga</td>
+                                <td>4101010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">ii. Penempatan pada Bank Lain</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Giro</td>
+                                <td>4101010201</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010201" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Tabungan</td>
+                                <td>4101010202</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010202" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Deposito</td>
+                                <td>4101010203</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010203" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Sertifikat Deposito</td>
+                                <td>4101010204</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010204" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">iii. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Kepada Bank Lain</td>
+                                <td>4101010301</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010301" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Kepada Pihak Ketiga bukan Bank</td>
+                                <td>4101010302</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101010302" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td></td>
+                                <td></td>
+                                <td>b Provisi Kredit</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>4101020100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101020100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>4101020200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101020200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td></td>
+                                <td></td>
+                                <td>c Biaya Transaksi -/-</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Surat Berharga</td>
+                                <td>4101030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101030100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">ii. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Kepada Bank Lain</td>
+                                <td>4101030201</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101030201" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">Kepada Pihak Ketiga bukan Bank</td>
+                                <td>4101030202</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101030202" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>d. Koreksi Atas Pendapatan Bunga -/-</td>
+                                <td>4101040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4101040000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Pendapatan Lainnya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a Pendapatan Jasa Transaksi</td>
+                                <td>4102010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b Keuntungan Penjualan Valuta Asing</td>
+                                <td>4102020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>c Keuntungan Penjualan Surat Berharga</td>
+                                <td>4102030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102030000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>d Penerimaan Kredit yang Dihapusbuku</td>
+                                <td>4102040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102040000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>e Pemulihan Penyisihan Penghapusan Aset Produktif</td>
+                                <td>4102050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102050000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>f Dividen</td>
+                                <td>4102060000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102060000" value="5000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>g Keuntungan dari penyertaan dengan equity method</td>
+                                <td>4102070000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102070000" value="10000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>h Keuntungan penjualan AYDA</td>
+                                <td>4201020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4201020000" value="15000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>i Pendapatan Ganti Rugi Asuransi</td>
+                                <td>4203000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4203000000" value="20000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>j Pemulihan penurunan nilai AYDA</td>
+                                <td>4202020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4202020000" value="25000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>k Lainnya</td>
+                                <td>4102990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4102990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td></td>
+                                <td>Beban Operasional</td>
+                                <td>5100000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5100000000" value="31000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Beban Bunga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Beban Bunga Kontraktual</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Tabungan</td>
+                                <td>5101010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">ii. Deposito</td>
+                                <td>5101010200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">iii. Simpanan dari Bank Lain</td>
+                                <td>5101010300</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010300" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">iv. Pinjaman yang diterima</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">1) Dari Bank Indonesia</td>
+                                <td>5101010401</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010401" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">2) Dari Bank Lain</td>
+                                <td>5101010402</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010402" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">3) Dari Pihak Ketiga Bukan Bank</td>
+                                <td>5101010403</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010403" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 40px;">4) Berupa Pinjaman Subordinasi</td>
+                                <td>5101010404</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101010404" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">v. Lainnya</td>
+                                <td>5101019900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101019900" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>b Biaya Transaksi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>5101020100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101020100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>5101020200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5101020200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>2</td>
+                                <td>001</td>
+                                <td>Beban Kerugian Restrukturisasi Kredit</td>
+                                <td>5102000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5102000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>3</td>
+                                <td></td>
+                                <td>Beban Cadangan Kerugian Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a. Surat Berharga</td>
+                                <td>5103010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5103010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b. Penempatan pada Bank Lain</td>
+                                <td>5103020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5103020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>c. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>5103030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5103030100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>5103030200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5103030200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>d Penyertaan Modal</td>
+                                <td>5103040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5103040000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>e Aset Keuangan Lainnya</td>
+                                <td>5103050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5103050000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>001</td>
+                                <td>Beban Pemasaran</td>
+                                <td>5104000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5104000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>001</td>
+                                <td>Beban Penelitian dan Pengembangan</td>
+                                <td>5105000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5105000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>6</td>
+                                <td></td>
+                                <td>Beban Administrasi dan Umum</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Beban Tenaga Kerja</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Gaji dan Upah</td>
+                                <td>5106010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106010100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">ii. Honorarium</td>
+                                <td>5106010200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106010200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">iii. Lainnya</td>
+                                <td>5106019900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106019900" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b Beban Pendidikan dan Pelatihan</td>
+                                <td>5106020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>c Beban Sewa</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">i. Gedung Kantor</td>
+                                <td>5106030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106030100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">ii. Lainnya</td>
+                                <td>5106039900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106039900" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>d Beban Penyusutan/Penghapusan atas Aset Tetap dan Inventaris</td>
+                                <td>5106040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106040000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>e Beban Amortisasi Aset Tidak Berwujud</td>
+                                <td>5106050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106050000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>f Beban Premi Asuransi</td>
+                                <td>5106060000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106060000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>g Beban Pemeliharaan dan Perbaikan</td>
+                                <td>5106070000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106070000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>h Beban Barang dan Jasa</td>
+                                <td>5106080000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106080000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>i Beban Penyelenggaraan Teknologi Informasi</td>
+                                <td>5106100000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106100000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>j Kerugian terkait risiko operasional</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">a. Kecurangan internal</td>
+                                <td>5106110100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106110100" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td style="padding-left: 20px;">b. Kejahatan eksternal</td>
+                                <td>5106110200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106110200" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>i Pajak-pajak</td>
+                                <td>5106090000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5106090000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>7</td>
+                                <td></td>
+                                <td>Beban Lainnya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a Kerugian Penjualan Valuta Asing</td>
+                                <td>5199010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5199010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b Kerugian Penjualan Surat Berharga</td>
+                                <td>5199020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5199020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>c Kerugian dari penyertaan dengan equity method</td>
+                                <td>5199030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5199030000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>d Kerugian penjualan AYDA</td>
+                                <td>5201020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5201020000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>e Kerugian penurunan nilai AYDA</td>
+                                <td>5202020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5202020000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>c Lainnya</td>
+                                <td>5199990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5199990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Laba (Rugi) Operasional</td>
+                                <td>3104040100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3104040100" value="7075000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Pendapatan Non Operasional</td>
+                                <td>4200000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4200000000" value="15000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Keuntungan Penjualan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>4201010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4201010000" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Pemulihan Penurunan Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>4202010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4202010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b Lainnya</td>
+                                <td>4202030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4202030000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>001</td>
+                                <td>Bunga Antar Kantor</td>
+                                <td>4204000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4204000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>001</td>
+                                <td>Selisih Kurs</td>
+                                <td>4205000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4205000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>6</td>
+                                <td>001</td>
+                                <td>Lainnya</td>
+                                <td>4299000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4299000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Beban Non Operasional</td>
+                                <td>5200000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5200000000" value="5000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Kerugian Penjualan/Kehilangan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>5201010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5201010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Kerugian Penurunan Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>5202010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5202010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b Lainnya</td>
+                                <td>5202030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5202030000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>3</td>
+                                <td>001</td>
+                                <td>Bunga Antar Kantor</td>
+                                <td>5203000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5203000000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>001</td>
+                                <td>Selisih Kurs</td>
+                                <td>5204000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5204000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>001</td>
+                                <td>Lainnya</td>
+                                <td>5299000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5299000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Laba (Rugi) Non Operasional</td>
+                                <td>3104040200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3104040200" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Laba (Rugi) Tahun Berjalan Sebelum Pajak</td>
+                                <td>3104040300</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3104040300" value="17075000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Taksiran Pajak Penghasilan</td>
+                                <td>5300000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5300000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Pendapatan Pajak Tangguhan</td>
+                                <td>4400000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_4400000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Beban Pajak Tangguhan</td>
+                                <td>5400000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_5400000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Jumlah Laba (Rugi) Tahun Berjalan</td>
+                                <td>3104040400</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3104040400" value="16075000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Penghasilan Komprehensif Lain</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Tidak Akan Direklasifikasi ke Laba Rugi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a. Keuntungan Revaluasi Aset Tetap</td>
+                                <td>7101010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_7101010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b. Lainnya</td>
+                                <td>7101990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_7101990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>c. Pajak Penghasilan terkait</td>
+                                <td>7101980000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_7101980000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Akan Direklasifikasikan ke Laba Rugi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>a. Keuntungan (Kerugian) dan Perubahan Nilai Aset Keuangan Dalam Kelompok Tersedia untuk Dijual</td>
+                                <td>7102010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_7102010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>b. Lainnya</td>
+                                <td>7102990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_7102990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>c. Pajak Penghasilan terkait</td>
+                                <td>7102980000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_7102980000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Penghasilan Komprehensif Lain Setelah Pajak</td>
+                                <td>3104040500</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3104040500" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="001">
+                                <td>Y</td>
+                                <td></td>
+                                <td>001</td>
+                                <td>Total Laba (Rugi) Komprehensif Tahun Berjalan</td>
+                                <td>3104040600</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_001_3104040600" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td></td>
+                                <td>Pendapatan Operasional</td>
+                                <td>4100000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4100000000" value="38075000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Pendapatan Bunga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Bunga Kontraktual</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Surat Berharga</td>
+                                <td>4101010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">ii. Penempatan pada Bank Lain</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Giro</td>
+                                <td>4101010201</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010201" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Tabungan</td>
+                                <td>4101010202</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010202" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Deposito</td>
+                                <td>4101010203</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010203" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Sertifikat Deposito</td>
+                                <td>4101010204</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010204" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">iii. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Kepada Bank Lain</td>
+                                <td>4101010301</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010301" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Kepada Pihak Ketiga bukan Bank</td>
+                                <td>4101010302</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101010302" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td></td>
+                                <td></td>
+                                <td>b Provisi Kredit</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>4101020100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101020100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>4101020200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101020200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td></td>
+                                <td></td>
+                                <td>c Biaya Transaksi -/-</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Surat Berharga</td>
+                                <td>4101030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101030100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">ii. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Kepada Bank Lain</td>
+                                <td>4101030201</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101030201" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">Kepada Pihak Ketiga bukan Bank</td>
+                                <td>4101030202</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101030202" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>d. Koreksi Atas Pendapatan Bunga -/-</td>
+                                <td>4101040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4101040000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Pendapatan Lainnya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a Pendapatan Jasa Transaksi</td>
+                                <td>4102010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b Keuntungan Penjualan Valuta Asing</td>
+                                <td>4102020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>c Keuntungan Penjualan Surat Berharga</td>
+                                <td>4102030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102030000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>d Penerimaan Kredit yang Dihapusbuku</td>
+                                <td>4102040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102040000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>e Pemulihan Penyisihan Penghapusan Aset Produktif</td>
+                                <td>4102050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102050000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>f Dividen</td>
+                                <td>4102060000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102060000" value="5000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>g Keuntungan dari penyertaan dengan equity method</td>
+                                <td>4102070000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102070000" value="10000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>h Keuntungan penjualan AYDA</td>
+                                <td>4201020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4201020000" value="15000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>i Pendapatan Ganti Rugi Asuransi</td>
+                                <td>4203000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4203000000" value="20000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>j Pemulihan penurunan nilai AYDA</td>
+                                <td>4202020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4202020000" value="25000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>k Lainnya</td>
+                                <td>4102990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4102990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td></td>
+                                <td>Beban Operasional</td>
+                                <td>5100000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5100000000" value="31000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Beban Bunga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Beban Bunga Kontraktual</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Tabungan</td>
+                                <td>5101010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">ii. Deposito</td>
+                                <td>5101010200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">iii. Simpanan dari Bank Lain</td>
+                                <td>5101010300</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010300" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 20px;">iv. Pinjaman yang diterima</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">1) Dari Bank Indonesia</td>
+                                <td>5101010401</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010401" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">2) Dari Bank Lain</td>
+                                <td>5101010402</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010402" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">3) Dari Pihak Ketiga Bukan Bank</td>
+                                <td>5101010403</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010403" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 40px;">4) Berupa Pinjaman Subordinasi</td>
+                                <td>5101010404</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101010404" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">v. Lainnya</td>
+                                <td>5101019900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101019900" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>b Biaya Transaksi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>5101020100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101020100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>5101020200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5101020200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>2</td>
+                                <td>002</td>
+                                <td>Beban Kerugian Restrukturisasi Kredit</td>
+                                <td>5102000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5102000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>3</td>
+                                <td></td>
+                                <td>Beban Cadangan Kerugian Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a. Surat Berharga</td>
+                                <td>5103010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5103010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b. Penempatan pada Bank Lain</td>
+                                <td>5103020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5103020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>c. Kredit yang Diberikan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Kepada Bank Lain</td>
+                                <td>5103030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5103030100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">ii. Kepada Pihak Ketiga Bukan Bank</td>
+                                <td>5103030200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5103030200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>d Penyertaan Modal</td>
+                                <td>5103040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5103040000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>e Aset Keuangan Lainnya</td>
+                                <td>5103050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5103050000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>002</td>
+                                <td>Beban Pemasaran</td>
+                                <td>5104000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5104000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>002</td>
+                                <td>Beban Penelitian dan Pengembangan</td>
+                                <td>5105000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5105000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>6</td>
+                                <td></td>
+                                <td>Beban Administrasi dan Umum</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>a Beban Tenaga Kerja</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Gaji dan Upah</td>
+                                <td>5106010100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106010100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">ii. Honorarium</td>
+                                <td>5106010200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106010200" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">iii. Lainnya</td>
+                                <td>5106019900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106019900" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b Beban Pendidikan dan Pelatihan</td>
+                                <td>5106020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>c Beban Sewa</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">i. Gedung Kantor</td>
+                                <td>5106030100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106030100" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">ii. Lainnya</td>
+                                <td>5106039900</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106039900" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>d Beban Penyusutan/Penghapusan atas Aset Tetap dan Inventaris</td>
+                                <td>5106040000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106040000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>e Beban Amortisasi Aset Tidak Berwujud</td>
+                                <td>5106050000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106050000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>f Beban Premi Asuransi</td>
+                                <td>5106060000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106060000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>g Beban Pemeliharaan dan Perbaikan</td>
+                                <td>5106070000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106070000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>h Beban Barang dan Jasa</td>
+                                <td>5106080000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106080000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>i Beban Penyelenggaraan Teknologi Informasi</td>
+                                <td>5106100000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106100000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>j Kerugian terkait risiko operasional</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">a. Kecurangan internal</td>
+                                <td>5106110100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106110100" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td style="padding-left: 20px;">b. Kejahatan eksternal</td>
+                                <td>5106110200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106110200" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>i Pajak-pajak</td>
+                                <td>5106090000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5106090000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>7</td>
+                                <td></td>
+                                <td>Beban Lainnya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a Kerugian Penjualan Valuta Asing</td>
+                                <td>5199010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5199010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b Kerugian Penjualan Surat Berharga</td>
+                                <td>5199020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5199020000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>c Kerugian dari penyertaan dengan equity method</td>
+                                <td>5199030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5199030000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>d Kerugian penjualan AYDA</td>
+                                <td>5201020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5201020000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>e Kerugian penurunan nilai AYDA</td>
+                                <td>5202020000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5202020000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>c Lainnya</td>
+                                <td>5199990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5199990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Laba (Rugi) Operasional</td>
+                                <td>3104040100</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3104040100" value="7075000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Pendapatan Non Operasional</td>
+                                <td>4200000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4200000000" value="15000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Keuntungan Penjualan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>4201010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4201010000" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Pemulihan Penurunan Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>4202010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4202010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b Lainnya</td>
+                                <td>4202030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4202030000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>002</td>
+                                <td>Bunga Antar Kantor</td>
+                                <td>4204000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4204000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>002</td>
+                                <td>Selisih Kurs</td>
+                                <td>4205000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4205000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>6</td>
+                                <td>002</td>
+                                <td>Lainnya</td>
+                                <td>4299000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4299000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Beban Non Operasional</td>
+                                <td>5200000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5200000000" value="5000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Kerugian Penjualan/Kehilangan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>5201010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5201010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Kerugian Penurunan Nilai</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a Aset Tetap dan Inventaris</td>
+                                <td>5202010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5202010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b Lainnya</td>
+                                <td>5202030000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5202030000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>3</td>
+                                <td>002</td>
+                                <td>Bunga Antar Kantor</td>
+                                <td>5203000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5203000000" value="0"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>4</td>
+                                <td>002</td>
+                                <td>Selisih Kurs</td>
+                                <td>5204000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5204000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td>5</td>
+                                <td>002</td>
+                                <td>Lainnya</td>
+                                <td>5299000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5299000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Laba (Rugi) Non Operasional</td>
+                                <td>3104040200</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3104040200" value="10000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Laba (Rugi) Tahun Berjalan Sebelum Pajak</td>
+                                <td>3104040300</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3104040300" value="17075000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Taksiran Pajak Penghasilan</td>
+                                <td>5300000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5300000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Pendapatan Pajak Tangguhan</td>
+                                <td>4400000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_4400000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Beban Pajak Tangguhan</td>
+                                <td>5400000000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_5400000000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Jumlah Laba (Rugi) Tahun Berjalan</td>
+                                <td>3104040400</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3104040400" value="16075000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Penghasilan Komprehensif Lain</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>1</td>
+                                <td></td>
+                                <td>Tidak Akan Direklasifikasi ke Laba Rugi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a. Keuntungan Revaluasi Aset Tetap</td>
+                                <td>7101010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_7101010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b. Lainnya</td>
+                                <td>7101990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_7101990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>c. Pajak Penghasilan terkait</td>
+                                <td>7101980000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_7101980000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>T</td>
+                                <td>2</td>
+                                <td></td>
+                                <td>Akan Direklasifikasikan ke Laba Rugi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>a. Keuntungan (Kerugian) dan Perubahan Nilai Aset Keuangan Dalam Kelompok Tersedia untuk Dijual</td>
+                                <td>7102010000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_7102010000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>b. Lainnya</td>
+                                <td>7102990000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_7102990000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>c. Pajak Penghasilan terkait</td>
+                                <td>7102980000</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_7102980000" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Penghasilan Komprehensif Lain Setelah Pajak</td>
+                                <td>3104040500</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3104040500" value="1000000"></td>
+                            </tr>
+                            <tr data-kantor="002">
+                                <td>Y</td>
+                                <td></td>
+                                <td>002</td>
+                                <td>Total Laba (Rugi) Komprehensif Tahun Berjalan</td>
+                                <td>3104040600</td>
+                                <td><input type="text" class="form-control form-control-sm text-end" name="jumlah_002_3104040600" value="1000000"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <br>
         </div>
     </main>
 </div>
 
 <script>
-$(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+function filterKantor() {
+    var selected = document.getElementById("kantorFilter").value;
+    var rows = document.querySelectorAll("tbody tr");
 
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.tambah')) {
-        e.preventDefault();
-        const form = document.querySelector('#form0200Modal form');
-        form.reset();
-    }
-
-    if (e.target.closest('.edit')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        const cells = row.querySelectorAll('td');
-
-        // Fill form fields with row data
-        document.getElementById("include_text").value = cells[0].textContent.trim();
-        document.getElementById("sandi_kantor").value = cells[1].textContent.trim();
-        document.getElementById("nama_rekening").value = cells[2].textContent.trim();
-        document.getElementById("sandi").value = cells[3].textContent.trim();
-        document.getElementById("jumlah").value = cells[4].textContent.trim();
-    }
-
-    if (e.target.closest('.delete')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        if (confirmDelete) {
-            row.remove();
+    rows.forEach(function(row) {
+        if (selected === "all") {
+            row.style.display = "";
+        } else {
+            if (row.getAttribute("data-kantor") === selected) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
         }
-    }
-});
+    });
+}
 </script>
 {% include 'lapbul_app/footer.html' %}

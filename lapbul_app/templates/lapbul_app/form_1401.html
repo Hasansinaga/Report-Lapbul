@@ -1,172 +1,198 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
+}
+
+/* CSS untuk center kolom tertentu */
+table td:nth-child(1),
+table th:nth-child(1),
+table td:nth-child(3),
+table th:nth-child(3) {
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
 <div id="layoutSidenav_content">
   <main>
     <div class="container-fluid px-4">
       <h5 class="mt-4">Form 1401 - Rincian Liabilitas Lainnya Lain-Lain</h5>
       <hr />
 
-      <!-- Tombol kembali & tambah -->
-      <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary"
-        >Kembali</a
-      >
-      <button
-        type="button"
-        class="btn btn-secondary tambah"
-        data-bs-toggle="modal"
-        data-bs-target="#form1401Modal"
-      >
-        Tambah</button
-      ><br /><br />
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+        <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Tambah</button>
+      </div>
 
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="form1401Modal"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="form1401ModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
+      <!-- Modal structure -->
+      <div class="modal fade" id="form1401Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form1401ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header bg-secondary">
-              <h6 class="modal-title text-white" id="form1401ModalLabel">
-                Form Data Liabilitas Lainnya Lain-Lain
-              </h6>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+              <h6 class="modal-title text-white" id="form1401ModalLabel">Form Input Rincian Liabilitas Lainnya Lain-Lain</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
+              <!-- Input Form -->
               <form>
                 <div class="row">
-                  <div class="col-md-4 mb-3">
-                    <label class="form-label">Sandi Kantor</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="sandi_kantor"
-                      maxlength="3"
-                    />
+                  <div class="col-md-6 mb-3">
+                    <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                    <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="3">
                   </div>
-                  <div class="col-md-5 mb-3">
-                    <label class="form-label">Uraian</label>
-                    <input type="text" class="form-control" id="uraian" />
+                  <div class="col-md-6 mb-3">
+                    <label for="jumlah" class="form-label">Jumlah</label>
+                    <input type="number" class="form-control" id="jumlah" name="jumlah">
                   </div>
-                  <div class="col-md-3 mb-3">
-                    <label class="form-label">Jumlah</label>
-                    <input type="text" class="form-control" id="jumlah" />
+                  <div class="col-md-12 mb-3">
+                    <label for="uraian" class="form-label">Uraian</label>
+                    <textarea class="form-control" id="uraian" name="uraian" rows="3"></textarea>
                   </div>
                 </div>
               </form>
+              <!-- End Input Form -->
             </div>
+            
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Tutup
-              </button>
-              <button type="button" class="btn btn-secondary">
-                Simpan Perubahan
-              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Tabel -->
-      <table
-        id="datatables"
-        class="table table-bordered table-striped nowrap w-100"
-      >
-        <thead>
+      <!-- Table -->
+      <div class="d-flex justify-content-center">
+      <div class="table-responsive">
+      <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+        <thead class="table-light text-center">
           <tr>
-            <th>Sandi Kantor</th>
+            <th class="text-center">Sandi Kantor</th>
             <th>Uraian</th>
-            <th>Jumlah</th>
-            <th>Aksi</th>
+            <th class="text-center">Jumlah</th>
+            <th class="sticky-action-col">Aksi</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1401Modal"
-                ><i class="fas fa-edit"></i
-              ></a>
-              <a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
+            <td>001</td>
+            <td>Liabilitas Lainnya untuk Operasional</td>
+            <td>500000</td>
+            <td class="sticky-action-col">
+              <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1401Modal"><i class="fas fa-edit"></i></a>
+              <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Liabilitas Lainnya untuk Investasi</td>
+            <td>750000</td>
+            <td class="sticky-action-col">
+              <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1401Modal"><i class="fas fa-edit"></i></a>
+              <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2" style="text-align: right">Total:</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </tfoot>
       </table>
+      </div>
+      </div>
     </div>
   </main>
 </div>
 
 <script>
-  $(document).ready(function () {
-    $("#datatables").DataTable({
-      scrollX: true,
-      responsive: true,
-      pageLength: 15,
-      lengthChange: false,
-      language: {
-        zeroRecords: "Tidak ada data yang ditemukan",
-        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-        infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-        infoFiltered: "(difilter dari total _MAX_ entri)",
-        search: "Cari:",
-        paginate: {
-          first: "Pertama",
-          last: "Terakhir",
-          next: "Berikutnya",
-          previous: "Sebelumnya",
+$(document).ready(function () {
+    $('#datatables').DataTable({
+        scrollX: true,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "120px",
+                orderable: false,
+                responsive: false
+            }
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ entri",
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
         },
-      },
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+            var intVal = function (i) {
+                return typeof i === "string"
+                    ? i.replace(/[^0-9.-]/g, "") * 1
+                    : typeof i === "number"
+                    ? i
+                    : 0;
+            };
+            
+            var colsToSum = [2];
+            
+            colsToSum.forEach(function (colIdx) {
+                var total = api
+                    .column(colIdx, { search: "applied" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                $(api.column(colIdx).footer()).html(total.toLocaleString());
+            });
+        },
     });
-  });
+});
 
-  document.addEventListener("click", function (e) {
-    if (e.target.closest(".tambah")) {
-      e.preventDefault();
-      const form = document.querySelector("#form1401Modal form");
-      form.reset();
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.tambah')) {
+        e.preventDefault();
+        const form = document.querySelector('#form1401Modal form');
+        if (form) form.reset();
     }
 
-    if (e.target.closest(".edit")) {
-      e.preventDefault();
-      const row = e.target.closest("tr");
-      const cells = row.querySelectorAll("td");
+    if (e.target.closest('.edit')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
 
-      document.getElementById("sandi_kantor").value = cells[0].textContent;
-      document.getElementById("uraian").value = cells[1].textContent;
-      document.getElementById("jumlah").value = cells[2].textContent;
+        // Fill modal form (excluding the last action column)
+        document.getElementById("sandi_kantor").value = cells[0].textContent.trim();
+        document.getElementById("uraian").value = cells[1].textContent.trim();
+        document.getElementById("jumlah").value = cells[2].textContent.trim();
     }
 
-    if (e.target.closest(".delete")) {
-      e.preventDefault();
-      const row = e.target.closest("tr");
-      const confirmDelete = confirm(
-        "Apakah Anda yakin ingin menghapus data ini?"
-      );
-      if (confirmDelete) {
-        row.remove();
-      }
+    if (e.target.closest('.delete')) {
+        e.preventDefault();
+        const row = e.target.closest('tr');
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+            row.remove();
+        }
     }
-  });
+});
 </script>
 {% include 'lapbul_app/footer.html' %}

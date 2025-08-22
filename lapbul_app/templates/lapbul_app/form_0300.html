@@ -4,147 +4,140 @@
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0300 - Daftar Kas Valuta Asing</h5>
             <hr>
-            <!-- Button to trigger modal -->
-            <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-            <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0300Modal">Tambah</button><br><br>
-            
-            <!-- Modal structure -->
-            <div class="modal fade" id="form0300Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0300ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                    
-                        <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0300ModalLabel">Form Input Kas Valuta Asing</h6>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0300Modal">Simpan</button>
+            </div>
 
-                        <div class="modal-body">
-                            <!-- Input Form -->
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="flag_detail" class="form-label">Flag Detail</label>
-                                        <input type="text" class="form-control" id="flag_detail" name="flag_detail" maxlength="1">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
-                                        <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="10">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="nominal" class="form-label">Nominal</label>
-                                        <input type="number" class="form-control" id="nominal" name="nominal">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="kurs_tengah" class="form-label">Kurs Tengah</label>
-                                        <input type="number" class="form-control" id="kurs_tengah" name="kurs_tengah" step="0.01">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="nilai_rupiah" class="form-label">Nilai Rupiah</label>
-                                        <input type="number" class="form-control" id="nilai_rupiah" name="nilai_rupiah">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- End Input Form -->
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-secondary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
+            <!-- Filter Sandi Kantor -->
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label for="kantorFilter" class="form-label mb-0">Pilih Sandi Kantor:</label>
+                <select id="kantorFilter" class="form-select form-select-sm w-auto" onchange="filterKantor()">
+                    <option value="all">semua</option>
+                    <option value="001">001</option>
+                    <option value="002">002</option>
+                </select>
             </div>
             
-            <!-- Table -->
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+            <form>
+                <table class="table table-bordered table-sm">
+                <thead class="table-light">
                     <tr>
                         <th>Flag Detail</th>
                         <th>Sandi Kantor</th>
+                        <th>Jenis Valas</th>
                         <th>Nominal</th>
-                        <th>Kurs Tengah</th>
+                        <th>Kurs Tengah (Rp)</th>
                         <th>Nilai Rupiah</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Y</td>
+                    <!-- Sandi Kantor 001 -->
+                    <tr data-kantor="001">
+                        <td>D01</td>
                         <td>001</td>
-                        <td>100000000</td>
-                        <td>15500.00</td>
-                        <td>1550000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0300Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        <td>USD (US Dollar)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_001_usd" value="200.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_001_usd" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_001_usd" value="2000000"></td>
                     </tr>
-                    <tr>
-                        <td>Y</td>
+                    <tr data-kantor="001">
+                        <td>D01</td>
                         <td>001</td>
-                        <td>50000000</td>
-                        <td>17000.00</td>
-                        <td>850000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0300Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        <td>KRW (Korean Won)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_001_krw" value="200.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_001_krw" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_001_krw" value="2000000"></td>
                     </tr>
-                    <tr>
-                        <td>Y</td>
+                    <tr data-kantor="001">
+                        <td>D01</td>
                         <td>001</td>
-                        <td>25000000</td>
-                        <td>16200.00</td>
-                        <td>405000000</td>
-                        <td>
-                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#form0300Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        <td>INR (Indian Rupee)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_001_inr" value="200.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_001_inr" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_001_inr" value="2000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>D01</td>
+                        <td>001</td>
+                        <td>HKD (Hong Kong Dollar)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_001_hkd" value="200.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_001_hkd" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_001_hkd" value="2000000"></td>
+                    </tr>
+                    <tr data-kantor="001">
+                        <td>D01</td>
+                        <td>001</td>
+                        <td>JPY (Japanese Yen)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_001_jpy" value="200.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_001_jpy" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_001_jpy" value="2000000"></td>
+                    </tr>
+                    
+                    <!-- Sandi Kantor 002 -->
+                    <tr data-kantor="002">
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>KRW (Korean Won)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_002_krw" value="185.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_002_krw" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_002_krw" value="1850000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>INR (Indian Rupee)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_002_inr" value="185.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_002_inr" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_002_inr" value="1850000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>HKD (Hong Kong Dollar)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_002_hkd" value="185.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_002_hkd" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_002_hkd" value="1850000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>JPY (Japanese Yen)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_002_jpy" value="185.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_002_jpy" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_002_jpy" value="1850000"></td>
+                    </tr>
+                    <tr data-kantor="002">
+                        <td>D01</td>
+                        <td>002</td>
+                        <td>IDR (Indonesian Rupiah)</td>
+                        <td><input type="text" class="form-control form-control-sm" name="nominal_002_idr" value="185.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="kurs_002_idr" value="10000.00"></td>
+                        <td><input type="text" class="form-control form-control-sm" name="rupiah_002_idr" value="1850000"></td>
                     </tr>
                 </tbody>
             </table>
-            <!-- Table -->
+            </form>
         </div>
     </main>
 </div>
 
 <script>
-$(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,           // Enable horizontal scrolling
-        responsive: true         // Make table responsive
-    });
-});
+function filterKantor() {
+    var selected = document.getElementById("kantorFilter").value;
+    var rows = document.querySelectorAll("tbody tr");
 
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.tambah')) {
-        e.preventDefault();
-        const form = document.querySelector('#form0300Modal form');
-        form.reset();
-    }
-
-    if (e.target.closest('.edit')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        const cells = row.querySelectorAll('td');
-
-        // Fill form fields with row data
-        document.getElementById("flag_detail").value = cells[0].textContent.trim();
-        document.getElementById("sandi_kantor").value = cells[1].textContent.trim();
-        document.getElementById("nominal").value = cells[2].textContent.trim();
-        document.getElementById("kurs_tengah").value = cells[3].textContent.trim();
-        document.getElementById("nilai_rupiah").value = cells[4].textContent.trim();
-    }
-
-    if (e.target.closest('.delete')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        
-        const confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
-        if (confirmDelete) {
-            row.remove();
+    rows.forEach(function(row) {
+        if (selected === "all") {
+            row.style.display = "";
+        } else {
+            if (row.getAttribute("data-kantor") === selected) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
         }
-    }
-});
+    });
+}
 </script>
 {% include 'lapbul_app/footer.html' %}
