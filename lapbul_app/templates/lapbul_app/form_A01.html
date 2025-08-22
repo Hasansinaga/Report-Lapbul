@@ -1,0 +1,297 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form Data Agunan</h5>
+            <hr>
+            <a href="{% url 'lapbul_app:slik' %}" class="btn btn-secondary">Kembali</a>
+            <br><br>
+
+            <!-- Modal -->
+            <div class="modal fade" id="formAgunanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="formAgunanModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="formAgunanModalLabel">Edit Data Agunan</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <!-- Kolom Kiri -->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="noreg" class="form-label">No Reg</label>
+                                            <input type="text" class="form-control" id="noreg" name="noreg">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="norekening" class="form-label">No Rekening</label>
+                                            <input type="text" class="form-control" id="norekening" name="norekening">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="cif" class="form-label">CIF</label>
+                                            <input type="text" class="form-control" id="cif" name="cif">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kodejenissegmenfasilitas" class="form-label">Kode Segmen Fasilitas</label>
+                                            <input type="text" class="form-control" id="kodejenissegmenfasilitas" name="kodejenissegmenfasilitas">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kodestatusagunan" class="form-label">Kode Status Agunan</label>
+                                            <input type="text" class="form-control" id="kodestatusagunan" name="kodestatusagunan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kodejenisagunan" class="form-label">Kode Jenis Agunan</label>
+                                            <input type="text" class="form-control" id="kodejenisagunan" name="kodejenisagunan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="peringkatagunan" class="form-label">Peringkat Agunan</label>
+                                            <input type="text" class="form-control" id="peringkatagunan" name="peringkatagunan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kodelembagapemeringkat" class="form-label">Lembaga Pemeringkat</label>
+                                            <input type="text" class="form-control" id="kodelembagapemeringkat" name="kodelembagapemeringkat">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kodejenispengikatan" class="form-label">Jenis Pengikatan</label>
+                                            <input type="text" class="form-control" id="kodejenispengikatan" name="kodejenispengikatan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tglpengikatan" class="form-label">Tgl Pengikatan</label>
+                                            <input type="date" class="form-control" id="tglpengikatan" name="tglpengikatan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="namapemilikagunan" class="form-label">Nama Pemilik</label>
+                                            <input type="text" class="form-control" id="namapemilikagunan" name="namapemilikagunan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="buktikepemilikan" class="form-label">Bukti Kepemilikan</label>
+                                            <input type="text" class="form-control" id="buktikepemilikan" name="buktikepemilikan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="alamatagunan" class="form-label">Alamat Agunan</label>
+                                            <textarea class="form-control" id="alamatagunan" name="alamatagunan" rows="2"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kolom Kanan -->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="kodedati2" class="form-label">Kode DATI2</label>
+                                            <input type="text" class="form-control" id="kodedati2" name="kodedati2">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nilainjop" class="form-label">Nilai NJOP</label>
+                                            <input type="number" class="form-control" id="nilainjop" name="nilainjop">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nilailjk" class="form-label">Nilai LJK</label>
+                                            <input type="number" class="form-control" id="nilailjk" name="nilailjk">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tglpenilaianljk" class="form-label">Tgl Penilaian LJK</label>
+                                            <input type="date" class="form-control" id="tglpenilaianljk" name="tglpenilaianljk">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nilaiindependen" class="form-label">Nilai Independen</label>
+                                            <input type="number" class="form-control" id="nilaiindependen" name="nilaiindependen">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="namapenilaiindependen" class="form-label">Penilai Independen</label>
+                                            <input type="text" class="form-control" id="namapenilaiindependen" name="namapenilaiindependen">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tglpenilaianpenilaiindependen" class="form-label">Tgl Penilaian Independen</label>
+                                            <input type="date" class="form-control" id="tglpenilaianpenilaiindependen" name="tglpenilaianpenilaiindependen">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="statusparipasu" class="form-label">Status Paripasu</label>
+                                            <input type="text" class="form-control" id="statusparipasu" name="statusparipasu">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="persentaseparipasu" class="form-label">Persentase Paripasu</label>
+                                            <input type="number" class="form-control" id="persentaseparipasu" name="persentaseparipasu">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="statuskreditjoin" class="form-label">Status Kredit Join</label>
+                                            <input type="text" class="form-control" id="statuskreditjoin" name="statuskreditjoin">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="asuransi" class="form-label">Asuransi</label>
+                                            <input type="text" class="form-control" id="asuransi" name="asuransi">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="keterangan" class="form-label">Keterangan</label>
+                                            <textarea class="form-control" id="keterangan" name="keterangan" rows="2"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kodekantor" class="form-label">Kode Kantor</label>
+                                            <input type="text" class="form-control" id="kodekantor" name="kodekantor">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>No Reg</th>
+                        <th>No Rekening</th>
+                        <th>CIF</th>
+                        <th>Kode Segmen</th>
+                        <th>Status Agunan</th>
+                        <th>Jenis Agunan</th>
+                        <th>Peringkat</th>
+                        <th>Lembaga Pemeringkat</th>
+                        <th>Jenis Pengikatan</th>
+                        <th>Tgl Pengikatan</th>
+                        <th>Nama Pemilik</th>
+                        <th>Bukti Kepemilikan</th>
+                        <th>Alamat Agunan</th>
+                        <th>Kode DATI2</th>
+                        <th>Nilai NJOP</th>
+                        <th>Nilai LJK</th>
+                        <th>Tgl Penilaian LJK</th>
+                        <th>Nilai Independen</th>
+                        <th>Penilai Independen</th>
+                        <th>Tgl Penilaian Indep.</th>
+                        <th>Status Paripasu</th>
+                        <th>Persentase Paripasu</th>
+                        <th>Status Kredit Join</th>
+                        <th>Asuransi</th>
+                        <th>Keterangan</th>
+                        <th>Kode Kantor</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- contoh data dummy -->
+                    <tr>
+                        <td>AG001</td>
+                        <td>1234567890</td>
+                        <td>987654</td>
+                        <td>001</td>
+                        <td>1</td>
+                        <td>Tanah</td>
+                        <td>A</td>
+                        <td>LP</td>
+                        <td>01</td>
+                        <td>2025-01-01</td>
+                        <td>John Doe</td>
+                        <td>Sertifikat</td>
+                        <td>Jl. Sudirman No. 10</td>
+                        <td>3171</td>
+                        <td>500000000</td>
+                        <td>450000000</td>
+                        <td>2025-01-10</td>
+                        <td>480000000</td>
+                        <td>PT Penilai</td>
+                        <td>2025-01-15</td>
+                        <td>1</td>
+                        <td>80</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>OK</td>
+                        <td>001</td>
+                        <td>
+                            <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#formAgunanModal" title="Edit"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete" title="Hapus"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#datatables').DataTable({ 
+        scrollX: true, 
+        responsive: true,
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+        }
+    });
+
+    // Function to convert date format from YYYY-MM-DD to YYYYMMDD and vice versa
+    function formatDateForDisplay(dateStr) {
+        if (!dateStr) return '';
+        if (dateStr.includes('-')) return dateStr; // Already in YYYY-MM-DD format
+        // Convert YYYYMMDD to YYYY-MM-DD
+        return dateStr.substring(0,4) + '-' + dateStr.substring(4,6) + '-' + dateStr.substring(6,8);
+    }
+
+    function formatDateForStorage(dateStr) {
+        if (!dateStr) return '';
+        return dateStr.replace(/-/g, ''); // Convert YYYY-MM-DD to YYYYMMDD
+    }
+
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.edit')) {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            // Populate form fields with data from selected row
+            document.getElementById('noreg').value = cells[0].textContent.trim();
+            document.getElementById('norekening').value = cells[1].textContent.trim();
+            document.getElementById('cif').value = cells[2].textContent.trim();
+            document.getElementById('kodejenissegmenfasilitas').value = cells[3].textContent.trim();
+            document.getElementById('kodestatusagunan').value = cells[4].textContent.trim();
+            document.getElementById('kodejenisagunan').value = cells[5].textContent.trim();
+            document.getElementById('peringkatagunan').value = cells[6].textContent.trim();
+            document.getElementById('kodelembagapemeringkat').value = cells[7].textContent.trim();
+            document.getElementById('kodejenispengikatan').value = cells[8].textContent.trim();
+            document.getElementById('tglpengikatan').value = formatDateForDisplay(cells[9].textContent.trim());
+            document.getElementById('namapemilikagunan').value = cells[10].textContent.trim();
+            document.getElementById('buktikepemilikan').value = cells[11].textContent.trim();
+            document.getElementById('alamatagunan').value = cells[12].textContent.trim();
+            document.getElementById('kodedati2').value = cells[13].textContent.trim();
+            document.getElementById('nilainjop').value = cells[14].textContent.trim();
+            document.getElementById('nilailjk').value = cells[15].textContent.trim();
+            document.getElementById('tglpenilaianljk').value = formatDateForDisplay(cells[16].textContent.trim());
+            document.getElementById('nilaiindependen').value = cells[17].textContent.trim();
+            document.getElementById('namapenilaiindependen').value = cells[18].textContent.trim();
+            document.getElementById('tglpenilaianpenilaiindependen').value = formatDateForDisplay(cells[19].textContent.trim());
+            document.getElementById('statusparipasu').value = cells[20].textContent.trim();
+            document.getElementById('persentaseparipasu').value = cells[21].textContent.trim();
+            document.getElementById('statuskreditjoin').value = cells[22].textContent.trim();
+            document.getElementById('asuransi').value = cells[23].textContent.trim();
+            document.getElementById('keterangan').value = cells[24].textContent.trim();
+            document.getElementById('kodekantor').value = cells[25].textContent.trim();
+        }
+
+        if (e.target.closest('.delete')) {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            const noreg = row.cells[0].textContent.trim();
+            
+            if (confirm(`Apakah Anda yakin ingin menghapus data agunan dengan No Reg: ${noreg}?`)) {
+                row.remove();
+                // Show success message
+                alert('Data berhasil dihapus!');
+            }
+        }
+    });
+
+    // Save button functionality
+    document.querySelector('.modal-footer .btn-primary').addEventListener('click', function() {
+        // Add save functionality here
+        alert('Data berhasil disimpan!');
+        $('#formAgunanModal').modal('hide');
+    });
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

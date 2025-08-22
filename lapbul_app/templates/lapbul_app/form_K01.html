@@ -1,0 +1,306 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">FORM K01 - Laporan Keuangan Debitur Badan Usaha</h5>
+      <hr>
+      <a href="{% url 'lapbul_app:slik' %}" class="btn btn-secondary">Kembali</a><br><br>
+
+      <!-- Modal Edit -->
+      <div class="modal fade" id="formK01Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="formK01ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white" id="formK01ModalLabel">Edit Laporan Keuangan Debitur Badan Usaha</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <form>
+                <div class="row g-3">
+                  <!-- Kolom 1 -->
+                  <div class="col-md-6">
+                    <label class="form-label">CIF</label>
+                    <input type="text" class="form-control" id="cif">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Posisi Laporan Keuangan Tahunan</label>
+                    <input type="date" class="form-control" id="posisilaporankeuangantahunan">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Aset</label>
+                    <input type="number" class="form-control" id="aset">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Aset Lancar</label>
+                    <input type="number" class="form-control" id="asetlancar">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Kas & Setara Kas Lancar</label>
+                    <input type="number" class="form-control" id="kasdansetarakaslancar">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Piutang Usaha Lancar</label>
+                    <input type="number" class="form-control" id="piutangusahalancar">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Investasi Lancar</label>
+                    <input type="number" class="form-control" id="investasilancar">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Aset Lainnya Lancar</label>
+                    <input type="number" class="form-control" id="asetlainnyalancar">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Aset Tidak Lancar</label>
+                    <input type="number" class="form-control" id="asettidaklancar">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Piutang Usaha</label>
+                    <input type="number" class="form-control" id="piutangusaha">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Investasi Keuangan Lainnya</label>
+                    <input type="number" class="form-control" id="investasikeuanganlainnya">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Aset Tidak Lancar Lainnya</label>
+                    <input type="number" class="form-control" id="asettidaklancarlainnya">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Liabilitas</label>
+                    <input type="number" class="form-control" id="liabilitas">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Liabilitas Jangka Pendek</label>
+                    <input type="number" class="form-control" id="liabilitasjangkapendek">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Pinjaman Jangka Pendek</label>
+                    <input type="number" class="form-control" id="pinjamanjangkapendek">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Utang Usaha Jangka Pendek</label>
+                    <input type="number" class="form-control" id="utangusahajangkapendek">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Liabilitas JP Lainnya</label>
+                    <input type="number" class="form-control" id="liabilitasjangkapendeklainnya">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Liabilitas Jangka Panjang</label>
+                    <input type="number" class="form-control" id="liabilitasjangkapanjang">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Pinjaman Jangka Panjang</label>
+                    <input type="number" class="form-control" id="pinjamanjangkapanjang">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Utang Usaha Jangka Panjang</label>
+                    <input type="number" class="form-control" id="utangusahajangkapanjang">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Liabilitas JPj Lainnya</label>
+                    <input type="number" class="form-control" id="liabilitaasjangkapanjanglainnya">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Ekuitas</label>
+                    <input type="number" class="form-control" id="ekuitas">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Pendapatan Usaha</label>
+                    <input type="number" class="form-control" id="pendapatanusaha">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Beban Pokok</label>
+                    <input type="number" class="form-control" id="bebanpokok">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Laba Rugi Bruto</label>
+                    <input type="number" class="form-control" id="labarugibruto">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Pendapatan Lainnya</label>
+                    <input type="number" class="form-control" id="pendapatanlainnya">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Beban Lainnya</label>
+                    <input type="number" class="form-control" id="bebanlainnya">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Laba Rugi Sebelum Pajak</label>
+                    <input type="number" class="form-control" id="labarugisebelumpajak">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Laba Rugi Berjalan</label>
+                    <input type="number" class="form-control" id="labarugiberjalan">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kode Kantor</label>
+                    <input type="text" class="form-control" id="kodekantor">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Operasi Data</label>
+                    <input type="text" class="form-control" id="operasidata">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+        <thead>
+          <tr>
+            <th>CIF</th>
+            <th>Posisi Laporan Keuangan Tahunan</th>
+            <th>Aset</th>
+            <th>Aset Lancar</th>
+            <th>Kas & Setara Kas Lancar</th>
+            <th>Piutang Usaha Lancar</th>
+            <th>Investasi Lancar</th>
+            <th>Aset Lainnya Lancar</th>
+            <th>Aset Tidak Lancar</th>
+            <th>Piutang Usaha</th>
+            <th>Investasi Keuangan Lainnya</th>
+            <th>Aset Tidak Lancar Lainnya</th>
+            <th>Liabilitas</th>
+            <th>Liabilitas Jangka Pendek</th>
+            <th>Pinjaman Jangka Pendek</th>
+            <th>Utang Usaha Jangka Pendek</th>
+            <th>Liabilitas JP Lainnya</th>
+            <th>Liabilitas Jangka Panjang</th>
+            <th>Pinjaman Jangka Panjang</th>
+            <th>Utang Usaha Jangka Panjang</th>
+            <th>Liabilitas JPj Lainnya</th>
+            <th>Ekuitas</th>
+            <th>Pendapatan Usaha</th>
+            <th>Beban Pokok</th>
+            <th>Laba Rugi Bruto</th>
+            <th>Pendapatan Lainnya</th>
+            <th>Beban Lainnya</th>
+            <th>Laba Rugi Sebelum Pajak</th>
+            <th>Laba Rugi Berjalan</th>
+            <th>Kode Kantor</th>
+            <th>Operasi Data</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>12345</td>
+            <td>2024-12-31</td>
+            <td>100000000</td>
+            <td>60000000</td>
+            <td>15000000</td>
+            <td>20000000</td>
+            <td>5000000</td>
+            <td>20000000</td>
+            <td>40000000</td>
+            <td>5000000</td>
+            <td>10000000</td>
+            <td>25000000</td>
+            <td>50000000</td>
+            <td>20000000</td>
+            <td>10000000</td>
+            <td>5000000</td>
+            <td>5000000</td>
+            <td>30000000</td>
+            <td>15000000</td>
+            <td>5000000</td>
+            <td>10000000</td>
+            <td>50000000</td>
+            <td>80000000</td>
+            <td>40000000</td>
+            <td>40000000</td>
+            <td>5000000</td>
+            <td>3000000</td>
+            <td>42000000</td>
+            <td>30000000</td>
+            <td>001</td>
+            <td>I</td>
+            <td>
+              <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#formK01Modal"><i class="fas fa-edit"></i></a>
+              <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+$(document).ready(function () {
+  $('#datatables').DataTable({ scrollX: true, responsive: true });
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.edit')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      const cells = row.querySelectorAll('td');
+      
+      document.getElementById('cif').value = cells[0].textContent;
+      document.getElementById('posisilaporankeuangantahunan').value = cells[1].textContent;
+      document.getElementById('aset').value = cells[2].textContent;
+      document.getElementById('asetlancar').value = cells[3].textContent;
+      document.getElementById('kasdansetarakaslancar').value = cells[4].textContent;
+      document.getElementById('piutangusahalancar').value = cells[5].textContent;
+      document.getElementById('investasilancar').value = cells[6].textContent;
+      document.getElementById('asetlainnyalancar').value = cells[7].textContent;
+      document.getElementById('asettidaklancar').value = cells[8].textContent;
+      document.getElementById('piutangusaha').value = cells[9].textContent;
+      document.getElementById('investasikeuanganlainnya').value = cells[10].textContent;
+      document.getElementById('asettidaklancarlainnya').value = cells[11].textContent;
+      document.getElementById('liabilitas').value = cells[12].textContent;
+      document.getElementById('liabilitasjangkapendek').value = cells[13].textContent;
+      document.getElementById('pinjamanjangkapendek').value = cells[14].textContent;
+      document.getElementById('utangusahajangkapendek').value = cells[15].textContent;
+      document.getElementById('liabilitasjangkapendeklainnya').value = cells[16].textContent;
+      document.getElementById('liabilitasjangkapanjang').value = cells[17].textContent;
+      document.getElementById('pinjamanjangkapanjang').value = cells[18].textContent;
+      document.getElementById('utangusahajangkapanjang').value = cells[19].textContent;
+      document.getElementById('liabilitaasjangkapanjanglainnya').value = cells[20].textContent;
+      document.getElementById('ekuitas').value = cells[21].textContent;
+      document.getElementById('pendapatanusaha').value = cells[22].textContent;
+      document.getElementById('bebanpokok').value = cells[23].textContent;
+      document.getElementById('labarugibruto').value = cells[24].textContent;
+      document.getElementById('pendapatanlainnya').value = cells[25].textContent;
+      document.getElementById('bebanlainnya').value = cells[26].textContent;
+      document.getElementById('labarugisebelumpajak').value = cells[27].textContent;
+      document.getElementById('labarugiberjalan').value = cells[28].textContent;
+      document.getElementById('kodekantor').value = cells[29].textContent;
+      document.getElementById('operasidata').value = cells[30].textContent;
+    }
+
+    if (e.target.closest('.delete')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) row.remove();
+    }
+  });
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

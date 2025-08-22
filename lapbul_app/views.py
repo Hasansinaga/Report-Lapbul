@@ -141,3 +141,30 @@ def form_1800(request):
 
 def form_1900(request):
     return render(request, 'lapbul_app/form_1900.html', {'title': 'Lapbul Ojk'})
+
+def slik(request):
+    return render(request, 'lapbul_app/slikindex.html', {'title': 'Slik OJK'})
+
+def form_A01(request):
+    return render(request, 'lapbul_app/form_A01.html', {'title': 'Slik Ojk'})
+
+def form_D01(request):
+    return render(request, 'lapbul_app/form_D01.html', {'title': 'Slik Ojk'})
+
+def form_D02(request):
+    return render(request, 'lapbul_app/form_D02.html', {'title': 'Slik Ojk'})
+
+def form_F01(request):
+    return render(request, 'lapbul_app/form_F01.html', {'title': 'Slik Ojk'})
+
+def form_F02(request):
+    return render(request, 'lapbul_app/form_F02.html', {'title': 'Slik Ojk'})
+
+def form_F06(request):
+    return render(request, 'lapbul_app/form_F06.html', {'title': 'Slik Ojk'})
+
+def form_K01(request):
+    return render(request, 'lapbul_app/form_K01.html', {'title': 'Slik Ojk'})
+
+def form_M01(request):
+    return render(request, 'lapbul_app/form_M01.html', {'title': 'Slik Ojk'})

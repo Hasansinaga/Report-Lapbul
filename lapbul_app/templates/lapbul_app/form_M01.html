@@ -1,0 +1,171 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">FORM M01 - Pengurus dan/atau Pemilik Debitur Badan Usaha</h5>
+      <hr>
+      <a href="{% url 'lapbul_app:slik' %}" class="btn btn-secondary">Kembali</a><br><br>
+
+      <!-- Modal -->
+      <div class="modal fade" id="formM01Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="formM01ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white" id="formM01ModalLabel">Form Pengurus/Pemilik Debitur Badan Usaha</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Nomor Identitas</label>
+                    <input type="text" class="form-control" id="nomoridentitas">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">CIF</label>
+                    <input type="text" class="form-control" id="cif">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kode Jenis Identitas</label>
+                    <input type="text" class="form-control" id="kodejenisidentitas">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Nama Pengurus</label>
+                    <input type="text" class="form-control" id="namapengurus">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Jenis Kelamin</label>
+                    <input type="text" class="form-control" id="jeniskelamin">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Alamat</label>
+                    <input type="text" class="form-control" id="alamat">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kelurahan</label>
+                    <input type="text" class="form-control" id="kelurahan">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kecamatan</label>
+                    <input type="text" class="form-control" id="kecamatan">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kode Dati2</label>
+                    <input type="text" class="form-control" id="kodedati2">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kode Jabatan</label>
+                    <input type="text" class="form-control" id="kodejabatan">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Pangsa Kepemilikan</label>
+                    <input type="number" class="form-control" id="pangsakepemilikan">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Status Pengurus</label>
+                    <input type="text" class="form-control" id="statuspengurus">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Kode Kantor</label>
+                    <input type="text" class="form-control" id="kodekantor">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Operasi Data</label>
+                    <input type="text" class="form-control" id="operasidata">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+        <thead>
+          <tr>
+            <th>Nomor Identitas</th>
+            <th>CIF</th>
+            <th>Kode Jenis Identitas</th>
+            <th>Nama Pengurus</th>
+            <th>Jenis Kelamin</th>
+            <th>Alamat</th>
+            <th>Kelurahan</th>
+            <th>Kecamatan</th>
+            <th>Kode Dati2</th>
+            <th>Kode Jabatan</th>
+            <th>Pangsa Kepemilikan</th>
+            <th>Status Pengurus</th>
+            <th>Kode Kantor</th>
+            <th>Operasi Data</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3276010101010001</td>
+            <td>12345</td>
+            <td>K</td>
+            <td>Budi Santoso</td>
+            <td>L</td>
+            <td>Jl. Merdeka No. 10</td>
+            <td>Merdeka</td>
+            <td>Kemayoran</td>
+            <td>3201</td>
+            <td>01</td>
+            <td>60</td>
+            <td>A</td>
+            <td>001</td>
+            <td>I</td>
+            <td>
+              <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#formM01Modal"><i class="fas fa-edit"></i></a>
+              <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+$(document).ready(function () {
+  $('#datatables').DataTable({ scrollX: true, responsive: true });
+
+  document.addEventListener('click', function(e) {
+    
+    if (e.target.closest('.edit')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      const cells = row.querySelectorAll('td');
+      document.getElementById('nomoridentitas').value = cells[0].textContent;
+      document.getElementById('cif').value = cells[1].textContent;
+      document.getElementById('kodejenisidentitas').value = cells[2].textContent;
+      document.getElementById('namapengurus').value = cells[3].textContent;
+      document.getElementById('jeniskelamin').value = cells[4].textContent;
+      document.getElementById('alamat').value = cells[5].textContent;
+      document.getElementById('kelurahan').value = cells[6].textContent;
+      document.getElementById('kecamatan').value = cells[7].textContent;
+      document.getElementById('kodedati2').value = cells[8].textContent;
+      document.getElementById('kodejabatan').value = cells[9].textContent;
+      document.getElementById('pangsakepemilikan').value = cells[10].textContent;
+      document.getElementById('statuspengurus').value = cells[11].textContent;
+      document.getElementById('kodekantor').value = cells[12].textContent;
+      document.getElementById('operasidata').value = cells[13].textContent;
+    }
+
+    if (e.target.closest('.delete')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) row.remove();
+    }
+  });
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

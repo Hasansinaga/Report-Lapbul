@@ -1,0 +1,447 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">
+        FORM F02 - Fasilitas Kredit atau Pembiayaan Joint Account
+      </h5>
+      <hr />
+      <a href="{% url 'lapbul_app:slik' %}" class="btn btn-secondary"
+        >Kembali</a
+      >
+      <br /><br />
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="formF02Modal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="formF02ModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white" id="formF02ModalLabel">
+                Form Fasilitas Kredit Joint Account
+              </h6>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <form id="formF02">
+                <div class="row g-3">
+                  <!-- Kolom Kiri -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">No Rekening</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="norekening"
+                        value="123456789"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">CIF</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="cif"
+                        value="987654"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Sifat Kredit</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kodesifatkredit"
+                        value="99"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Jenis Kredit</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kodejeniskredit"
+                        value="01"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Skim</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kodeskim"
+                        value="02"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">No Akad Awal</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nomorakadawal"
+                        value="AKD001"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tanggal Akad Awal</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="tanggalakadawal"
+                        value="2023-01-01"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">No Akad Akhir</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nomorakadakhir"
+                        value="AKD999"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tanggal Akad Akhir</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="tanggalakadakhir"
+                        value="2025-01-01"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Baru</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="baru"
+                        value="1"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Kolom Kanan -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">% Suku Bunga</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="persentasesukubunga"
+                        value="12%"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Jenis Suku Bunga</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="jenissukubunga"
+                        value="Flat"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Kredit Program</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kreditprogrampemerintah"
+                        value="Tidak"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Takeover Dari</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="takeoverdari"
+                        value="-"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Sumber Dana</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="sumberdana"
+                        value="Internal"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Plafond Awal</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="plafondawal"
+                        value="100000000"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Plafon</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="plafon"
+                        value="120000000"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Realisasi</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="realisasi"
+                        value="80000000"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Denda</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="denda"
+                        value="0"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Baki Debet</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="bakidebet"
+                        value="75000000"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Batal
+              </button>
+              <button type="button" class="btn btn-primary">
+                Simpan Perubahan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table
+        id="datatables"
+        class="table table-bordered table-striped nowrap w-100"
+      >
+        <thead>
+          <tr>
+            <th>No Rekening</th>
+            <th>CIF</th>
+            <th>Sifat Kredit</th>
+            <th>Jenis Kredit</th>
+            <th>Skim</th>
+            <th>No Akad Awal</th>
+            <th>Tgl Akad Awal</th>
+            <th>No Akad Akhir</th>
+            <th>Tgl Akad Akhir</th>
+            <th>Baru</th>
+            <th>Tgl Awal Kredit</th>
+            <th>Tgl Mulai</th>
+            <th>Tgl Jth Tempo</th>
+            <th>Kategori Debitur</th>
+            <th>Jenis Penggunaan</th>
+            <th>Orientasi</th>
+            <th>Sektor Ekonomi</th>
+            <th>Dati2</th>
+            <th>Nilai Proyek</th>
+            <th>Valuta</th>
+            <th>% Suku Bunga</th>
+            <th>Jenis SB</th>
+            <th>Kredit Program</th>
+            <th>Takeover Dari</th>
+            <th>Sumber Dana</th>
+            <th>Plafond Awal</th>
+            <th>Plafon</th>
+            <th>Realisasi</th>
+            <th>Denda</th>
+            <th>Baki Debet</th>
+            <th>Nilai dlm MU</th>
+            <th>Kolektibilitas</th>
+            <th>Tgl Macet</th>
+            <th>Sebab Macet</th>
+            <th>Tunggakan Pokok</th>
+            <th>Tunggakan Bunga</th>
+            <th>Hari Tunggakan</th>
+            <th>Freq Tunggakan</th>
+            <th>Freq Restruktur</th>
+            <th>Tgl Restruktur Awal</th>
+            <th>Tgl Restruktur Akhir</th>
+            <th>Cara Restruktur</th>
+            <th>Kode Kondisi</th>
+            <th>Tgl Kondisi</th>
+            <th>Keterangan</th>
+            <th>Kode Kantor</th>
+            <th>Operasi Data</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1122334455</td>
+            <td>998877</td>
+            <td>1</td>
+            <td>10</td>
+            <td>11</td>
+            <td>AK-3001</td>
+            <td>20240101</td>
+            <td>AK-3002</td>
+            <td>20250101</td>
+            <td>1</td>
+            <td>20240105</td>
+            <td>20240106</td>
+            <td>20260105</td>
+            <td>01</td>
+            <td>1</td>
+            <td>1</td>
+            <td>620001</td>
+            <td>3171</td>
+            <td>50000000</td>
+            <td>IDR</td>
+            <td>12.5</td>
+            <td>1</td>
+            <td>001</td>
+            <td>BNI</td>
+            <td>SD002</td>
+            <td>75000000</td>
+            <td>70000000</td>
+            <td>65000000</td>
+            <td>1000000</td>
+            <td>60000000</td>
+            <td>50000000</td>
+            <td>1</td>
+            <td>20250110</td>
+            <td>01</td>
+            <td>2500000</td>
+            <td>1000000</td>
+            <td>5</td>
+            <td>1</td>
+            <td>1</td>
+            <td>20250115</td>
+            <td>20250130</td>
+            <td>01</td>
+            <td>01</td>
+            <td>20250201</td>
+            <td>Joint Kredit</td>
+            <td>001</td>
+            <td>I</td>
+            <td>
+              <a
+                href="#"
+                class="text-secondary me-2 edit"
+                data-bs-toggle="modal"
+                data-bs-target="#formF02Modal"
+                ><i class="fas fa-edit"></i
+              ></a>
+              <a href="#" class="text-danger delete"
+                ><i class="fas fa-trash-alt"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $("#datatables").DataTable({ scrollX: true, responsive: true });
+
+    document.addEventListener("click", function (e) {
+
+      if (e.target.closest(".edit")) {
+        e.preventDefault();
+        const row = e.target.closest("tr");
+        const cells = row.querySelectorAll("td");
+
+        // mapping full sesuai urutan kolom
+        const ids = [
+          "norekening",
+          "cif",
+          "kodesifatkredit",
+          "kodejeniskredit",
+          "kodeskim",
+          "nomorakadawal",
+          "tanggalakadawal",
+          "nomorakadakhir",
+          "tanggalakadakhir",
+          "baru",
+          "tanggalawalkredit",
+          "tanggalmulai",
+          "tanggaljthtempo",
+          "kodekategoridebitur",
+          "kodejenispenggunaan",
+          "kodeorientasipenggunaan",
+          "kodesektorekonomi",
+          "dati2",
+          "nilaiproyek",
+          "kodevaluta",
+          "persentasesukubunga",
+          "jenissukubunga",
+          "kreditprogrampemerintah",
+          "takeoverdari",
+          "sumberdana",
+          "plafondawal",
+          "plafon",
+          "realisasi",
+          "denda",
+          "bakidebet",
+          "nilaidalammatauang",
+          "kodekolektibilitas",
+          "tanggalmacet",
+          "kodesebabmacet",
+          "tunggakanpokok",
+          "tunggakanbunga",
+          "haritunggakan",
+          "frekuensitunggakan",
+          "frekuensirestruktur",
+          "tanggalrestrukturawal",
+          "tanggalrestrukturakhir",
+          "kodecararestruktur",
+          "kodekondisi",
+          "tanggalkondisi",
+          "keterangan",
+          "kodekantorcabang",
+          "operasidata",
+        ];
+        ids.forEach((id, idx) => {
+          document.getElementById(id).value = cells[idx].textContent.trim();
+        });
+      }
+
+      if (e.target.closest(".delete")) {
+        e.preventDefault();
+        const row = e.target.closest("tr");
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?"))
+          row.remove();
+      }
+    });
+  });
+</script>
+{% include 'lapbul_app/footer.html' %}

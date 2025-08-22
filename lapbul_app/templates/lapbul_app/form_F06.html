@@ -1,0 +1,222 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">FORM F06 - Fasilitas Lain</h5>
+      <hr>
+      <a href="{% url 'lapbul_app:slik' %}" class="btn btn-secondary">Kembali</a>
+
+      <!-- Modal -->
+      <div class="modal fade" id="formF06Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="formF06ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white" id="formF06ModalLabel">Form Fasilitas Lain</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <form id="formF06">
+                <div class="row g-3">
+
+                  <!-- Kiri -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">No Rekening</label>
+                      <input type="text" class="form-control" id="norekening" value="123456789">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">CIF</label>
+                      <input type="text" class="form-control" id="cif" value="98765">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Kode Jenis Kredit</label>
+                      <input type="text" class="form-control" id="kodejeniskredit" value="001">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Sumber Dana</label>
+                      <input type="text" class="form-control" id="sumberdana" value="SD01">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tanggal Mulai</label>
+                      <input type="text" class="form-control" id="tanggalmulai" value="20240101">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tanggal Jth Tempo</label>
+                      <input type="text" class="form-control" id="tanggaljthtempo" value="20250101">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">% Suku Bunga</label>
+                      <input type="text" class="form-control" id="persentasesukubunga" value="5.00">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Kode Valuta</label>
+                      <input type="text" class="form-control" id="kodevaluta" value="IDR">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Baki Debet</label>
+                      <input type="number" class="form-control" id="bakidebet" value="10000000">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Nilai Dalam Mata Uang</label>
+                      <input type="number" class="form-control" id="nilaidalammatauang" value="10000000">
+                    </div>
+                  </div>
+
+                  <!-- Kanan -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Kode Kolektibilitas</label>
+                      <input type="text" class="form-control" id="kodekolektibilitas" value="1">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tanggal Macet</label>
+                      <input type="text" class="form-control" id="tanggalmacet" value="20240701">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Kode Sebab Macet</label>
+                      <input type="text" class="form-control" id="kodesebabmacet" value="01">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Total Tunggakan</label>
+                      <input type="number" class="form-control" id="totaltunggakan" value="500000">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Hari Tunggakan</label>
+                      <input type="number" class="form-control" id="haritunggakan" value="30">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Kode Kondisi</label>
+                      <input type="text" class="form-control" id="kodekondisi" value="02">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tanggal Kondisi</label>
+                      <input type="text" class="form-control" id="tanggalkondisi" value="20240715">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Keterangan</label>
+                      <input type="text" class="form-control" id="keterangan" value="Kredit berjalan lancar">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Kode Kantor Cabang</label>
+                      <input type="text" class="form-control" id="kodekantorcabang" value="001">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Operasi Data</label>
+                      <input type="text" class="form-control" id="operasidata" value="I">
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+        <thead>
+          <tr>
+            <th>No Rekening</th>
+            <th>CIF</th>
+            <th>Kode Jenis Kredit</th>
+            <th>Sumber Dana</th>
+            <th>Tanggal Mulai</th>
+            <th>Tanggal Jth Tempo</th>
+            <th>% Suku Bunga</th>
+            <th>Kode Valuta</th>
+            <th>Baki Debet</th>
+            <th>Nilai Dalam Mata Uang</th>
+            <th>Kode Kolektibilitas</th>
+            <th>Tanggal Macet</th>
+            <th>Kode Sebab Macet</th>
+            <th>Total Tunggakan</th>
+            <th>Hari Tunggakan</th>
+            <th>Kode Kondisi</th>
+            <th>Tanggal Kondisi</th>
+            <th>Keterangan</th>
+            <th>Kode Kantor Cabang</th>
+            <th>Operasi Data</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>123456789</td>
+            <td>98765</td>
+            <td>001</td>
+            <td>SD01</td>
+            <td>20240101</td>
+            <td>20250101</td>
+            <td>5.00</td>
+            <td>IDR</td>
+            <td>10000000</td>
+            <td>10000000</td>
+            <td>1</td>
+            <td>20240701</td>
+            <td>01</td>
+            <td>500000</td>
+            <td>30</td>
+            <td>02</td>
+            <td>20240715</td>
+            <td>Kredit berjalan lancar</td>
+            <td>001</td>
+            <td>I</td>
+            <td>
+              <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#formF06Modal"><i class="fas fa-edit"></i></a>
+              <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+$(document).ready(function () {
+  $('#datatables').DataTable({ scrollX: true, responsive: true });
+
+  document.addEventListener('click', function(e) {
+      if (e.target.closest('.edit')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      const cells = row.querySelectorAll('td');
+      
+      document.getElementById('norekening').value = cells[0].textContent;
+      document.getElementById('cif').value = cells[1].textContent;
+      document.getElementById('kodejeniskredit').value = cells[2].textContent;
+      document.getElementById('sumberdana').value = cells[3].textContent;
+      document.getElementById('tanggalmulai').value = cells[4].textContent;
+      document.getElementById('tanggaljthtempo').value = cells[5].textContent;
+      document.getElementById('persentasesukubunga').value = cells[6].textContent;
+      document.getElementById('kodevaluta').value = cells[7].textContent;
+      document.getElementById('bakidebet').value = cells[8].textContent;
+      document.getElementById('nilaidalammatauang').value = cells[9].textContent;
+      document.getElementById('kodekolektibilitas').value = cells[10].textContent;
+      document.getElementById('tanggalmacet').value = cells[11].textContent;
+      document.getElementById('kodesebabmacet').value = cells[12].textContent;
+      document.getElementById('totaltunggakan').value = cells[13].textContent;
+      document.getElementById('haritunggakan').value = cells[14].textContent;
+      document.getElementById('kodekondisi').value = cells[15].textContent;
+      document.getElementById('tanggalkondisi').value = cells[16].textContent;
+      document.getElementById('keterangan').value = cells[17].textContent;
+      document.getElementById('kodekantorcabang').value = cells[18].textContent;
+      document.getElementById('operasidata').value = cells[19].textContent;
+    }
+
+    if (e.target.closest('.delete')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) row.remove();
+    }
+  });
+});
+</script>
+{% include 'lapbul_app/footer.html' %}

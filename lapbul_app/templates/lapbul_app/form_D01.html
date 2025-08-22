@@ -1,0 +1,421 @@
+{% include 'lapbul_app/header.html' %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">FORM D01 - Debitur Perseorangan</h5>
+      <hr>
+      <a href="{% url 'lapbul_app:slik' %}" class="btn btn-secondary">Kembali</a>
+      <br><br>
+
+      <!-- Modal -->
+      <div class="modal fade" id="formD01Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="formD01ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xxl">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white" id="formD01ModalLabel">Edit Data Debitur Perseorangan</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <!-- Kolom Kiri -->
+                  <div class="col-md-6">
+                    <h6 class="text-secondary mb-3">Data Identitas</h6>
+                    <div class="mb-3">
+                      <label for="cif" class="form-label">CIF</label>
+                      <input type="text" class="form-control" id="cif" name="cif">
+                    </div>
+                    <div class="mb-3">
+                      <label for="jenisdentitas" class="form-label">Jenis Identitas</label>
+                      <input type="text" class="form-control" id="jenisdentitas" name="jenisdentitas">
+                    </div>
+                    <div class="mb-3">
+                      <label for="NIK" class="form-label">NIK</label>
+                      <input type="text" class="form-control" id="NIK" name="NIK">
+                    </div>
+                    <div class="mb-3">
+                      <label for="namaidentitas" class="form-label">Nama Identitas</label>
+                      <input type="text" class="form-control" id="namaidentitas" name="namaidentitas">
+                    </div>
+                    <div class="mb-3">
+                      <label for="namalengkap" class="form-label">Nama Lengkap</label>
+                      <input type="text" class="form-control" id="namalengkap" name="namalengkap">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodestatus" class="form-label">Kode Status</label>
+                      <input type="text" class="form-control" id="kodestatus" name="kodestatus">
+                    </div>
+                    <div class="mb-3">
+                      <label for="jeniskelamin" class="form-label">Jenis Kelamin</label>
+                      <select class="form-control" id="jeniskelamin" name="jeniskelamin">
+                        <option value="">Pilih</option>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="tempatlahir" class="form-label">Tempat Lahir</label>
+                      <input type="text" class="form-control" id="tempatlahir" name="tempatlahir">
+                    </div>
+                    <div class="mb-3">
+                      <label for="tanggallahir" class="form-label">Tanggal Lahir</label>
+                      <input type="date" class="form-control" id="tanggallahir" name="tanggallahir">
+                    </div>
+                    <div class="mb-3">
+                      <label for="NPWP" class="form-label">NPWP</label>
+                      <input type="text" class="form-control" id="NPWP" name="NPWP">
+                    </div>
+                    <div class="mb-3">
+                      <label for="namaibukandung" class="form-label">Nama Ibu Kandung</label>
+                      <input type="text" class="form-control" id="namaibukandung" name="namaibukandung">
+                    </div>
+
+                    <h6 class="text-secondary mb-3 mt-4">Data Alamat</h6>
+                    <div class="mb-3">
+                      <label for="alamat" class="form-label">Alamat</label>
+                      <textarea class="form-control" id="alamat" name="alamat" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="kelurahan" class="form-label">Kelurahan</label>
+                      <input type="text" class="form-control" id="kelurahan" name="kelurahan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kecamatan" class="form-label">Kecamatan</label>
+                      <input type="text" class="form-control" id="kecamatan" name="kecamatan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="dati2" class="form-label">Dati2</label>
+                      <input type="text" class="form-control" id="dati2" name="dati2">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodepos" class="form-label">Kode Pos</label>
+                      <input type="text" class="form-control" id="kodepos" name="kodepos">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodenegara" class="form-label">Kode Negara</label>
+                      <input type="text" class="form-control" id="kodenegara" name="kodenegara">
+                    </div>
+
+                    <h6 class="text-secondary mb-3 mt-4">Data Kontak</h6>
+                    <div class="mb-3">
+                      <label for="notelp" class="form-label">No Telepon</label>
+                      <input type="tel" class="form-control" id="notelp" name="notelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="nohp" class="form-label">No HP</label>
+                      <input type="tel" class="form-control" id="nohp" name="nohp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                  </div>
+
+                  <!-- Kolom Kanan -->
+                  <div class="col-md-6">
+                    <h6 class="text-secondary mb-3">Data Pekerjaan</h6>
+                    <div class="mb-3">
+                      <label for="kodepekerjaan" class="form-label">Kode Pekerjaan</label>
+                      <input type="text" class="form-control" id="kodepekerjaan" name="kodepekerjaan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="tempatbekerja" class="form-label">Tempat Bekerja</label>
+                      <input type="text" class="form-control" id="tempatbekerja" name="tempatbekerja">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodebidangusaha" class="form-label">Kode Bidang Usaha</label>
+                      <input type="text" class="form-control" id="kodebidangusaha" name="kodebidangusaha">
+                    </div>
+                    <div class="mb-3">
+                      <label for="alamatbekerja" class="form-label">Alamat Bekerja</label>
+                      <textarea class="form-control" id="alamatbekerja" name="alamatbekerja" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="penghasilankotor" class="form-label">Penghasilan Kotor</label>
+                      <input type="number" class="form-control" id="penghasilankotor" name="penghasilankotor">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodesumberpenghasilan" class="form-label">Kode Sumber Penghasilan</label>
+                      <input type="text" class="form-control" id="kodesumberpenghasilan" name="kodesumberpenghasilan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="jumlahtanggungan" class="form-label">Jumlah Tanggungan</label>
+                      <input type="number" class="form-control" id="jumlahtanggungan" name="jumlahtanggungan">
+                    </div>
+
+                    <h6 class="text-secondary mb-3 mt-4">Data Perkawinan</h6>
+                    <div class="mb-3">
+                      <label for="statusperkawinan" class="form-label">Status Perkawinan</label>
+                      <select class="form-control" id="statusperkawinan" name="statusperkawinan">
+                        <option value="">Pilih</option>
+                        <option value="1">Kawin</option>
+                        <option value="2">Belum Kawin</option>
+                        <option value="3">Cerai</option>
+                        <option value="4">Janda/Duda</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nomoridentitaspasangan" class="form-label">No Identitas Pasangan</label>
+                      <input type="text" class="form-control" id="nomoridentitaspasangan" name="nomoridentitaspasangan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="namapasangan" class="form-label">Nama Pasangan</label>
+                      <input type="text" class="form-control" id="namapasangan" name="namapasangan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="tgllahirpasangan" class="form-label">Tgl Lahir Pasangan</label>
+                      <input type="date" class="form-control" id="tgllahirpasangan" name="tgllahirpasangan">
+                    </div>
+                    <div class="mb-3">
+                      <label for="perjanjianpisahharta" class="form-label">Perjanjian Pisah Harta</label>
+                      <select class="form-control" id="perjanjianpisahharta" name="perjanjianpisahharta">
+                        <option value="">Pilih</option>
+                        <option value="0">Tidak</option>
+                        <option value="1">Ya</option>
+                      </select>
+                    </div>
+
+                    <h6 class="text-secondary mb-3 mt-4">Data Bank & Regulasi</h6>
+                    <div class="mb-3">
+                      <label for="kodehubungandgnpelapor" class="form-label">Hubungan dgn Pelapor</label>
+                      <input type="text" class="form-control" id="kodehubungandgnpelapor" name="kodehubungandgnpelapor">
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodegolongandebitur" class="form-label">Golongan Debitur</label>
+                      <input type="text" class="form-control" id="kodegolongandebitur" name="kodegolongandebitur">
+                    </div>
+                    <div class="mb-3">
+                      <label for="melanggarBMPK" class="form-label">Melanggar BMPK</label>
+                      <select class="form-control" id="melanggarBMPK" name="melanggarBMPK">
+                        <option value="">Pilih</option>
+                        <option value="0">Tidak</option>
+                        <option value="1">Ya</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="melampauiBMPK" class="form-label">Melampaui BMPK</label>
+                      <select class="form-control" id="melampauiBMPK" name="melampauiBMPK">
+                        <option value="">Pilih</option>
+                        <option value="0">Tidak</option>
+                        <option value="1">Ya</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="kodekantorcabang" class="form-label">Kode Kantor Cabang</label>
+                      <input type="text" class="form-control" id="kodekantorcabang" name="kodekantorcabang">
+                    </div>
+                    <div class="mb-3">
+                      <label for="operasidata" class="form-label">Operasi Data</label>
+                      <input type="text" class="form-control" id="operasidata" name="operasidata">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table id="datatables" class="table table-bordered table-striped nowrap w-100">
+        <thead>
+          <tr>
+            <th>CIF</th>
+            <th>Jenis ID</th>
+            <th>NIK</th>
+            <th>Nama Identitas</th>
+            <th>Nama Lengkap</th>
+            <th>Kode Status</th>
+            <th>JK</th>
+            <th>Tempat Lahir</th>
+            <th>Tgl Lahir</th>
+            <th>NPWP</th>
+            <th>Alamat</th>
+            <th>Kelurahan</th>
+            <th>Kecamatan</th>
+            <th>Dati2</th>
+            <th>Kode Pos</th>
+            <th>No Telp</th>
+            <th>No HP</th>
+            <th>Email</th>
+            <th>Kode Negara</th>
+            <th>Kode Pekerjaan</th>
+            <th>Tempat Bekerja</th>
+            <th>Kode Bidang Usaha</th>
+            <th>Alamat Bekerja</th>
+            <th>Penghasilan</th>
+            <th>Sumber Penghasilan</th>
+            <th>Tanggungan</th>
+            <th>Hubungan Pelapor</th>
+            <th>Golongan Debitur</th>
+            <th>Status Kawin</th>
+            <th>No ID Pasangan</th>
+            <th>Nama Pasangan</th>
+            <th>Tgl Lahir Pasangan</th>
+            <th>Pisah Harta</th>
+            <th>Melanggar BMPK</th>
+            <th>Melampaui BMPK</th>
+            <th>Ibu Kandung</th>
+            <th>Kode Kantor</th>
+            <th>Operasi Data</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>123456</td>
+            <td>KTP</td>
+            <td>3171xxxx</td>
+            <td>Budi</td>
+            <td>Budi Santoso</td>
+            <td>01</td>
+            <td>L</td>
+            <td>Jakarta</td>
+            <td>1990-01-01</td>
+            <td>12345xxxx</td>
+            <td>Jl. Sudirman</td>
+            <td>Kebayoran</td>
+            <td>Jaksel</td>
+            <td>3171</td>
+            <td>12190</td>
+            <td>021xxxx</td>
+            <td>0812xxxx</td>
+            <td>budi@email.com</td>
+            <td>ID</td>
+            <td>001</td>
+            <td>PT Abadi</td>
+            <td>620001</td>
+            <td>Jl. Gatot Subroto</td>
+            <td>10000000</td>
+            <td>01</td>
+            <td>2</td>
+            <td>0001</td>
+            <td>REG</td>
+            <td>1</td>
+            <td>321xxxx</td>
+            <td>Siti</td>
+            <td>1992-02-02</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Sri</td>
+            <td>001</td>
+            <td>I</td>
+            <td>
+              <a href="#" class="text-secondary me-2 edit" data-bs-toggle="modal" data-bs-target="#formD01Modal" title="Edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="text-danger delete" title="Hapus"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+$(document).ready(function () {
+  $('#datatables').DataTable({ 
+    scrollX: true, 
+    responsive: true,
+    language: {
+      url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+    }
+  });
+
+  // Function to convert date format from YYYY-MM-DD to YYYYMMDD and vice versa
+  function formatDateForDisplay(dateStr) {
+    if (!dateStr) return '';
+    if (dateStr.includes('-')) return dateStr; // Already in YYYY-MM-DD format
+    // Convert YYYYMMDD to YYYY-MM-DD
+    if (dateStr.length === 8) {
+      return dateStr.substring(0,4) + '-' + dateStr.substring(4,6) + '-' + dateStr.substring(6,8);
+    }
+    return dateStr;
+  }
+
+  function formatDateForStorage(dateStr) {
+    if (!dateStr) return '';
+    return dateStr.replace(/-/g, ''); // Convert YYYY-MM-DD to YYYYMMDD
+  }
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.edit')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      const cells = row.querySelectorAll('td');
+
+      // Populate form fields with data from selected row
+      document.getElementById('cif').value = cells[0].textContent.trim();
+      document.getElementById('jenisdentitas').value = cells[1].textContent.trim();
+      document.getElementById('NIK').value = cells[2].textContent.trim();
+      document.getElementById('namaidentitas').value = cells[3].textContent.trim();
+      document.getElementById('namalengkap').value = cells[4].textContent.trim();
+      document.getElementById('kodestatus').value = cells[5].textContent.trim();
+      document.getElementById('jeniskelamin').value = cells[6].textContent.trim();
+      document.getElementById('tempatlahir').value = cells[7].textContent.trim();
+      document.getElementById('tanggallahir').value = formatDateForDisplay(cells[8].textContent.trim());
+      document.getElementById('NPWP').value = cells[9].textContent.trim();
+      document.getElementById('alamat').value = cells[10].textContent.trim();
+      document.getElementById('kelurahan').value = cells[11].textContent.trim();
+      document.getElementById('kecamatan').value = cells[12].textContent.trim();
+      document.getElementById('dati2').value = cells[13].textContent.trim();
+      document.getElementById('kodepos').value = cells[14].textContent.trim();
+      document.getElementById('notelp').value = cells[15].textContent.trim();
+      document.getElementById('nohp').value = cells[16].textContent.trim();
+      document.getElementById('email').value = cells[17].textContent.trim();
+      document.getElementById('kodenegara').value = cells[18].textContent.trim();
+      document.getElementById('kodepekerjaan').value = cells[19].textContent.trim();
+      document.getElementById('tempatbekerja').value = cells[20].textContent.trim();
+      document.getElementById('kodebidangusaha').value = cells[21].textContent.trim();
+      document.getElementById('alamatbekerja').value = cells[22].textContent.trim();
+      document.getElementById('penghasilankotor').value = cells[23].textContent.trim();
+      document.getElementById('kodesumberpenghasilan').value = cells[24].textContent.trim();
+      document.getElementById('jumlahtanggungan').value = cells[25].textContent.trim();
+      document.getElementById('kodehubungandgnpelapor').value = cells[26].textContent.trim();
+      document.getElementById('kodegolongandebitur').value = cells[27].textContent.trim();
+      document.getElementById('statusperkawinan').value = cells[28].textContent.trim();
+      document.getElementById('nomoridentitaspasangan').value = cells[29].textContent.trim();
+      document.getElementById('namapasangan').value = cells[30].textContent.trim();
+      document.getElementById('tgllahirpasangan').value = formatDateForDisplay(cells[31].textContent.trim());
+      document.getElementById('perjanjianpisahharta').value = cells[32].textContent.trim();
+      document.getElementById('melanggarBMPK').value = cells[33].textContent.trim();
+      document.getElementById('melampauiBMPK').value = cells[34].textContent.trim();
+      document.getElementById('namaibukandung').value = cells[35].textContent.trim();
+      document.getElementById('kodekantorcabang').value = cells[36].textContent.trim();
+      document.getElementById('operasidata').value = cells[37].textContent.trim();
+    }
+
+    if (e.target.closest('.delete')) {
+      e.preventDefault();
+      const row = e.target.closest('tr');
+      const cif = row.cells[0].textContent.trim();
+      const nama = row.cells[4].textContent.trim();
+      
+      if (confirm(`Apakah Anda yakin ingin menghapus data debitur:\nCIF: ${cif}\nNama: ${nama}?`)) {
+        row.remove();
+        // Show success message
+        alert('Data berhasil dihapus!');
+      }
+    }
+  });
+
+  document.querySelector('.modal-footer .btn-primary').addEventListener('click', function() {
+    const cif = document.getElementById('cif').value;
+    const nama = document.getElementById('namalengkap').value;
+    
+    if (cif && nama) {
+      alert(`Data debitur ${nama} (CIF: ${cif}) berhasil disimpan!`);
+      $('#formD01Modal').modal('hide');
+    } else {
+      alert('Mohon lengkapi minimal CIF dan Nama Lengkap!');
+    }
+  });
+});
+</script>
+{% include 'lapbul_app/footer.html' %}
