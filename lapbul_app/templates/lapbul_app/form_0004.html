@@ -1,14 +1,21 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-    /* Define the sticky column styles */
+    /* Define the sticky column styles for both th and td */
     .sticky-action-col {
         position: sticky;
         right: 0;
         background-color: rgba(255, 255, 255, 0.95) !important;
-        z-index: 5;
+        z-index: 10;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         text-align: center;
         min-width: 120px;
+    }
+
+    /* Ensure sticky header works in table */
+    table.dataTable thead th.sticky-action-col {
+        z-index: 15;
+        position: sticky;
+        right: 0;
     }
 
     /* CSS for right-aligning number columns and centering others */
@@ -31,243 +38,282 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0004Modal">Tambah</button>
             </div>
             <br>
             <div class="modal fade" id="form0004Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0004ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-
                         <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0004ModalLabel">Form Data Kantor BPR</h6>
+                            <h6 class="modal-title text-white" id="form0004ModalLabel">Form Input Data Kantor BPR</h6>
                             <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-
                         <div class="modal-body">
                             <form>
-                                <div class="row mb-3">
-                                    <div class="col-md-8">
-                                        <label for="nama_bank" class="form-label">Nama Bank</label>
-                                        <input type="text" class="form-control" id="nama_bank" name="nama_bank" maxlength="50" />
+                                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-controls="basic" aria-selected="true">
+                                            Informasi Dasar
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="perm-employees-tab" data-bs-toggle="tab" data-bs-target="#perm-employees" type="button" role="tab" aria-controls="perm-employees" aria-selected="false">
+                                            Kepegawaian Tetap
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="contract-age-tab" data-bs-toggle="tab" data-bs-target="#contract-age" type="button" role="tab" aria-controls="contract-age" aria-selected="false">
+                                            Kepegawaian Kontrak & Usia
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="operations-tab" data-bs-toggle="tab" data-bs-target="#operations" type="button" role="tab" aria-controls="operations" aria-selected="false">
+                                            Operasional
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mt-3" id="formTabContent">
+                                    <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                                        <div class="row mb-3">
+                                            <div class="col-md-8">
+                                                <label for="nama_bank" class="form-label">Nama Bank</label>
+                                                <input type="text" class="form-control" id="nama_bank" name="nama_bank" maxlength="50" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="koordinat" class="form-label">Koordinat</label>
+                                                <input type="text" class="form-control" id="koordinat" name="koordinat" maxlength="50" pattern="^-?\d+\.\d+,-?\d+\.\d+$" placeholder="e.g., -6.21,106.85" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-8">
+                                                <label for="alamat" class="form-label">Alamat</label>
+                                                <input type="text" class="form-control" id="alamat" name="alamat" maxlength="150" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="desakecamatan" class="form-label">Desa/Kecamatan</label>
+                                                <input type="text" class="form-control" id="desakecamatan" name="desakecamatan" maxlength="50" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <label for="kodedati2" class="form-label">Kode Dati2</label>
+                                                <input type="text" class="form-control" id="kodedati2" name="kodedati2" maxlength="4" pattern="\d{4}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="kodepos" class="form-label">Kode Pos</label>
+                                                <input type="text" class="form-control" id="kodepos" name="kodepos" maxlength="5" pattern="\d{5}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="namapim" class="form-label">Nama Pimpinan</label>
+                                                <input type="text" class="form-control" id="namapim" name="namapim" maxlength="50" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="notelp" class="form-label">No. Telepon</label>
+                                                <input type="text" class="form-control" id="notelp" name="notelp" maxlength="15" pattern="\d+" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="koordinat" class="form-label">Koordinat</label>
-                                        <input type="text" class="form-control" id="koordinat" name="koordinat" maxlength="50" />
+                                    <div class="tab-pane fade" id="perm-employees" role="tabpanel" aria-labelledby="perm-employees-tab">
+                                        <div class="row mb-3">
+                                            <div class="col-md-2">
+                                                <label for="pegtetaps3" class="form-label">Tetap S3</label>
+                                                <input type="number" class="form-control" id="pegtetaps3" name="pegtetaps3" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegtetaps2" class="form-label">Tetap S2</label>
+                                                <input type="number" class="form-control" id="pegtetaps2" name="pegtetaps2" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegtetaps1" class="form-label">Tetap S1</label>
+                                                <input type="number" class="form-control" id="pegtetaps1" name="pegtetaps1" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegtetapd3" class="form-label">Tetap D3</label>
+                                                <input type="number" class="form-control" id="pegtetapd3" name="pegtetapd3" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegtetapslta" class="form-label">Tetap SLTA</label>
+                                                <input type="number" class="form-control" id="pegtetapslta" name="pegtetapslta" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegtetaplain" class="form-label">Tetap Lain</label>
+                                                <input type="number" class="form-control" id="pegtetaplain" name="pegtetaplain" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label for="jml_kry_tgs_pemasaran" class="form-label">Kar. Tetap Pemasaran</label>
+                                                <input type="number" class="form-control" id="jml_kry_tgs_pemasaran" name="jml_kry_tgs_pemasaran" min="0" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="jml_kry_tgs_pelayanan" class="form-label">Kar. Tetap Pelayanan</label>
+                                                <input type="number" class="form-control" id="jml_kry_tgs_pelayanan" name="jml_kry_tgs_pelayanan" min="0" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="jml_kry_tgs_lain" class="form-label">Kar. Tetap Lain</label>
+                                                <input type="number" class="form-control" id="jml_kry_tgs_lain" name="jml_kry_tgs_lain" min="0" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-8">
-                                        <label for="alamat" class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" id="alamat" name="alamat" maxlength="150" />
+                                    <div class="tab-pane fade" id="contract-age" role="tabpanel" aria-labelledby="contract-age-tab">
+                                        <div class="row mb-3">
+                                            <div class="col-md-2">
+                                                <label for="pegkontraks3" class="form-label">Kontrak S3</label>
+                                                <input type="number" class="form-control" id="pegkontraks3" name="pegkontraks3" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegkontraks2" class="form-label">Kontrak S2</label>
+                                                <input type="number" class="form-control" id="pegkontraks2" name="pegkontraks2" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegkontraks1" class="form-label">Kontrak S1</label>
+                                                <input type="number" class="form-control" id="pegkontraks1" name="pegkontraks1" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegkontrakd3" class="form-label">Kontrak D3</label>
+                                                <input type="number" class="form-control" id="pegkontrakd3" name="pegkontrakd3" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegkontrakslta" class="form-label">Kontrak SLTA</label>
+                                                <input type="number" class="form-control" id="pegkontrakslta" name="pegkontrakslta" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="pegkontraklain" class="form-label">Kontrak Lain</label>
+                                                <input type="number" class="form-control" id="pegkontraklain" name="pegkontraklain" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label for="jml_kry_pk_pemasaran" class="form-label">Kar. Kontrak Pemasaran</label>
+                                                <input type="number" class="form-control" id="jml_kry_pk_pemasaran" name="jml_kry_pk_pemasaran" min="0" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="jml_kry_pk_pelayanan" class="form-label">Kar. Kontrak Pelayanan</label>
+                                                <input type="number" class="form-control" id="jml_kry_pk_pelayanan" name="jml_kry_pk_pelayanan" min="0" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="jml_kry_pk_lain2" class="form-label">Kar. Kontrak Lain</label>
+                                                <input type="number" class="form-control" id="jml_kry_pk_lain2" name="jml_kry_pk_lain2" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="jml_kry_laki" class="form-label">Kar. Laki-Laki</label>
+                                                <input type="number" class="form-control" id="jml_kry_laki" name="jml_kry_laki" min="0" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="jml_kry_perempuan" class="form-label">Kar. Perempuan</label>
+                                                <input type="number" class="form-control" id="jml_kry_perempuan" name="jml_kry_perempuan" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-2">
+                                                <label for="jml_kry_usia_25" class="form-label">Usia ≤ 25</label>
+                                                <input type="number" class="form-control" id="jml_kry_usia_25" name="jml_kry_usia_25" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="jml_kry_usia_35" class="form-label">Usia ≤ 35</label>
+                                                <input type="number" class="form-control" id="jml_kry_usia_35" name="jml_kry_usia_35" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="jml_kry_usia_45" class="form-label">Usia ≤ 45</label>
+                                                <input type="number" class="form-control" id="jml_kry_usia_45" name="jml_kry_usia_45" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="jml_kry_usia_55" class="form-label">Usia ≤ 55</label>
+                                                <input type="number" class="form-control" id="jml_kry_usia_55" name="jml_kry_usia_55" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="jml_kry_usia_lbh_55" class="form-label">Usia > 55</label>
+                                                <input type="number" class="form-control" id="jml_kry_usia_lbh_55" name="jml_kry_usia_lbh_55" min="0" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="jumlah_skk" class="form-label">Jumlah SKK</label>
+                                                <input type="number" class="form-control" id="jumlah_skk" name="jumlah_skk" min="0" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="desakecamatan" class="form-label">Desa/Kecamatan</label>
-                                        <input type="text" class="form-control" id="desakecamatan" name="desakecamatan" maxlength="50" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label for="kodedati2" class="form-label">Kode Dati2</label>
-                                        <input type="text" class="form-control" id="kodedati2" name="kodedati2" maxlength="4" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="kodepos" class="form-label">Kode Pos</label>
-                                        <input type="text" class="form-control" id="kodepos" name="kodepos" maxlength="5" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="namapim" class="form-label">Nama Pimpinan</label>
-                                        <input type="text" class="form-control" id="namapim" name="namapim" maxlength="50" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="notelp" class="form-label">No. Telepon</label>
-                                        <input type="text" class="form-control" id="notelp" name="notelp" maxlength="15" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-2">
-                                        <label for="pegtetaps3" class="form-label">Tetap S3</label>
-                                        <input type="number" class="form-control" id="pegtetaps3" name="pegtetaps3" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegtetaps2" class="form-label">Tetap S2</label>
-                                        <input type="number" class="form-control" id="pegtetaps2" name="pegtetaps2" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegtetaps1" class="form-label">Tetap S1</label>
-                                        <input type="number" class="form-control" id="pegtetaps1" name="pegtetaps1" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegtetapd3" class="form-label">Tetap D3</label>
-                                        <input type="number" class="form-control" id="pegtetapd3" name="pegtetapd3" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegtetapslta" class="form-label">Tetap SLTA</label>
-                                        <input type="number" class="form-control" id="pegtetapslta" name="pegtetapslta" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegtetaplain" class="form-label">Tetap Lain</label>
-                                        <input type="number" class="form-control" id="pegtetaplain" name="pegtetaplain" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-2">
-                                        <label for="pegkontraks3" class="form-label">Kontrak S3</label>
-                                        <input type="number" class="form-control" id="pegkontraks3" name="pegkontraks3" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegkontraks2" class="form-label">Kontrak S2</label>
-                                        <input type="number" class="form-control" id="pegkontraks2" name="pegkontraks2" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegkontraks1" class="form-label">Kontrak S1</label>
-                                        <input type="number" class="form-control" id="pegkontraks1" name="pegkontraks1" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegkontrakd3" class="form-label">Kontrak D3</label>
-                                        <input type="number" class="form-control" id="pegkontrakd3" name="pegkontrakd3" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegkontrakslta" class="form-label">Kontrak SLTA</label>
-                                        <input type="number" class="form-control" id="pegkontrakslta" name="pegkontrakslta" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="pegkontraklain" class="form-label">Kontrak Lain</label>
-                                        <input type="number" class="form-control" id="pegkontraklain" name="pegkontraklain" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label for="jumlahkantorkas" class="form-label">Jumlah Kantor Kas</label>
-                                        <input type="number" class="form-control" id="jumlahkantorkas" name="jumlahkantorkas" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="kodestsgedung" class="form-label">Kode Status Gedung</label>
-                                        <input type="text" class="form-control" id="kodestsgedung" name="kodestsgedung" maxlength="2" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="jumlahmobilkas" class="form-label">Jumlah Mobil Kas</label>
-                                        <input type="number" class="form-control" id="jumlahmobilkas" name="jumlahmobilkas" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="ppsendiri" class="form-label">PP Sendiri</label>
-                                        <input type="number" class="form-control" id="ppsendiri" name="ppsendiri" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label for="ppbu" class="form-label">PP BU</label>
-                                        <input type="number" class="form-control" id="ppbu" name="ppbu" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="ppbprlain" class="form-label">PP BPR Lain</label>
-                                        <input type="number" class="form-control" id="ppbprlain" name="ppbprlain" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="atmsendiri" class="form-label">ATM Sendiri</label>
-                                        <input type="number" class="form-control" id="atmsendiri" name="atmsendiri" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="jml_join_bpr" class="form-label">Jumlah Join BPR</label>
-                                        <input type="number" class="form-control" id="jml_join_bpr" name="jml_join_bpr" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label for="nama_join_bpr" class="form-label">Nama Join BPR</label>
-                                        <input type="text" class="form-control" id="nama_join_bpr" name="nama_join_bpr" maxlength="30" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="kt_datakantor" class="form-label">KT Data Kantor</label>
-                                        <input type="text" class="form-control" id="kt_datakantor" name="kt_datakantor" maxlength="1" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="oto_ojk_no" class="form-label">Oto OJK No</label>
-                                        <input type="text" class="form-control" id="oto_ojk_no" name="oto_ojk_no" maxlength="30" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="oto_ojk_tgl" class="form-label">Oto OJK Tanggal</label>
-                                        <input type="date" class="form-control" id="oto_ojk_tgl" name="oto_ojk_tgl" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="alamat_sebelumnya" class="form-label">Alamat Sebelumnya</label>
-                                        <input type="text" class="form-control" id="alamat_sebelumnya" name="alamat_sebelumnya" maxlength="50" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="tgl_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
-                                        <input type="date" class="form-control" id="tgl_pelaksanaan" name="tgl_pelaksanaan" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="jml_kry_tgs_pemasaran" class="form-label">Kar. Tetap Pemasaran</label>
-                                        <input type="number" class="form-control" id="jml_kry_tgs_pemasaran" name="jml_kry_tgs_pemasaran" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="jml_kry_tgs_pelayanan" class="form-label">Kar. Tetap Pelayanan</label>
-                                        <input type="number" class="form-control" id="jml_kry_tgs_pelayanan" name="jml_kry_tgs_pelayanan" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="jml_kry_tgs_lain" class="form-label">Kar. Tetap Lain</label>
-                                        <input type="number" class="form-control" id="jml_kry_tgs_lain" name="jml_kry_tgs_lain" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="jml_kry_pk_pemasaran" class="form-label">Kar. Kontrak Pemasaran</label>
-                                        <input type="number" class="form-control" id="jml_kry_pk_pemasaran" name="jml_kry_pk_pemasaran" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="jml_kry_pk_pelayanan" class="form-label">Kar. Kontrak Pelayanan</label>
-                                        <input type="number" class="form-control" id="jml_kry_pk_pelayanan" name="jml_kry_pk_pelayanan" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="jml_kry_pk_lain2" class="form-label">Kar. Kontrak Lain</label>
-                                        <input type="number" class="form-control" id="jml_kry_pk_lain2" name="jml_kry_pk_lain2" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="jml_kry_laki" class="form-label">Kar. Laki-Laki</label>
-                                        <input type="number" class="form-control" id="jml_kry_laki" name="jml_kry_laki" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="jml_kry_perempuan" class="form-label">Kar. Perempuan</label>
-                                        <input type="number" class="form-control" id="jml_kry_perempuan" name="jml_kry_perempuan" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-2">
-                                        <label for="jml_kry_usia_25" class="form-label">Usia ≤ 25</label>
-                                        <input type="number" class="form-control" id="jml_kry_usia_25" name="jml_kry_usia_25" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="jml_kry_usia_35" class="form-label">Usia ≤ 35</label>
-                                        <input type="number" class="form-control" id="jml_kry_usia_35" name="jml_kry_usia_35" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="jml_kry_usia_45" class="form-label">Usia ≤ 45</label>
-                                        <input type="number" class="form-control" id="jml_kry_usia_45" name="jml_kry_usia_45" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="jml_kry_usia_55" class="form-label">Usia ≤ 55</label>
-                                        <input type="number" class="form-control" id="jml_kry_usia_55" name="jml_kry_usia_55" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="jml_kry_usia_lbh_55" class="form-label">Usia > 55</label>
-                                        <input type="number" class="form-control" id="jml_kry_usia_lbh_55" name="jml_kry_usia_lbh_55" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="jumlah_skk" class="form-label">Jumlah SKK</label>
-                                        <input type="number" class="form-control" id="jumlah_skk" name="jumlah_skk" />
+                                    <div class="tab-pane fade" id="operations" role="tabpanel" aria-labelledby="operations-tab">
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <label for="jumlahkantorkas" class="form-label">Jumlah Kantor Kas</label>
+                                                <input type="number" class="form-control" id="jumlahkantorkas" name="jumlahkantorkas" min="0" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="kodestsgedung" class="form-label">Kode Status Gedung</label>
+                                                <select class="form-select" id="kodestsgedung" name="kodestsgedung">
+                                                    <option value="">Pilih Status</option>
+                                                    <option value="01">01 (Milik Sendiri)</option>
+                                                    <option value="02">02 (Sewa)</option>
+                                                    <option value="03">03 (Pinjam Pakai)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="jumlahmobilkas" class="form-label">Jumlah Mobil Kas</label>
+                                                <input type="number" class="form-control" id="jumlahmobilkas" name="jumlahmobilkas" min="0" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="ppsendiri" class="form-label">PP Sendiri</label>
+                                                <input type="number" class="form-control" id="ppsendiri" name="ppsendiri" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <label for="ppbu" class="form-label">PP BU</label>
+                                                <input type="number" class="form-control" id="ppbu" name="ppbu" min="0" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="ppbprlain" class="form-label">PP BPR Lain</label>
+                                                <input type="number" class="form-control" id="ppbprlain" name="ppbprlain" min="0" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="atmsendiri" class="form-label">ATM Sendiri</label>
+                                                <input type="number" class="form-control" id="atmsendiri" name="atmsendiri" min="0" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="jml_join_bpr" class="form-label">Jumlah Join BPR</label>
+                                                <input type="number" class="form-control" id="jml_join_bpr" name="jml_join_bpr" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <label for="nama_join_bpr" class="form-label">Nama Join BPR</label>
+                                                <input type="text" class="form-control" id="nama_join_bpr" name="nama_join_bpr" maxlength="30" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="kt_datakantor" class="form-label">KT Data Kantor</label>
+                                                <select class="form-select" id="kt_datakantor" name="kt_datakantor">
+                                                    <option value="">Pilih Status</option>
+                                                    <option value="Y">Y (Ya)</option>
+                                                    <option value="N">N (Tidak)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="oto_ojk_no" class="form-label">Oto OJK No</label>
+                                                <input type="text" class="form-control" id="oto_ojk_no" name="oto_ojk_no" maxlength="30" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="oto_ojk_tgl" class="form-label">Oto OJK Tanggal</label>
+                                                <input type="date" class="form-control" id="oto_ojk_tgl" name="oto_ojk_tgl" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="alamat_sebelumnya" class="form-label">Alamat Sebelumnya</label>
+                                                <input type="text" class="form-control" id="alamat_sebelumnya" name="alamat_sebelumnya" maxlength="50" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="tgl_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
+                                                <input type="date" class="form-control" id="tgl_pelaksanaan" name="tgl_pelaksanaan" />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
+                            <button type="button" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
@@ -325,7 +371,8 @@
                                 <th>Usia ≤ 55</th>
                                 <th>Usia > 55</th>
                                 <th>Jumlah SKK</th>
-                                <th class="sticky-action-col text-center">Aksi</th>                            </tr>
+                                <th class="sticky-action-col text-center">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -350,7 +397,7 @@
                                 <td>3</td>
                                 <td>1</td>
                                 <td>2</td>
-                                <td>A1</td>
+                                <td>01</td>
                                 <td>1</td>
                                 <td>2</td>
                                 <td>1</td>
@@ -401,6 +448,15 @@
                     width: "120px",
                     orderable: false,
                     responsive: false
+                },
+                {
+                    targets: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47],
+                    render: function (data, type, row) {
+                        if (!isNaN(data) && data !== "" && data !== null) {
+                            return Number(data).toLocaleString("id-ID");
+                        }
+                        return data;
+                    }
                 }
             ],
             language: {
@@ -421,12 +477,17 @@
     });
 
     document.addEventListener('click', function(e) {
+        if (e.target.closest('.tambah')) {
+            e.preventDefault();
+            const form = document.querySelector('#form0004Modal form');
+            if (form) form.reset();
+        }
+
         if (e.target.closest('.edit')) {
             e.preventDefault();
             const row = e.target.closest('tr');
             const cells = row.querySelectorAll('td');
 
-            // Fill modal form with selected data
             document.getElementById('nama_bank').value = cells[0].textContent.trim();
             document.getElementById('koordinat').value = cells[1].textContent.trim();
             document.getElementById('alamat').value = cells[2].textContent.trim();
@@ -435,46 +496,46 @@
             document.getElementById('kodepos').value = cells[5].textContent.trim();
             document.getElementById('namapim').value = cells[6].textContent.trim();
             document.getElementById('notelp').value = cells[7].textContent.trim();
-            document.getElementById('pegtetaps3').value = cells[8].textContent.trim();
-            document.getElementById('pegtetaps2').value = cells[9].textContent.trim();
-            document.getElementById('pegtetaps1').value = cells[10].textContent.trim();
-            document.getElementById('pegtetapd3').value = cells[11].textContent.trim();
-            document.getElementById('pegtetapslta').value = cells[12].textContent.trim();
-            document.getElementById('pegtetaplain').value = cells[13].textContent.trim();
-            document.getElementById('pegkontraks3').value = cells[14].textContent.trim();
-            document.getElementById('pegkontraks2').value = cells[15].textContent.trim();
-            document.getElementById('pegkontraks1').value = cells[16].textContent.trim();
-            document.getElementById('pegkontrakd3').value = cells[17].textContent.trim();
-            document.getElementById('pegkontrakslta').value = cells[18].textContent.trim();
-            document.getElementById('pegkontraklain').value = cells[19].textContent.trim();
-            document.getElementById('jumlahkantorkas').value = cells[20].textContent.trim();
-            document.getElementById('kodestsgedung').value = cells[21].textContent.trim();
-            document.getElementById('jumlahmobilkas').value = cells[22].textContent.trim();
-            document.getElementById('ppsendiri').value = cells[23].textContent.trim();
-            document.getElementById('ppbu').value = cells[24].textContent.trim();
-            document.getElementById('ppbprlain').value = cells[25].textContent.trim();
-            document.getElementById('atmsendiri').value = cells[26].textContent.trim();
-            document.getElementById('jml_join_bpr').value = cells[27].textContent.trim();
+            document.getElementById('pegtetaps3').value = cells[8].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegtetaps2').value = cells[9].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegtetaps1').value = cells[10].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegtetapd3').value = cells[11].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegtetapslta').value = cells[12].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegtetaplain').value = cells[13].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegkontraks3').value = cells[14].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegkontraks2').value = cells[15].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegkontraks1').value = cells[16].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegkontrakd3').value = cells[17].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegkontrakslta').value = cells[18].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('pegkontraklain').value = cells[19].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jumlahkantorkas').value = cells[20].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('kodestsgedung').value = cells[21].textContent.trim().substring(0, 2);
+            document.getElementById('jumlahmobilkas').value = cells[22].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('ppsendiri').value = cells[23].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('ppbu').value = cells[24].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('ppbprlain').value = cells[25].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('atmsendiri').value = cells[26].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_join_bpr').value = cells[27].textContent.trim().replace(/[^0-9.-]/g, '');
             document.getElementById('nama_join_bpr').value = cells[28].textContent.trim();
             document.getElementById('kt_datakantor').value = cells[29].textContent.trim();
             document.getElementById('oto_ojk_no').value = cells[30].textContent.trim();
             document.getElementById('oto_ojk_tgl').value = cells[31].textContent.trim();
             document.getElementById('alamat_sebelumnya').value = cells[32].textContent.trim();
             document.getElementById('tgl_pelaksanaan').value = cells[33].textContent.trim();
-            document.getElementById('jml_kry_tgs_pemasaran').value = cells[34].textContent.trim();
-            document.getElementById('jml_kry_tgs_pelayanan').value = cells[35].textContent.trim();
-            document.getElementById('jml_kry_tgs_lain').value = cells[36].textContent.trim();
-            document.getElementById('jml_kry_pk_pemasaran').value = cells[37].textContent.trim();
-            document.getElementById('jml_kry_pk_pelayanan').value = cells[38].textContent.trim();
-            document.getElementById('jml_kry_pk_lain2').value = cells[39].textContent.trim();
-            document.getElementById('jml_kry_laki').value = cells[40].textContent.trim();
-            document.getElementById('jml_kry_perempuan').value = cells[41].textContent.trim();
-            document.getElementById('jml_kry_usia_25').value = cells[42].textContent.trim();
-            document.getElementById('jml_kry_usia_35').value = cells[43].textContent.trim();
-            document.getElementById('jml_kry_usia_45').value = cells[44].textContent.trim();
-            document.getElementById('jml_kry_usia_55').value = cells[45].textContent.trim();
-            document.getElementById('jml_kry_usia_lbh_55').value = cells[46].textContent.trim();
-            document.getElementById('jumlah_skk').value = cells[47].textContent.trim();
+            document.getElementById('jml_kry_tgs_pemasaran').value = cells[34].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_tgs_pelayanan').value = cells[35].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_tgs_lain').value = cells[36].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_pk_pemasaran').value = cells[37].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_pk_pelayanan').value = cells[38].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_pk_lain2').value = cells[39].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_laki').value = cells[40].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_perempuan').value = cells[41].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_usia_25').value = cells[42].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_usia_35').value = cells[43].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_usia_45').value = cells[44].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_usia_55').value = cells[45].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jml_kry_usia_lbh_55').value = cells[46].textContent.trim().replace(/[^0-9.-]/g, '');
+            document.getElementById('jumlah_skk').value = cells[47].textContent.trim().replace(/[^0-9.-]/g, '');
         }
 
         if (e.target.closest('.delete')) {
@@ -482,6 +543,7 @@
             const row = e.target.closest('tr');
             if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
                 row.remove();
+                $('#datatables').DataTable().draw();
             }
         }
     });
