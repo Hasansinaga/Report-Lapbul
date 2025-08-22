@@ -8,306 +8,226 @@
         z-index: 5;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         text-align: center;
-        min-width: 120px; 
+        min-width: 80px; 
+    }
+    
+    /* Ensure table headers align properly */
+    thead th {
+        vertical-align: middle;
     }
 </style>
 
 <div id="layoutSidenav_content">
-  <main>
-    <div class="container-fluid px-4">
-      <h5 class="mt-4">Form 1700 - Daftar Penyertaan Modal Lainnya</h5>
-      <hr />
-      <div class="d-flex justify-content-between">
-        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary"
-          >Kembali</a
-        >
-        <button
-          type="button"
-          class="btn btn-dark"
-          data-bs-toggle="modal"
-          data-bs-target="#form1700Modal"
-        >
-          Tambah
-        </button>
-      </div>
-      <br />
-
-      <!-- Modal Input -->
-      <div
-        class="modal fade"
-        id="form1700Modal"
-        tabindex="-1"
-        aria-labelledby="form1700ModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header bg-dark">
-              <h6 class="modal-title text-white" id="form1700ModalLabel">
-                Form Input Daftar Penyertaan Modal Lainnya
-              </h6>
-              <button
-                type="button"
-                class="btn-close btn-close-white"
-                data-bs-dismiss="modal"
-              ></button>
+    <main>
+        <div class="container-fluid px-4">
+            <h5 class="mt-4">Form 1700 - Daftar Penyertaan Modal Lainnya</h5>
+            <hr />
+            
+            <div class="d-flex justify-content-between mb-3">
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#form1700Modal">
+                    Tambah
+                </button>
             </div>
-            <div class="modal-body">
-              <form id="form1700Form">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label for="sandi_kantor" class="form-label"
-                      >Sandi Kantor</label
-                    >
-                    <input
-                      type="text"
-                      id="sandi_kantor"
-                      name="sandi_kantor"
-                      class="form-control"
-                      maxlength="3"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="no_register" class="form-label"
-                      >No Register</label
-                    >
-                    <input
-                      type="text"
-                      id="no_register"
-                      name="no_register"
-                      class="form-control"
-                    />
-                  </div>
 
-                  <div class="col-md-6">
-                    <label for="jenis_properti" class="form-label"
-                      >Jenis Properti Terbengkalai</label
-                    >
-                    <input
-                      type="text"
-                      id="jenis_properti"
-                      name="jenis_properti"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="alamat_properti" class="form-label"
-                      >Alamat Properti Terbengkalai</label
-                    >
-                    <input
-                      type="text"
-                      id="alamat_properti"
-                      name="alamat_properti"
-                      class="form-control"
-                    />
-                  </div>
+            <!-- Modal Input -->
+            <div class="modal fade" id="form1700Modal" tabindex="-1" aria-labelledby="form1700ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary">
+                            <h6 class="modal-title text-white" id="form1700ModalLabel">
+                                Form Input Daftar Penyertaan Modal Lainnya
+                            </h6>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form1700Form">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                        <input type="text" id="sandi_kantor" name="sandi_kantor" class="form-control" maxlength="3" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="no_register" class="form-label">No Register</label>
+                                        <input type="text" id="no_register" name="no_register" class="form-control" required />
+                                    </div>
 
-                  <div class="col-md-6">
-                    <label for="koordinat" class="form-label"
-                      >Koordinat Kantor</label
-                    >
-                    <input
-                      type="text"
-                      id="koordinat"
-                      name="koordinat"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="tgl_penetapan" class="form-label"
-                      >Tanggal Penetapan Properti</label
-                    >
-                    <input
-                      type="date"
-                      id="tgl_penetapan"
-                      name="tgl_penetapan"
-                      class="form-control"
-                    />
-                  </div>
+                                    <div class="col-md-6">
+                                        <label for="jenis_properti" class="form-label">Jenis Properti Terbengkalai</label>
+                                        <select id="jenis_properti" name="jenis_properti" class="form-control" required>
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Tanah">Tanah</option>
+                                            <option value="Bangunan">Bangunan</option>
+                                            <option value="Tanah dan Bangunan">Tanah dan Bangunan</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="alamat_properti" class="form-label">Alamat Properti Terbengkalai</label>
+                                        <input type="text" id="alamat_properti" name="alamat_properti" class="form-control" required />
+                                    </div>
 
-                  <div class="col-md-6">
-                    <label for="biaya_perolehan" class="form-label"
-                      >Biaya Perolehan / Nilai Wajar</label
-                    >
-                    <input
-                      type="number"
-                      id="biaya_perolehan"
-                      name="biaya_perolehan"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="akumulasi" class="form-label"
-                      >Akumulasi Penyusutan / Amortisasi</label
-                    >
-                    <input
-                      type="number"
-                      id="akumulasi"
-                      name="akumulasi"
-                      class="form-control"
-                    />
-                  </div>
+                                    <div class="col-md-6">
+                                        <label for="koordinat" class="form-label">Koordinat Kantor</label>
+                                        <input type="text" id="koordinat" name="koordinat" class="form-control" placeholder="Contoh: -6.123456, 106.123456" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tgl_penetapan" class="form-label">Tanggal Penetapan Properti</label>
+                                        <input type="date" id="tgl_penetapan" name="tgl_penetapan" class="form-control" required />
+                                    </div>
 
-                  <div class="col-md-6">
-                    <label for="jumlah" class="form-label">Jumlah</label>
-                    <input
-                      type="number"
-                      id="jumlah"
-                      name="jumlah"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="metode_pengukuran" class="form-label"
-                      >Metode Pengukuran</label
-                    >
-                    <input
-                      type="text"
-                      id="metode_pengukuran"
-                      name="metode_pengukuran"
-                      class="form-control"
-                    />
-                  </div>
+                                    <div class="col-md-6">
+                                        <label for="biaya_perolehan" class="form-label">Biaya Perolehan / Nilai Wajar</label>
+                                        <input type="number" id="biaya_perolehan" name="biaya_perolehan" class="form-control" min="0" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="akumulasi" class="form-label">Akumulasi Penyusutan / Amortisasi</label>
+                                        <input type="number" id="akumulasi" name="akumulasi" class="form-control" min="0" required />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="jumlah" class="form-label">Jumlah</label>
+                                        <input type="number" id="jumlah" name="jumlah" class="form-control" min="0" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="metode_pengukuran" class="form-label">Metode Pengukuran</label>
+                                        <select id="metode_pengukuran" name="metode_pengukuran" class="form-control" required>
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Model Biaya">Model Biaya</option>
+                                            <option value="Model Revaluasi">Model Revaluasi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-primary simpan">Simpan</button>
+                        </div>
+                    </div>
                 </div>
-              </form>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Tutup
-              </button>
-              <button type="button" class="btn btn-dark simpan">Simpan</button>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table id="datatables1700" class="table table-bordered table-striped nowrap w-100">
+                    <thead class="text-center align-middle">
+                        <tr>
+                            <th>Sandi Kantor</th>
+                            <th>No Register</th>
+                            <th>Jenis Properti Terbengkalai</th>
+                            <th>Alamat Properti Terbengkalai</th>
+                            <th>Koordinat Kantor</th>
+                            <th>Tanggal Penetapan</th>
+                            <th>Biaya Perolehan / Nilai Wajar</th>
+                            <th>Akumulasi Penyusutan / Amortisasi</th>
+                            <th>Jumlah</th>
+                            <th>Metode Pengukuran</th>
+                            <th class="sticky-action-col text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>NoRegis1</td>
+                            <td>Tanah</td>
+                            <td>Jakarta</td>
+                            <td>-</td>
+                            <td>2024-06-06</td>
+                            <td>100.000</td>
+                            <td>10.000</td>
+                            <td>9.000</td>
+                            <td>Model Biaya</td>
+                            <td class="sticky-action-col text-center">
+                                <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
         </div>
-      </div>
+    </main>
+</div>
 
-      <!-- Table -->
-      <div class="table-responsive">
-        <table
-          id="datatables1700"
-          class="table table-bordered table-striped nowrap w-100"
-        >
-          <thead class="text-center align-middle">
-            <tr>
-              <th>Sandi Kantor</th>
-              <th>No Register</th>
-              <th>Jenis Properti Terbengkalai</th>
-              <th>Alamat Properti Terbengkalai</th>
-              <th>Koordinat Kantor</th>
-              <th>Tanggal Penetapan</th>
-              <th>Biaya Perolehan / Nilai Wajar</th>
-              <th>Akumulasi Penyusutan / Amortisasi</th>
-              <th>Jumlah</th>
-              <th>Metode Pengukuran</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>001</td>
-              <td>NoRegis1</td>
-              <td>Tanah</td>
-              <td>Jakarta</td>
-              <td>-</td>
-              <td>2024-06-06</td>
-              <td>100000</td>
-              <td>10000</td>
-              <td>9000</td>
-              <td>Model Biaya</td>
-              <td class="text-center">
-                <a href="#" class="text-danger delete"
-                  ><i class="fas fa-trash-alt"></i
-                ></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <script>
-        $(document).ready(function () {
-          let table = $("#datatables1700").DataTable({
-            scrollX: true,
-            responsive: true,
-            columnDefs: [{ targets: -1, orderable: false, width: "80px" }],
-            language: {
-              decimal: "",
-              emptyTable: "Tidak ada data tersedia",
-              info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-              infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-              infoFiltered: "(difilter dari total _MAX_ data)",
-              lengthMenu: "Tampilkan _MENU_ data",
-              loadingRecords: "Memuat...",
-              processing: "Memproses...",
-              search: "Cari:",
-              zeroRecords: "Tidak ditemukan data yang sesuai",
-              paginate: {
+<script>
+$(document).ready(function () {
+    let table = $("#datatables1700").DataTable({
+        scrollX: true,
+        responsive: false,
+        columnDefs: [
+            { 
+                targets: -1, 
+                orderable: false, 
+                width: "80px",
+                className: "sticky-action-col"
+            }
+        ],
+        language: {
+            decimal: "",
+            emptyTable: "Tidak ada data tersedia",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+            infoFiltered: "(difilter dari total _MAX_ data)",
+            lengthMenu: "Tampilkan _MENU_ data",
+            loadingRecords: "Memuat...",
+            processing: "Memproses...",
+            search: "Cari:",
+            zeroRecords: "Tidak ditemukan data yang sesuai",
+            paginate: {
                 first: "Pertama",
                 last: "Terakhir",
                 next: "Berikutnya",
-                previous: "Sebelumnya",
-              },
-            },
-          });
-
-          // Tambah data dari modal
-          $(".simpan").on("click", function () {
-            let data = {
-              sandi: $("#sandi_kantor").val(),
-              noReg: $("#no_register").val(),
-              jenis: $("#jenis_properti").val(),
-              alamat: $("#alamat_properti").val(),
-              koordinat: $("#koordinat").val(),
-              tgl: $("#tgl_penetapan").val(),
-              biaya: $("#biaya_perolehan").val(),
-              akumulasi: $("#akumulasi").val(),
-              jumlah: $("#jumlah").val(),
-              metode: $("#metode_pengukuran").val(),
-            };
-
-            table.row
-              .add([
-                data.sandi,
-                data.noReg,
-                data.jenis,
-                data.alamat,
-                data.koordinat,
-                data.tgl,
-                data.biaya,
-                data.akumulasi,
-                data.jumlah,
-                data.metode,
-                `<a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>`,
-              ])
-              .draw();
-
-            $("#form1700Form")[0].reset();
-            $("#form1700Modal").modal("hide");
-          });
-
-          // Hapus data
-          $("#datatables1700 tbody").on("click", ".delete", function () {
-            if (confirm("Yakin ingin menghapus data ini?")) {
-              table.row($(this).parents("tr")).remove().draw();
+                previous: "Sebelumnya"
             }
-          });
-        });
-      </script>
-
-        // Delete button logic
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.delete')) {
-                e.preventDefault();
-                const row = e.target.closest('tr');
-                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-                    row.remove();
-                }
-            }
-        });
+        }
     });
+
+    // Tambah data dari modal
+    $(".simpan").on("click", function () {
+        // Validasi form
+        if (!$("#form1700Form")[0].checkValidity()) {
+            $("#form1700Form")[0].reportValidity();
+            return;
+        }
+
+        let data = {
+            sandi: $("#sandi_kantor").val(),
+            noReg: $("#no_register").val(),
+            jenis: $("#jenis_properti").val(),
+            alamat: $("#alamat_properti").val(),
+            koordinat: $("#koordinat").val() || "-",
+            tgl: $("#tgl_penetapan").val(),
+            biaya: new Intl.NumberFormat('id-ID').format($("#biaya_perolehan").val()),
+            akumulasi: new Intl.NumberFormat('id-ID').format($("#akumulasi").val()),
+            jumlah: new Intl.NumberFormat('id-ID').format($("#jumlah").val()),
+            metode: $("#metode_pengukuran").val()
+        };
+
+        table.row.add([
+            data.sandi,
+            data.noReg,
+            data.jenis,
+            data.alamat,
+            data.koordinat,
+            data.tgl,
+            data.biaya,
+            data.akumulasi,
+            data.jumlah,
+            data.metode,
+            '<a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>'
+        ]).draw();
+
+        $("#form1700Form")[0].reset();
+        $("#form1700Modal").modal("hide");
+    });
+
+    // Hapus data
+    $("#datatables1700 tbody").on("click", ".delete", function (e) {
+        e.preventDefault();
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+            table.row($(this).parents("tr")).remove().draw();
+        }
+    });
+});
 </script>
 {% include 'lapbul_app/footer.html' %}

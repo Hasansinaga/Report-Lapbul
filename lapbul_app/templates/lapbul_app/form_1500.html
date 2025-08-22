@@ -6,19 +6,25 @@
     justify-content: center;
 }
 .table-responsive {
-    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Define the sticky column styles */
+/* Define the sticky column styles for both th and td */
 .sticky-action-col {
     position: sticky;
     right: 0;
     background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
+    z-index: 10; /* Increased z-index to ensure visibility over other elements */
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     text-align: center;
-    min-width: 120px; 
+    min-width: 120px;
+}
+
+/* Ensure sticky header works in table */
+table.dataTable thead th.sticky-action-col {
+    z-index: 15; /* Higher z-index for header to stay above body cells */
+    position: sticky;
+    right: 0;
 }
 
 /* CSS untuk center kolom tertentu */
@@ -30,6 +36,10 @@ table th:nth-child(1) {
 
 .form-select.w-auto {
     max-width: fit-content;
+}
+
+table td input.form-control {
+    text-align: right;
 }
 </style>
 
@@ -57,14 +67,6 @@ table th:nth-child(1) {
           <option value="002">002</option>
         </select>
       </div>
-      <!-- <button
-        type="button"
-        class="btn btn-secondary tambah"
-        data-bs-toggle="modal"
-        data-bs-target="#form1500Modal"
-      >
-        Tambah</button
-      ><br /><br /> -->
 
       <!-- Modal structure -->
       <div
@@ -330,7 +332,7 @@ table th:nth-child(1) {
             <th rowspan="2" class="align-middle">Sandi Kantor</th>
             <th rowspan="2" class="align-middle">ID Pihak Lawan</th>
             <th rowspan="2" class="align-middle">No. Rekening</th>
-            <th rowspan="2" class="align-middle">Jenis</th>
+            <th rowspan="2" class="text-center">Jenis</th>
             <th rowspan="2" class="align-middle">Gol. Debitur</th>
             <th rowspan="2" class="align-middle">Hubungan dengan Bank</th>
             <th rowspan="2" class="align-middle">Tanggal Hapus Buku</th>
@@ -339,7 +341,7 @@ table th:nth-child(1) {
               Tunggakan Bunga
             </th>
             <th colspan="3" class="text-center align-middle">Agunan</th>
-            <th rowspan="2" class="align-middle">Aksi</th>
+            <th rowspan="2" class="sticky-action-col text-center">Aksi</th>
           </tr>
           <tr class="text-center align-middle">
             <!-- Sub Kolom Saldo Pokok -->
@@ -366,17 +368,17 @@ table th:nth-child(1) {
             <td>835 (Lainnya)</td>
             <td>12 (Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 1</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -396,17 +398,17 @@ table th:nth-child(1) {
             <td>600 (BPR Konvensional)</td>
             <td>20 (Tidak Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 2</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -426,17 +428,17 @@ table th:nth-child(1) {
             <td>835 (Lainnya)</td>
             <td>12 (Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 3</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -456,17 +458,17 @@ table th:nth-child(1) {
             <td>601 (BPR Syariah)</td>
             <td>20 (Tidak Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 4</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -486,17 +488,17 @@ table th:nth-child(1) {
             <td>835 (Lainnya)</td>
             <td>12 (Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 5</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -516,17 +518,17 @@ table th:nth-child(1) {
             <td>700 (Bank Umum Konvensional)</td>
             <td>20 (Tidak Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 6</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -546,17 +548,17 @@ table th:nth-child(1) {
             <td>835 (Lainnya)</td>
             <td>12 (Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 7</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -576,17 +578,17 @@ table th:nth-child(1) {
             <td>700 (Bank Umum Konvensional)</td>
             <td>20 (Tidak Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 8</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -606,17 +608,17 @@ table th:nth-child(1) {
             <td>835 (Lainnya)</td>
             <td>12 (Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 9</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -638,17 +640,17 @@ table th:nth-child(1) {
             </td>
             <td>20 (Tidak Terkait)</td>
             <td>20180101</td>
-            <td>100000</td>
-            <td>50000</td>
-            <td>50000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
-            <td>100000</td>
+            <td>100.000</td>
+            <td>50.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
+            <td>100.000</td>
             <td>201 (Non Likuid : Emas perhiasan)</td>
             <td>Alamat 10</td>
-            <td>1000000</td>
-            <td class="text-center">
+            <td>1.000.000</td>
+            <td class="sticky-action-col text-center">
               <a
                 href="#"
                 class="text-secondary me-2 edit"
@@ -663,49 +665,46 @@ table th:nth-child(1) {
         </tbody>
         <tfoot>
           <tr>
-            <th colspan="9" style="text-align: right">Total:</th>
+            <th colspan="7" style="text-align: right">Total:</th>
             <th></th>
-            <!-- Per Posisi Laporan - Saldo Pokok -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Per Posisi Laporan - Tunggakan Bunga -->
-            <th colspan="4"></th>
-            <!-- Kolom agunan dan aksi -->
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
           <tr>
-            <th colspan="9" style="text-align: right">Total CBS:</th>
+            <th colspan="7" style="text-align: right">Total CBS:</th>
             <th></th>
-            <!-- Per Posisi Laporan - Saldo Pokok -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Per Posisi Laporan - Tunggakan Bunga -->
-            <th colspan="4"></th>
-            <!-- Kolom agunan dan aksi -->
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
           <tr>
-            <th colspan="9" style="text-align: right">Selisih:</th>
+            <th colspan="7" style="text-align: right">Selisih:</th>
             <th></th>
-            <!-- Per Posisi Laporan - Saldo Pokok -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Kolom kosong -->
             <th></th>
-            <!-- Per Posisi Laporan - Tunggakan Bunga -->
-            <th colspan="4"></th>
-            <!-- Kolom agunan dan aksi -->
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
         </tfoot>
       </table>
@@ -717,9 +716,18 @@ table th:nth-child(1) {
         $(document).ready(function () {
           $("#datatables").DataTable({
             scrollX: true,
-            responsive: true,
+            responsive: false,
             pageLength: 15,
             lengthChange: false,
+            fixedColumns: {
+              rightColumns: 1
+            },
+            columnDefs: [
+              {
+                targets: -1, // Target the last column (Aksi)
+                orderable: false // Disable sorting for the Aksi column
+              }
+            ],
             language: {
               zeroRecords: "Tidak ada data yang ditemukan",
               info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
@@ -765,50 +773,50 @@ table th:nth-child(1) {
           });
         });
 
-    // Function to format numbers with thousand separators
-    function formatNumber(input) {
-        let value = input.value.replace(/\D/g, '');
-        if (value) {
-            input.value = new Intl.NumberFormat('id-ID').format(value);
-        }
-    }
-
-    // Apply number formatting to numeric inputs
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('input[type="text"]').forEach(input => {
-            // Check if input likely contains numbers (nominal, saldo, nilai, etc.)
-            if (input.id && (input.id.includes('nominal') || input.id.includes('saldo') || input.id.includes('nilai') || input.id.includes('pokok') || input.id.includes('bunga'))) {
-                input.classList.add('number-input');
-                formatNumber(input);
-                
-                input.addEventListener('blur', function() {
-                    formatNumber(this);
-                });
-                input.addEventListener('focus', function() {
-                    this.value = this.value.replace(/\D/g, '');
-                });
+        // Function to format numbers with thousand separators
+        function formatNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value) {
+                input.value = new Intl.NumberFormat('id-ID').format(value);
             }
-        });
-    });
+        }
 
-    // Function to filter by Sandi Kantor (commented out)
-    // function filterSandiKantor() {
-    //     var selected = document.getElementById("sandiFilter").value;
-    //     var rows = document.querySelectorAll("tbody tr");
-    //     
-    //     rows.forEach(function(row) {
-    //         if (selected === "all") {
-    //             row.style.display = "";
-    //         } else {
-    //             var firstCell = row.querySelector('td:first-child');
-    //             if (firstCell && firstCell.textContent.trim() === selected) {
-    //                 row.style.display = "";
-    //             } else {
-    //                 row.style.display = "none";
-    //             }
-    //         }
-    //     });
-    // }
+        // Apply number formatting to numeric inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                // Check if input likely contains numbers (nominal, saldo, nilai, etc.)
+                if (input.id && (input.id.includes('nominal') || input.id.includes('saldo') || input.id.includes('nilai') || input.id.includes('pokok') || input.id.includes('bunga'))) {
+                    input.classList.add('number-input');
+                    formatNumber(input);
+                    
+                    input.addEventListener('blur', function() {
+                        formatNumber(this);
+                    });
+                    input.addEventListener('focus', function() {
+                        this.value = this.value.replace(/\D/g, '');
+                    });
+                }
+            });
+        });
+
+        // Function to filter by Sandi Kantor
+        function filterKantor() {
+            var selected = document.getElementById("kantorFilter").value;
+            var rows = document.querySelectorAll("tbody tr");
+            
+            rows.forEach(function(row) {
+                if (selected === "all") {
+                    row.style.display = "";
+                } else {
+                    var firstCell = row.querySelector('td:first-child');
+                    if (firstCell && firstCell.textContent.trim() === selected) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            });
+        }
 
         document.addEventListener("click", function (e) {
           if (e.target.closest(".tambah")) {
@@ -838,23 +846,23 @@ table th:nth-child(1) {
             document.getElementById("tgl_hapus_buku").value =
               cells[6].textContent.trim();
 
-            // Saldo Pokok (kolom 7-9)
+            // Saldo Pokok (kolom 7-9) - remove formatting for editing
             document.getElementById("saldo_pokok_hapus").value =
-              cells[7].textContent.trim();
+              cells[7].textContent.trim().replace(/\D/g, '');
             document.getElementById("saldo_pokok_tertagih").value =
-              cells[8].textContent.trim();
+              cells[8].textContent.trim().replace(/\D/g, '');
             document.getElementById("saldo_pokok_laporan").value =
-              cells[9].textContent.trim();
+              cells[9].textContent.trim().replace(/\D/g, '');
 
-            // Tunggakan Bunga (kolom 10-13)
+            // Tunggakan Bunga (kolom 10-13) - remove formatting for editing
             document.getElementById("tunggakan_hapus").value =
-              cells[10].textContent.trim();
+              cells[10].textContent.trim().replace(/\D/g, '');
             document.getElementById("tunggakan_tertagih").value =
-              cells[11].textContent.trim();
+              cells[11].textContent.trim().replace(/\D/g, '');
             document.getElementById("tunggakan_tambahan").value =
-              cells[12].textContent.trim();
+              cells[12].textContent.trim().replace(/\D/g, '');
             document.getElementById("tunggakan_laporan").value =
-              cells[13].textContent.trim();
+              cells[13].textContent.trim().replace(/\D/g, '');
 
             // Agunan (kolom 14-16)
             document.getElementById("agunan_jenis").value =
@@ -862,7 +870,7 @@ table th:nth-child(1) {
             document.getElementById("agunan_alamat").value =
               cells[15].textContent.trim();
             document.getElementById("agunan_nilai").value =
-              cells[16].textContent.trim();
+              cells[16].textContent.trim().replace(/\D/g, '');
           }
 
           if (e.target.closest(".delete")) {
