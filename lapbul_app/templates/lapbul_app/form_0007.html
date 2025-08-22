@@ -201,9 +201,9 @@ table th:nth-child(19) {
                     <td>D001</td>
                     <td>01</td>
                     <td>01</td>
-                    <td>20250101</td>
-                    <td>20260101</td>
-                    <td>5.25</td>
+                    <td>2025-01-01</td>
+                    <td>2026-01-01</td>
+                    <td>5,25</td>
                     <td>01</td>
                     <td>100000000</td>
                     <td>AG1</td>
@@ -224,9 +224,9 @@ table th:nth-child(19) {
                     <td>D002</td>
                     <td>02</td>
                     <td>02</td>
-                    <td>20240501</td>
-                    <td>20250501</td>
-                    <td>6.00</td>
+                    <td>2024-05-01</td>
+                    <td>2025-05-01</td>
+                    <td>6,00</td>
                     <td>02</td>
                     <td>250000000</td>
                     <td>AG2</td>
@@ -293,7 +293,16 @@ table th:nth-child(19) {
                     width: "120px",
                     orderable: false,
                     responsive: false
+                },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
                 }
+            }
             ],
             language: {
                 lengthMenu: "Tampilkan _MENU_ entri",
