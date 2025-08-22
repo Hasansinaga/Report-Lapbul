@@ -19,6 +19,14 @@ table th:nth-child(3) {
     text-align: center;
     vertical-align: middle;
 }
+
+/* Lebar kolom Uraian */
+#datatables th:nth-child(2),
+#datatables td:nth-child(2) {
+    min-width: 350px;      /* sedikit lebih besar dari sebelumnya */
+    white-space: normal;   /* biar teks bisa turun ke bawah */
+    word-wrap: break-word; /* pecah kata panjang */
+}
 </style>
 
 <div id="layoutSidenav_content">
@@ -31,6 +39,7 @@ table th:nth-child(3) {
         <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
         <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1401Modal">Tambah</button>
       </div>
+      <br>
 
       <!-- Modal structure -->
       <div class="modal fade" id="form1401Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form1401ModalLabel" aria-hidden="true">
@@ -77,25 +86,16 @@ table th:nth-child(3) {
         <thead class="table-light text-center">
           <tr>
             <th class="text-center">Sandi Kantor</th>
-            <th>Uraian</th>
+            <th class="text-center">Uraian</th>
             <th class="text-center">Jumlah</th>
             <th class="sticky-action-col">Aksi</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>001</td>
-            <td>Liabilitas Lainnya untuk Operasional</td>
-            <td>500000</td>
-            <td class="sticky-action-col">
-              <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1401Modal"><i class="fas fa-edit"></i></a>
-              <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>Liabilitas Lainnya untuk Investasi</td>
-            <td>750000</td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td class="sticky-action-col">
               <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form1401Modal"><i class="fas fa-edit"></i></a>
               <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
@@ -105,6 +105,16 @@ table th:nth-child(3) {
         <tfoot>
           <tr>
             <th colspan="2" style="text-align: right">Total:</th>
+            <th></th>
+            <th></th>
+          </tr>
+           <tr>
+            <th colspan="2" style="text-align: right">Total CBS:</th>
+            <th></th>
+            <th></th>
+          </tr>
+           <tr>
+            <th colspan="2" style="text-align: right">Selisih Jumlah CBS dengan lapbul:</th>
             <th></th>
             <th></th>
           </tr>
@@ -121,6 +131,8 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        pageLength: 15,   // fix 15 entries per page
+        lengthChange: false, // hilangkan dropdown "show entries"
         columnDefs: [
             {
                 targets: -1, // Last column (Aksi)
@@ -130,7 +142,6 @@ $(document).ready(function () {
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
