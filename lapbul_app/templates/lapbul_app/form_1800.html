@@ -13,119 +13,274 @@
 </style>
 
 <div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h5 class="mt-4">Form 1600 - Daftar Penyertaan Modal</h5>
-            <hr />
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">Form 1800 - Daftar Aset Keuangan Lainnya</h5>
+      <hr />
 
-            <div class="d-flex justify-content-between">
-                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form1600Modal">Tambah</button>
-            </div>
-            <br /><br />
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">
+          Kembali
+        </a>
+        <button
+          type="button"
+          class="btn btn-dark tambah"
+          data-bs-toggle="modal"
+          data-bs-target="#form1800Modal"
+        >
+          Tambah
+        </button>
+      </div>
+      <br />
 
-            <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
-                    <tr class="text-center align-middle">
-                        <th>Sandi Kantor</th>
-                        <th>Nomor Rekening</th>
-                        <th>ID Pihak Lawan</th>
-                        <th>Jenis</th>
-                        <th>Tanggal Mulai</th>
-                        <th>Tanggal Jatuh Tempo</th>
-                        <th>Suku Bunga</th>
-                        <th>Nominal</th>
-                        <th>Cadangan Kerugian Penurunan Nilai</th>
-                        <th>Cadangan Kerugian Penurunan Nilai Aset Baik</th>
-                        <th>Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</th>
-                        <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
-                        <th>Klasifikasi Aset Keuangan</th>
-                        <th>Jenis CKPN</th>
-                        <th class="sticky-action-col text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1 (Biaya Perolehan)</td>
-                        <td>1 (Lancar)</td>
-                        <td>1 (Lancar)</td>
-                        <td>20240505</td>
+      <!-- Table -->
+      <table
+        id="datatables"
+        class="table table-bordered table-striped nowrap w-100"
+      >
+        <thead>
+          <tr class="text-center align-middle">
+            <th>Sandi Kantor</th>
+            <th>Nomor Rekening</th>
+            <th>ID Pihak Lawan</th>
+            <th>Jenis</th>
+            <th>Tanggal Mulai</th>
+            <th>Tanggal Jatuh Tempo</th>
+            <th>Suku Bunga</th>
+            <th>Nominal</th>
+            <th>Nilai Agunan</th>
+            <th>CKPN</th>
+            <th>CKPN Aset Baik</th>
+            <th>CKPN Aset Kurang Baik</th>
+            <th>CKPN Aset Tidak Baik</th>
+            <th>Klasifikasi Aset</th>
+            <th>Jenis CKPN</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>NoRekenig1</td>
+            <td>Lawan</td>
+            <td>10 (Tagihan Fraud)</td>
+            <td>20240505</td>
+            <td>20241212</td>
 
-                        <td contenteditable="true">70.00</td>
-                        <td contenteditable="true">10000</td>
-                        <td contenteditable="true">1</td>
-                        <td contenteditable="true">1000</td>
-                        <td contenteditable="true">1000</td>
-                        <td contenteditable="true">1000</td>
-                        <td contenteditable="true">1000</td>
+            <td contenteditable="true">5,00</td>
+            <td contenteditable="true">100000</td>
+            <td contenteditable="true">100000</td>
+            <td contenteditable="true">10000</td>
+            <td contenteditable="true">110000</td>
+            <td contenteditable="true">0</td>
+            <td contenteditable="true">0</td>
 
-                        <td>1 (Lancar)</td>
+            <td>1 (Diukur Pada Nilai Wajar)</td>
+            <td>1 (Individual)</td>
 
-                        <td class="sticky-action-col">
-                            <a href="#" class="text-danger delete">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <td class="text-center">
+              <a href="#" class="text-danger delete">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Modal Tambah Data -->
+      <div
+        class="modal fade"
+        id="form1800Modal"
+        tabindex="-1"
+        aria-labelledby="form1800ModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <form method="post">
+              {% csrf_token %}
+              <div class="modal-header">
+                <h5 class="modal-title" id="form1800ModalLabel">
+                  Tambah Data Aset Keuangan
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row g-3">
+                    <!-- Kolom kiri -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Sandi Kantor</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="sandi_kantor"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Nomor Rekening</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="no_rekening"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>ID Pihak Lawan</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="id_lawan"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Jenis</label>
+                        <input type="text" class="form-control" name="jenis" />
+                      </div>
+                      <div class="form-group">
+                        <label>Tanggal Mulai</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="tgl_mulai"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Tanggal Jatuh Tempo</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="tgl_jatuh_tempo"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Suku Bunga</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          class="form-control"
+                          name="suku_bunga"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Nominal</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="nominal"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Kolom kanan -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Nilai Agunan</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="nilai_agunan"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Cadangan Kerugian Penurunan Nilai</label>
+                        <input type="number" class="form-control" name="ckpn" />
+                      </div>
+                      <div class="form-group">
+                        <label>CKPN Aset Baik</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="ckpn_baik"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>CKPN Aset Kurang Baik</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="ckpn_kurang_baik"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>CKPN Aset Tidak Baik</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="ckpn_tidak_baik"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Klasifikasi Aset</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="klasifikasi"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Jenis CKPN</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="jenis_ckpn"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Batal
+                </button>
+                <button type="submit" class="btn btn-dark">Simpan</button>
+              </div>
+            </form>
+          </div>
         </div>
-    </main>
-</div>
+      </div>
 
-<script>
-    $(document).ready(function () {
-        $("#datatables").DataTable({
+      <script>
+        $(document).ready(function () {
+          $("#datatables").DataTable({
             scrollX: true,
             responsive: true,
-            columnDefs: [
-                {
-                    targets: -1, // Last column (Aksi)
-                    width: "120px",
-                    orderable: false,
-                    responsive: false
-                }
-            ],
             language: {
-                lengthMenu: "Tampilkan _MENU_ entri",
-                zeroRecords: "Tidak ada data yang ditemukan",
-                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-                infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-                infoFiltered: "(difilter dari total _MAX_ entri)",
-                search: "Cari:",
-                paginate: {
-                    first: "Pertama",
-                    last: "Terakhir",
-                    next: "Berikutnya",
-                    previous: "Sebelumnya",
-                },
+              emptyTable: "Tidak ada data tersedia",
+              info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+              infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+              infoFiltered: "(difilter dari total _MAX_ data)",
+              lengthMenu: "Tampilkan _MENU_ data",
+              search: "Cari:",
+              zeroRecords: "Tidak ditemukan data yang sesuai",
+              paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+              },
             },
-        });
+          });
 
-        // Event untuk deteksi perubahan nilai nominal
-        $("#datatables tbody").on(
+          // Event update nilai kolom editable
+          $("#datatables tbody").on(
             "blur",
             "td[contenteditable=true]",
             function () {
-                let newValue = $(this).text();
-                let column = $("#datatables thead th").eq($(this).index()).text();
-                console.log("Kolom:", column, "-> Nilai baru:", newValue);
-
-                // TODO: AJAX update ke server kalau perlu simpan otomatis
-            }
-        );
-
-        // Delete button logic
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.delete')) {
-                e.preventDefault();
-                const row = e.target.closest('tr');
-                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-                    row.remove();
-                }
+              let newValue = $(this).text();
+              let column = $("#datatables thead th").eq($(this).index()).text();
+              console.log("Kolom:", column, "-> Nilai baru:", newValue);
             }
         });
     });
