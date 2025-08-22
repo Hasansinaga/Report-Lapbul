@@ -252,6 +252,15 @@ $(document).ready(function () {
                 width: "120px",
                 orderable: false,
                 responsive: false
+            },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
             }
         ],
         language: {

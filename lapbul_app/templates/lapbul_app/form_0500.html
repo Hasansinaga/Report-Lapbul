@@ -245,8 +245,8 @@
                         <td>1201 (Kab. Gresik)</td>
                         <td>30 (Deposito Umum)</td>
                         <td>01 (Hubungan Keluarga dengan Anggota Direksi, Anggota Dewan Komisaris dan Pemegang saham)</td>
-                        <td>20180101</td>
-                        <td>20231231</td>
+                        <td>2018-01-01</td>
+                        <td>2023-12-31</td>
                         <td>1 (Lancar)</td>
                         <td>5.5</td>
                         <td>100000</td>
@@ -351,6 +351,15 @@ $(document).ready(function () {
                 width: "120px",
                 orderable: false,
                 responsive: false
+            },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
             }
         ],
       language: {
@@ -443,5 +452,7 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+
+
 </script>
 {% include 'lapbul_app/footer.html' %}

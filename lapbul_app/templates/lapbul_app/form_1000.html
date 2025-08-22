@@ -42,7 +42,7 @@
                         <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="ckpn">Titipan Nasabah</label></td>
                         <td class="align-middle"><label class="form-label" for="ckpn">2101030000</label></td>
-                        <td><input class="form-control text-end" id="ckpn" name="ckpn" rows="2" value="190000"></td>
+                        <td><input type="text" class="form-control text-end" id="ckpn" name="ckpn" value="190000"></td>
                         </tr>
                         <tr data-kantor="001">
                         <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
@@ -100,6 +100,31 @@
         }
     });
 }
+
+ // Function to format numbers with thousand separators
+    function formatNumber(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value) {
+            input.value = new Intl.NumberFormat('id-ID').format(value);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Apply initial formatting to all number-input fields
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            if (input.value && !isNaN(input.value.replace(/\D/g, ''))) {
+                input.classList.add('number-input');
+                formatNumber(input);
+                
+                input.addEventListener('blur', function() {
+                    formatNumber(this);
+                });
+                input.addEventListener('focus', function() {
+                    this.value = this.value.replace(/\D/g, '');
+                });
+            }
+        });
+    });
 </script>
 {% include 'lapbul_app/footer.html' %}
 

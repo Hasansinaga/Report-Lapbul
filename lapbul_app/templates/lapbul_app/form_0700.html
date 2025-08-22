@@ -173,7 +173,7 @@ table th:nth-child(8) {
                         <td>001</td>
                         <td>01 (Emas perhiasan)</td>
                         <td>Jakarta</td>
-                        <td>20180101</td>
+                        <td>2018-01-01</td>
                         <td>100000</td>
                         <td>1000</td>
                         <td>11000</td>
@@ -226,6 +226,15 @@ $(document).ready(function () {
                 width: "120px",
                 orderable: false,
                 responsive: false
+            },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
             }
         ],
         language: {
