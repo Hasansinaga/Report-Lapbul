@@ -55,109 +55,75 @@ table th:nth-child(9) {
                         <div class="modal-body">
                             <!-- Input Form -->
                             <form>
-                                <!-- Nav Tabs -->
-                                <ul class="nav nav-tabs" id="formTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
-                                            type="button" role="tab" aria-controls="tab1" aria-selected="true">
-                                            Tab 1
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
-                                            type="button" role="tab" aria-controls="tab2" aria-selected="false">
-                                            Tab 2
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3"
-                                            type="button" role="tab" aria-controls="tab3" aria-selected="false">
-                                            Tab 3
-                                        </button>
-                                    </li>
-                                </ul>
-
-                                <!-- Tab Content -->
-                                <div class="tab-content mt-3" id="formTabContent">
-                                    <!-- Tab 1: Basic Info -->
-                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
-                                                <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="jenis_aset" class="form-label">Jenis Aset</label>
-                                                <select class="form-select" id="jenis_aset" name="jenis_aset">
-                                                    <option value="">-- Pilih Jenis Aset --</option>
-                                                    <option value="101">101 (Aset Tetap dan Inventaris : Tanah)</option>
-                                                    <option value="102">102 (Aset Tetap dan Inventaris : Gedung)</option>
-                                                    <option value="103">103 (Aset Tetap dan Inventaris : Kendaraan)</option>
-                                                    <option value="104">104 (Aset Tetap dan Inventaris : Peralatan)</option>
-                                                    <option value="105">105 (Aset Tetap dan Inventaris : Lainnya)</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="sumber_perolehan" class="form-label">Sumber Perolehan</label>
-                                                <select class="form-select" id="sumber_perolehan" name="sumber_perolehan">
-                                                    <option value="">-- Pilih Sumber Perolehan --</option>
-                                                    <option value="01">01 (Sewa Pembiayaan)</option>
-                                                    <option value="02">02 (Pembelian)</option>
-                                                    <option value="03">03 (Hibah)</option>
-                                                    <option value="04">04 (Penyitaan)</option>
-                                                    <option value="05">05 (Lainnya)</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="status_aset" class="form-label">Status Aset</label>
-                                                <select class="form-select" id="status_aset" name="status_aset">
-                                                    <option value="">-- Pilih Status --</option>
-                                                    <option value="1">1 (Dijaminkan)</option>
-                                                    <option value="2">2 (Tidak Dijaminkan)</option>
-                                                    <option value="3">3 (Rusak)</option>
-                                                    <option value="4">4 (Dijual)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Tab 2: Financial Info -->
-                                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="biaya_perolehan" class="form-label">Biaya Perolehan</label>
-                                                <input type="number" class="form-control" id="biaya_perolehan" name="biaya_perolehan">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="akumulasi_penyusutan" class="form-label">Akumulasi Penyusutan/Amortisasi</label>
-                                                <input type="number" class="form-control" id="akumulasi_penyusutan" name="akumulasi_penyusutan">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="akumulasi_kerugian" class="form-label">Akumulasi Kerugian Penurunan Nilai</label>
-                                                <input type="number" class="form-control" id="akumulasi_kerugian" name="akumulasi_kerugian">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="nilai_tercatat" class="form-label">Nilai Tercatat</label>
-                                                <input type="number" class="form-control" id="nilai_tercatat" name="nilai_tercatat">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Tab 3: Measurement -->
-                                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="metode_pengukuran" class="form-label">Metode Pengukuran</label>
-                                                <select class="form-select" id="metode_pengukuran" name="metode_pengukuran">
-                                                    <option value="">-- Pilih Metode --</option>
-                                                    <option value="1">1 (Individual)</option>
-                                                    <option value="2">2 (Kelompok)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <!-- Bagian Basic Info -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                    <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
                                 </div>
-                            </form>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jenis_aset" class="form-label">Jenis Aset</label>
+                                    <select class="form-select" id="jenis_aset" name="jenis_aset">
+                                        <option value="">-- Pilih Jenis Aset --</option>
+                                        <option value="101">101 (Aset Tetap dan Inventaris : Tanah)</option>
+                                        <option value="102">102 (Aset Tetap dan Inventaris : Gedung)</option>
+                                        <option value="103">103 (Aset Tetap dan Inventaris : Kendaraan)</option>
+                                        <option value="104">104 (Aset Tetap dan Inventaris : Peralatan)</option>
+                                        <option value="105">105 (Aset Tetap dan Inventaris : Lainnya)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="sumber_perolehan" class="form-label">Sumber Perolehan</label>
+                                    <select class="form-select" id="sumber_perolehan" name="sumber_perolehan">
+                                        <option value="">-- Pilih Sumber Perolehan --</option>
+                                        <option value="01">01 (Sewa Pembiayaan)</option>
+                                        <option value="02">02 (Pembelian)</option>
+                                        <option value="03">03 (Hibah)</option>
+                                        <option value="04">04 (Penyitaan)</option>
+                                        <option value="05">05 (Lainnya)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="status_aset" class="form-label">Status Aset</label>
+                                    <select class="form-select" id="status_aset" name="status_aset">
+                                        <option value="">-- Pilih Status --</option>
+                                        <option value="1">1 (Dijaminkan)</option>
+                                        <option value="2">2 (Tidak Dijaminkan)</option>
+                                        <option value="3">3 (Rusak)</option>
+                                        <option value="4">4 (Dijual)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Bagian Financial Info -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="biaya_perolehan" class="form-label">Biaya Perolehan</label>
+                                    <input type="number" class="form-control" id="biaya_perolehan" name="biaya_perolehan">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="akumulasi_penyusutan" class="form-label">Akumulasi Penyusutan/Amortisasi</label>
+                                    <input type="number" class="form-control" id="akumulasi_penyusutan" name="akumulasi_penyusutan">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="akumulasi_kerugian" class="form-label">Akumulasi Kerugian Penurunan Nilai</label>
+                                    <input type="number" class="form-control" id="akumulasi_kerugian" name="akumulasi_kerugian">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nilai_tercatat" class="form-label">Nilai Tercatat</label>
+                                    <input type="number" class="form-control" id="nilai_tercatat" name="nilai_tercatat">
+                                </div>
+
+                                <!-- Bagian Measurement -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="metode_pengukuran" class="form-label">Metode Pengukuran</label>
+                                    <select class="form-select" id="metode_pengukuran" name="metode_pengukuran">
+                                        <option value="">-- Pilih Metode --</option>
+                                        <option value="1">1 (Individual)</option>
+                                        <option value="2">2 (Kelompok)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
                             <!-- End Input Form -->
                         </div>
                         

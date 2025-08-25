@@ -76,69 +76,45 @@ table th:nth-child(8) {
                         <div class="modal-body">
                             <!-- Input Form -->
                             <form>
-                                <!-- Nav Tabs -->
-                                <ul class="nav nav-tabs" id="formTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
-                                            type="button" role="tab" aria-controls="tab1" aria-selected="true">
-                                            Tab 1
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
-                                            type="button" role="tab" aria-controls="tab2" aria-selected="false">
-                                            Tab 2
-                                        </button>
-                                    </li>
-                                </ul>
-
-                                <!-- Tab Content -->
-                                <div class="tab-content mt-3" id="formTabContent">
-                                    <!-- Tab 1: Basic Info -->
-                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
-                                                <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="jenis_agunan" class="form-label">Jenis Agunan</label>
-                                                <input type="text" class="form-control" id="jenis_agunan" name="jenis_agunan" maxlength="50">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="alamat_agunan" class="form-label">Alamat Agunan</label>
-                                                <input type="text" class="form-control" id="alamat_agunan" name="alamat_agunan" maxlength="255">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="tanggal_pengambilalihan" class="form-label">Tanggal Pengambilalihan</label>
-                                                <input type="text" class="form-control" id="tanggal_pengambilalihan" name="tanggal_pengambilalihan" maxlength="8" placeholder="YYYYMMDD">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Tab 2: Financial Info -->
-                                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="nilai_pengakuan_awal" class="form-label">Nilai Pengakuan Awal</label>
-                                                <input type="number" class="form-control" id="nilai_pengakuan_awal" name="nilai_pengakuan_awal">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="akumulasi_kerugian" class="form-label">Akumulasi Kerugian Penurunan Nilai</label>
-                                                <input type="number" class="form-control" id="akumulasi_kerugian" name="akumulasi_kerugian">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="jumlah" class="form-label">Jumlah</label>
-                                                <input type="number" class="form-control" id="jumlah" name="jumlah">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="nilai_bersih" class="form-label">Nilai Bersih Yang Dapat Direalisasikan</label>
-                                                <input type="number" class="form-control" id="nilai_bersih" name="nilai_bersih">
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <!-- Bagian Basic Info -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="sandi_kantor" class="form-label">Sandi Kantor</label>
+                                    <input type="text" class="form-control" id="sandi_kantor" name="sandi_kantor" maxlength="2">
                                 </div>
-                            </form>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jenis_agunan" class="form-label">Jenis Agunan</label>
+                                    <input type="text" class="form-control" id="jenis_agunan" name="jenis_agunan" maxlength="50">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="alamat_agunan" class="form-label">Alamat Agunan</label>
+                                    <input type="text" class="form-control" id="alamat_agunan" name="alamat_agunan" maxlength="255">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="tanggal_pengambilalihan" class="form-label">Tanggal Pengambilalihan</label>
+                                    <input type="text" class="form-control" id="tanggal_pengambilalihan" name="tanggal_pengambilalihan" maxlength="8" placeholder="YYYYMMDD">
+                                </div>
+
+                                <!-- Bagian Financial Info -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="nilai_pengakuan_awal" class="form-label">Nilai Pengakuan Awal</label>
+                                    <input type="number" class="form-control" id="nilai_pengakuan_awal" name="nilai_pengakuan_awal">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="akumulasi_kerugian" class="form-label">Akumulasi Kerugian Penurunan Nilai</label>
+                                    <input type="number" class="form-control" id="akumulasi_kerugian" name="akumulasi_kerugian">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jumlah" class="form-label">Jumlah</label>
+                                    <input type="number" class="form-control" id="jumlah" name="jumlah">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nilai_bersih" class="form-label">Nilai Bersih Yang Dapat Direalisasikan</label>
+                                    <input type="number" class="form-control" id="nilai_bersih" name="nilai_bersih">
+                                </div>
+                            </div>
+                        </form>
+
                             <!-- End Input Form -->
                         </div>
                         

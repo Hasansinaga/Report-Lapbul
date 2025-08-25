@@ -7,6 +7,26 @@
     table td input.form-control {
         text-align: right;
     }
+
+     table th:nth-child(1),
+    table td:nth-child(1) {
+        min-width: 100px; 
+    }
+
+    table th:nth-child(2),
+    table td:nth-child(2) {
+        min-width: 250px; 
+    }
+
+    table th:nth-child(3),
+    table td:nth-child(3) {
+        min-width: 150px; 
+    }
+
+    table th:nth-child(4),
+    table td:nth-child(4) {
+        min-width: 200px;
+    }
 </style>
 <div id="layoutSidenav_content">
     <main>
@@ -31,7 +51,10 @@
             <form>
                 <table class="table table-bordered">
                     <thead>
-                        <tr><td>Sandi Kantor</td><td>Nama Rekening</td><td>Sandi Pos</td><td>Jumlah</td></tr>
+                        <tr><th class="text-center">Sandi Kantor</th>
+                                <th class="text-center">Nama Rekening</th>
+                                <th class="text-center">Sandi Pos</th>
+                                <th class="text-center">Jumlah</th></tr></tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -41,67 +64,67 @@
                         <td></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle" ><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center" ><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="kpmm">a. Penempatan pada Bank Lain</label></td>
                         <td class="align-middle"><label class="form-label" for="kpmm">1299010100</label></td>
                         <td><input type="text" class="form-control text-end" id="kpmm" name="kpmm" value="10000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="ckpn">b. Kredit yang Diberikan</label></td>
                         <td class="align-middle"><label class="form-label" for="ckpn">1299010200</label></td>
                         <td><input type="text" class="form-control text-end" id="ckpn" name="ckpn" value="200000"></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_net">c. Surat Berharga</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_net">1299010300</label></td>
                         <td><input type="text" class="form-control text-end" id="npl_net" name="npl_net" value="200000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_gross">d. Lainnya</label></td>
                         <td class="align-middle"><label class="form-label" for="npl_gross">1299010900</label></td>
                         <td><input type="text" class="form-control text-end" id="npl_gross" name="npl_gross" value="200000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="roa">Premi penjaminan LPS dibayar dimuka</label></td>
                         <td class="align-middle"><label class="form-label" for="roa">1299020000</label></td>
                         <td><input type="text" class="form-control text-end" id="roa" name="roa" value="100000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="bopo">Uang Muka Pajak</label></td>
                         <td class="align-middle"><label class="form-label" for="bopo">1299030000</label></td>
                         <td><input type="text" class="form-control text-end" id="bopo" name="bopo" value="100000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="nim">Aset Pajak Tangguhan</label></td>
                         <td class="align-middle"><label class="form-label" for="nim">1299040000</label></td>
                         <td><input type="text" class="form-control text-end" id="nim" name="nim" value="100000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="ldr">Biaya dibayar dimuka</label></td>
                         <td class="align-middle"><label class="form-label" for="ldr">1299050000</label></td>
                         <td><input type="text" class="form-control text-end" id="ldr" name="ldr" value="100000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">Tagihan kepada perusahaan asuransi</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">1299060000</label></td>
                         <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="100000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">Uang Muka Untuk Kegiatan Operasional </label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">1299070000</label></td>
                         <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="400000" /></td>
                         </tr>
                         <tr data-kantor="001">
-                        <td class="align-middle"><label class="form-label" for="kpmm">001</label></td>
+                        <td class="text-center"><label class="form-label" for="kpmm">001</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">Lainnya</label></td>
                         <td class="align-middle"><label class="form-label" for="cashratio">1299990000</label></td>
                         <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="700000" /></td>
