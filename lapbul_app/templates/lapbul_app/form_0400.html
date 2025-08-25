@@ -1,38 +1,30 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
-.sticky-action-col {
-    position: sticky;
-    right: 0;
-    /* Use rgba for a semi-transparent background to prevent text from overlapping */
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    min-width: 120px; 
-}
+    /* Define the sticky column styles for both th and td */
+    .sticky-action-col {
+        position: sticky;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        z-index: 10;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        text-align: center;
+        min-width: 120px;
+    }
 
-/* CSS untuk center kolom tertentu seperti form_1400 */
-table td:first-child,
-table th:first-child,
-table td:nth-child(2),
-table th:nth-child(2),
-table td:nth-child(4),
-table th:nth-child(4) {
-    text-align: center;
-    vertical-align: middle;
-}
+    /* Ensure sticky header works in table */
+    table.dataTable thead th.sticky-action-col {
+        z-index: 15;
+        position: sticky;
+        right: 0;
+    }
 
-/* Center alignment untuk kolom ID dan kode */
-table td:nth-child(15),
-table th:nth-child(15),
-table td:nth-child(16),
-table th:nth-child(16),
-table td:nth-child(17),
-table th:nth-child(17) {
-    text-align: center;
-    vertical-align: middle;
-}
+    /* Simple DataTable styling */
+    #datatables th,
+    #datatables td {
+        text-align: center !important;
+        vertical-align: middle !important;
+        white-space: nowrap;
+    }
 </style>
 
 <div id="layoutSidenav_content">
@@ -325,31 +317,31 @@ table th:nth-child(17) {
                     <tr>
                         <th class="text-center">Flag Detail</th>
                         <th class="text-center">Sandi Kantor</th>
-                        <th>Klasifikasi</th>
+                        <th class="text-center">Klasifikasi</th>
                         <th class="text-center">Suku Bunga</th>
-                        <th>Tanggal Mulai</th>
-                        <th>Tanggal Jatuh Tempo</th>
-                        <th>Nominal</th>
-                        <th>Nominal yang Dijaminkan</th>
-                        <th>Biaya Perolehan</th>
-                        <th>Premium/Diskonto Belum Diamortisasi</th>
-                        <th>Biaya Transaksi Belum Diamortisasi</th>
-                        <th>Laba/Rugi Belum Direalisasi</th>
-                        <th>Biaya Perolehan Diamortisasi/Nilai Wajar</th>
-                        <th>Nomor Surat Berharga</th>
+                        <th class="text-center">Tanggal Mulai</th>
+                        <th class="text-center">Tanggal Jatuh Tempo</th>
+                        <th class="text-center">Nominal</th>
+                        <th class="text-center">Nominal yang Dijaminkan</th>
+                        <th class="text-center">Biaya Perolehan</th>
+                        <th class="text-center">Premium/Diskonto Belum Diamortisasi</th>
+                        <th class="text-center">Biaya Transaksi Belum Diamortisasi</th>
+                        <th class="text-center">Laba/Rugi Belum Direalisasi</th>
+                        <th class="text-center">Biaya Perolehan Diamortisasi/Nilai Wajar</th>
+                        <th class="text-center">Nomor Surat Berharga</th>
                         <th class="text-center">ID Pihak Lawan</th>
                         <th class="text-center">Jenis</th>
                         <th class="text-center">Kualitas</th>
-                        <th>Cadangan Kerugian Penurunan Nilai</th>
-                        <th>Lembaga Pemeringkat</th>
-                        <th>Peringkat Surat Berharga</th>
-                        <th>Tanggal Pemeringkatan</th>
-                        <th>Tanggal Penerbitan</th>
-                        <th>Cadangan Kerugian Penurunan Nilai Aset Baik</th>
-                        <th>Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</th>
-                        <th>Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
-                        <th>Klasifikasi Aset Keuangan</th>
-                        <th>Jenis CKPN</th>
+                        <th class="text-center">Cadangan Kerugian Penurunan Nilai</th>
+                        <th class="text-center">Lembaga Pemeringkat</th>
+                        <th class="text-center">Peringkat Surat Berharga</th>
+                        <th class="text-center">Tanggal Pemeringkatan</th>
+                        <th class="text-center">Tanggal Penerbitan</th>
+                        <th class="text-center">Cadangan Kerugian Penurunan Nilai Aset Baik</th>
+                        <th class="text-center">Cadangan Kerugian Penurunan Nilai Aset Kurang Baik</th>
+                        <th class="text-center">Cadangan Kerugian Penurunan Nilai Aset Tidak Baik</th>
+                        <th class="text-center">Klasifikasi Aset Keuangan</th>
+                        <th class="text-center">Jenis CKPN</th>
                         <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -578,6 +570,9 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        lengthChange: false,
         columnDefs: [
             {
                 targets: -1, // Last column (Aksi)
@@ -587,7 +582,12 @@ $(document).ready(function () {
             },
             {
                 targets: "_all", 
-                render: function (data, type, row) {
+                render: function (data, type, row, meta) {
+                    // Exclude date columns from number formatting
+                    // Columns: 4=Tanggal Mulai, 5=Tanggal Jatuh Tempo, 20=Tanggal Pemeringkatan, 21=Tanggal Penerbitan
+                    if (meta.col === 4 || meta.col === 5 || meta.col === 20 || meta.col === 21) {
+                        return data;
+                    }
                     if (!isNaN(data) && data !== "" && data !== null) {
                         return Number(data).toLocaleString("id-ID");
                     }
@@ -596,7 +596,7 @@ $(document).ready(function () {
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
@@ -628,7 +628,7 @@ $(document).ready(function () {
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
-                $(api.column(colIdx).footer()).html(total.toLocaleString());
+                $(api.column(colIdx).footer()).html(total.toLocaleString()).css('text-align', 'center');
             });
         },
     });

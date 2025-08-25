@@ -1,35 +1,19 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
-.sticky-action-col {
-    position: sticky;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    min-width: 120px; 
+/* DataTable styling */
+#datatables th,
+#datatables td {
+    text-align: center !important;
+    vertical-align: middle !important;
+    white-space: nowrap;
 }
 
-/* CSS untuk center kolom tertentu seperti form_1400 */
-table td:first-child,
-table th:first-child,
-table td:nth-child(3),
-table th:nth-child(3),
-table td:nth-child(5),
-table th:nth-child(5) {
-    text-align: center;
-    vertical-align: middle;
+/* Allow address column to wrap */
+#datatables th:nth-child(2), 
+#datatables td:nth-child(2) { 
+    white-space: normal !important; 
 }
 
-/* Center alignment untuk kolom numerical */
-table td:nth-child(6),
-table th:nth-child(6),
-table td:nth-child(7),
-table th:nth-child(7) {
-    text-align: center;
-    vertical-align: middle;
-}
 </style>
 
 <div id="layoutSidenav_content">
@@ -133,51 +117,59 @@ table th:nth-child(7) {
             <!-- Table -->
             <div class="d-flex justify-content-center">
             <div class="table-responsive">
-            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
-                <thead class="table-light text-center">
-                    <tr>
-                        <th class="text-center">Nama</th>
-                        <th>Alamat</th>
-                        <th class="text-center">Jenis Pemilik</th>
-                        <th>No Identitas</th>
-                        <th class="text-center">Kode STSPS</th>
-                        <th class="text-center">Nominal Saham</th>
-                        <th class="text-center">% Saham</th>
-                        <th>Status Perubahan</th>
-                        <th class="sticky-action-col text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>YPUE KOSGORO</td>
-                        <td>JL TEUKU CIK DITIRO NO 34 MENTENG JAKARTA PUSAT</td>
-                        <td>02</td>
-                        <td>000000000000001</td>
-                        <td>02</td>
-                        <td>150000000</td>
-                        <td>0.74</td>
-                        <td>2</td>
-                        <td class="sticky-action-col">
-                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0001Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>IDRUS AFANDI</td>
-                        <td>JL TEST AJA APA</td>
-                        <td>02</td>
-                        <td>000000000000002</td>
-                        <td>02</td>
-                        <td>150000000</td>
-                        <td>0.74</td>
-                        <td>2</td>
-                        <td class="sticky-action-col">
-                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0001Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Alamat</th>
+                            <th class="text-center">Jenis Pemilik</th>
+                            <th class="text-center">No Identitas</th>
+                            <th class="text-center">Kode STSPS</th>
+                            <th class="text-center">Nominal Saham</th>
+                            <th class="text-center">% Saham</th>
+                            <th class="text-center">Status Perubahan</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">YPUE KOSGORO</td>
+                            <td class="text-center">JL TEUKU CIK DITIRO NO 34 MENTENG JAKARTA PUSAT</td>
+                            <td class="text-center">02</td>
+                            <td class="text-center">000000000000001</td>
+                            <td class="text-center">02</td>
+                            <td class="text-center">150000000</td>
+                            <td class="text-center">0.74</td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">
+                                <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0001Modal">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" class="text-danger delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">IDRUS AFANDI</td>
+                            <td class="text-center">JL TEST AJA APA</td>
+                            <td class="text-center">02</td>
+                            <td class="text-center">000000000000002</td>
+                            <td class="text-center">02</td>
+                            <td class="text-center">150000000</td>
+                            <td class="text-center">0.74</td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">
+                                <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0001Modal">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" class="text-danger delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             </div>
         </div>
@@ -189,16 +181,36 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        lengthChange: false,
         columnDefs: [
+            { targets: 0, width: "200px" }, // Nama
+            { targets: 1, width: "250px" }, // Alamat
+            { targets: 2, width: "100px" }, // Jenis Pemilik
+            { targets: 3, width: "130px" }, // No Identitas
+            { targets: 4, width: "80px" }, // Kode STSPS
+            { targets: 5, width: "120px" }, // Nominal Saham
+            { targets: 6, width: "80px" }, // % Saham
+            { targets: 7, width: "120px" }, // Status Perubahan
             {
                 targets: -1, // Last column (Aksi)
-                width: "120px",
+                width: "100px",
                 orderable: false,
                 responsive: false
+            },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
@@ -246,4 +258,5 @@ document.addEventListener('click', function(e) {
     }
 });
 </script>
+
 {% include 'lapbul_app/footer.html' %}

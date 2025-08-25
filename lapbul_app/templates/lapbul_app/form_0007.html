@@ -1,69 +1,28 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
+/* Define the sticky column styles for both th and td */
 .sticky-action-col {
     position: sticky;
     right: 0;
     background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
+    z-index: 10;
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     text-align: center;
-    min-width: 120px; 
+    min-width: 120px;
 }
 
-/* CSS for right-aligning number columns and centering others */
-table td:nth-child(2),
-table th:nth-child(2),
-table td:nth-child(4),
-table th:nth-child(4),
-table td:nth-child(5),
-table th:nth-child(5),
-table td:nth-child(6),
-table th:nth-child(6),
-table td:nth-child(7),
-table th:nth-child(7),
-table td:nth-child(8),
-table th:nth-child(8),
-table td:nth-child(9),
-table th:nth-child(9),
-table td:nth-child(10),
-table th:nth-child(10),
-table td:nth-child(11),
-table th:nth-child(11),
-table td:nth-child(12),
-table th:nth-child(12),
-table td:nth-child(13),
-table th:nth-child(13),
-table td:nth-child(14),
-table th:nth-child(14),
-table td:nth-child(15),
-table th:nth-child(15),
-table td:nth-child(16),
-table th:nth-child(16),
-table td:nth-child(17),
-table th:nth-child(17) {
-    text-align: center;
-    vertical-align: middle;
+/* Ensure sticky header works in table */
+table.dataTable thead th.sticky-action-col {
+    z-index: 15;
+    position: sticky;
+    right: 0;
 }
 
-/* Specific styling for number-based columns */
-table td:nth-child(11),
-table th:nth-child(11),
-table td:nth-child(13),
-table th:nth-child(13),
-table td:nth-child(14),
-table th:nth-child(14),
-table td:nth-child(15),
-table th:nth-child(15),
-table td:nth-child(16),
-table th:nth-child(16),
-table td:nth-child(17),
-table th:nth-child(17),
-table td:nth-child(18),
-table th:nth-child(18),
-table td:nth-child(19),
-table th:nth-child(19) {
-    text-align: right;
+/* DataTable styling */
+#datatables th,
+#datatables td {
+    text-align: center !important;
+    vertical-align: middle !important;
 }
 </style>
 
@@ -173,23 +132,23 @@ table th:nth-child(19) {
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                 <thead class="table-light text-center">
                     <tr>
-                    <th>CIF</th>
-                    <th>Kode Gol Kreditur</th>
-                    <th>Sandi Bank</th>
-                    <th>Kode Dati2</th>
-                    <th>Kode Jenis PyD</th>
-                    <th>Sandi Hub Bank</th>
-                    <th>JW Mulai</th>
-                    <th>JW Tempo</th>
-                    <th>Suku Bunga</th>
-                    <th>Cara Hitung Bunga</th>
-                    <th>Plafon</th>
-                    <th>Kode Jenis Agunan</th>
-                    <th>Nominal Agunan</th>
-                    <th>Baki Debet</th>
-                    <th>Byr Tran Belum Amor</th>
-                    <th>Diskonto Belum Amor</th>
-                    <th>Baki Debet Neto</th>
+                    <th class="text-center">CIF</th>
+                    <th class="text-center">Kode Gol Kreditur</th>
+                    <th class="text-center">Sandi Bank</th>
+                    <th class="text-center">Kode Dati2</th>
+                    <th class="text-center">Kode Jenis PyD</th>
+                    <th class="text-center">Sandi Hub Bank</th>
+                    <th class="text-center">JW Mulai</th>
+                    <th class="text-center">JW Tempo</th>
+                    <th class="text-center">Suku Bunga</th>
+                    <th class="text-center">Cara Hitung Bunga</th>
+                    <th class="text-center">Plafon</th>
+                    <th class="text-center">Kode Jenis Agunan</th>
+                    <th class="text-center">Nominal Agunan</th>
+                    <th class="text-center">Baki Debet</th>
+                    <th class="text-center">Byr Tran Belum Amor</th>
+                    <th class="text-center">Diskonto Belum Amor</th>
+                    <th class="text-center">Baki Debet Neto</th>
                     <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -212,7 +171,7 @@ table th:nth-child(19) {
                     <td>5000000</td>
                     <td>3000000</td>
                     <td>67000000</td>
-                    <td class="sticky-action-col text-center">
+                    <td class="sticky-action-col">
                         <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
                         <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
@@ -235,7 +194,7 @@ table th:nth-child(19) {
                     <td>15000000</td>
                     <td>10000000</td>
                     <td>155000000</td>
-                    <td class="sticky-action-col text-center">
+                    <td class="sticky-action-col">
                         <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
                         <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
@@ -287,6 +246,9 @@ table th:nth-child(19) {
         $('#datatables').DataTable({
             scrollX: true,
             responsive: true,
+            autoWidth: false,
+            pageLength: 15,
+            lengthChange: false,
             columnDefs: [
                 {
                     targets: -1, // Last column (Aksi)
@@ -296,7 +258,11 @@ table th:nth-child(19) {
                 },
             {
                 targets: "_all", 
-                render: function (data, type, row) {
+                render: function (data, type, row, meta) {
+                    // Don't format columns 0 (CIF) and 2 (Sandi Bank) as numbers
+                    if (meta.col === 0 || meta.col === 2) {
+                        return data;
+                    }
                     if (!isNaN(data) && data !== "" && data !== null) {
                         return Number(data).toLocaleString("id-ID");
                     }
@@ -305,7 +271,7 @@ table th:nth-child(19) {
             }
             ],
             language: {
-                lengthMenu: "Tampilkan _MENU_ entri",
+                // lengthMenu: "Tampilkan _MENU_ entri",
                 zeroRecords: "Tidak ada data yang ditemukan",
                 info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
                 infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
@@ -337,7 +303,7 @@ table th:nth-child(19) {
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
-                    $(api.column(colIdx).footer()).html(total.toLocaleString('id-ID'));
+                    $(api.column(colIdx).footer()).html(total.toLocaleString('id-ID')).css('text-align', 'center');
                 });
 
                 // Manually set Total CBS values for demonstration
@@ -348,12 +314,12 @@ table th:nth-child(19) {
                 var totalCBS_diskonto = 13000000;
                 var totalCBS_bakidebetneto = 222000000;
 
-                $(api.column(10).footer()).text(totalCBS_plafon.toLocaleString('id-ID'));
-                $(api.column(12).footer()).text(totalCBS_nominalAgunan.toLocaleString('id-ID'));
-                $(api.column(13).footer()).text(totalCBS_bakidebet.toLocaleString('id-ID'));
-                $(api.column(14).footer()).text(totalCBS_byrTran.toLocaleString('id-ID'));
-                $(api.column(15).footer()).text(totalCBS_diskonto.toLocaleString('id-ID'));
-                $(api.column(16).footer()).text(totalCBS_bakidebetneto.toLocaleString('id-ID'));
+                $($('tfoot tr').eq(1).find('th').eq(1)).text(totalCBS_plafon.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(3)).text(totalCBS_nominalAgunan.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(4)).text(totalCBS_bakidebet.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(5)).text(totalCBS_byrTran.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(6)).text(totalCBS_diskonto.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(7)).text(totalCBS_bakidebetneto.toLocaleString('id-ID')).css('text-align', 'center');
 
                 // Calculate and display "Selisih"
                 var totalPlafon = intVal(api.column(10, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
@@ -363,12 +329,12 @@ table th:nth-child(19) {
                 var totalDiskonto = intVal(api.column(15, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
                 var totalBakidebetNeto = intVal(api.column(16, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
 
-                $(api.column(10).footer()).text((totalPlafon - totalCBS_plafon).toLocaleString('id-ID'));
-                $(api.column(12).footer()).text((totalNominalAgunan - totalCBS_nominalAgunan).toLocaleString('id-ID'));
-                $(api.column(13).footer()).text((totalBakidebet - totalCBS_bakidebet).toLocaleString('id-ID'));
-                $(api.column(14).footer()).text((totalByrTran - totalCBS_byrTran).toLocaleString('id-ID'));
-                $(api.column(15).footer()).text((totalDiskonto - totalCBS_diskonto).toLocaleString('id-ID'));
-                $(api.column(16).footer()).text((totalBakidebetNeto - totalCBS_bakidebetneto).toLocaleString('id-ID'));
+                $($('tfoot tr').eq(2).find('th').eq(1)).text((totalPlafon - totalCBS_plafon).toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(2).find('th').eq(3)).text((totalNominalAgunan - totalCBS_nominalAgunan).toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(2).find('th').eq(4)).text((totalBakidebet - totalCBS_bakidebet).toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(2).find('th').eq(5)).text((totalByrTran - totalCBS_byrTran).toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(2).find('th').eq(6)).text((totalDiskonto - totalCBS_diskonto).toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(2).find('th').eq(7)).text((totalBakidebetNeto - totalCBS_bakidebetneto).toLocaleString('id-ID')).css('text-align', 'center');
 
             },
         });

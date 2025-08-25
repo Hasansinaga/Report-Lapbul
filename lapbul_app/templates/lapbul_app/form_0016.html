@@ -1,4 +1,31 @@
 {% include 'lapbul_app/header.html' %}
+<style>
+    /* Define the sticky column styles for both th and td */
+    .sticky-action-col {
+        position: sticky;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        z-index: 10;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        text-align: center;
+        min-width: 150px;
+    }
+
+    /* Ensure sticky header works in table */
+    table.dataTable thead th.sticky-action-col {
+        z-index: 15;
+        position: sticky;
+        right: 0;
+    }
+
+    /* Simple DataTable styling */
+    #datatables th,
+    #datatables td {
+        text-align: center !important;
+        vertical-align: middle !important;
+        white-space: nowrap;
+    }
+</style>
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -378,29 +405,29 @@
             <!-- Table -->
             <div class="table-responsive">
             <table id="datatables" class="table table-bordered table-striped nowrap w-100">
-                <thead>
+                <thead class="table-light text-center">
                     <tr>
-                        <th>ID Pihak Lawan</th>
-                        <th>Jenis Identitas</th>
-                        <th>Nomor Identitas</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Nama Lengkap/Nama Badan Usaha</th>
-                        <th>NPWP</th>
-                        <th>Kewarganegaraan</th>
-                        <th>Negara</th>
-                        <th>Jenis Kegiatan Usaha</th>
-                        <th>Hubungan dengan Bank</th>
-                        <th>Golongan Pihak Lawan</th>
-                        <th>Lembaga Pemeringkat</th>
-                        <th>Peringkat Pihak Lawan</th>
-                        <th>Tanggal Pemeringkatan</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Lokasi</th>
-                        <th>ID Grup</th>
-                        <th>Nama Grup</th>
-                        <th>No. Telp/No. HP</th>
-                        <th>Alamat</th>
-                        <th class="sticky-action-col" style="position: sticky; right: 0; background-color: #fff !important; z-index: 5; box-shadow: -2px 0 5px rgba(0,0,0,0.1); width: 100px;">Aksi</th>
+                        <th class="text-center">ID Pihak Lawan</th>
+                        <th class="text-center">Jenis Identitas</th>
+                        <th class="text-center">Nomor Identitas</th>
+                        <th class="text-center">Jenis Kelamin</th>
+                        <th class="text-center">Nama Lengkap/Nama Badan Usaha</th>
+                        <th class="text-center">NPWP</th>
+                        <th class="text-center">Kewarganegaraan</th>
+                        <th class="text-center">Negara</th>
+                        <th class="text-center">Jenis Kegiatan Usaha</th>
+                        <th class="text-center">Hubungan dengan Bank</th>
+                        <th class="text-center">Golongan Pihak Lawan</th>
+                        <th class="text-center">Lembaga Pemeringkat</th>
+                        <th class="text-center">Peringkat Pihak Lawan</th>
+                        <th class="text-center">Tanggal Pemeringkatan</th>
+                        <th class="text-center">Tanggal Lahir</th>
+                        <th class="text-center">Lokasi</th>
+                        <th class="text-center">ID Grup</th>
+                        <th class="text-center">Nama Grup</th>
+                        <th class="text-center">No. Telp/No. HP</th>
+                        <th class="text-center">Alamat</th>
+                        <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -443,8 +470,19 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        lengthChange: false,
+        columnDefs: [
+            {
+                targets: -1, // Last column (Aksi)
+                width: "150px",
+                orderable: false,
+                responsive: false
+            }
+        ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",

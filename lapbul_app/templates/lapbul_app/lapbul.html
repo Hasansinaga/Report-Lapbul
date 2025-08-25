@@ -47,10 +47,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <td><label for="generate_per_form" class="form-label">Generate Per Form</label></td>
+                        <td>
+                            <input type="checkbox" id="generate_per_form" name="generate_per_form" class="form-check-input ms-2" style="transform: scale(1.5);">
+                        </td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td>
-                            <button type="submit" class="btn btn-secondary">Buat Laporan</button>
-                            <button type="submit" class="btn btn-secondary">Download File Kirim</button>
+                            <button type="submit" class="btn btn-secondary" id="buat_laporan"" >Buat Laporan</button>
+                            <button type="submit" class="btn btn-secondary" id="download_file_kirim" >Download File Kirim</button>
                         </td>
                     </tr>
                 </table>
@@ -146,22 +152,80 @@
     var tahunInput = document.getElementById("tahun");
     var tipePelaporan = document.getElementById("tipe_pelaporan");
     var nomorSurat = document.getElementById("nomor_surat");
-    var bulanSekarang = new Date().getMonth(); // 0-11
-    var tahunSekarang = new Date().getFullYear();
+    var generatePerForm = document.getElementById("generate_per_form");
+    var buatLaporan = document.getElementById("buat_laporan");
+    var downloadFileKirim = document.getElementById("download_file_kirim");
+    var formTable = document.getElementById("datatables").parentElement; 
+    var currentDate = new Date();
+    var bulanSekarang = currentDate.getMonth(); // 0-11
+    var tahunSekarang = currentDate.getFullYear();
+    
+    // Calculate previous month
+    var previousMonth = bulanSekarang - 1;
+    var previousYear = tahunSekarang;
+    if (previousMonth < 0) {
+      previousMonth = 11; // December
+      previousYear = tahunSekarang - 1;
+    }
+    
     if (bulanSelect) {
       bulanSelect.selectedIndex = bulanSekarang;
     }
     if (tahunInput) {
       tahunInput.value = tahunSekarang;
     }
-    if (tipePelaporan && nomorSurat) {
-      tipePelaporan.addEventListener("change", function () {
+    
+    if (tipePelaporan && nomorSurat && bulanSelect && tahunInput) {
+      // Function to handle tipe pelaporan changes
+      function handleTipePelaporanChange() {
         if (tipePelaporan.value === "Koreksi atas Permintaan Pengawas OJK") {
           nomorSurat.disabled = false;
+          // Enable periode fields for corrections
+          bulanSelect.disabled = false;
+          tahunInput.disabled = false;
         } else {
           nomorSurat.disabled = true;
           nomorSurat.value = "";
+          
+          if (tipePelaporan.value === "Pelaporan Rutin") {
+            // Lock to previous month for routine reporting
+            bulanSelect.selectedIndex = previousMonth + 1; // +1 because first option is "Pilih Bulan"
+            tahunInput.value = previousYear;
+            bulanSelect.disabled = true;
+            tahunInput.disabled = true;
+          } else {
+            // Enable periode fields for other types
+            bulanSelect.disabled = false;
+            tahunInput.disabled = false;
+          }
         }
+      }
+      
+      // Initial call and event listener
+      handleTipePelaporanChange();
+      tipePelaporan.addEventListener("change", handleTipePelaporanChange);
+    }
+    
+    // Menghide dan show form dan table
+    if (generatePerForm && formTable && buatLaporan && downloadFileKirim) {
+
+
+      buatLaporan.style.display = "none";
+      downloadFileKirim.style.display = "none";
+      
+      generatePerForm.addEventListener("change", function () {
+        if (generatePerForm.checked) {
+          // Hide form table, show buttons
+          formTable.style.display = "none";
+          buatLaporan.style.display = "inline-block";
+          downloadFileKirim.style.display = "inline-block";
+        } else {
+          // Show form table, hide buttons
+          formTable.style.display = "block";
+          buatLaporan.style.display = "none";
+          downloadFileKirim.style.display = "none";
+        }
+        
       });
     }
   });

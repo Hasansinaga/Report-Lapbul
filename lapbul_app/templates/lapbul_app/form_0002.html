@@ -11,15 +11,11 @@
     min-width: 120px; 
 }
 
-/* CSS untuk center kolom tertentu */
-table td:nth-child(4),
-table th:nth-child(4),
-table td:nth-child(9),
-table th:nth-child(9),
-table td:nth-child(11),
-table th:nth-child(11) {
-    text-align: center;
-    vertical-align: middle;
+/* Simple DataTable styling */
+#datatables th,
+#datatables td {
+    text-align: center !important;
+    vertical-align: middle !important;
 }
 </style>
 
@@ -52,31 +48,31 @@ table th:nth-child(11) {
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
                                             type="button" role="tab" aria-controls="tab1" aria-selected="true">
-                                            Tab 1
+                                            Hal 1
                                         </button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
                                             type="button" role="tab" aria-controls="tab2" aria-selected="false">
-                                            Tab 2
+                                            Hal 2
                                         </button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3"
                                             type="button" role="tab" aria-controls="tab3" aria-selected="false">
-                                            Tab 3
+                                            Hal 3
                                         </button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4"
                                             type="button" role="tab" aria-controls="tab4" aria-selected="false">
-                                            Tab 4
+                                            Hal 4
                                         </button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5"
                                             type="button" role="tab" aria-controls="tab5" aria-selected="false">
-                                            Tab 5
+                                            Hal 5
                                         </button>
                                     </li>
                                 </ul>
@@ -231,32 +227,32 @@ table th:nth-child(11) {
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                 <thead class="table-light text-center">
                     <tr>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>No Identitas</th>
-                        <th class="text-center">Kode Jab Pengurus</th>
-                        <th>Tgl Mulai</th>
-                        <th>Tgl Selesai</th>
-                        <th>Nomor SK OJK</th>
-                        <th>Tgl SK OJK</th>
-                        <th class="text-center">Status Sertif</th>
-                        <th>Tgl Sertif</th>
-                        <th class="text-center">Kode Didik F</th>
-                        <th>Tgl Didik F</th>
-                        <th>Lembaga F</th>
-                        <th>Jenis Didik Non</th>
-                        <th>Tgl Didik Non</th>
-                        <th>Lembaga Non</th>
-                        <th>Komite Audit</th>
-                        <th>Kode Pemantau Risiko</th>
-                        <th>Kode Remunerasi dan Nominasi</th>
-                        <th>Kode Manajemen R</th>
-                        <th>Sts Kepatuhan</th>
-                        <th>Kom Independen</th>
-                        <th>KT Terkait Pengurus</th>
-                        <th>Alasan Perubahan</th>
-                        <th>Keterangan Jabatan</th>
-                        <th class="sticky-action-col text-center">Aksi</th>
+                        <th class="text-center" style="width: 200px;">Nama</th>
+                        <th class="text-center" style="width: 300px;">Alamat</th>
+                        <th class="text-center" style="width: 140px;">No Identitas</th>
+                        <th class="text-center" style="width: 120px;">Kode Jab Pengurus</th>
+                        <th class="text-center" style="width: 100px;">Tgl Mulai</th>
+                        <th class="text-center" style="width: 100px;">Tgl Selesai</th>
+                        <th class="text-center" style="width: 140px;">Nomor SK OJK</th>
+                        <th class="text-center" style="width: 100px;">Tgl SK OJK</th>
+                        <th class="text-center" style="width: 100px;">Status Sertif</th>
+                        <th class="text-center" style="width: 100px;">Tgl Sertif</th>
+                        <th class="text-center" style="width: 100px;">Kode Didik F</th>
+                        <th class="text-center" style="width: 100px;">Tgl Didik F</th>
+                        <th class="text-center" style="width: 140px;">Lembaga F</th>
+                        <th class="text-center" style="width: 140px;">Jenis Didik Non</th>
+                        <th class="text-center" style="width: 120px;">Tgl Didik Non</th>
+                        <th class="text-center" style="width: 140px;">Lembaga Non</th>
+                        <th class="text-center" style="width: 100px;">Komite Audit</th>
+                        <th class="text-center" style="width: 140px;">Kode Pemantau Risiko</th>
+                        <th class="text-center" style="width: 180px;">Kode Remunerasi dan Nominasi</th>
+                        <th class="text-center" style="width: 120px;">Kode Manajemen R</th>
+                        <th class="text-center" style="width: 100px;">Sts Kepatuhan</th>
+                        <th class="text-center" style="width: 120px;">Kom Independen</th>
+                        <th class="text-center" style="width: 140px;">KT Terkait Pengurus</th>
+                        <th class="text-center" style="width: 140px;">Alasan Perubahan</th>
+                        <th class="text-center" style="width: 140px;">Keterangan Jabatan</th>
+                        <th class="sticky-action-col text-center" style="width: 100px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -301,34 +297,59 @@ table th:nth-child(11) {
 
 <script>
 $(document).ready(function () {
-    $('#datatables').DataTable({
-        scrollX: true,
-        responsive: true,
-        columnDefs: [
-            {
-                targets: -1, // Last column (Aksi)
-                width: "120px",
-                orderable: false,
-                responsive: false
-            }
-        ],
-        language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
-            zeroRecords: "Tidak ada data yang ditemukan",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-            infoFiltered: "(difilter dari total _MAX_ entri)",
-            search: "Cari:",
-            paginate: {
-                first: "Pertama",
-                last: "Terakhir",
-                next: "Berikutnya",
-                previous: "Sebelumnya",
-            },
-        },
-    });
+    $('#datatables').DataTable({
+        scrollX: true,
+        responsive: false,
+        autoWidth: false, // This is correct, but not enough on its own.
+        pageLength: 15,
+        lengthChange: false,
+        columnDefs: [
+            { targets: 0, width: "px" },
+            { targets: 1, width: "300px" },
+            { targets: 2, width: "140px" },
+            { targets: 3, width: "120px" },
+            { targets: 4, width: "100px" },
+            { targets: 5, width: "100px" },
+            { targets: 6, width: "140px" },
+            { targets: 7, width: "100px" },
+            { targets: 8, width: "100px" },
+            { targets: 9, width: "100px" },
+            { targets: 10, width: "100px" },
+            { targets: 11, width: "100px" },
+            { targets: 12, width: "140px" },
+            { targets: 13, width: "140px" },
+            { targets: 14, width: "120px" },
+            { targets: 15, width: "140px" },
+            { targets: 16, width: "100px" },
+            { targets: 17, width: "140px" },
+            { targets: 18, width: "180px" },
+            { targets: 19, width: "120px" },
+            { targets: 20, width: "100px" },
+            { targets: 21, width: "120px" },
+            { targets: 22, width: "140px" },
+            { targets: 23, width: "140px" },
+            { targets: 24, width: "140px" },
+            {
+                targets: -1, // Last column (Aksi)
+                width: "100px",
+                orderable: false
+            }
+        ],
+        language: {
+            zeroRecords: "Tidak ada data yang ditemukan",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+            infoFiltered: "(difilter dari total _MAX_ entri)",
+            search: "Cari:",
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya",
+            },
+        },
+    });
 });
-
 document.addEventListener('click', function(e) {
     if (e.target.closest('.tambah')) {
         e.preventDefault();

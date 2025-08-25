@@ -18,16 +18,11 @@
         right: 0;
     }
 
-    /* CSS for right-aligning number columns and centering others */
-    table td:nth-child(n+9):not(.sticky-action-col),
-    table th:nth-child(n+9):not(.sticky-action-col) {
-        text-align: right;
-    }
-    table td:nth-child(5),
-    table th:nth-child(5),
-    table td:nth-child(6),
-    table th:nth-child(6) {
-        text-align: center;
+    /* Simple DataTable styling */
+    #datatables th,
+    #datatables td {
+        text-align: center !important;
+        vertical-align: middle !important;
     }
 </style>
 
@@ -323,54 +318,54 @@
                     <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                         <thead class="table-light text-center">
                             <tr>
-                                <th>Nama Bank</th>
-                                <th>Koordinat</th>
-                                <th>Alamat</th>
-                                <th>Kecamatan</th>
-                                <th>Kode Dati2</th>
-                                <th>Kode Pos</th>
-                                <th>Nama Pimpinan</th>
-                                <th>No. Telepon</th>
-                                <th>Tetap S3</th>
-                                <th>Tetap S2</th>
-                                <th>Tetap S1</th>
-                                <th>Tetap D3</th>
-                                <th>Tetap SLTA</th>
-                                <th>Tetap Lain</th>
-                                <th>Kontrak S3</th>
-                                <th>Kontrak S2</th>
-                                <th>Kontrak S1</th>
-                                <th>Kontrak D3</th>
-                                <th>Kontrak SLTA</th>
-                                <th>Kontrak Lain</th>
-                                <th>Jumlah Kantor Kas</th>
-                                <th>Status Gedung</th>
-                                <th>Jumlah Mobil Kas</th>
-                                <th>PP Sendiri</th>
-                                <th>PP BU</th>
-                                <th>PP BPR Lain</th>
-                                <th>ATM Sendiri</th>
-                                <th>Jumlah Join BPR</th>
-                                <th>Nama Join BPR</th>
-                                <th>KT Data Kantor</th>
-                                <th>Oto OJK No</th>
-                                <th>Oto OJK Tanggal</th>
-                                <th>Alamat Sebelumnya</th>
-                                <th>Tanggal Pelaksanaan</th>
-                                <th>Kar. Tetap Pemasaran</th>
-                                <th>Kar. Tetap Pelayanan</th>
-                                <th>Kar. Tetap Lain</th>
-                                <th>Kar. Kontrak Pemasaran</th>
-                                <th>Kar. Kontrak Pelayanan</th>
-                                <th>Kar. Kontrak Lain</th>
-                                <th>Kar. Laki-Laki</th>
-                                <th>Kar. Perempuan</th>
-                                <th>Usia ≤ 25</th>
-                                <th>Usia ≤ 35</th>
-                                <th>Usia ≤ 45</th>
-                                <th>Usia ≤ 55</th>
-                                <th>Usia > 55</th>
-                                <th>Jumlah SKK</th>
+                                <th class="text-center">Nama Bank</th>
+                                <th class="text-center">Koordinat</th>
+                                <th class="text-center">Alamat</th>
+                                <th class="text-center">Kecamatan</th>
+                                <th class="text-center">Kode Dati2</th>
+                                <th class="text-center">Kode Pos</th>
+                                <th class="text-center">Nama Pimpinan</th>
+                                <th class="text-center">No. Telepon</th>
+                                <th class="text-center">Tetap S3</th>
+                                <th class="text-center">Tetap S2</th>
+                                <th class="text-center">Tetap S1</th>
+                                <th class="text-center">Tetap D3</th>
+                                <th class="text-center">Tetap SLTA</th>
+                                <th class="text-center">Tetap Lain</th>
+                                <th class="text-center">Kontrak S3</th>
+                                <th class="text-center">Kontrak S2</th>
+                                <th class="text-center">Kontrak S1</th>
+                                <th class="text-center">Kontrak D3</th>
+                                <th class="text-center">Kontrak SLTA</th>
+                                <th class="text-center">Kontrak Lain</th>
+                                <th class="text-center">Jumlah Kantor Kas</th>
+                                <th class="text-center">Status Gedung</th>
+                                <th class="text-center">Jumlah Mobil Kas</th>
+                                <th class="text-center">PP Sendiri</th>
+                                <th class="text-center">PP BU</th>
+                                <th class="text-center">PP BPR Lain</th>
+                                <th class="text-center">ATM Sendiri</th>
+                                <th class="text-center">Jumlah Join BPR</th>
+                                <th class="text-center">Nama Join BPR</th>
+                                <th class="text-center">KT Data Kantor</th>
+                                <th class="text-center">Oto OJK No</th>
+                                <th class="text-center">Oto OJK Tanggal</th>
+                                <th class="text-center">Alamat Sebelumnya</th>
+                                <th class="text-center">Tanggal Pelaksanaan</th>
+                                <th class="text-center">Kar. Tetap Pemasaran</th>
+                                <th class="text-center">Kar. Tetap Pelayanan</th>
+                                <th class="text-center">Kar. Tetap Lain</th>
+                                <th class="text-center">Kar. Kontrak Pemasaran</th>
+                                <th class="text-center">Kar. Kontrak Pelayanan</th>
+                                <th class="text-center">Kar. Kontrak Lain</th>
+                                <th class="text-center">Kar. Laki-Laki</th>
+                                <th class="text-center">Kar. Perempuan</th>
+                                <th class="text-center">Usia ≤ 25</th>
+                                <th class="text-center">Usia ≤ 35</th>
+                                <th class="text-center">Usia ≤ 45</th>
+                                <th class="text-center">Usia ≤ 55</th>
+                                <th class="text-center">Usia > 55</th>
+                                <th class="text-center">Jumlah SKK</th>
                                 <th class="sticky-action-col text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -442,6 +437,9 @@
         $('#datatables').DataTable({
             scrollX: true,
             responsive: true,
+            autoWidth: false,
+            pageLength: 15,
+            lengthChange: false,
             columnDefs: [
                 {
                     targets: -1, // Last column (Aksi)
@@ -460,7 +458,7 @@
                 }
             ],
             language: {
-                lengthMenu: "Tampilkan _MENU_ entri",
+                // lengthMenu: "Tampilkan _MENU_ entri",
                 zeroRecords: "Tidak ada data yang ditemukan",
                 info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
                 infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",

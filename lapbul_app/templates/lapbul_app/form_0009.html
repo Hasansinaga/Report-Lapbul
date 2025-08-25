@@ -1,58 +1,28 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* CSS for form alignment and styling */
-.form-container {
-    display: flex;
-    justify-content: center;
-}
-.table-responsive {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Define the sticky column styles */
+/* Define the sticky column styles for both th and td */
 .sticky-action-col {
     position: sticky;
     right: 0;
     background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
+    z-index: 10;
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     text-align: center;
-    min-width: 120px; 
+    min-width: 120px;
 }
 
-/* CSS untuk center kolom tertentu */
-table td:first-child,
-table th:first-child,
-table td:nth-child(2),
-table th:nth-child(2),
-table td:nth-child(3),
-table th:nth-child(3) {
-    text-align: center;
-    vertical-align: middle;
+/* Ensure sticky header works in table */
+table.dataTable thead th.sticky-action-col {
+    z-index: 15;
+    position: sticky;
+    right: 0;
 }
 
-/* Center alignment untuk kolom kode */
-table td:nth-child(5),
-table th:nth-child(5),
-table td:nth-child(6),
-table th:nth-child(6),
-table td:nth-child(7),
-table th:nth-child(7),
-table td:nth-child(8),
-table th:nth-child(8),
-table td:nth-child(9),
-table th:nth-child(9),
-table td:nth-child(10),
-table th:nth-child(10),
-table td:nth-child(11),
-table th:nth-child(11) {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.form-select.w-auto {
-    max-width: fit-content;
+/* DataTable styling */
+#datatables th,
+#datatables td {
+    text-align: center !important;
+    vertical-align: middle !important;
 }
 </style>
 
@@ -187,24 +157,24 @@ table th:nth-child(11) {
             </div>
             
             <!-- Table -->
-            <div class="form-container">
+            <div class="d-flex justify-content-center">
             <div class="table-responsive">
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
-                <thead>
+                <thead class="table-light text-center">
                     <tr>
-                        <th>Nama</th>
-                        <th>NIK</th>
-                        <th>Jabatan</th>
-                        <th>Tgl Mulai</th>
-                        <th>Audit</th>
-                        <th>Risiko</th>
-                        <th>Remunerasi</th>
-                        <th>Manrisk</th>
-                        <th>Kepatuhan</th>
-                        <th>Kom. Indep.</th>
-                        <th>KT Berhenti</th>
-                        <th>Tgl Berhenti</th>
-                        <th>Alasan</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">NIK</th>
+                        <th class="text-center">Jabatan</th>
+                        <th class="text-center">Tgl Mulai</th>
+                        <th class="text-center">Audit</th>
+                        <th class="text-center">Risiko</th>
+                        <th class="text-center">Remunerasi</th>
+                        <th class="text-center">Manrisk</th>
+                        <th class="text-center">Kepatuhan</th>
+                        <th class="text-center">Kom. Indep.</th>
+                        <th class="text-center">KT Berhenti</th>
+                        <th class="text-center">Tgl Berhenti</th>
+                        <th class="text-center">Alasan</th>
                         <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                     </thead>
@@ -243,7 +213,23 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        lengthChange: false,
         columnDefs: [
+            { targets: 0, width: "120px" }, // Nama
+            { targets: 1, width: "120px" }, // NIK
+            { targets: 2, width: "100px" }, // Jabatan
+            { targets: 3, width: "100px" }, // Tgl Mulai
+            { targets: 4, width: "80px" }, // Audit
+            { targets: 5, width: "80px" }, // Risiko
+            { targets: 6, width: "100px" }, // Remunerasi
+            { targets: 7, width: "80px" }, // Manrisk
+            { targets: 8, width: "90px" }, // Kepatuhan
+            { targets: 9, width: "90px" }, // Kom. Indep.
+            { targets: 10, width: "90px" }, // KT Berhenti
+            { targets: 11, width: "100px" }, // Tgl Berhenti
+            { targets: 12, width: "120px" }, // Alasan
             {
                 targets: -1, // Last column (Aksi)
                 width: "120px",
@@ -252,7 +238,7 @@ $(document).ready(function () {
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",

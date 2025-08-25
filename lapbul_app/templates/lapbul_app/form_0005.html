@@ -1,25 +1,18 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
-.sticky-action-col {
-    position: sticky;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    min-width: 120px; 
+
+/* DataTable styling */
+#datatables th,
+#datatables td {
+    text-align: center !important;
+    vertical-align: middle !important;
+    white-space: nowrap;
 }
 
-/* CSS untuk center kolom tertentu */
-table th:nth-child(2),
-table td:nth-child(2),
-table th:nth-child(4),
-table td:nth-child(4),
-table th:nth-child(5),
-table td:nth-child(5) {
-    text-align: center;
-    vertical-align: middle;
+/* Allow address column to wrap */
+#datatables th:nth-child(2), 
+#datatables td:nth-child(2) { 
+    white-space: normal !important; 
 }
 </style>
 
@@ -82,37 +75,39 @@ table td:nth-child(5) {
                 </div>
             </div>
 
+            <!-- Table -->
             <div class="d-flex justify-content-center">
-            <table id="datatables" class="table table-bordered table-striped">
-                <thead>
+            <div class="table-responsive">
+            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+                <thead class="table-light text-center">
                     <tr>
-                        <th>Nama</th>
-                        <th>No Identitas</th>
-                        <th>Alamat</th>
-                        <th>Sandi Terkait</th>
-                        <th>Sandi Hubungan Terkait</th>
-                        <th class="sticky-action-col text-center">Aksi</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">No Identitas</th>
+                        <th class="text-center">Alamat</th>
+                        <th class="text-center">Sandi Terkait</th>
+                        <th class="text-center">Sandi Hubungan Terkait</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>John Doe</td>
-                        <td>123456789</td>
-                        <td>Jl. Merdeka No.10</td>
-                        <td>A1</td>
-                        <td>B2</td>
-                        <td class="sticky-action-col">
+                        <td class="text-center">John Doe</td>
+                        <td class="text-center">123456789</td>
+                        <td class="text-center">Jl. Merdeka No.10</td>
+                        <td class="text-center">A1</td>
+                        <td class="text-center">B2</td>
+                        <td class="text-center">
                             <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0005Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Jane Smith</td>
-                        <td>987654321</td>
-                        <td>Jl. Sudirman No.25</td>
-                        <td>C3</td>
-                        <td>D4</td>
-                        <td class="sticky-action-col">
+                        <td class="text-center">Jane Smith</td>
+                        <td class="text-center">987654321</td>
+                        <td class="text-center">Jl. Sudirman No.25</td>
+                        <td class="text-center">C3</td>
+                        <td class="text-center">D4</td>
+                        <td class="text-center">
                             <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0005Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
@@ -126,17 +121,34 @@ table td:nth-child(5) {
 <script>
 $(document).ready(function () {
     $('#datatables').DataTable({
+        scrollX: true,
         responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        lengthChange: false,
         columnDefs: [
+            { targets: 0, width: "200px" }, // Nama
+            { targets: 1, width: "150px" }, // No Identitas
+            { targets: 2, width: "300px" }, // Alamat
+            { targets: 3, width: "120px" }, // Sandi Terkait
+            { targets: 4, width: "180px" }, // Sandi Hubungan Terkait
             {
                 targets: -1, // Last column (Aksi)
-                width: "120px",
-                orderable: false,
-                responsive: false
+                width: "100px",
+                orderable: false
+            },
+            {
+                targets: "_all", 
+                render: function (data, type, row) {
+                    if (!isNaN(data) && data !== "" && data !== null) {
+                        return Number(data).toLocaleString("id-ID");
+                    }
+                    return data;
+                }
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",

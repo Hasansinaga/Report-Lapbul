@@ -1,28 +1,10 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
-.sticky-action-col {
-    position: sticky;
-    right: 0;
-    /* Use rgba for a semi-transparent background to prevent text from overlapping */
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    min-width: 120px; 
-}
-
-/* CSS untuk center kolom tertentu seperti form_1400 */
-table td:first-child,
-table th:first-child,
-table td:nth-child(2),
-table th:nth-child(2),
-table td:nth-child(3),
-table th:nth-child(3),
-table td:nth-child(4),
-table th:nth-child(4) {
-    text-align: center;
-    vertical-align: middle;
+/* DataTable styling */
+#datatables th,
+#datatables td {
+    text-align: center !important;
+    vertical-align: middle !important;
 }
 </style>
 
@@ -99,7 +81,7 @@ table th:nth-child(4) {
                         <th class="text-center">Tanggal Persetujuan</th>
                         <th class="text-center">Jenis Modal</th>
                         <th class="text-center">Jumlah</th>
-                        <th class="sticky-action-col text-center">Aksi</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -108,7 +90,7 @@ table th:nth-child(4) {
                         <td>2025-07-28</td>
                         <td>01</td>
                         <td>1000000000</td>
-                        <td class="sticky-action-col">
+                        <td class="text-center">
                             <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
@@ -118,7 +100,7 @@ table th:nth-child(4) {
                         <td>2023-06-12</td>
                         <td>03</td>
                         <td>2000000000</td>
-                        <td class="sticky-action-col">
+                        <td class="text-center">
                             <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
@@ -155,12 +137,18 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
+        autoWidth: false,
+        pageLength: 15,
+        lengthChange: false,
         columnDefs: [
+            { targets: 0, width: "150px" }, // Jenis Setoran
+            { targets: 1, width: "150px" }, // Tanggal Persetujuan
+            { targets: 2, width: "120px" }, // Jenis Modal
+            { targets: 3, width: "150px" }, // Jumlah
             {
                 targets: -1, // Last column (Aksi)
-                width: "120px",
-                orderable: false,
-                responsive: false
+                width: "100px",
+                orderable: false
             },
             {
                 targets: "_all", 
@@ -173,7 +161,7 @@ $(document).ready(function () {
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
@@ -205,7 +193,7 @@ $(document).ready(function () {
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
-                $(api.column(colIdx).footer()).html(total.toLocaleString());
+                $(api.column(colIdx).footer()).html(total.toLocaleString()).css('text-align', 'center');
             });
         },
     });

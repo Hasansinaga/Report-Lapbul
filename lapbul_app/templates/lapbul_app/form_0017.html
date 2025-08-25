@@ -6,8 +6,9 @@
         justify-content: center;
     }
     .table-responsive {
-        max-width: 800px;
+        max-width: 1800px;
         margin: 0 auto;
+        overflow-x: auto;
     }
     table td input.form-control {
         text-align: right;
@@ -19,9 +20,30 @@
         white-space: nowrap;
         text-align: center;
     }
-    table td:first-child,
-    table td:nth-child(2) {
+    table td:first-child {
         text-align: left;
+    }
+    
+    table td:nth-child(2) {
+        text-align: center;
+    }
+    
+    /* Give more width to all columns */
+    table th,
+    table td {
+        min-width: 150px;
+        padding: 12px 8px;
+    }
+    
+    /* Specific widths for key columns */
+    table th:first-child,
+    table td:first-child {
+        min-width: 250px;
+    }
+    
+    table th:nth-child(2),
+    table td:nth-child(2) {
+        min-width: 120px;
     }
 </style>
 
@@ -377,6 +399,7 @@
                         </tbody>
                     </table>
                 </form>
+            </div>
             </div>
             <br>
         </div>

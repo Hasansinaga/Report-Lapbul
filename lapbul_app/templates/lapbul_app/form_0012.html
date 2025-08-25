@@ -1,30 +1,30 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* Define the sticky column styles */
-.sticky-action-col {
-    position: sticky;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    z-index: 5;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    min-width: 120px; 
-}
+    /* Define the sticky column styles for both th and td */
+    .sticky-action-col {
+        position: sticky;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        z-index: 10;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        text-align: center;
+        min-width: 120px;
+    }
 
-/* CSS untuk center kolom tertentu */
-table td:nth-child(1),
-table th:nth-child(1),
-table td:nth-child(2),
-table th:nth-child(2),
-table td:nth-child(3),
-table th:nth-child(3),
-table td:nth-child(7),
-table th:nth-child(7),
-table td:nth-child(8),
-table th:nth-child(8) {
-    text-align: center;
-    vertical-align: middle;
-}
+    /* Ensure sticky header works in table */
+    table.dataTable thead th.sticky-action-col {
+        z-index: 15;
+        position: sticky;
+        right: 0;
+    }
+
+    /* Simple DataTable styling */
+    #datatables th,
+    #datatables td {
+        text-align: center !important;
+        vertical-align: middle !important;
+        white-space: nowrap;
+    }
 </style>
 
 <div id="layoutSidenav_content">
@@ -133,9 +133,9 @@ table th:nth-child(8) {
                         <th class="text-center">Jenis</th>
                         <th class="text-center">Kode Kantor</th>
                         <th class="text-center">Sandi Kantor Induk</th>
-                        <th>Nama Kantor</th>
-                        <th>Koordinat</th>
-                        <th>Alamat</th>
+                        <th class="text-center">Nama Kantor</th>
+                        <th class="text-center">Koordinat</th>
+                        <th class="text-center">Alamat</th>
                         <th class="text-center">Tanggal Pelaksanaan</th>
                         <th class="text-center">DATI</th>
                         <th class="sticky-action-col text-center">Aksi</th>
@@ -167,7 +167,7 @@ table th:nth-child(8) {
 $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
-        responsive: true,
+        responsive: true,\n        autoWidth: false,\n        pageLength: 15,\n        lengthChange: false,
         columnDefs: [
             {
                 targets: -1, // Last column (Aksi)
@@ -177,7 +177,7 @@ $(document).ready(function () {
             }
         ],
         language: {
-            lengthMenu: "Tampilkan _MENU_ entri",
+            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
