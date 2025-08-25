@@ -46,8 +46,13 @@ table.dataTable thead th.sticky-action-col {
                         </div>
 
                         <div class="modal-body">
-                            <form>
+                            <form id="form0007Form" method="post" action="{% url 'lapbul_app:insert_form_0007' %}">
+                                {% csrf_token %}
                                 <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="nopyd" class="form-label">No PyD</label>
+                                        <input type="text" class="form-control" id="nopyd" name="nopyd" maxlength="20">
+                                    </div>
                                     <div class="col-md-3">
                                         <label for="cif" class="form-label">CIF</label>
                                         <input type="text" class="form-control" id="cif" name="cif" maxlength="20">
@@ -121,7 +126,7 @@ table.dataTable thead th.sticky-action-col {
                             </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
+                            <button form="form0007Form" type="submit" class="btn btn-secondary" id="save0007Btn">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
@@ -132,6 +137,7 @@ table.dataTable thead th.sticky-action-col {
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                 <thead class="table-light text-center">
                     <tr>
+                    <th class="text-center">No PyD</th>
                     <th class="text-center">CIF</th>
                     <th class="text-center">Kode Gol Kreditur</th>
                     <th class="text-center">Sandi Bank</th>
@@ -153,52 +159,36 @@ table.dataTable thead th.sticky-action-col {
                     </tr>
                 </thead>
                 <tbody>
+                    {% for row in data %}
                     <tr>
-                    <td>1234567890</td>
-                    <td>K01</td>
-                    <td>123456</td>
-                    <td>D001</td>
-                    <td>01</td>
-                    <td>01</td>
-                    <td>2025-01-01</td>
-                    <td>2026-01-01</td>
-                    <td>5,25</td>
-                    <td>01</td>
-                    <td>100000000</td>
-                    <td>AG1</td>
-                    <td>80000000</td>
-                    <td>75000000</td>
-                    <td>5000000</td>
-                    <td>3000000</td>
-                    <td>67000000</td>
-                    <td class="sticky-action-col">
-                        <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                    </td>
+                        <td>{{ row.nopyd|default:'' }}</td>
+                        <td>{{ row.cif|default:'' }}</td>
+                        <td>{{ row.kodegolkreditur|default:'' }}</td>
+                        <td>{{ row.sandibank|default:'' }}</td>
+                        <td>{{ row.kodedati2|default:'' }}</td>
+                        <td>{{ row.kodejenispyd|default:'' }}</td>
+                        <td>{{ row.sandihubbank|default:'' }}</td>
+                        <td>{{ row.jwmulai|default:'' }}</td>
+                        <td>{{ row.jwtempo|default:'' }}</td>
+                        <td>{{ row.sukubunga|default:'' }}</td>
+                        <td>{{ row.carahitbunga|default:'' }}</td>
+                        <td>{{ row.plafon|default:'' }}</td>
+                        <td>{{ row.kodejnsagunan|default:'' }}</td>
+                        <td>{{ row.nominalagunan|default:'' }}</td>
+                        <td>{{ row.bakidebet|default:'' }}</td>
+                        <td>{{ row.bytranbelumamor|default:'' }}</td>
+                        <td>{{ row.diskontobelumamor|default:'' }}</td>
+                        <td>{{ row.bakidebetneto|default:'' }}</td>
+                        <td class="sticky-action-col">
+                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
                     </tr>
+                    {% empty %}
                     <tr>
-                    <td>9876543210</td>
-                    <td>K02</td>
-                    <td>654321</td>
-                    <td>D002</td>
-                    <td>02</td>
-                    <td>02</td>
-                    <td>2024-05-01</td>
-                    <td>2025-05-01</td>
-                    <td>6,00</td>
-                    <td>02</td>
-                    <td>250000000</td>
-                    <td>AG2</td>
-                    <td>200000000</td>
-                    <td>180000000</td>
-                    <td>15000000</td>
-                    <td>10000000</td>
-                    <td>155000000</td>
-                    <td class="sticky-action-col">
-                        <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0007Modal"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                    </td>
+                        <td colspan="18" class="text-center">Tidak ada data yang ditemukan</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>
@@ -260,7 +250,7 @@ table.dataTable thead th.sticky-action-col {
                 targets: "_all", 
                 render: function (data, type, row, meta) {
                     // Don't format columns 0 (CIF) and 2 (Sandi Bank) as numbers
-                    if (meta.col === 0 || meta.col === 2) {
+                    if (meta.col === 1 || meta.col === 3) {
                         return data;
                     }
                     if (!isNaN(data) && data !== "" && data !== null) {
@@ -294,7 +284,7 @@ table.dataTable thead th.sticky-action-col {
                         : 0;
                 };
 
-                var colsToSum = [10, 12, 13, 14, 15, 16];
+                var colsToSum = [11, 13, 14, 15, 16, 17];
                 
                 colsToSum.forEach(function (colIdx) {
                     var total = api
@@ -314,20 +304,20 @@ table.dataTable thead th.sticky-action-col {
                 var totalCBS_diskonto = 13000000;
                 var totalCBS_bakidebetneto = 222000000;
 
-                $($('tfoot tr').eq(1).find('th').eq(1)).text(totalCBS_plafon.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(3)).text(totalCBS_nominalAgunan.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(4)).text(totalCBS_bakidebet.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(5)).text(totalCBS_byrTran.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(6)).text(totalCBS_diskonto.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(7)).text(totalCBS_bakidebetneto.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(2)).text(totalCBS_plafon.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(4)).text(totalCBS_nominalAgunan.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(5)).text(totalCBS_bakidebet.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(6)).text(totalCBS_byrTran.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(7)).text(totalCBS_diskonto.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(8)).text(totalCBS_bakidebetneto.toLocaleString('id-ID')).css('text-align', 'center');
 
                 // Calculate and display "Selisih"
-                var totalPlafon = intVal(api.column(10, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalNominalAgunan = intVal(api.column(12, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalBakidebet = intVal(api.column(13, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalByrTran = intVal(api.column(14, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalDiskonto = intVal(api.column(15, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalBakidebetNeto = intVal(api.column(16, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalPlafon = intVal(api.column(11, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalNominalAgunan = intVal(api.column(13, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalBakidebet = intVal(api.column(14, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalByrTran = intVal(api.column(15, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalDiskonto = intVal(api.column(16, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalBakidebetNeto = intVal(api.column(17, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
 
                 $($('tfoot tr').eq(2).find('th').eq(1)).text((totalPlafon - totalCBS_plafon).toLocaleString('id-ID')).css('text-align', 'center');
                 $($('tfoot tr').eq(2).find('th').eq(3)).text((totalNominalAgunan - totalCBS_nominalAgunan).toLocaleString('id-ID')).css('text-align', 'center');
@@ -338,6 +328,51 @@ table.dataTable thead th.sticky-action-col {
 
             },
         });
+        // Handle form submission via AJAX
+        document.getElementById('form0007Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const formData = new FormData(form);
+            const isUpdate = document.getElementById('cif').readOnly === true;
+            const actionUrl = isUpdate ? "{% url 'lapbul_app:update_form_0007' %}" : "{% url 'lapbul_app:insert_form_0007' %}";
+
+            // Normalize date fields from YYYY-MM-DD to YYYYMMDD
+            ['jwmulai','jwtempo'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.value) {
+                    el.value = el.value.replace(/-/g, '');
+                    formData.set(id, el.value);
+                }
+            });
+
+            // Ensure numeric fields have dot decimal and no thousand separators
+            ['sukubunga','plafon','nominalagunan','bakidebet','bytranbelumamor','diskontobelumamor','bakidebetneto'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.value) {
+                    const normalized = el.value.replace(/\./g, '').replace(/,/g, '.');
+                    formData.set(id, normalized);
+                }
+            });
+
+            fetch(actionUrl, {
+                method: 'POST',
+                body: formData,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message || 'Berhasil.');
+                    location.reload();
+                } else {
+                    alert(data.message || 'Gagal memproses data.');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Terjadi kesalahan.');
+            });
+        });
     });
 
     document.addEventListener('click', function(e) {
@@ -345,6 +380,10 @@ table.dataTable thead th.sticky-action-col {
             e.preventDefault();
             const form = document.querySelector('#form0007Modal form');
             if (form) form.reset();
+            // Set insert mode
+            document.getElementById('cif').readOnly = false;
+            document.getElementById('cif').classList.remove('bg-light','text-muted');
+            document.getElementById('form0007Form').action = "{% url 'lapbul_app:insert_form_0007' %}";
         }
 
         if (e.target.closest('.edit')) {
@@ -358,24 +397,56 @@ table.dataTable thead th.sticky-action-col {
             document.getElementById('kodedati2').value = cells[3].textContent.trim();
             document.getElementById('kodejenispyd').value = cells[4].textContent.trim();
             document.getElementById('sandihubbank').value = cells[5].textContent.trim();
-            document.getElementById('jwmulai').value = cells[6].textContent.trim();
-            document.getElementById('jwtempo').value = cells[7].textContent.trim();
-            document.getElementById('sukubunga').value = cells[8].textContent.trim();
+            // Convert displayed date YYYY-MM-DD to YYYYMMDD
+            document.getElementById('jwmulai').value = cells[6].textContent.trim().replace(/-/g, '');
+            document.getElementById('jwtempo').value = cells[7].textContent.trim().replace(/-/g, '');
+            // Numbers: strip thousands and convert comma decimal to dot
+            const num = s => s.trim().replace(/\./g,'').replace(/,/g,'.');
+            document.getElementById('sukubunga').value = num(cells[8].textContent);
             document.getElementById('carahitbunga').value = cells[9].textContent.trim();
-            document.getElementById('plafon').value = cells[10].textContent.trim();
+            document.getElementById('plafon').value = num(cells[10].textContent);
             document.getElementById('kodejnsagunan').value = cells[11].textContent.trim();
-            document.getElementById('nominalagunan').value = cells[12].textContent.trim();
-            document.getElementById('bakidebet').value = cells[13].textContent.trim();
-            document.getElementById('bytranbelumamor').value = cells[14].textContent.trim();
-            document.getElementById('diskontobelumamor').value = cells[15].textContent.trim();
-            document.getElementById('bakidebetneto').value = cells[16].textContent.trim();
+            document.getElementById('nominalagunan').value = num(cells[12].textContent);
+            document.getElementById('bakidebet').value = num(cells[13].textContent);
+            document.getElementById('bytranbelumamor').value = num(cells[14].textContent);
+            document.getElementById('diskontobelumamor').value = num(cells[15].textContent);
+            document.getElementById('bakidebetneto').value = num(cells[16].textContent);
+
+            // Set update mode: CIF as key
+            document.getElementById('cif').readOnly = true;
+            document.getElementById('cif').classList.add('bg-light','text-muted');
+            document.getElementById('form0007Form').action = "{% url 'lapbul_app:update_form_0007' %}";
         }
 
         if (e.target.closest('.delete')) {
             e.preventDefault();
             const row = e.target.closest('tr');
+            const cells = row.querySelectorAll('td');
+            const cif = cells[0].textContent.trim();
+            if (!cif) return;
             if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-                row.remove();
+                const formData = new FormData();
+                formData.append('cif', cif);
+                const csrf = document.querySelector('[name=csrfmiddlewaretoken]');
+                if (csrf) formData.append('csrfmiddlewaretoken', csrf.value);
+                fetch("{% url 'lapbul_app:delete_form_0007' %}", {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message || 'Data berhasil dihapus.');
+                        location.reload();
+                    } else {
+                        alert(data.message || 'Terjadi kesalahan saat menghapus data.');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Terjadi kesalahan saat menghapus data.');
+                });
             }
         }
     });

@@ -1,18 +1,16 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* DataTable styling */
-#datatables th,
-#datatables td {
-    text-align: center !important;
-    vertical-align: middle !important;
-    white-space: nowrap;
+/* Define the sticky column styles */
+.sticky-action-col {
+    position: sticky;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 5;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px; 
 }
 
-/* Allow address column to wrap */
-#datatables th:nth-child(2), 
-#datatables td:nth-child(2) { 
-    white-space: normal !important; 
-}
 /* Make dropdowns look consistent with other form controls */
 .form-control select {
     appearance: auto;
@@ -29,6 +27,14 @@ table th:nth-child(5) {
     vertical-align: middle;
 }
 
+/* Center alignment untuk kolom numerical */
+table td:nth-child(6),
+table th:nth-child(6),
+table td:nth-child(7),
+table th:nth-child(7) {
+    text-align: center;
+    vertical-align: middle;
+}
 </style>
 
 <div id="layoutSidenav_content">
@@ -198,36 +204,16 @@ $(document).ready(function () {
     $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
-        autoWidth: false,
-        pageLength: 15,
-        lengthChange: false,
         columnDefs: [
-            { targets: 0, width: "200px" }, // Nama
-            { targets: 1, width: "250px" }, // Alamat
-            { targets: 2, width: "100px" }, // Jenis Pemilik
-            { targets: 3, width: "130px" }, // No Identitas
-            { targets: 4, width: "80px" }, // Kode STSPS
-            { targets: 5, width: "120px" }, // Nominal Saham
-            { targets: 6, width: "80px" }, // % Saham
-            { targets: 7, width: "120px" }, // Status Perubahan
             {
                 targets: -1, // Last column (Aksi)
-                width: "100px",
+                width: "120px",
                 orderable: false,
                 responsive: false
-            },
-            {
-                targets: "_all", 
-                render: function (data, type, row) {
-                    if (!isNaN(data) && data !== "" && data !== null) {
-                        return Number(data).toLocaleString("id-ID");
-                    }
-                    return data;
-                }
             }
         ],
         language: {
-            // lengthMenu: "Tampilkan _MENU_ entri",
+            lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
@@ -385,5 +371,4 @@ document.getElementById('form0001UpdateForm').addEventListener('submit', functio
     });
 });
 </script>
-
 {% include 'lapbul_app/footer.html' %}
