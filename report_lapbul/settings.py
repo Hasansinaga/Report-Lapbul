@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'report_lapbul.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': 'dots_bpr_reporting',
+        'USER': 'sa',
+        'PASSWORD': 'Kreasinusantara123!',
+        'HOST': '10.8.0.5',
+        'PORT': '1433',
     }
 }
 
