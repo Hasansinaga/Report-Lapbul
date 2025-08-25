@@ -7,83 +7,216 @@ table td:nth-child(2) {
     min-width: 150px;
 }
 </style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4">Form 0008 - Rasio Keuangan Triwulanan</h5>
             <hr>
             <div class="d-flex justify-content-between">
-                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a><br><br>
+                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-secondary" onclick="saveAllData()">Simpan Semua</button>
+            </div>
+            <br>
 
-                <button type="submit" class="btn btn-secondary">Simpan</button>
-                
+            <!-- Alert untuk menampilkan pesan -->
+            <div id="alertMessage" class="alert alert-dismissible fade" role="alert" style="display: none;">
+                <span id="alertText"></span>
+                <button type="button" class="btn-close" onclick="closeAlert()"></button>
             </div>
        
-          
             <div class="d-flex justify-content-center">
-
-                <form>
+                <form id="form0008Form" method="post">
+                    {% csrf_token %}
                     <table class="table table-bordered" style="max-width:800px;">
                         <thead>
                             <tr class="text-center">
                                 <th>Pos</th>
                                 <th>Sandi</th>
-                                <th>Nilai Rasio</th>
+                                <th>Nilai Rasio (%)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="kpmm">Kewajiban Penyediaan Modal Minimum (KPMM)</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="kpmm">0101</label></td>
-                                <td><input type="text" class="form-control text-end" id="kpmm" name="kpmm" value="100.00" /></td>
+                            <tr data-sandi="0101">
+                                <td class="align-middle">Kewajiban Penyediaan Modal Minimum (KPMM)</td>
+                                <td class="align-middle text-center">0101</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0101" step="0.01" value="{{ data.0101|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="ckpn">Rasio Cadangan terhadap PPKA</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="ckpn">0202</label></td>
-                                <td><input class="form-control text-end" id="ckpn" name="ckpn" rows="2" value="100.00"></td>
+                            <tr data-sandi="0202">
+                                <td class="align-middle">Rasio Cadangan terhadap PPKA</td>
+                                <td class="align-middle text-center">0202</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0202" step="0.01" value="{{ data.0202|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="npl_net">Non Performing Loan (NPL) Netto</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="npl_net">0203</label></td>
-                                <td><input type="text" class="form-control text-end" id="npl_net" name="npl_net" value="5.55" /></td>
+                            <tr data-sandi="0203">
+                                <td class="align-middle">Non Performing Loan (NPL) Netto</td>
+                                <td class="align-middle text-center">0203</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0203" step="0.01" value="{{ data.0203|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="npl_gross">Non Performing Loan (NPL) Gross</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="npl_gross">0204</label></td>
-                                <td><input type="text" class="form-control text-end" id="npl_gross" name="npl_gross" value="10.00" /></td>
+                            <tr data-sandi="0204">
+                                <td class="align-middle">Non Performing Loan (NPL) Gross</td>
+                                <td class="align-middle text-center">0204</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0204" step="0.01" value="{{ data.0204|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="roa">Return on Assets (ROA)</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="roa">0401</label></td>
-                                <td><input type="text" class="form-control text-end" id="roa" name="roa" value="2.25" /></td>
+                            <tr data-sandi="0401">
+                                <td class="align-middle">Return on Assets (ROA)</td>
+                                <td class="align-middle text-center">0401</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0401" step="0.01" value="{{ data.0401|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="bopo">Biaya Operasional terhadap Pendapatan Operasional (BOPO)</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="bopo">0402</label></td>
-                                <td><input type="text" class="form-control text-end" id="bopo" name="bopo" value="100.00" /></td>
+                            <tr data-sandi="0402">
+                                <td class="align-middle">Biaya Operasional terhadap Pendapatan Operasional (BOPO)</td>
+                                <td class="align-middle text-center">0402</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0402" step="0.01" value="{{ data.0402|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="nim">Net Interest Margin (NIM)</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="nim">0403</label></td>
-                                <td><input type="text" class="form-control text-end" id="nim" name="nim" value="3.50" /></td>
+                            <tr data-sandi="0403">
+                                <td class="align-middle">Net Interest Margin (NIM)</td>
+                                <td class="align-middle text-center">0403</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0403" step="0.01" value="{{ data.0403|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="ldr">Loan to Deposit Ratio (LDR)</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="ldr">0501</label></td>
-                                <td><input type="text" class="form-control text-end" id="ldr" name="ldr" value="5.63" /></td>
+                            <tr data-sandi="0501">
+                                <td class="align-middle">Loan to Deposit Ratio (LDR)</td>
+                                <td class="align-middle text-center">0501</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0501" step="0.01" value="{{ data.0501|default:'0.00' }}" /></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle"><label class="form-label" for="cashratio">Cash Ratio</label></td>
-                                <td class="align-middle text-center"><label class="form-label" for="cashratio">0502</label></td>
-                                <td><input type="text" class="form-control text-end" id="cashratio" name="cashratio" value="20.00" /></td>
+                            <tr data-sandi="0502">
+                                <td class="align-middle">Cash Ratio</td>
+                                <td class="align-middle text-center">0502</td>
+                                <td><input type="number" class="form-control text-end rasio-input" data-sandi="0502" step="0.01" value="{{ data.0502|default:'0.00' }}" /></td>
                             </tr>
                         </tbody>
                     </table>
-      
                 </form>
             </div>
             <br>
         </div>
     </main>
 </div>
+
+<script>
+// Function untuk save semua data
+function saveAllData() {
+    const inputs = document.querySelectorAll('.rasio-input');
+    let hasChanges = false;
+    
+    // Check if there are any values to save
+    inputs.forEach(input => {
+        if (input.value && input.value !== '0' && input.value !== '0.00') {
+            hasChanges = true;
+        }
+    });
+    
+    if (!hasChanges) {
+        showAlert('Tidak ada data untuk disimpan.', 'warning');
+        return;
+    }
+    
+    // Save each input individually
+    let promises = [];
+    inputs.forEach(input => {
+        const sandi = input.dataset.sandi;
+        const value = input.value || '0';
+        
+        if (value && value !== '0' && value !== '0.00') {
+            promises.push(saveRasioData(sandi, value));
+        }
+    });
+    
+    if (promises.length === 0) {
+        showAlert('Tidak ada data untuk disimpan.', 'warning');
+        return;
+    }
+    
+    // Execute all saves
+    Promise.all(promises)
+        .then(results => {
+            const successCount = results.filter(r => r.success).length;
+            const failCount = results.length - successCount;
+            
+            if (failCount === 0) {
+                showAlert(`Semua data berhasil disimpan (${successCount} rasio).`, 'success');
+            } else {
+                showAlert(`${successCount} data berhasil disimpan, ${failCount} gagal.`, 'warning');
+            }
+        })
+        .catch(error => {
+            console.error('Error saving data:', error);
+            showAlert('Terjadi kesalahan saat menyimpan data.', 'danger');
+        });
+}
+
+// Function untuk save individual rasio data
+function saveRasioData(sandipos, persenrasio) {
+    return new Promise((resolve, reject) => {
+        const formData = new FormData();
+        formData.append('sandipos', sandipos);
+        formData.append('persenrasio', persenrasio);
+        formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+        
+        fetch("{% url 'lapbul_app:update_form_0008' %}", {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            resolve(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            resolve({ success: false, message: 'Network error' });
+        });
+    });
+}
+
+// Function untuk show alert
+function showAlert(message, type) {
+    const alertDiv = document.getElementById('alertMessage');
+    const alertText = document.getElementById('alertText');
+    
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertText.textContent = message;
+    alertDiv.style.display = 'block';
+    
+    // Auto hide after 3 seconds
+    setTimeout(() => {
+        closeAlert();
+    }, 3000);
+}
+
+// Function untuk close alert
+function closeAlert() {
+    const alertDiv = document.getElementById('alertMessage');
+    alertDiv.style.display = 'none';
+}
+
+// Add auto-save on input change (optional - dengan debounce)
+let saveTimeout;
+document.querySelectorAll('.rasio-input').forEach(input => {
+    input.addEventListener('input', function() {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            const sandi = this.dataset.sandi;
+            const value = this.value || '0';
+            
+            if (value && value !== '0' && value !== '0.00') {
+                saveRasioData(sandi, value)
+                    .then(result => {
+                        if (result.success) {
+                            // Visual feedback - border hijau sebentar
+                            this.style.borderColor = '#28a745';
+                            setTimeout(() => {
+                                this.style.borderColor = '';
+                            }, 1000);
+                        } else {
+                            // Visual feedback - border merah
+                            this.style.borderColor = '#dc3545';
+                            setTimeout(() => {
+                                this.style.borderColor = '';
+                            }, 2000);
+                        }
+                    });
+            }
+        }, 1500); // Auto-save 1.5 seconds after user stops typing
+    });
+});
+</script>
+
 {% include 'lapbul_app/footer.html' %}

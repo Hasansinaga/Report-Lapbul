@@ -3,6 +3,7 @@ from . import views
 from .controllers import form_0001_controllers as form0001
 from .controllers import form_0006_controllers as form0006
 from .controllers import form_0007_controllers as form0007
+from .controllers import form_0008_controllers as form0008
 
 app_name = 'lapbul_app'
 
@@ -30,7 +31,8 @@ urlpatterns = [
     path('lapbul/form_0007/update/', form0007.update_form_0007, name='update_form_0007'),
     path('lapbul/form_0007/insert/', form0007.insert_form_0007, name='insert_form_0007'),
     path('lapbul/form_0007/delete/', form0007.delete_form_0007, name='delete_form_0007'),
-    path('lapbul/form_0008/', views.form_0008, name='form_0008'),
+    path('lapbul/form_0008/', form0008.form_0008, name='form_0008'),
+    path('lapbul/form_0008/update/', form0008.update_form_0008, name='update_form_0008'),
     path('lapbul/form_0009/', views.form_0009, name='form_0009'),
     path('lapbul/form_0010/', views.form_0010, name='form_0010'),
     path('lapbul/form_0011/', views.form_0011, name='form_0011'),
