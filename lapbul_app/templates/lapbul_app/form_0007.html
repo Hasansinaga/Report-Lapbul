@@ -51,31 +51,56 @@ table.dataTable thead th.sticky-action-col {
                                 <div class="row g-3">
                                     <div class="col-md-3">
                                         <label for="nopyd" class="form-label">No PyD</label>
-                                        <input type="text" class="form-control" id="nopyd" name="nopyd" maxlength="20">
+                                        <input type="text" class="form-control bg-light text-muted" id="nopyd" name="nopyd" maxlength="20" readonly>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="cif" class="form-label">CIF</label>
-                                        <input type="text" class="form-control" id="cif" name="cif" maxlength="20">
+                                        <input type="text" class="form-control bg-light text-muted" id="cif" name="cif" maxlength="20" readonly>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="kodegolkreditur" class="form-label">Kode Gol Kreditur</label>
-                                        <input type="text" class="form-control" id="kodegolkreditur" name="kodegolkreditur" maxlength="3">
+                                        <label for="kodegolkreditur" class="form-label">Gol. Kreditur</label>
+                                        <select class="form-control" id="kodegolkreditur" name="kodegolkreditur">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in gol_kreditur_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="sandibank" class="form-label">Sandi Bank</label>
-                                        <input type="text" class="form-control" id="sandibank" name="sandibank" maxlength="6">
+                                        <select class="form-control" id="sandibank" name="sandibank">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in ljk_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="kodedati2" class="form-label">Kode Dati2</label>
-                                        <input type="text" class="form-control" id="kodedati2" name="kodedati2" maxlength="4">
+                                        <label for="kodedati2" class="form-label">Lokasi Kreditur</label>
+                                        <select class="form-control" id="kodedati2" name="kodedati2">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in dati2_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="kodejenispyd" class="form-label">Kode Jenis PyD</label>
-                                        <input type="text" class="form-control" id="kodejenispyd" name="kodejenispyd" maxlength="2">
+                                        <label for="kodejenispyd" class="form-label">Jenis</label>
+                                        <select class="form-control" id="kodejenispyd" name="kodejenispyd">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in jnspyd_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="sandihubbank" class="form-label">Sandi Hub Bank</label>
-                                        <input type="text" class="form-control" id="sandihubbank" name="sandihubbank" maxlength="2">
+                                        <label for="sandihubbank" class="form-label">Hubungan dengan Bank</label>
+        							<select class="form-control" id="sandihubbank" name="sandihubbank">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in terkait_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="jwmulai" class="form-label">JW Mulai</label>
@@ -90,16 +115,26 @@ table.dataTable thead th.sticky-action-col {
                                         <input type="number" step="0.01" class="form-control" id="sukubunga" name="sukubunga">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="carahitbunga" class="form-label">Cara Hitung Bunga</label>
-                                        <input type="text" class="form-control" id="carahitbunga" name="carahitbunga" maxlength="2">
+                                        <label for="carahitbunga" class="form-label">Cara Perhitungan</label>
+                                        <select class="form-control" id="carahitbunga" name="carahitbunga">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in cara_hitung_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="plafon" class="form-label">Plafon</label>
                                         <input type="number" class="form-control" id="plafon" name="plafon">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="kodejnsagunan" class="form-label">Kode Jenis Agunan</label>
-                                        <input type="text" class="form-control" id="kodejnsagunan" name="kodejnsagunan" maxlength="3">
+                                        <label for="kodejnsagunan" class="form-label">Jenis agunan yang dijaminkan</label>
+                                        <select class="form-control" id="kodejnsagunan" name="kodejnsagunan">
+                                            <option value="">-- Pilih --</option>
+                                            {% for opt in jnsagunan_options %}
+                                                <option value="{{ opt.value }}">{{ opt.value }} - {{ opt.label }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="nominalagunan" class="form-label">Nominal Agunan</label>
@@ -137,7 +172,6 @@ table.dataTable thead th.sticky-action-col {
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                 <thead class="table-light text-center">
                     <tr>
-                    <th class="text-center">No PyD</th>
                     <th class="text-center">CIF</th>
                     <th class="text-center">Kode Gol Kreditur</th>
                     <th class="text-center">Sandi Bank</th>
@@ -160,8 +194,7 @@ table.dataTable thead th.sticky-action-col {
                 </thead>
                 <tbody>
                     {% for row in data %}
-                    <tr>
-                        <td>{{ row.nopyd|default:'' }}</td>
+                    <tr data-nopyd="{{ row.nopyd|default:'' }}">
                         <td>{{ row.cif|default:'' }}</td>
                         <td>{{ row.kodegolkreditur|default:'' }}</td>
                         <td>{{ row.sandibank|default:'' }}</td>
@@ -186,7 +219,24 @@ table.dataTable thead th.sticky-action-col {
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="18" class="text-center">Tidak ada data yang ditemukan</td>
+                        <td class="text-center">Tidak ada data yang ditemukan</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -246,19 +296,25 @@ table.dataTable thead th.sticky-action-col {
                     orderable: false,
                     responsive: false
                 },
-            {
-                targets: "_all", 
-                render: function (data, type, row, meta) {
-                    // Don't format columns 0 (CIF) and 2 (Sandi Bank) as numbers
-                    if (meta.col === 1 || meta.col === 3) {
+                {
+                    targets: [1, 2], // Don't format CIF and Sandi Bank as numbers
+                    render: function (data, type, row, meta) {
                         return data;
                     }
-                    if (!isNaN(data) && data !== "" && data !== null) {
-                        return Number(data).toLocaleString("id-ID");
+                },
+                {
+                    targets: "_all", 
+                    render: function (data, type, row, meta) {
+                        // Don't format columns 0 (CIF) and 2 (Sandi Bank) as numbers
+                        if (meta.col === 0 || meta.col === 2) {
+                            return data;
+                        }
+                        if (!isNaN(data) && data !== "" && data !== null) {
+                            return Number(data).toLocaleString("id-ID");
+                        }
+                        return data;
                     }
-                    return data;
                 }
-            }
             ],
             language: {
                 // lengthMenu: "Tampilkan _MENU_ entri",
@@ -284,7 +340,7 @@ table.dataTable thead th.sticky-action-col {
                         : 0;
                 };
 
-                var colsToSum = [11, 13, 14, 15, 16, 17];
+                var colsToSum = [10, 12, 13, 14, 15, 16];
                 
                 colsToSum.forEach(function (colIdx) {
                     var total = api
@@ -296,7 +352,7 @@ table.dataTable thead th.sticky-action-col {
                     $(api.column(colIdx).footer()).html(total.toLocaleString('id-ID')).css('text-align', 'center');
                 });
 
-                // Manually set Total CBS values for demonstration
+                // Manually set Total CBS values
                 var totalCBS_plafon = 300000000;
                 var totalCBS_nominalAgunan = 250000000;
                 var totalCBS_bakidebet = 220000000;
@@ -304,20 +360,20 @@ table.dataTable thead th.sticky-action-col {
                 var totalCBS_diskonto = 13000000;
                 var totalCBS_bakidebetneto = 222000000;
 
-                $($('tfoot tr').eq(1).find('th').eq(2)).text(totalCBS_plafon.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(4)).text(totalCBS_nominalAgunan.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(5)).text(totalCBS_bakidebet.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(6)).text(totalCBS_byrTran.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(7)).text(totalCBS_diskonto.toLocaleString('id-ID')).css('text-align', 'center');
-                $($('tfoot tr').eq(1).find('th').eq(8)).text(totalCBS_bakidebetneto.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(1)).text(totalCBS_plafon.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(3)).text(totalCBS_nominalAgunan.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(4)).text(totalCBS_bakidebet.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(5)).text(totalCBS_byrTran.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(6)).text(totalCBS_diskonto.toLocaleString('id-ID')).css('text-align', 'center');
+                $($('tfoot tr').eq(1).find('th').eq(7)).text(totalCBS_bakidebetneto.toLocaleString('id-ID')).css('text-align', 'center');
 
                 // Calculate and display "Selisih"
-                var totalPlafon = intVal(api.column(11, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalNominalAgunan = intVal(api.column(13, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalBakidebet = intVal(api.column(14, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalByrTran = intVal(api.column(15, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalDiskonto = intVal(api.column(16, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
-                var totalBakidebetNeto = intVal(api.column(17, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalPlafon = intVal(api.column(10, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalNominalAgunan = intVal(api.column(12, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalBakidebet = intVal(api.column(13, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalByrTran = intVal(api.column(14, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalDiskonto = intVal(api.column(15, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
+                var totalBakidebetNeto = intVal(api.column(16, { search: 'applied' }).data().reduce(function(a, b) { return intVal(a) + intVal(b); }, 0));
 
                 $($('tfoot tr').eq(2).find('th').eq(1)).text((totalPlafon - totalCBS_plafon).toLocaleString('id-ID')).css('text-align', 'center');
                 $($('tfoot tr').eq(2).find('th').eq(3)).text((totalNominalAgunan - totalCBS_nominalAgunan).toLocaleString('id-ID')).css('text-align', 'center');
@@ -380,9 +436,11 @@ table.dataTable thead th.sticky-action-col {
             e.preventDefault();
             const form = document.querySelector('#form0007Modal form');
             if (form) form.reset();
-            // Set insert mode
-            document.getElementById('cif').readOnly = false;
-            document.getElementById('cif').classList.remove('bg-light','text-muted');
+            // Set insert mode - both nopyd and CIF remain readonly
+            document.getElementById('nopyd').readOnly = true;
+            document.getElementById('nopyd').classList.add('bg-light','text-muted');
+            document.getElementById('cif').readOnly = true;
+            document.getElementById('cif').classList.add('bg-light','text-muted');
             document.getElementById('form0007Form').action = "{% url 'lapbul_app:insert_form_0007' %}";
         }
 
@@ -391,28 +449,89 @@ table.dataTable thead th.sticky-action-col {
             const row = e.target.closest('tr');
             const cells = row.querySelectorAll('td');
 
-            document.getElementById('cif').value = cells[0].textContent.trim();
-            document.getElementById('kodegolkreditur').value = cells[1].textContent.trim();
-            document.getElementById('sandibank').value = cells[2].textContent.trim();
-            document.getElementById('kodedati2').value = cells[3].textContent.trim();
-            document.getElementById('kodejenispyd').value = cells[4].textContent.trim();
-            document.getElementById('sandihubbank').value = cells[5].textContent.trim();
-            // Convert displayed date YYYY-MM-DD to YYYYMMDD
-            document.getElementById('jwmulai').value = cells[6].textContent.trim().replace(/-/g, '');
-            document.getElementById('jwtempo').value = cells[7].textContent.trim().replace(/-/g, '');
-            // Numbers: strip thousands and convert comma decimal to dot
-            const num = s => s.trim().replace(/\./g,'').replace(/,/g,'.');
-            document.getElementById('sukubunga').value = num(cells[8].textContent);
-            document.getElementById('carahitbunga').value = cells[9].textContent.trim();
-            document.getElementById('plafon').value = num(cells[10].textContent);
-            document.getElementById('kodejnsagunan').value = cells[11].textContent.trim();
-            document.getElementById('nominalagunan').value = num(cells[12].textContent);
-            document.getElementById('bakidebet').value = num(cells[13].textContent);
-            document.getElementById('bytranbelumamor').value = num(cells[14].textContent);
-            document.getElementById('diskontobelumamor').value = num(cells[15].textContent);
-            document.getElementById('bakidebetneto').value = num(cells[16].textContent);
+            // Get nopyd from data attribute and populate the modal
+            const nopyd = row.getAttribute('data-nopyd');
+            document.getElementById('nopyd').value = nopyd || '';
 
-            // Set update mode: CIF as key
+            // Populate input fields
+            document.getElementById('cif').value = cells[0].textContent.trim();
+            document.getElementById('jwmulai').value = cells[6].textContent.trim();
+            document.getElementById('jwtempo').value = cells[7].textContent.trim();
+            document.getElementById('sukubunga').value = cells[8].textContent.trim();
+            document.getElementById('plafon').value = cells[10].textContent.trim();
+            document.getElementById('nominalagunan').value = cells[12].textContent.trim();
+            document.getElementById('bakidebet').value = cells[13].textContent.trim();
+            document.getElementById('bytranbelumamor').value = cells[14].textContent.trim();
+            document.getElementById('diskontobelumamor').value = cells[15].textContent.trim();
+            document.getElementById('bakidebetneto').value = cells[16].textContent.trim();
+
+            // Handle dropdown fields - find matching option value
+            const kodegolkreditur = cells[1].textContent.trim();
+            const kodegolkrediturSelect = document.getElementById('kodegolkreditur');
+            for (let option of kodegolkrediturSelect.options) {
+                if (option.text.includes(kodegolkreditur) || option.value === kodegolkreditur) {
+                    kodegolkrediturSelect.value = option.value;
+                    break;
+                }
+            }
+
+            const sandibank = cells[2].textContent.trim();
+            const sandibankSelect = document.getElementById('sandibank');
+            for (let option of sandibankSelect.options) {
+                if (option.text.includes(sandibank) || option.value === sandibank) {
+                    sandibankSelect.value = option.value;
+                    break;
+                }
+            }
+
+            const kodedati2 = cells[3].textContent.trim();
+            const kodedati2Select = document.getElementById('kodedati2');
+            for (let option of kodedati2Select.options) {
+                if (option.text.includes(kodedati2) || option.value === kodedati2) {
+                    kodedati2Select.value = option.value;
+                    break;
+                }
+            }
+
+            const kodejenispyd = cells[4].textContent.trim();
+            const kodejenispydSelect = document.getElementById('kodejenispyd');
+            for (let option of kodejenispydSelect.options) {
+                if (option.text.includes(kodejenispyd) || option.value === kodejenispyd) {
+                    kodejenispydSelect.value = option.value;
+                    break;
+                }
+            }
+
+            const sandihubbank = cells[5].textContent.trim();
+            const sandihubbankSelect = document.getElementById('sandihubbank');
+            for (let option of sandihubbankSelect.options) {
+                if (option.text.includes(sandihubbank) || option.value === sandihubbank) {
+                    sandihubbankSelect.value = option.value;
+                    break;
+                }
+            }
+
+            const carahitbunga = cells[9].textContent.trim();
+            const carahitbungaSelect = document.getElementById('carahitbunga');
+            for (let option of carahitbungaSelect.options) {
+                if (option.text.includes(carahitbunga) || option.value === carahitbunga) {
+                    carahitbungaSelect.value = option.value;
+                    break;
+                }
+            }
+
+            const kodejnsagunan = cells[11].textContent.trim();
+            const kodejnsagunanSelect = document.getElementById('kodejnsagunan');
+            for (let option of kodejnsagunanSelect.options) {
+                if (option.text.includes(kodejnsagunan) || option.value === kodejnsagunan) {
+                    kodejnsagunanSelect.value = option.value;
+                    break;
+                }
+            }
+
+            // Set update mode: Both nopyd and CIF readonly
+            document.getElementById('nopyd').readOnly = true;
+            document.getElementById('nopyd').classList.add('bg-light','text-muted');
             document.getElementById('cif').readOnly = true;
             document.getElementById('cif').classList.add('bg-light','text-muted');
             document.getElementById('form0007Form').action = "{% url 'lapbul_app:update_form_0007' %}";
