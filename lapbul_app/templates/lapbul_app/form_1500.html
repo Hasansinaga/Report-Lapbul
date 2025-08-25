@@ -1,46 +1,46 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* CSS for form alignment and styling */
-.form-container {
+  /* CSS for form alignment and styling */
+  .form-container {
     display: flex;
     justify-content: center;
-}
-.table-responsive {
+  }
+  .table-responsive {
     margin: 0 auto;
-}
+  }
 
-/* Define the sticky column styles for both th and td */
-.sticky-action-col {
+  /* Define the sticky column styles for both th and td */
+  .sticky-action-col {
     position: sticky;
     right: 0;
     background-color: rgba(255, 255, 255, 0.95) !important;
     z-index: 10; /* Increased z-index to ensure visibility over other elements */
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     min-width: 120px;
-}
+  }
 
-/* Ensure sticky header works in table */
-table.dataTable thead th.sticky-action-col {
+  /* Ensure sticky header works in table */
+  table.dataTable thead th.sticky-action-col {
     z-index: 15; /* Higher z-index for header to stay above body cells */
     position: sticky;
     right: 0;
-}
+  }
 
-/* CSS untuk center kolom tertentu */
-table td:nth-child(1),
-table th:nth-child(1) {
+  /* CSS untuk center kolom tertentu */
+  table td:nth-child(1),
+  table th:nth-child(1) {
     text-align: center;
     vertical-align: middle;
-}
+  }
 
-.form-select.w-auto {
+  .form-select.w-auto {
     max-width: fit-content;
-}
+  }
 
-table td input.form-control {
+  table td input.form-control {
     text-align: right;
-}
+  }
 </style>
 
 <div id="layoutSidenav_content">
@@ -185,11 +185,9 @@ table td input.form-control {
                 </div>
 
                 <!-- Saldo Pokok -->
-                <h6 class="text-secondary border-bottom pb-2 mt-3">
-                  Saldo Pokok
-                </h6>
-                <div class="row">
-                  <div class="col-md-4 mb-3">
+                <h6 class="mt-4 border-bottom pb-2">Saldo Pokok</h6>
+                <div class="row mb-3">
+                  <div class="col-md-4">
                     <label for="saldo_pokok_hapus" class="form-label"
                       >Saat Hapus Buku</label
                     >
@@ -225,14 +223,12 @@ table td input.form-control {
                 </div>
 
                 <!-- Tunggakan Bunga -->
-                <h6 class="text-secondary border-bottom pb-2 mt-3">
-                  Tunggakan Bunga
-                </h6>
-                <div class="row">
-                  <div class="col-md-3 mb-3">
-                    <label for="tunggakan_hapus" class="form-label"
-                      >Saat Hapus Buku</label
-                    >
+                <h6 class="mt-4 border-bottom pb-2">Tunggakan Bunga</h6>
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label for="tunggakan_hapus" class="form-label label-fixed">
+                      Saat Hapus Buku
+                    </label>
                     <input
                       type="text"
                       class="form-control"
@@ -241,9 +237,12 @@ table td input.form-control {
                     />
                   </div>
                   <div class="col-md-3 mb-3">
-                    <label for="tunggakan_tertagih" class="form-label"
-                      >Akumulasi Tertagih</label
+                    <label
+                      for="tunggakan_tertagih"
+                      class="form-label label-fixed"
                     >
+                      Akumulasi Tertagih
+                    </label>
                     <input
                       type="text"
                       class="form-control"
@@ -252,9 +251,12 @@ table td input.form-control {
                     />
                   </div>
                   <div class="col-md-3 mb-3">
-                    <label for="tunggakan_tambahan" class="form-label"
-                      >Akumulasi Tambahan Bunga Berjalan</label
+                    <label
+                      for="tunggakan_tambahan"
+                      class="form-label label-fixed"
                     >
+                      Akumulasi Tambahan <br />Bunga Berjalan
+                    </label>
                     <input
                       type="text"
                       class="form-control"
@@ -263,9 +265,12 @@ table td input.form-control {
                     />
                   </div>
                   <div class="col-md-3 mb-3">
-                    <label for="tunggakan_laporan" class="form-label"
-                      >Per Posisi Laporan</label
+                    <label
+                      for="tunggakan_laporan"
+                      class="form-label label-fixed"
                     >
+                      Per Posisi Laporan
+                    </label>
                     <input
                       type="text"
                       class="form-control"
@@ -275,10 +280,20 @@ table td input.form-control {
                   </div>
                 </div>
 
+                <style>
+                  /* Biar semua label punya tinggi yang sama */
+                  .label-fixed {
+                    display: block;
+                    min-height: 3em; /* samakan tinggi label */
+                    line-height: 1.2;
+                    white-space: normal; /* biar bisa turun baris */
+                  }
+                </style>
+
                 <!-- Agunan -->
-                <h6 class="text-secondary border-bottom pb-2 mt-3">Agunan</h6>
-                <div class="row">
-                  <div class="col-md-4 mb-3">
+                <h6 class="mt-4 border-bottom pb-2">Agunan</h6>
+                <div class="row mb-3">
+                  <div class="col-md-4">
                     <label for="agunan_jenis" class="form-label">Jenis</label>
                     <input
                       type="text"
@@ -325,390 +340,395 @@ table td input.form-control {
 
       <!-- Table -->
       <div class="form-container">
-      <div class="table-responsive">
-      <table id="datatables" class="table table-bordered table-sm nowrap w-100">
-        <thead>
-          <tr class="text-center align-middle">
-            <th rowspan="2" class="align-middle">Sandi Kantor</th>
-            <th rowspan="2" class="align-middle">ID Pihak Lawan</th>
-            <th rowspan="2" class="align-middle">No. Rekening</th>
-            <th rowspan="2" class="text-center">Jenis</th>
-            <th rowspan="2" class="align-middle">Gol. Debitur</th>
-            <th rowspan="2" class="align-middle">Hubungan dengan Bank</th>
-            <th rowspan="2" class="align-middle">Tanggal Hapus Buku</th>
-            <th colspan="3" class="text-center align-middle">Saldo Pokok</th>
-            <th colspan="4" class="text-center align-middle">
-              Tunggakan Bunga
-            </th>
-            <th colspan="3" class="text-center align-middle">Agunan</th>
-            <th rowspan="2" class="sticky-action-col text-center">Aksi</th>
-          </tr>
-          <tr class="text-center align-middle">
-            <!-- Sub Kolom Saldo Pokok -->
-            <th>Saat Hapus Buku</th>
-            <th>Akumulasi Tertagih</th>
-            <th>Per Posisi Laporan</th>
-            <!-- Sub Kolom Tunggakan Bunga -->
-            <th>Saat Hapus Buku</th>
-            <th>Akumulasi Tertagih</th>
-            <th>Akumulasi Tambahan Bunga Berjalan</th>
-            <th>Per Posisi Laporan</th>
-            <!-- Sub Kolom Agunan -->
-            <th>Jenis</th>
-            <th>Alamat</th>
-            <th>Nilai</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>001</td>
-            <td>CIF1</td>
-            <td>Rekening1</td>
-            <td>10 (Kredit yang diberikan)</td>
-            <td>835 (Lainnya)</td>
-            <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 1</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>001</td>
-            <td>CIF2</td>
-            <td>Rekening2</td>
-            <td>20 (Penempatan pada bank lain)</td>
-            <td>600 (BPR Konvensional)</td>
-            <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 2</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>001</td>
-            <td>CIF3</td>
-            <td>Rekening3</td>
-            <td>10 (Kredit yang diberikan)</td>
-            <td>835 (Lainnya)</td>
-            <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 3</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>001</td>
-            <td>CIF4</td>
-            <td>Rekening4</td>
-            <td>20 (Penempatan pada bank lain)</td>
-            <td>601 (BPR Syariah)</td>
-            <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 4</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>001</td>
-            <td>CIF5</td>
-            <td>Rekening5</td>
-            <td>10 (Kredit yang diberikan)</td>
-            <td>835 (Lainnya)</td>
-            <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 5</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>CIF6</td>
-            <td>Rekening6</td>
-            <td>20 (Penempatan pada bank lain)</td>
-            <td>700 (Bank Umum Konvensional)</td>
-            <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 6</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>CIF7</td>
-            <td>Rekening7</td>
-            <td>10 (Kredit yang diberikan)</td>
-            <td>835 (Lainnya)</td>
-            <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 7</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>CIF8</td>
-            <td>Rekening8</td>
-            <td>20 (Penempatan pada bank lain)</td>
-            <td>700 (Bank Umum Konvensional)</td>
-            <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 8</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>CIF9</td>
-            <td>Rekening9</td>
-            <td>10 (Kredit yang diberikan)</td>
-            <td>835 (Lainnya)</td>
-            <td>12 (Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 9</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>CIF10</td>
-            <td>Rekening10</td>
-            <td>20 (Penempatan pada bank lain)</td>
-            <td>
-              901 (Unit Usaha Syariah (KC Syariah Bank Umum Konvensional))
-            </td>
-            <td>20 (Tidak Terkait)</td>
-            <td>20180101</td>
-            <td>100.000</td>
-            <td>50.000</td>
-            <td>50.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>100.000</td>
-            <td>201 (Non Likuid : Emas perhiasan)</td>
-            <td>Alamat 10</td>
-            <td>1.000.000</td>
-            <td class="sticky-action-col text-center">
-              <a
-                href="#"
-                class="text-secondary me-2 edit"
-                data-bs-toggle="modal"
-                data-bs-target="#form1500Modal"
-                ><i class="fas fa-edit"></i></a
-              ><a href="#" class="text-danger delete"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="7" style="text-align: right">Total:</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-          <tr>
-            <th colspan="7" style="text-align: right">Total CBS:</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-          <tr>
-            <th colspan="7" style="text-align: right">Selisih:</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
-      </div>
+        <div class="table-responsive">
+          <table
+            id="datatables"
+            class="table table-bordered table-sm nowrap w-100"
+          >
+            <thead>
+              <tr class="text-center align-middle">
+                <th rowspan="2" class="align-middle">Sandi Kantor</th>
+                <th rowspan="2" class="align-middle">ID Pihak Lawan</th>
+                <th rowspan="2" class="align-middle">No. Rekening</th>
+                <th rowspan="2" class="text-center">Jenis</th>
+                <th rowspan="2" class="align-middle">Gol. Debitur</th>
+                <th rowspan="2" class="align-middle">Hubungan dengan Bank</th>
+                <th rowspan="2" class="align-middle">Tanggal Hapus Buku</th>
+                <th colspan="3" class="text-center align-middle">
+                  Saldo Pokok
+                </th>
+                <th colspan="4" class="text-center align-middle">
+                  Tunggakan Bunga
+                </th>
+                <th colspan="3" class="text-center align-middle">Agunan</th>
+                <th rowspan="2" class="sticky-action-col text-center">Aksi</th>
+              </tr>
+              <tr class="text-center align-middle">
+                <!-- Sub Kolom Saldo Pokok -->
+                <th>Saat Hapus Buku</th>
+                <th>Akumulasi Tertagih</th>
+                <th>Per Posisi Laporan</th>
+                <!-- Sub Kolom Tunggakan Bunga -->
+                <th>Saat Hapus Buku</th>
+                <th>Akumulasi Tertagih</th>
+                <th>Akumulasi Tambahan Bunga Berjalan</th>
+                <th>Per Posisi Laporan</th>
+                <!-- Sub Kolom Agunan -->
+                <th>Jenis</th>
+                <th>Alamat</th>
+                <th>Nilai</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>001</td>
+                <td>CIF1</td>
+                <td>Rekening1</td>
+                <td>10 (Kredit yang diberikan)</td>
+                <td>835 (Lainnya)</td>
+                <td>12 (Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 1</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>001</td>
+                <td>CIF2</td>
+                <td>Rekening2</td>
+                <td>20 (Penempatan pada bank lain)</td>
+                <td>600 (BPR Konvensional)</td>
+                <td>20 (Tidak Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 2</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>001</td>
+                <td>CIF3</td>
+                <td>Rekening3</td>
+                <td>10 (Kredit yang diberikan)</td>
+                <td>835 (Lainnya)</td>
+                <td>12 (Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 3</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>001</td>
+                <td>CIF4</td>
+                <td>Rekening4</td>
+                <td>20 (Penempatan pada bank lain)</td>
+                <td>601 (BPR Syariah)</td>
+                <td>20 (Tidak Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 4</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>001</td>
+                <td>CIF5</td>
+                <td>Rekening5</td>
+                <td>10 (Kredit yang diberikan)</td>
+                <td>835 (Lainnya)</td>
+                <td>12 (Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 5</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>CIF6</td>
+                <td>Rekening6</td>
+                <td>20 (Penempatan pada bank lain)</td>
+                <td>700 (Bank Umum Konvensional)</td>
+                <td>20 (Tidak Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 6</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>CIF7</td>
+                <td>Rekening7</td>
+                <td>10 (Kredit yang diberikan)</td>
+                <td>835 (Lainnya)</td>
+                <td>12 (Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 7</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>CIF8</td>
+                <td>Rekening8</td>
+                <td>20 (Penempatan pada bank lain)</td>
+                <td>700 (Bank Umum Konvensional)</td>
+                <td>20 (Tidak Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 8</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>CIF9</td>
+                <td>Rekening9</td>
+                <td>10 (Kredit yang diberikan)</td>
+                <td>835 (Lainnya)</td>
+                <td>12 (Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 9</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>CIF10</td>
+                <td>Rekening10</td>
+                <td>20 (Penempatan pada bank lain)</td>
+                <td>
+                  901 (Unit Usaha Syariah (KC Syariah Bank Umum Konvensional))
+                </td>
+                <td>20 (Tidak Terkait)</td>
+                <td>20180101</td>
+                <td>100.000</td>
+                <td>50.000</td>
+                <td>50.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>100.000</td>
+                <td>201 (Non Likuid : Emas perhiasan)</td>
+                <td>Alamat 10</td>
+                <td>1.000.000</td>
+                <td class="sticky-action-col text-center">
+                  <a
+                    href="#"
+                    class="text-secondary me-2 edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#form1500Modal"
+                    ><i class="fas fa-edit"></i></a
+                  ><a href="#" class="text-danger delete"
+                    ><i class="fas fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="7" style="text-align: right">Total:</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <th colspan="7" style="text-align: right">Total CBS:</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <th colspan="7" style="text-align: right">Selisih:</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
       <!-- Table -->
 
@@ -720,13 +740,13 @@ table td input.form-control {
             pageLength: 15,
             lengthChange: false,
             fixedColumns: {
-              rightColumns: 1
+              rightColumns: 1,
             },
             columnDefs: [
               {
                 targets: -1, // Target the last column (Aksi)
-                orderable: false // Disable sorting for the Aksi column
-              }
+                orderable: false, // Disable sorting for the Aksi column
+              },
             ],
             language: {
               zeroRecords: "Tidak ada data yang ditemukan",
@@ -775,47 +795,54 @@ table td input.form-control {
 
         // Function to format numbers with thousand separators
         function formatNumber(input) {
-            let value = input.value.replace(/\D/g, '');
-            if (value) {
-                input.value = new Intl.NumberFormat('id-ID').format(value);
-            }
+          let value = input.value.replace(/\D/g, "");
+          if (value) {
+            input.value = new Intl.NumberFormat("id-ID").format(value);
+          }
         }
 
         // Apply number formatting to numeric inputs
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('input[type="text"]').forEach(input => {
-                // Check if input likely contains numbers (nominal, saldo, nilai, etc.)
-                if (input.id && (input.id.includes('nominal') || input.id.includes('saldo') || input.id.includes('nilai') || input.id.includes('pokok') || input.id.includes('bunga'))) {
-                    input.classList.add('number-input');
-                    formatNumber(input);
-                    
-                    input.addEventListener('blur', function() {
-                        formatNumber(this);
-                    });
-                    input.addEventListener('focus', function() {
-                        this.value = this.value.replace(/\D/g, '');
-                    });
-                }
-            });
+        document.addEventListener("DOMContentLoaded", function () {
+          document.querySelectorAll('input[type="text"]').forEach((input) => {
+            // Check if input likely contains numbers (nominal, saldo, nilai, etc.)
+            if (
+              input.id &&
+              (input.id.includes("nominal") ||
+                input.id.includes("saldo") ||
+                input.id.includes("nilai") ||
+                input.id.includes("pokok") ||
+                input.id.includes("bunga"))
+            ) {
+              input.classList.add("number-input");
+              formatNumber(input);
+
+              input.addEventListener("blur", function () {
+                formatNumber(this);
+              });
+              input.addEventListener("focus", function () {
+                this.value = this.value.replace(/\D/g, "");
+              });
+            }
+          });
         });
 
         // Function to filter by Sandi Kantor
         function filterKantor() {
-            var selected = document.getElementById("kantorFilter").value;
-            var rows = document.querySelectorAll("tbody tr");
-            
-            rows.forEach(function(row) {
-                if (selected === "all") {
-                    row.style.display = "";
-                } else {
-                    var firstCell = row.querySelector('td:first-child');
-                    if (firstCell && firstCell.textContent.trim() === selected) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                }
-            });
+          var selected = document.getElementById("kantorFilter").value;
+          var rows = document.querySelectorAll("tbody tr");
+
+          rows.forEach(function (row) {
+            if (selected === "all") {
+              row.style.display = "";
+            } else {
+              var firstCell = row.querySelector("td:first-child");
+              if (firstCell && firstCell.textContent.trim() === selected) {
+                row.style.display = "";
+              } else {
+                row.style.display = "none";
+              }
+            }
+          });
         }
 
         document.addEventListener("click", function (e) {
@@ -848,21 +875,21 @@ table td input.form-control {
 
             // Saldo Pokok (kolom 7-9) - remove formatting for editing
             document.getElementById("saldo_pokok_hapus").value =
-              cells[7].textContent.trim().replace(/\D/g, '');
+              cells[7].textContent.trim().replace(/\D/g, "");
             document.getElementById("saldo_pokok_tertagih").value =
-              cells[8].textContent.trim().replace(/\D/g, '');
+              cells[8].textContent.trim().replace(/\D/g, "");
             document.getElementById("saldo_pokok_laporan").value =
-              cells[9].textContent.trim().replace(/\D/g, '');
+              cells[9].textContent.trim().replace(/\D/g, "");
 
             // Tunggakan Bunga (kolom 10-13) - remove formatting for editing
             document.getElementById("tunggakan_hapus").value =
-              cells[10].textContent.trim().replace(/\D/g, '');
+              cells[10].textContent.trim().replace(/\D/g, "");
             document.getElementById("tunggakan_tertagih").value =
-              cells[11].textContent.trim().replace(/\D/g, '');
+              cells[11].textContent.trim().replace(/\D/g, "");
             document.getElementById("tunggakan_tambahan").value =
-              cells[12].textContent.trim().replace(/\D/g, '');
+              cells[12].textContent.trim().replace(/\D/g, "");
             document.getElementById("tunggakan_laporan").value =
-              cells[13].textContent.trim().replace(/\D/g, '');
+              cells[13].textContent.trim().replace(/\D/g, "");
 
             // Agunan (kolom 14-16)
             document.getElementById("agunan_jenis").value =
@@ -870,7 +897,7 @@ table td input.form-control {
             document.getElementById("agunan_alamat").value =
               cells[15].textContent.trim();
             document.getElementById("agunan_nilai").value =
-              cells[16].textContent.trim().replace(/\D/g, '');
+              cells[16].textContent.trim().replace(/\D/g, "");
           }
 
           if (e.target.closest(".delete")) {
