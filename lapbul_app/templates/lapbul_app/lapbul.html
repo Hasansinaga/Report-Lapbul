@@ -3,7 +3,20 @@
     <main>
         <div class="container-fluid px-4">
             <h5 class="mt-4 text-decoration-underline">Buat Laporan</h5>
-            <form method="post" action="">
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form method="post" action="{% url 'lapbul_app:generate_report' %}">
+                
+                {% csrf_token %}
+
+                
                 <table class="table table-borderless" style="max-width:500px;">
                     <tr>
                         <td class="align-middle"><label for="bulan" class="form-label">Periode</label></td>
@@ -49,7 +62,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="submit" class="btn btn-secondary">Buat Laporan</button>
+                            <button type="submit" name="action" value="generate_report" class="btn btn-secondary">Buat Laporan</button>
                             <button type="submit" class="btn btn-secondary">Download File Kirim</button>
                         </td>
                     </tr>

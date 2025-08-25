@@ -11,6 +11,11 @@
     min-width: 120px; 
 }
 
+/* Make dropdowns look consistent with other form controls */
+.form-control select {
+    appearance: auto;
+}
+
 /* CSS untuk center kolom tertentu seperti form_1400 */
 table td:first-child,
 table th:first-child,
@@ -55,7 +60,9 @@ table th:nth-child(7) {
 
                         <div class="modal-body">
                             <!-- Input Form -->
-                            <form>
+                            <form id="form0001UpdateForm" method="post" action="{% url 'lapbul_app:update_form_0001' %}">
+                                {% csrf_token %}
+                                <input type="hidden" id="formMode" name="formMode" value="update">
                                 <!-- Nav Tabs -->
                                 <ul class="nav nav-tabs" id="formTab" role="tablist">
                                     <li class="nav-item" role="presentation">
@@ -87,7 +94,12 @@ table th:nth-child(7) {
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="jenispemilik" class="form-label">Jenis Pemilik</label>
-                                                <input type="text" class="form-control" id="jenispemilik" name="jenispemilik">
+                                                <select class="form-control" id="jenispemilik" name="jenispemilik">
+                                                    <option value="">-- Pilih Jenis Pemilik --</option>
+                                                    {% for option in jenis_pemilik_options %}
+                                                        <option value="{{ option.value }}">{{ option.value }} - {{ option.label }}</option>
+                                                    {% endfor %}
+                                                </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="noidentitas" class="form-label">No Identitas</label>
@@ -101,7 +113,12 @@ table th:nth-child(7) {
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="kodestsps" class="form-label">Kode STSPS</label>
-                                                <input type="text" class="form-control" id="kodestsps" name="kodestsps">
+                                                <select class="form-control" id="kodestsps" name="kodestsps">
+                                                    <option value="">-- Pilih Kode STSPS --</option>
+                                                    {% for option in stsps_options %}
+                                                        <option value="{{ option.value }}">{{ option.value }} - {{ option.label }}</option>
+                                                    {% endfor %}
+                                                </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="nominalsaham" class="form-label">Nominal Saham</label>
@@ -113,18 +130,24 @@ table th:nth-child(7) {
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="statusperubahan" class="form-label">Status Perubahan</label>
-                                                <input type="text" class="form-control" id="statusperubahan" name="statusperubahan">
+                                                <select class="form-control" id="statusperubahan" name="statusperubahan">
+                                                    <option value="">-- Pilih Status Perubahan --</option>
+                                                    {% for option in status_perubahan_options %}
+                                                        <option value="{{ option.value }}">{{ option.value }} - {{ option.label }}</option>
+                                                    {% endfor %}
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
                             </form>
                             <!-- End Input Form -->
                         </div>
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
+                            <button form="form0001UpdateForm" type="submit" class="btn btn-secondary" id="saveChangesBtn">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
@@ -134,48 +157,40 @@ table th:nth-child(7) {
             <div class="d-flex justify-content-center">
             <div class="table-responsive">
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
-                <thead class="table-light text-center">
+                <thead class="table-light">
                     <tr>
-                        <th class="text-center">Nama</th>
+                        <th>Nama</th>
                         <th>Alamat</th>
-                        <th class="text-center">Jenis Pemilik</th>
+                        <th>Jenis Pemilik</th>
                         <th>No Identitas</th>
-                        <th class="text-center">Kode STSPS</th>
-                        <th class="text-center">Nominal Saham</th>
-                        <th class="text-center">% Saham</th>
+                        <th>Kode STSPS</th>
+                        <th>Nominal Saham</th>
+                        <th>% Saham</th>
                         <th>Status Perubahan</th>
                         <th class="sticky-action-col text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for row in data %}
                     <tr>
-                        <td>YPUE KOSGORO</td>
-                        <td>JL TEUKU CIK DITIRO NO 34 MENTENG JAKARTA PUSAT</td>
-                        <td>02</td>
-                        <td>000000000000001</td>
-                        <td>02</td>
-                        <td>150000000</td>
-                        <td>0.74</td>
-                        <td>2</td>
+                        <td>{{ row.nama|default:'' }}</td>
+                        <td>{{ row.alamat|default:'' }}</td>
+                        <td>{{ row.jnspemilik|default:'' }}</td>
+                        <td>{{ row.noidentitas|default:'' }}</td>
+                        <td>{{ row.stsps|default:'' }}</td>
+                        <td>{{ row.nominal|default:'' }}</td>
+                        <td>{{ row.persentase|default:'' }}</td>
+                        <td>{{ row.statusperubahan|default:'' }}</td>
                         <td class="sticky-action-col">
                             <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0001Modal"><i class="fas fa-edit"></i></a>
                             <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
+                    {% empty %}
                     <tr>
-                        <td>IDRUS AFANDI</td>
-                        <td>JL TEST AJA APA</td>
-                        <td>02</td>
-                        <td>000000000000002</td>
-                        <td>02</td>
-                        <td>150000000</td>
-                        <td>0.74</td>
-                        <td>2</td>
-                        <td class="sticky-action-col">
-                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0001Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        <td colspan="9" class="text-center">Tidak ada data yang ditemukan</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             </div>
@@ -219,31 +234,141 @@ document.addEventListener('click', function(e) {
         e.preventDefault();
         const form = document.querySelector('#form0001Modal form');
         if (form) form.reset();
+        
+        // Set form to insert mode
+        document.getElementById("formMode").value = "insert";
+        form.action = "{% url 'lapbul_app:insert_form_0001' %}";
+        
+        // Enable all fields for new entry
+        document.getElementById("noidentitas").readOnly = false;
+        document.getElementById("noidentitas").classList.remove("bg-light", "text-muted");
+        
+        // Update modal title
+        document.getElementById("form0001ModalLabel").textContent = "Form Input Data Kepemilikan BPR - Tambah Data Baru";
     }
 
     if (e.target.closest('.edit')) {
         e.preventDefault();
         const row = e.target.closest('tr');
         const cells = row.querySelectorAll('td');
-
+        const form = document.querySelector('#form0001Modal form');
+        
+        // Set form to update mode
+        document.getElementById("formMode").value = "update";
+        form.action = "{% url 'lapbul_app:update_form_0001' %}";
+        
+        // Make noidentitas readonly for edit mode
+        document.getElementById("noidentitas").readOnly = true;
+        document.getElementById("noidentitas").classList.add("bg-light", "text-muted");
+        
+        // Update modal title
+        document.getElementById("form0001ModalLabel").textContent = "Form Input Data Kepemilikan BPR - Edit Data";
+        
         // Fill modal form (excluding the last action column)
-        document.getElementById("nama").value = cells[0].textContent.trim();
-        document.getElementById("alamat").value = cells[1].textContent.trim();
-        document.getElementById("jenispemilik").value = cells[2].textContent.trim();
-        document.getElementById("noidentitas").value = cells[3].textContent.trim();
-        document.getElementById("kodestsps").value = cells[4].textContent.trim();
-        document.getElementById("nominalsaham").value = cells[5].textContent.trim();
-        document.getElementById("persensaham").value = cells[6].textContent.trim();
-        document.getElementById("statusperubahan").value = cells[7].textContent.trim();
+        // Only populate if the element exists and we have enough cells
+        if (cells.length >= 8) {
+            if (document.getElementById("nama")) document.getElementById("nama").value = cells[0].textContent.trim();
+            if (document.getElementById("alamat")) document.getElementById("alamat").value = cells[1].textContent.trim();
+            
+            // Handle dropdown selections
+            if (document.getElementById("jenispemilik")) {
+                const jenispemilikValue = cells[2].textContent.trim();
+                document.getElementById("jenispemilik").value = jenispemilikValue;
+            }
+            
+            if (document.getElementById("noidentitas")) document.getElementById("noidentitas").value = cells[3].textContent.trim();
+            
+            if (document.getElementById("kodestsps")) {
+                const kodestspsValue = cells[4].textContent.trim();
+                document.getElementById("kodestsps").value = kodestspsValue;
+            }
+            
+            if (document.getElementById("nominalsaham")) document.getElementById("nominalsaham").value = cells[5].textContent.trim();
+            if (document.getElementById("persensaham")) document.getElementById("persensaham").value = cells[6].textContent.trim();
+            
+            if (document.getElementById("statusperubahan")) {
+                const statusperubahanValue = cells[7].textContent.trim();
+                document.getElementById("statusperubahan").value = statusperubahanValue;
+            }
+        }
     }
 
     if (e.target.closest('.delete')) {
         e.preventDefault();
         const row = e.target.closest('tr');
+        const cells = row.querySelectorAll('td');
+        
+        // Get the noidentitas from the row (4th column, index 3)
+        const noidentitas = cells[3].textContent.trim();
+        
         if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            row.remove();
+            // Create form data for the delete request
+            const formData = new FormData();
+            formData.append('noidentitas', noidentitas);
+            
+            // Get CSRF token
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            formData.append('csrfmiddlewaretoken', csrfToken);
+            
+            // Send delete request
+            fetch("{% url 'lapbul_app:delete_form_0001' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message || 'Data berhasil dihapus.');
+                    // Reload page to show updated data
+                    location.reload();
+                } else {
+                    alert(data.message || 'Terjadi kesalahan saat menghapus data.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat menghapus data.');
+            });
         }
     }
+});
+
+// Handle form submission
+document.getElementById('form0001UpdateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const formMode = document.getElementById('formMode').value;
+    
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const actionText = formMode === 'insert' ? 'ditambahkan' : 'diperbarui';
+            alert(data.message || `Data berhasil ${actionText}.`);
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('form0001Modal'));
+            modal.hide();
+            // Reload page to show updated data
+            location.reload();
+        } else {
+            const actionText = formMode === 'insert' ? 'menambahkan' : 'memperbarui';
+            alert(data.message || `Terjadi kesalahan saat ${actionText} data.`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const actionText = formMode === 'insert' ? 'menambahkan' : 'memperbarui';
+        alert(`Terjadi kesalahan saat ${actionText} data.`);
+    });
 });
 </script>
 {% include 'lapbul_app/footer.html' %}

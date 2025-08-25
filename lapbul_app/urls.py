@@ -6,8 +6,15 @@ app_name = 'lapbul_app'
 urlpatterns = [
     path('', views.index, name='index'),
     path('lapbul/', views.lapbul, name='lapbul'),
+
+    #exec button buat laporan
+    path('lapbul/generate-report/', views.generate_report, name='generate_report'),
+
     path('lapbul/form_0000/', views.form_0000, name='form_0000'),
     path('lapbul/form_0001/', views.form_0001, name='form_0001'),
+    path('lapbul/form_0001/update/', views.update_form_0001, name='update_form_0001'),
+    path('lapbul/form_0001/insert/', views.insert_form_0001, name='insert_form_0001'),
+    path('lapbul/form_0001/delete/', views.delete_form_0001, name='delete_form_0001'),
     path('lapbul/form_0002/', views.form_0002, name='form_0002'),
     path('lapbul/form_0003/', views.form_0003, name='form_0003'),
     path('lapbul/form_0004/', views.form_0004, name='form_0004'),
