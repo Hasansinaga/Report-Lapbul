@@ -1,140 +1,357 @@
 {% include 'lapbul_app/header.html' %}
 <style>
-/* DataTable styling */
-#datatables th,
-#datatables td {
+  #datatables th,
+  #datatables td {
     text-align: center !important;
     vertical-align: middle !important;
-}
+  }
 </style>
 
 <div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h5 class="mt-4">Form 0006 - Data Modal Disetor</h5>
-            <hr>
-            <div class="d-flex justify-content-between">
-                <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
-                <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0006Modal">Tambah</button>
+  <main>
+    <div class="container-fluid px-4">
+      <h5 class="mt-4">Form 0006 - Data Modal Disetor</h5>
+      <hr />
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'lapbul_app:lapbul' %}" class="btn btn-secondary">Kembali</a>
+        <button type="button" class="btn btn-secondary tambah" data-bs-toggle="modal" data-bs-target="#form0006Modal">
+          Tambah
+        </button>
+      </div>
+      <br />
+
+      <!-- Alert untuk menampilkan pesan -->
+      <div id="alertMessage" class="alert alert-dismissible fade" role="alert" style="display: none;">
+        <span id="alertText"></span>
+        <button type="button" class="btn-close" onclick="closeAlert()"></button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="form0006Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h6 class="modal-title text-white" id="modalTitle">Form Input Data Modal Disetor</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <br>
-            <div class="modal fade" id="form0006Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form0006ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                    
-                        <div class="modal-header bg-secondary">
-                            <h6 class="modal-title text-white" id="form0006ModalLabel">Form Input Data Modal Disetor</h6>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
 
-                        <div class="modal-body">
-                            <form>
-                                <ul class="nav nav-tabs" id="formTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
-                                            type="button" role="tab" aria-controls="basic" aria-selected="true">
-                                            Informasi Modal
-                                        </button>
-                                    </li>
-                                </ul>
+            <div class="modal-body">
+              <form id="form0006Form" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="noidentitas" id="noidentitas" />
+                
+                <ul class="nav nav-tabs" id="formTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-controls="basic" aria-selected="true">
+                      Informasi Modal
+                    </button>
+                  </li>
+                </ul>
 
-                                <div class="tab-content mt-3" id="formTabContent">
-                                    <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="jenis_setoran" class="form-label">Jenis Setoran</label>
-                                                <input type="text" class="form-control" id="jenis_setoran" name="jenis_setoran">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="tanggal_persetujuan" class="form-label">Tanggal Persetujuan</label>
-                                                <input type="date" class="form-control" id="tanggal_persetujuan" name="tanggal_persetujuan">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="jenis_modal" class="form-label">Jenis Modal</label>
-                                                <input type="text" class="form-control" id="jenis_modal" name="jenis_modal">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="jumlah" class="form-label">Jumlah</label>
-                                                <input type="number" class="form-control" id="jumlah" name="jumlah">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="button" class="btn btn-secondary">Simpan Perubahan</button>
-                        </div>
+                <div class="tab-content mt-3" id="formTabContent">
+                  <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Jenis Setoran</label>
+                        <select class="form-control" name="jenissetoran" id="jenissetoran" required>
+                          <option value="">-- Pilih Jenis Setoran --</option>
+                          {% for option in jenis_setoran_options %}
+                          <option value="{{ option.value }}">{{ option.value }} - {{ option.label }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Tanggal Persetujuan</label>
+                        <input type="date" class="form-control" name="tglojkoke" id="tglojkoke" required />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Jenis Modal</label>
+                        <select class="form-control" name="jenismodal" id="jenismodal" required>
+                          <option value="">-- Pilih Jenis Modal --</option>
+                          {% for option in jenis_modal_options %}
+                          <option value="{{ option.value }}">{{ option.value }} - {{ option.label }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Jumlah</label>
+                        <input type="number" class="form-control" name="jumlahmodal" id="jumlahmodal" step="0.01" required />
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </form>
             </div>
-            
-            <!-- Table -->
-            <div class="d-flex justify-content-center">
-            <div class="table-responsive">
-            <table id="datatables" class="table table-bordered table-sm nowrap w-100">
-                <thead class="table-light text-center">
-                    <tr>
-                        <th class="text-center">Jenis Setoran</th>
-                        <th class="text-center">Tanggal Persetujuan</th>
-                        <th class="text-center">Jenis Modal</th>
-                        <th class="text-center">Jumlah</th>
-                        <th class="text-center">Aksi</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>2025-07-28</td>
-                        <td>01</td>
-                        <td>1000000000</td>
-                        <td class="text-center">
-                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>01</td>
-                        <td>2023-06-12</td>
-                        <td>03</td>
-                        <td>2000000000</td>
-                        <td class="text-center">
-                            <a href="#" class="text-secondary me-1 edit" data-bs-toggle="modal" data-bs-target="#form0006Modal"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                    </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="3" style="text-align: right">Total:</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <!-- Total CBS -->
-                    <tr>
-                        <th colspan="3" style="text-align: right">Total CBS:</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <!-- Selisih Jumlah lapbul dengan CBS -->
-                    <tr>
-                        <th colspan="3" style="text-align: right">Selisih Jumlah lapbul dengan CBS:</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </tfoot>
-            </table>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="button" id="saveBtn" class="btn btn-secondary" onclick="saveData()">Simpan</button>
             </div>
-            </div>
+          </div>
         </div>
-    </main>
+      </div>
+
+      <!-- Modal Konfirmasi Delete -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h6 class="modal-title text-white">Konfirmasi Hapus</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <p>Apakah Anda yakin ingin menghapus data ini?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="button" id="confirmDeleteBtn" class="btn btn-danger" onclick="confirmDelete()">Hapus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="d-flex justify-content-center">
+        <div class="table-responsive">
+          <table id="datatables" class="table table-bordered table-sm nowrap w-100">
+            <thead class="table-light text-center">
+              <tr>
+                <th class="text-center">Jenis Setoran</th>
+                <th class="text-center">Tanggal Persetujuan</th>
+                <th class="text-center">Jenis Modal</th>
+                <th class="text-center">Jumlah</th>
+                <th class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in data %}
+              <tr data-id="{{ row.id_lap0006 }}">
+                <td>{{ row.jenissetoran|default:'' }}</td>
+                <td>{{ row.tglojkoke|default:'' }}</td>
+                <td>{{ row.jenismodal|default:'' }}</td>
+                <td class="text-end">{{ row.jumlahmodal|default:'0' }}</td>
+                <td class="text-center">
+                  <a href="#" class="text-secondary me-1 edit" onclick="editData('{{ row.id_lap0006 }}', '{{ row.jenissetoran }}', '{{ row.tglojkoke }}', '{{ row.jenismodal }}', '{{ row.jumlahmodal }}')">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="#" class="text-danger delete" onclick="deleteData('{{ row.id_lap0006 }}')">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5">Tidak ada data</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="3" style="text-align: right">Total:</th>
+                <th id="total-lapbul" style="text-align: right"></th>
+                <th></th>
+              </tr>
+              <!-- Total CBS -->
+              <tr>
+                <th colspan="3" style="text-align: right">Total CBS:</th>
+                <th id="total-cbs" style="text-align: right">{{ total_cbs|default:'0' }}</th>
+                <th></th>
+              </tr>
+              <!-- Selisih Jumlah lapbul dengan CBS -->
+              <tr>
+                <th colspan="3" style="text-align: right">Selisih Jumlah lapbul dengan CBS:</th>
+                <th id="selisih" style="text-align: right"></th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
+
 <script>
-$(document).ready(function () {
-    $('#datatables').DataTable({
+let currentAction = 'add'; // 'add' or 'edit'
+let deleteId = null;
+
+// Function untuk reset form
+function resetForm() {
+    document.getElementById('form0006Form').reset();
+    document.getElementById('noidentitas').value = '';
+    currentAction = 'add';
+    document.getElementById('modalTitle').textContent = 'Form Input Data Modal Disetor';
+    document.getElementById('saveBtn').textContent = 'Simpan';
+}
+
+// Event listener untuk tombol tambah
+document.querySelector('.tambah').addEventListener('click', function() {
+    resetForm();
+});
+
+// Function untuk edit data
+function editData(noidentitas, jenissetoran, tglojkoke, jenismodal, jumlahmodal) {
+    currentAction = 'edit';
+    document.getElementById('modalTitle').textContent = 'Edit Data Modal Disetor';
+    document.getElementById('saveBtn').textContent = 'Update';
+    
+    // Set form values
+    document.getElementById('noidentitas').value = noidentitas;
+    document.getElementById('jenissetoran').value = jenissetoran;
+    document.getElementById('tglojkoke').value = tglojkoke;
+    document.getElementById('jenismodal').value = jenismodal;
+    document.getElementById('jumlahmodal').value = jumlahmodal;
+    
+    // Show modal
+    var modal = new bootstrap.Modal(document.getElementById('form0006Modal'));
+    modal.show();
+}
+
+// Function untuk delete data
+function deleteData(noidentitas) {
+    deleteId = noidentitas;
+    var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
+}
+
+// Function untuk confirm delete
+function confirmDelete() {
+    if (!deleteId) return;
+    
+    fetch("{% url 'lapbul_app:delete_form_0006' %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: 'noidentitas=' + encodeURIComponent(deleteId)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert(data.message, 'success');
+            // Remove row from table
+            document.querySelector(`tr[data-id="${deleteId}"]`).remove();
+            
+            // Update row numbers
+            updateRowNumbers();
+            
+            // Check if table is empty
+            checkEmptyTable();
+        } else {
+            showAlert(data.message, 'danger');
+        }
+        
+        // Hide modal
+        bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
+        deleteId = null;
+    })
+    .catch(error => {
+        showAlert('Terjadi kesalahan saat menghapus data.', 'danger');
+        bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
+        deleteId = null;
+    });
+}
+
+// Function untuk save data (insert/update)
+function saveData() {
+    const form = document.getElementById('form0006Form');
+    const formData = new FormData(form);
+    
+    let url = currentAction === 'add' ? 
+        "{% url 'lapbul_app:insert_form_0006' %}" : 
+        "{% url 'lapbul_app:update_form_0006' %}";
+    
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert(data.message, 'success');
+            
+            if (currentAction === 'add') {
+                // Reload page for new data
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            } else {
+                // Update existing row
+                updateTableRow(formData);
+            }
+            
+            // Hide modal
+            bootstrap.Modal.getInstance(document.getElementById('form0006Modal')).hide();
+        } else {
+            showAlert(data.message, 'danger');
+        }
+    })
+    .catch(error => {
+        showAlert('Terjadi kesalahan saat menyimpan data.', 'danger');
+    });
+}
+
+// Function untuk update table row setelah edit
+function updateTableRow(formData) {
+    const noidentitas = formData.get('noidentitas');
+    const row = document.querySelector(`tr[data-id="${noidentitas}"]`);
+    
+    if (row) {
+        const cells = row.querySelectorAll('td');
+        cells[0].textContent = formData.get('jenissetoran'); // Jenis Setoran
+        cells[1].textContent = formData.get('tglojkoke'); // Tanggal
+        cells[2].textContent = formData.get('jenismodal'); // Jenis Modal
+        cells[3].textContent = Number(formData.get('jumlahmodal')).toLocaleString('id-ID'); // Jumlah
+        
+        // Recalculate totals
+        calculateTotals();
+    }
+}
+
+// Function untuk show alert
+function showAlert(message, type) {
+    const alertDiv = document.getElementById('alertMessage');
+    const alertText = document.getElementById('alertText');
+    
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertText.textContent = message;
+    alertDiv.style.display = 'block';
+    
+    // Auto hide after 3 seconds
+    setTimeout(() => {
+        closeAlert();
+    }, 3000);
+}
+
+// Function untuk close alert
+function closeAlert() {
+    const alertDiv = document.getElementById('alertMessage');
+    alertDiv.style.display = 'none';
+}
+
+// Function untuk update row numbers
+function updateRowNumbers() {
+    // Tidak perlu update row numbers karena tidak ada kolom No
+    calculateTotals(); // Update totals instead
+}
+
+// Function untuk check empty table
+function checkEmptyTable() {
+    const tbody = document.querySelector('#datatables tbody');
+    const rows = tbody.querySelectorAll('tr:not([style*="display: none"])');
+    
+    if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">Tidak ada data</td></tr>';
+        // Reset totals
+        $('#total-lapbul').html('0');
+        $('#selisih').html((-parseFloat($('#total-cbs').text().replace(/[^0-9.-]/g, "")) || 0).toLocaleString('id-ID'));
+    }
+}
+
+// Initialize DataTable
+$(document).ready(function() {
+    const table = $('#datatables').DataTable({
         scrollX: true,
         responsive: true,
         autoWidth: false,
@@ -148,20 +365,21 @@ $(document).ready(function () {
             {
                 targets: -1, // Last column (Aksi)
                 width: "100px",
-                orderable: false
+                orderable: false,
             },
             {
-                targets: "_all", 
+                targets: [3], // Format currency untuk kolom Jumlah
                 render: function (data, type, row) {
-                    if (!isNaN(data) && data !== "" && data !== null) {
-                        return Number(data).toLocaleString("id-ID");
+                    if (type === 'display' || type === 'type') {
+                        if (!isNaN(data) && data !== "" && data !== null) {
+                            return Number(data).toLocaleString('id-ID');
+                        }
                     }
                     return data;
-                }
-            }
+                },
+            },
         ],
         language: {
-            // lengthMenu: "Tampilkan _MENU_ entri",
             zeroRecords: "Tidak ada data yang ditemukan",
             info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
             infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
@@ -183,48 +401,48 @@ $(document).ready(function () {
                     ? i
                     : 0;
             };
+
+            // Calculate total for column 3 (Jumlah)
+            var total = api
+                .column(3, { search: "applied" })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            // Update total lapbul
+            $('#total-lapbul').html(total.toLocaleString('id-ID'));
             
-            var colsToSum = [3];
-            
-            colsToSum.forEach(function (colIdx) {
-                var total = api
-                    .column(colIdx, { search: "applied" })
-                    .data()
-                    .reduce(function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                $(api.column(colIdx).footer()).html(total.toLocaleString()).css('text-align', 'center');
-            });
+            // Calculate selisih (difference between lapbul and CBS)
+            var totalCBS = intVal($('#total-cbs').text().replace(/[^0-9.-]/g, ""));
+            var selisih = total - totalCBS;
+            $('#selisih').html(selisih.toLocaleString('id-ID'));
         },
+    });
+
+    // Recalculate totals when data changes
+    table.on('draw', function() {
+        calculateTotals();
     });
 });
 
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.tambah')) {
-        e.preventDefault();
-        const form = document.querySelector('#form0006Modal form');
-        if (form) form.reset();
-    }
-
-    if (e.target.closest('.edit')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        const cells = row.querySelectorAll('td');
-
-        // Fill modal form (excluding the last action column)
-        document.getElementById("jenis_setoran").value = cells[0].textContent.trim();
-        document.getElementById("tanggal_persetujuan").value = cells[1].textContent.trim();
-        document.getElementById("jenis_modal").value = cells[2].textContent.trim();
-        document.getElementById("jumlah").value = cells[3].textContent.trim();
-    }
-
-    if (e.target.closest('.delete')) {
-        e.preventDefault();
-        const row = e.target.closest('tr');
-        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            row.remove();
+// Function to calculate totals manually
+function calculateTotals() {
+    let total = 0;
+    $('#datatables tbody tr:visible').each(function() {
+        const jumlah = $(this).find('td:nth-child(4)').text().replace(/[^0-9.-]/g, "");
+        if (jumlah && !isNaN(jumlah)) {
+            total += parseFloat(jumlah);
         }
-    }
-});
+    });
+    
+    $('#total-lapbul').html(total.toLocaleString('id-ID'));
+    
+    // Calculate selisih
+    const totalCBS = parseFloat($('#total-cbs').text().replace(/[^0-9.-]/g, "")) || 0;
+    const selisih = total - totalCBS;
+    $('#selisih').html(selisih.toLocaleString('id-ID'));
+}
 </script>
+
 {% include 'lapbul_app/footer.html' %}

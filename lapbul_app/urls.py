@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .controllers import form_0006_controllers as form0006
 from .controllers import form_0007_controllers as form0007
 
 app_name = 'lapbul_app'
@@ -20,7 +21,10 @@ urlpatterns = [
     path('lapbul/form_0003/', views.form_0003, name='form_0003'),
     path('lapbul/form_0004/', views.form_0004, name='form_0004'),
     path('lapbul/form_0005/', views.form_0005, name='form_0005'),
-    path('lapbul/form_0006/', views.form_0006, name='form_0006'),
+    path('lapbul/form_0006/', form0006.form_0006, name='form_0006'),
+    path('lapbul/form_0006/update/', form0006.update_form_0006, name='update_form_0006'),
+    path('lapbul/form_0006/insert/', form0006.insert_form_0006, name='insert_form_0006'),
+    path('lapbul/form_0006/delete/', form0006.delete_form_0006, name='delete_form_0006'),
     path('lapbul/form_0007/', form0007.form_0007, name='form_0007'),
     path('lapbul/form_0007/update/', form0007.update_form_0007, name='update_form_0007'),
     path('lapbul/form_0007/insert/', form0007.insert_form_0007, name='insert_form_0007'),
