@@ -1,14 +1,6 @@
 {% include 'lapbul_app/header.html' %}
 <style>
 /* CSS for form alignment and styling */
-.form-container {
-    display: flex;
-    justify-content: center;
-}
-.table-responsive {
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
 /* Define the sticky column styles */
 .sticky-action-col {
@@ -169,7 +161,7 @@ table th:nth-child(6) {
             </div>
             
             <!-- Table -->
-            <div class="form-container">
+            <div class="d-flex justify-content-center">
             <div class="table-responsive">
             <table id="datatables" class="table table-bordered table-sm nowrap w-100">
                 <thead class="table-light text-center">
@@ -388,7 +380,7 @@ $(document).ready(function () {
                         : 0;
             };
 
-            var colsToSum = [10, 11, 13, 14]; 
+            var colsToSum = [9, 10, 12, 13]; 
             // 9: suku_bunga, 10: nominal, 11: nominal_diblokir, 13: biaya_diamortisasi, 14: jumlah
 
             colsToSum.forEach(function (colIdx) {
@@ -406,6 +398,7 @@ $(document).ready(function () {
         }
     });
 });
+
 
 
 document.addEventListener('click', function(e) {
